@@ -1,0 +1,66 @@
+"Manifiesto Normal",65,1,279,217
+"Numero del manifiesto",88,33,1,14,"Aqui se imprime el numero del manifiesto",20
+"Fecha manifiesto",26,57,1,10,"Es la fecha de expedicion del manifiesto",10
+"Origen del viaje",85,57,1,10,"",10
+"Destino del viaje",155,57,1,10,"",19
+"Placa vehiculo",11,72,1,10,"",10
+"Marca vehiculo",35,72,1,10,"",10
+"Linea vehiculo",64,72,1,10,"",10
+"Modelo vehiculo",90,72,1,10,"",10
+"Modelo repotensiado",105,72,1,10,"",10
+"Serie vehiculo",121,72,1,10,"",10
+"Color vehiculo",150,72,1,10,"",10
+"Tipo carroceria",183,72,1,10,"",10
+"Registro nacional de carga",11,81,1,10,"",10
+"Configuracion",35,81,1,10,"",10
+"Peso vacio",64,81,1,10,"",10
+"Numero SOAT",90,81,1,10,"",4
+"Cia Seguros SOAT",108,81,1,10,"",10
+"Vencimiento SOAT",150,81,1,10,"",10
+"Placa SemiRemolque",183,81,1,10,"",10
+"Propietario",11,91,1,10,"",30
+"ID Propietario",77,91,1,10,"",15
+"Direccion",113,91,1,10,"",30
+"Telefono",160,91,1,10,"",10
+"Ciudad",183,91,1,10,"",15
+"Tenedor",11,100,1,10,"",30
+"ID Tenedor",77,100,1,10,"",15
+"Direccion",113,100,1,10,"",30
+"Telefono",160,100,1,10,"",12
+"Ciudad",183,100,1,10,"",15
+"Conductor",11,109,1,10,"",30
+"ID Conductor",77,109,1,10,"",12
+"Direccion",113,109,1,10,"",30
+"Cat Lic. Conductor",160,109,1,10,"",15
+"Ciudad",183,109,1,10,"",15
+"Nro Remesa",6,80,1,10,"",10
+"Unidad de medida",22,80,1,10,"",3
+"Cantidad",30,80,1,10,"",5
+"Peso Kilos",43,80,1,10,"",10
+"Codigo Nat",60,80,1,10,"",10
+"Codigo Empaque",70,80,1,10,"",10
+"Codigo Producto",77,80,1,10,"",4
+"Producto",87,80,1,10,"",10
+"Destino",179,80,1,10,"",13
+"Remitente",115,80,1,10,"",12
+"Destinatario",145,80,1,9,"",14
+"Vr T Flete",37,187,1,10,"",10
+"Rte Fuente",37,195,1,10,"",10
+"Dctos de ley",37,203,1,10,"",10
+"Flete neto",37,211,1,10,"",10
+"Valor anticipo",37,218,1,10,"",10
+"Neto a pagar",37,226,1,10,"",10
+"Vr T en letras",12,239,1,10,"",50
+"Observaciones",131,186,1,10,"",35
+"Codigo reginal",158,36,0,10,"",10
+"Codigo empresa",168,36,0,10,"",10
+"Resolucion Nro",85,46,1,10,"",10
+"Rangos autorizados",160,46,1,10,"",10
+"Lugar pag Saldo",64,202,1,10,"",10
+"Fecha Pag saldo",64,167,1,10,"",10
+"Pago cargue",64,216,1,10,"",10
+"Pago descargue",64,231,1,10,"",10
+"Comp. seguros",102,194,1,10,"",10
+"Poliza",102,209,1,10,"",10
+"Vence Poliza",102,225,1,10,"",10
+"Fecha Resolucion",105,46,1,10,"",10

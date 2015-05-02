@@ -1,0 +1,6 @@
+ToolEspecial = 132, 132, 453, 478, C, 44, 44, 358, 390, C
+FrmDev = 66, 66, 387, 412, C, 0, 0, 321, 346, C
+Variables = 66, 66, 375, 412, C
+FrmDevFechas = 66, 66, 379, 412, C, 44, 44, 357, 390, C
+FrmConsultaGeneral = 22, 22, 436, 467, C, 0, 0, 414, 445, C
+ModFunPro = 66, 66, 480, 511, C

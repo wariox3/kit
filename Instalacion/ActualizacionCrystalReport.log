@@ -1,0 +1,45 @@
+
+Procesando 02/12/2013 11:21:21 a.m.
+Archivo Log 
+Generando fuentes... 
+Compilando fuentes de Gentee... 
+Creando archivo instalador: c:\setups\setup.exe 
+Añadiendo temporary archivos al EXE 
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\english.lng 02/12/2013 11:21:21 a.m. 2076  51.78%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\install\install - 1.bmp 10/11/2002 03:56:02 a.m. 20678  33.42%
+C:\Archivos de programa\CreateInstall Free\res\logo\default - 1.bmp 05/11/2002 03:52:24 a.m. 7308  52.50%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\uninstall\uninstall - 1.bmp 10/11/2002 03:56:02 a.m. 20678  28.17%
+Obteniendo lista de archivos 
+Comprimiendo archivos... 
+================================ 
+C:\kit\Instalacion\Componentes\Aplicaciones\npviewer.exe 27/01/2000 07:23:08 p.m. 4480832  98.49%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\sviewhlp.dll 16/03/2000 06:54:30 a.m. 57344  38.60%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2dapp.dll 29/02/2000 08:34:22 p.m. 28672  19.51%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2ddisk.dll 29/02/2000 08:34:24 p.m. 28672  6.28%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2dmapi.dll 29/02/2000 08:34:24 p.m. 40960  22.51%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2dnotes.dll 29/02/2000 08:34:24 p.m. 53248  32.85%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2dpost.dll 29/02/2000 08:34:24 p.m. 49152  35.05%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2dvim.dll 29/02/2000 08:34:24 p.m. 57344  27.51%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fcr.dll 29/02/2000 08:34:24 p.m. 28672  9.03%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fhtml.dll 29/02/2000 08:34:24 p.m. 32768  20.85%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fodbc.dll 29/02/2000 08:34:24 p.m. 49152  29.36%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2frec.dll 29/02/2000 08:34:24 p.m. 36864  17.94%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2frtf.dll 29/02/2000 08:34:24 p.m. 122880  49.63%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fsepv.dll 29/02/2000 08:34:24 p.m. 36864  19.37%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2ftext.dll 29/02/2000 08:34:24 p.m. 81920  34.99%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fwks.dll 29/02/2000 08:34:24 p.m. 40960  20.74%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fwordw.dll 29/02/2000 08:34:24 p.m. 106496  32.14%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2fxls.dll 29/02/2000 08:34:24 p.m. 208896  38.51%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2l2000.dll 29/02/2000 08:34:24 p.m. 24576  13.22%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2lcom.dll 29/02/2000 08:34:24 p.m. 45056  32.49%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2ldts.dll 29/02/2000 08:34:24 p.m. 24576  5.74%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u2lsamp1.dll 29/02/2000 08:34:24 p.m. 24576  8.10%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u3l20es.dll 03/01/2000 09:52:26 p.m. 20480  2.86%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u3ls1es.dll 03/01/2000 09:52:26 p.m. 20480  0.84%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u25dts.dll 29/02/2000 08:34:24 p.m. 24576  6.42%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u3520es.dll 03/01/2000 09:52:26 p.m. 20480  0.85%
+C:\kit\Instalacion\Componentes\dlls_ocx\dllsCrystalReport\u252000.dll 29/02/2000 08:34:24 p.m. 24576  5.27%
+================================ 
+Todos los archivos: 27 [ 5635KB => 4666KB ] 
+Tamaño del archivo c:\setups\setup.exe: 4766 KB 
+Finalización exitosa 02/12/2013 11:21:24 a.m.

@@ -1,0 +1,134 @@
+
+Procesando 03/09/2013 08:08:24 a.m.
+Archivo Log 
+Generando fuentes... 
+Compilando fuentes de Gentee... 
+Creando archivo instalador: C:\kit\Setups\Kit Logistics BE.exe 
+Añadiendo temporary archivos al EXE 
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 03/09/2013 08:08:25 a.m. 4161  43.93%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\install\disk-install.bmp 10/03/2008 09:25:54 a.m. 20680  30.40%
+C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
+C:\Archivos de programa\CreateInstall Free\res\logo\disk-logo.bmp 11/03/2008 02:25:20 a.m. 3628  75.35%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\uninstall\disk-uninstall.bmp 10/03/2008 03:05:34 p.m. 20680  29.64%
+Creando archivo instalador: C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\uninstall.exe 
+Añadiendo uninstall archivos al EXE 
+Obteniendo lista de archivos 
+Comprimiendo archivos... 
+================================ 
+C:\kit\Kit logistics\EditorCoordenadas\Comp\EditorCoordenadas.exe 16/05/2013 10:22:34 a.m. 45056  24.37%
+C:\kit\componentes\ActiveXViewer\ActiveXViewer.cab 16/03/2000 06:54:30 a.m. 417811  100.00%
+C:\kit\componentes\ActiveXViewer\crviewer.dep 27/01/2000 07:12:16 p.m. 556  43.88%
+C:\kit\componentes\ActiveXViewer\crviewer.dll 16/03/2000 06:54:30 a.m. 548864  42.24%
+C:\kit\componentes\ActiveXViewer\crviewer.oca 07/07/1999 12:02:12 a.m. 0  0.00%
+C:\kit\componentes\ActiveXViewer\cselexpt.oca 03/09/2013 07:44:12 a.m. 25600  30.76%
+C:\kit\componentes\ActiveXViewer\cselexpt.ocx 08/03/2000 06:46:12 p.m. 87040  38.46%
+C:\kit\componentes\ActiveXViewer\get-npviewer.htm 28/02/2000 08:22:42 p.m. 1269  54.21%
+C:\kit\componentes\ActiveXViewer\npviewer.exe 27/01/2000 07:23:08 p.m. 4480832  98.49%
+C:\kit\componentes\ActiveXViewer\sviewhlp.dll 16/03/2000 06:54:30 a.m. 57344  38.60%
+C:\kit\componentes\ActiveXViewer\swebrs.dll 16/03/2000 06:54:30 a.m. 77824  25.08%
+C:\kit\componentes\ActiveXViewer\webimage.gif 23/10/1997 10:02:30 p.m. 6619  96.46%
+C:\kit\componentes\ActiveXViewer\xqviewer.dll 08/03/2000 06:46:12 p.m. 150528  47.08%
+C:\kit\componentes\ActiveXViewer\xqviewer.oca 03/09/2013 07:44:00 a.m. 20480  28.16%
+C:\kit\CoorImp\Coordenadas Orden de recogida.ork 16/05/2013 10:22:24 a.m. 474  50.84%
+C:\kit\CoorImp\PreFactura.Fsl 16/05/2013 10:22:24 a.m. 1780  36.01%
+C:\kit\CoorImp\PreManifiesto.Mfto 16/05/2013 10:22:24 a.m. 2343  40.37%
+C:\kit\CoorImp\PrePlaReparto.Mfto 16/05/2013 10:22:24 a.m. 449  53.45%
+C:\kit\CoorImp\PreRecibo.rcs 16/05/2013 10:22:24 a.m. 1169  29.34%
+C:\kit\CoorImp\PreRemision.Rmci 16/05/2013 10:22:24 a.m. 1364  45.74%
+C:\kit\Instalacion\Componentes\Aplicaciones\mysql-connector-odbc-3.51.26-win32.msi 16/05/2013 10:22:17 a.m. 3728384  97.22%
+C:\kit\Instalacion\Componentes\dlls_ocx\p2sodbc.dll 16/05/2013 10:22:15 a.m. 270336  40.16%
+C:\kit\Instalacion\Componentes\dlls_ocx\P2smon.dll 16/05/2013 10:22:14 a.m. 147456  41.18%
+C:\kit\Instalacion\Componentes\dlls_ocx\msado26.tlb 16/05/2013 10:22:14 a.m. 81920  31.59%
+C:\kit\Instalacion\Componentes\dlls_ocx\Crpaig80.dll 16/05/2013 10:22:14 a.m. 618496  47.13%
+C:\kit\Instalacion\Componentes\dlls_ocx\craxdrt.dll 16/05/2013 10:22:14 a.m. 5550080  36.61%
+C:\kit\Instalacion\Componentes\dlls_ocx\p3smnes.dll 16/05/2013 10:22:15 a.m. 36864  11.70%
+C:\kit\Instalacion\Componentes\dlls_ocx\sscsdk80.dll 16/05/2013 10:22:15 a.m. 974848  47.87%
+C:\kit\Instalacion\Componentes\dlls_ocx\msvcrt.dll 16/05/2013 10:22:14 a.m. 343040  52.49%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSMASK32.OCX 16/05/2013 10:22:14 a.m. 166200  49.45%
+C:\kit\Instalacion\Componentes\dlls_ocx\TABCTL32.OCX 16/05/2013 10:22:15 a.m. 209192  50.73%
+C:\kit\Instalacion\Componentes\dlls_ocx\rpcrt4.dll 16/05/2013 10:22:14 a.m. 581120  57.39%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSDATGRD.OCX 16/05/2013 10:22:14 a.m. 260920  47.91%
+C:\kit\Instalacion\Componentes\dlls_ocx\crviewer.dll 16/05/2013 10:22:15 a.m. 548864  42.24%
+C:\kit\Instalacion\Componentes\dlls_ocx\Comdlg32.ocx 16/05/2013 10:22:15 a.m. 140288  44.84%
+C:\kit\Kit logistics\K!ControlSoftware\comp\Control Software.exe 16/05/2013 10:22:43 a.m. 36864  27.87%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCTL.OCX 16/05/2013 10:22:15 a.m. 1077336  46.32%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCT2.OCX 16/05/2013 10:22:14 a.m. 644400  51.28%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSSTDFMT.DLL 16/05/2013 10:22:15 a.m. 118784  45.68%
+C:\kit\Kit logistics\Reportes\Facturacion\Cartera por edades.rpt 02/09/2013 03:53:53 p.m. 53248  18.56%
+C:\kit\Kit logistics\Reportes\Facturacion\Factura.rpt 23/08/2013 12:30:44 p.m. 135163  46.36%
+C:\kit\Kit logistics\Reportes\Facturacion\Facturado.rpt 16/05/2013 10:22:42 a.m. 60416  9.89%
+C:\kit\Kit logistics\Reportes\Facturacion\Imprimir nota credito.rpt 02/09/2013 04:20:13 p.m. 43520  21.66%
+C:\kit\Kit logistics\Reportes\Facturacion\Imprimir recibo caja.rpt 02/09/2013 04:17:28 p.m. 44032  21.30%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar contado.rpt 17/06/2013 12:14:47 p.m. 43520  12.99%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar destino.rpt 17/06/2013 12:15:22 p.m. 43520  12.99%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar.rpt 16/05/2013 10:22:41 a.m. 43520  13.19%
+C:\kit\Kit logistics\Reportes\listados\Control\Acuerdos comerciales.rpt 16/05/2013 10:22:41 a.m. 41984  11.15%
+C:\kit\Kit logistics\Reportes\listados\Rutas.rpt 16/05/2013 10:22:41 a.m. 24064  17.45%
+C:\kit\Kit logistics\Reportes\ListasPrecios\ListadosPrecios.rpt 16/05/2013 10:22:41 a.m. 122368  61.56%
+C:\kit\Kit logistics\Reportes\monitoreo\1 Reporte de monitoreo.rpt 16/05/2013 10:22:41 a.m. 50688  12.64%
+C:\kit\Kit logistics\Reportes\Movimiento\10 Novedad.rpt 16/05/2013 10:22:41 a.m. 35328  13.71%
+C:\kit\Kit logistics\Reportes\Movimiento\12 Pendientes por descargar.rpt 16/05/2013 10:22:41 a.m. 39424  13.90%
+C:\kit\Kit logistics\Reportes\Movimiento\13 Produccion por ruta.rpt 16/05/2013 10:22:41 a.m. 59904  20.34%
+C:\kit\Kit logistics\Reportes\Movimiento\20 FletePagado vs FleteCobrado.rpt 16/05/2013 10:22:41 a.m. 46080  11.83%
+C:\kit\Kit logistics\Reportes\Movimiento\9 Novedades pendientes.rpt 16/05/2013 10:22:41 a.m. 31232  14.76%
+C:\kit\Kit logistics\Reportes\Movimiento\DESPACHOS PENDIENTES POR CERRAR.rpt 16/05/2013 10:22:41 a.m. 35328  15.24%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto.rpt 27/08/2013 02:39:49 p.m. 207536  32.04%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoDetalle.rpt 13/08/2013 05:18:47 p.m. 106496  56.82%
+C:\kit\Kit logistics\Reportes\Movimiento\Guias Contraentrega y Recaudos.rpt 16/05/2013 10:22:41 a.m. 40448  13.33%
+C:\kit\Kit logistics\Reportes\Movimiento\ImpGuia.rpt 16/05/2013 10:22:41 a.m. 98816  42.18%
+C:\kit\Kit logistics\Reportes\Movimiento\ImpManifiesto.rpt 16/05/2013 10:22:41 a.m. 72704  54.78%
+C:\kit\Kit logistics\Reportes\Movimiento\Liquidar despacho.rpt 16/05/2013 10:22:41 a.m. 99752  19.13%
+C:\kit\Kit logistics\Reportes\Movimiento\Novedades Pendientes.rpt 16/05/2013 10:22:41 a.m. 50176  14.27%
+C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE DESPACHO.rpt 16/05/2013 10:22:41 a.m. 68608  10.31%
+C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE RECOGIDA.rpt 16/05/2013 10:22:41 a.m. 69632  24.30%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTE POR DESPACHAR CIUDAD.rpt 16/05/2013 10:22:41 a.m. 65024  10.80%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTE POR DESPACHAR.rpt 16/05/2013 10:22:41 a.m. 54784  11.69%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTES POR ENTREGAR CLIENTE.rpt 16/05/2013 10:22:41 a.m. 34816  15.57%
+C:\kit\Kit logistics\Reportes\Movimiento\Producccion General por Clientes.rpt 16/05/2013 10:22:41 a.m. 52736  11.14%
+C:\kit\Kit logistics\Reportes\Movimiento\RELACION DE GUIAS.rpt 16/05/2013 10:30:20 a.m. 69632  10.46%
+C:\kit\Kit logistics\Reportes\Movimiento\Resumen de Despacho.rpt 16/05/2013 10:22:41 a.m. 108354  7.70%
+C:\kit\Kit logistics\Reportes\Movimiento\Ventas Contado.rpt 16/05/2013 10:35:38 a.m. 56832  10.41%
+C:\kit\Kit logistics\Reportes\Recogidas\LISTADO DE RECOGIDAS FECHA.rpt 16/05/2013 10:22:41 a.m. 45056  12.72%
+C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:22:41 a.m. 48128  12.24%
+C:\kit\Archivos config\InfDatosBasicos.Kin 16/05/2013 10:22:11 a.m. 1323  46.71%
+C:\kit\Archivos config\InfEnlaces.Kin 16/05/2013 10:22:11 a.m. 170  87.64%
+C:\kit\Archivos config\InfFacturacion.Kin 16/05/2013 10:22:11 a.m. 1630  42.94%
+C:\kit\Archivos config\InfMonitoreoSeguridad.Kin 16/05/2013 10:22:11 a.m. 1323  46.71%
+C:\kit\Archivos config\InfMovimiento.Kin 16/05/2013 10:22:11 a.m. 1257  50.51%
+C:\kit\Archivos config\InfRecogidas.Kin 16/05/2013 10:22:11 a.m. 255  76.86%
+C:\kit\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
+C:\kit\Archivos config\InfVehiculos.Kin 16/05/2013 10:22:11 a.m. 1323  46.71%
+C:\kit\Registro sistema Kit.reg 16/05/2013 10:22:52 a.m. 1042  48.27%
+C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  100.00%
+C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
+C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 30/08/2013 03:32:58 p.m. 180224  26.73%
+C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 26/08/2013 09:34:48 a.m. 155648  25.38%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 26/08/2013 09:34:50 a.m. 458752  29.04%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 30/08/2013 04:18:22 p.m. 1757184  24.77%
+C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 26/08/2013 09:34:51 a.m. 430080  29.47%
+C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 26/08/2013 09:34:50 a.m. 286720  33.44%
+C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 29/08/2013 09:34:35 a.m. 241664  32.56%
+C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 26/08/2013 09:34:48 a.m. 167936  38.05%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSDATLST.OCX 16/05/2013 10:22:14 a.m. 232248  46.87%
+C:\WINDOWS\system32\comcat.dll 24/08/2001 06:00:00 a.m. 3584  27.17%
+C:\WINDOWS\system32\stdole2.tlb 13/04/2008 09:12:08 p.m. 16896  38.99%
+C:\WINDOWS\system32\asycfilt.dll 14/04/2008 07:48:20 a.m. 65024  57.19%
+C:\WINDOWS\system32\olepro32.dll 14/04/2008 07:48:34 a.m. 84992  49.93%
+C:\WINDOWS\system32\oleaut32.dll 14/04/2008 07:48:34 a.m. 551936  49.57%
+C:\WINDOWS\system32\msvbvm60.dll 14/04/2008 07:48:30 a.m. 1384479  49.28%
+C:\WINDOWS\system32\msjtes40.dll 02/04/2007 06:19:38 p.m. 248608  42.45%
+C:\WINDOWS\system32\msrepl40.dll 02/04/2007 06:21:06 p.m. 559904  42.74%
+C:\WINDOWS\system32\msrd3x40.dll 02/04/2007 06:20:44 p.m. 322336  52.52%
+C:\WINDOWS\system32\msrd2x40.dll 02/04/2007 06:20:28 p.m. 432928  32.68%
+C:\WINDOWS\system32\mswdat10.dll 02/04/2007 06:21:48 p.m. 838432  57.75%
+C:\WINDOWS\system32\mswstr10.dll 28/03/2007 06:24:44 p.m. 621344  15.15%
+C:\WINDOWS\system32\expsrv.dll 14/04/2008 07:48:22 a.m. 380445  49.95%
+C:\WINDOWS\system32\vbajet32.dll 14/04/2008 07:48:46 a.m. 30749  18.73%
+C:\WINDOWS\system32\msjint40.dll 28/03/2007 06:24:38 p.m. 187168  21.44%
+C:\WINDOWS\system32\msjter40.dll 02/04/2007 06:19:34 p.m. 60192  24.88%
+C:\WINDOWS\system32\msjet40.dll 22/10/2007 03:00:52 p.m. 1516568  45.19%
+C:\Archivos de programa\Archivos comunes\Microsoft Shared\DAO\dao360.dll 19/01/2008 04:34:50 p.m. 554008  40.78%
+================================ 
+Todos los archivos: 113 [ 35185KB => 18986KB ] 
+Tamaño del archivo C:\kit\Setups\Kit Logistics BE.exe: 19111 KB 
+Finalización exitosa 03/09/2013 08:08:57 a.m.

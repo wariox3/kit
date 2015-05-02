@@ -1,0 +1,13 @@
+FrmVehiculos = 22, 22, 389, 368, C, 110, 110, 477, 456, C
+Principal = 0, 0, 367, 346, C, 132, 132, 499, 478, C
+ModVariables = 66, 66, 433, 412, C
+FrmPresentacion = 44, 44, 411, 390, C, 154, 154, 521, 500, C
+ModElToolPermisos = 22, 22, 407, 368, C
+ModFuncionesBasicas = 44, 44, 429, 390, C
+ModFuncionesPropias = 66, 66, 451, 412, C
+ModRecorsets = 110, 110, 495, 456, C
+FrmVerImagen = 44, 44, 575, 564, C, 0, 0, 531, 520, C
+FrmCarrocerias = 0, 0, 0, 0, C, 132, 132, 1096, 676, C
+FrmColores = 0, 0, 0, 0, C, 154, 154, 1118, 698, C
+FrmLineas = 0, 0, 0, 0, C, 176, 176, 1140, 720, C
+FrmMarcas = 0, 0, 0, 0, C, 198, 198, 1162, 742, C

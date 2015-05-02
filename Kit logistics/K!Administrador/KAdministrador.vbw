@@ -1,0 +1,15 @@
+FrmContraseña = 132, 132, 493, 478, C, 88, 88, 443, 434, C
+ModFuncionesPropias = 22, 22, 434, 303, C
+Principal = 22, 22, 377, 368, C, 66, 66, 419, 412, C
+FrmCentrosOperaciones = 44, 44, 428, 390, C, 22, 22, 409, 368, C
+ModVariables = 88, 88, 449, 434, C
+FrmUsuarios = 44, 44, 353, 390, C, 22, 22, 330, 368, C
+FrmAddCO = 132, 132, 433, 478, C, 88, 88, 393, 434, C
+FrmNuevoUsuario = 176, 176, 664, 622, C, 198, 198, 657, 644, C
+FrmConfiguracionGeneral = 110, 110, 587, 556, C, 88, 88, 565, 534, C
+FrmConectarBD = 88, 88, 538, 533, C, 66, 66, 516, 511, C
+FrmPermisosEspecialesUsuario = 132, 132, 609, 592, C, 110, 110, 587, 570, C
+FrmPermisos = 110, 110, 587, 570, C, 88, 88, 565, 548, C
+FrmAgregarFormulario = 22, 22, 499, 482, C, 0, 0, 477, 460, C
+FrmDevDirectorio = 0, 0, 670, 446, C, 220, 220, 890, 666, C
+FrmEjecutarScripts = 242, 242, 1184, 775, C, 176, 176, 1118, 709, C

@@ -1,0 +1,35 @@
+"Plantilla Guias",34,1,200,200
+"NUMERO GUIA",132,32,1,12,"El numero de la remision",10
+"CENTRO OPERACIONES",30,10,1,10,"El numero de la remision",9
+"CLIENTE",4,24,1,11,"El nombre del cliente",25
+"CIU CLIENTE",75,24,1,11,"Ciudad del cliente",40
+"DIR CLIENTE",104,24,1,11,"Direccion del cliente",40
+"TEL CLIENTE",165,24,1,10,"Telefono del cliente",40
+"REMITENTE",4,32,1,11,"Es la fecha en que se imprimio",25
+"DIR REMITENTE",15,35,1,10,"",10
+"TEL REMITENTE",15,40,1,10,"Dice conductor",40
+"DOCUEMTNO CLIENTE",104,32,1,11,"Ciudad del cleinte",20
+"DESTINATARIO",4,41,1,11,"Es la direccion del cliente",25
+"DIR DESTINATARIO",104,41,1,11,"Va el telefono del cliente",10
+"TEL DESTIANTARIO",160,41,1,10,"???",40
+"DESTINO",75,41,1,11,"",20
+"FH ENTRADA",162,15,1,12,"",40
+"DECLARADO",165,32,0,10,"",10
+"FLETE",75,52,1,10,"",10
+"MANEJO",100,52,1,10,"",4
+"UNIDADES",15,63,1,10,"",10
+"K REALES",15,100,1,10,"",4
+"K FACTRUADOS",15,105,1,10,"",10
+"K VOLUMEN",15,110,1,10,"",10
+"OBSERVACIONES",61,63,1,10,"",25
+"C OPERACIONES INGRESO",15,120,1,10,"",10
+"TP SERVICIO",15,125,1,10,"",10
+"TP CUENTA FLETE",4,50,1,10,"",10
+"TP CUENTA MANEJO",38,50,1,10,"",10
+"LOTE",15,140,1,10,"",15
+"TOTAL UNIDADES",23,63,1,10,"",10
+"TOTAL KILOS RALES",35,63,1,10,"",10
+"TOTAL KILOS VOL",48,63,1,10,"",10
+"TOTAL PAGAR",130,58,1,10,"",10
+"USUARIO",160,52,1,10,"",10
+"NUMERO GUIA-Fac",100,32,1,12,"Factura",10

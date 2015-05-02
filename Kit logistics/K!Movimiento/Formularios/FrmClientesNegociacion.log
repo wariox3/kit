@@ -1,0 +1,53 @@
+Línea 22: la clase MSComctlLib.Toolbar del control ToolClientes no era una clase de control cargada.
+Línea 114: la clase TabDlg.SSTab del control SSTInfo no era una clase de control cargada.
+Línea 191: la clase MSComCtl2.DTPicker del control DPHoraRec no era una clase de control cargada.
+Línea 347: la clase MSMask.MaskEdBox del control TxtDctoKilo no era una clase de control cargada.
+Línea 369: la clase MSMask.MaskEdBox del control TxtDctoUni no era una clase de control cargada.
+Línea 391: la clase MSMask.MaskEdBox del control TxtMinimos no era una clase de control cargada.
+Línea 577: la clase MSMask.MaskEdBox del control TxtPorManejo no era una clase de control cargada.
+Línea 599: la clase MSMask.MaskEdBox del control TxtVrUnidad no era una clase de control cargada.
+Línea 660: la clase MSMask.MaskEdBox del control TxtDctoPieFac no era una clase de control cargada.
+Línea 681: la clase MSMask.MaskEdBox del control TxtDctoFinanciero no era una clase de control cargada.
+Línea 703: la clase MSMask.MaskEdBox del control TxtAntesDe no era una clase de control cargada.
+Línea 725: la clase MSMask.MaskEdBox del control TxtPlazo no era una clase de control cargada.
+Línea 747: la clase MSMask.MaskEdBox del control TxtCupoCredito no era una clase de control cargada.
+Línea 897: la clase MSMask.MaskEdBox del control TxtFechaIng no era una clase de control cargada.
+Línea 910: la clase MSMask.MaskEdBox del control TxtFaxCliente no era una clase de control cargada.
+Línea 923: la clase MSMask.MaskEdBox del control TxtIdCliente no era una clase de control cargada.
+Línea 1041: la clase MSComctlLib.ListView del control LstServicios no era una clase de control cargada.
+Línea 120: el nombre de la propiedad _ExtentX de SSTInfo no es válido.
+Línea 121: el nombre de la propiedad _ExtentY de SSTInfo no es válido.
+Línea 122: el nombre de la propiedad _Version de SSTInfo no es válido.
+Línea 123: el nombre de la propiedad Style de SSTInfo no es válido.
+Línea 124: el nombre de la propiedad TabHeight de SSTInfo no es válido.
+Línea 125: el nombre de la propiedad TabCaption(0) de SSTInfo no es válido.
+Línea 126: el nombre de la propiedad TabPicture(0) de SSTInfo no es válido.
+Línea 127: el nombre de la propiedad Tab(0).ControlEnabled de SSTInfo no es válido.
+Línea 128: el nombre de la propiedad Tab(0).Control(0) de SSTInfo no es válido.
+Línea 129: el nombre de la propiedad Tab(0).Control(0).Enabled de SSTInfo no es válido.
+Línea 130: el nombre de la propiedad Tab(0).Control(1) de SSTInfo no es válido.
+Línea 131: el nombre de la propiedad Tab(0).Control(1).Enabled de SSTInfo no es válido.
+Línea 132: el nombre de la propiedad Tab(0).Control(2) de SSTInfo no es válido.
+Línea 133: el nombre de la propiedad Tab(0).Control(2).Enabled de SSTInfo no es válido.
+Línea 134: el nombre de la propiedad Tab(0).ControlCount de SSTInfo no es válido.
+Línea 135: el nombre de la propiedad TabCaption(1) de SSTInfo no es válido.
+Línea 136: el nombre de la propiedad TabPicture(1) de SSTInfo no es válido.
+Línea 137: el nombre de la propiedad Tab(1).ControlEnabled de SSTInfo no es válido.
+Línea 138: el nombre de la propiedad Tab(1).Control(0) de SSTInfo no es válido.
+Línea 139: el nombre de la propiedad Tab(1).Control(1) de SSTInfo no es válido.
+Línea 140: el nombre de la propiedad Tab(1).Control(2) de SSTInfo no es válido.
+Línea 141: el nombre de la propiedad Tab(1).Control(3) de SSTInfo no es válido.
+Línea 142: el nombre de la propiedad Tab(1).Control(4) de SSTInfo no es válido.
+Línea 143: el nombre de la propiedad Tab(1).Control(5) de SSTInfo no es válido.
+Línea 144: el nombre de la propiedad Tab(1).Control(6) de SSTInfo no es válido.
+Línea 145: el nombre de la propiedad Tab(1).ControlCount de SSTInfo no es válido.
+Línea 146: el nombre de la propiedad TabCaption(2) de SSTInfo no es válido.
+Línea 147: el nombre de la propiedad TabPicture(2) de SSTInfo no es válido.
+Línea 148: el nombre de la propiedad Tab(2).ControlEnabled de SSTInfo no es válido.
+Línea 149: el nombre de la propiedad Tab(2).Control(0) de SSTInfo no es válido.
+Línea 150: el nombre de la propiedad Tab(2).ControlCount de SSTInfo no es válido.
+Línea 197: el nombre de la propiedad _ExtentX de DPHoraRec no es válido.
+Línea 198: el nombre de la propiedad _ExtentY de DPHoraRec no es válido.
+Línea 199: el nombre de la propiedad _Version de DPHoraRec no es válido.
+Línea 200: el nombre de la propiedad Format de DPHoraRec no es válido.
+Línea 201: el nombre de la propiedad CurrentDate de DPHoraRec no es válido.

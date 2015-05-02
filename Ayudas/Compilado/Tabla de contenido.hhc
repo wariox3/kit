@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="Window Styles" value="0x800025">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Principal">
+		<param name="Local" value="DiseñoWeb\principal.html">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Introduccion">
+			<param name="Local" value="DiseñoWeb\principal.html">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Modulos de operaciones">
+			<param name="Local" value="DiseñoWeb\Modulos de operacion.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Introducicon modulos de operaciones">
+				<param name="Local" value="DiseñoWeb\Modulos de operacion.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Recogidas">
+				<param name="Local" value="DiseñoWeb\Ke!Recogidas\introduccion_ke!recogidas.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Introduccion Ke!Recogidas">
+					<param name="Local" value="DiseñoWeb\Ke!Recogidas\introduccion_ke!recogidas.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Ingresar anuncio">
+					<param name="Local" value="DiseñoWeb\Ke!Recogidas\ingresar_anuncio.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Filtrar o buscar anuncios de recogida">
+					<param name="Local" value="DiseñoWeb\Ke!Recogidas\buscar_anuncios.html">
+					</OBJECT>
+			</UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Movimiento">
+				<param name="Local" value="DiseñoWeb\Ke!Movimiento\introduccion_ke!Movimiento.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Introduccion Movimiento">
+					<param name="Local" value="DiseñoWeb\Ke!Movimiento\introduccion_ke!Movimiento.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Ingreso [Presentacion - contrase&ntilde;a]">
+					<param name="Local" value="DiseñoWeb\Ke!Movimiento\Ingreso.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Conceptos">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Clientes y cuentas">
+						<param name="Local" value="DiseñoWeb\Ke!Movimiento\dif_cli_cue_ter.html">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Mantenimiento">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Ingreso de clientes">
+						<param name="Local" value="DiseñoWeb\Ke!Movimiento\ingreso_clientes.html">
+						</OBJECT>
+				</UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Archivos de soporte">
+					</OBJECT>
+				<UL>
+					<LI> <OBJECT type="text/sitemap">
+						<param name="Name" value="Creacion de rutas">
+						<param name="Local" value="DiseñoWeb\Ke!Movimiento\ingreso_rutas.html">
+						</OBJECT>
+				</UL>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Heramientas adicionales">
+			<param name="Local" value="DiseñoWeb\Herramientas.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Listas de Precios">
+				<param name="Local" value="DiseñoWeb\kelp.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Introduccion ELP">
+					<param name="Local" value="DiseñoWeb\kelp.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Ingreso y reconocimiento">
+					<param name="Local" value="DiseñoWeb\Kelp\Ingreso y reconocimiento.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Algo sobre las plantillas">
+					<param name="Local" value="DiseñoWeb\Kelp\Algo sobre las plantillas.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Abrir lista de precios">
+					<param name="Local" value="DiseñoWeb\Kelp\Abrir lista de precios.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Agregar, editar y eliminar precios">
+					<param name="Local" value="DiseñoWeb\Kelp\agregar, editar, elminar precios de la lista.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Editar listas de precios en rama">
+					<param name="Local" value="DiseñoWeb\Kelp\Editar listas de precios en rama.html">
+					</OBJECT>
+			</UL>
+		</UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Estandares y funciones comunes">
+			<param name="Local" value="DiseñoWeb\comunes_estandares\estandares_comunes.html">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Presentaciones">
+				<param name="Local" value="DiseñoWeb\comunes_estandares\presentaciones.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Contrase&ntilde;a y acceso">
+				<param name="Local" value="DiseñoWeb\comunes_estandares\contraseña.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Visor de mensajes">
+				<param name="Local" value="DiseñoWeb\comunes_estandares\msgtit.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Barra de herramientas">
+				<param name="Local" value="DiseñoWeb\comunes_estandares\barra_herramientas.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Errores de usuario">
+				<param name="Local" value="DiseñoWeb\comunes_estandares\Errores\errores.html">
+				</OBJECT>
+			<UL>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error 0001">
+					<param name="Local" value="DiseñoWeb\comunes_estandares\Errores\err0001.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error 0002">
+					<param name="Local" value="DiseñoWeb\comunes_estandares\Errores\err0002.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error 0003">
+					<param name="Local" value="DiseñoWeb\comunes_estandares\Errores\err0003.html">
+					</OBJECT>
+				<LI> <OBJECT type="text/sitemap">
+					<param name="Name" value="Error 0004">
+					<param name="Local" value="DiseñoWeb\comunes_estandares\Errores\err0004.html">
+					</OBJECT>
+			</UL>
+		</UL>
+	</UL>
+</UL>
+</BODY></HTML>

@@ -1,0 +1,679 @@
+﻿<project version = 9 civer = 5.19.1 winver = "2.6/5.1.2600" >
+   <autorun >1</>
+   <autoclose >0</>
+   <compname ></>
+   <produrl ></>
+   <ver ></>
+   <supurl ></>
+   <updurl ></>
+   <dlgfont >verdana</>
+   <headlogo >green-logo</>
+   <dlgfontsize >s8</>
+   <output >C:\kit\Setups</>
+   <exename >Actualizaciones.exe</>
+   <beffile ></>
+   <aftfile ></>
+   <uninclude >0</>
+   <lang >spanish</>
+   <addlang ></>
+   <selfextr >1</>
+   <instpath >C:\Archivos de programa\Kit Logistics BE</>
+   <voltype >nolimit</>
+   <volsize ></>
+   <volpattern >disk%i.pak</>
+   <password ></>
+   <progname >Kit Logistics BE</>
+   <appname >Kit Logistics BE</>
+   <bl ></>
+   <blurl ></>
+   <unpath ></>
+   <unexe ></>
+   <unlog ></>
+   <installroot sorttype = 0 >
+      <children >
+         <install id = install expanded = 2 >
+            <children >
+               <_ id = varset >
+                  <desc ></>
+                  <varlist >
+                     <rows >
+                        <_ >
+                           <varname >runapp</>
+                           <value >1</>
+                           <if ></>
+                        </>
+                     </>
+                  </>
+               </>
+               <_ id = dlglic >
+                  <desc ></>
+                  <file >C:\kit\licencia1.txt</>
+                  <print >1</>
+                  <iagree >check</>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows >
+                        <_ >
+                           <varname >Liccolor</>
+                           <value >1</>
+                        </>
+                     </>
+                  </>
+                  <head ></>
+                  <headtext ></>
+                  <if ></>
+               </>
+               <_ id = dlgpath >
+                  <desc ></>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <chlist >
+                     <rows >
+                        <_ >
+                           <varname >runapp</>
+                           <value >#lrunapp#</>
+                        </>
+                     </>
+                  </>
+                  <varlist >
+                     <rows ></>
+                  </>
+                  <head ></>
+                  <headtext ></>
+                  <dlgtext ></>
+                  <pathadd ></>
+                  <enforce >0</>
+                  <savepath >0</>
+                  <if ></>
+               </>
+               <_ id = dlgprog expanded = 2 >
+                  <children >
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCT2.OCX</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCTL.OCX</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Instalacion\Componentes\dlls_ocx\MSDATLST.OCX</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Ayudas\Compilado\Help Kit logistic.chm</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\Reportes</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >asknewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >custom</>
+                        <custpath >C:\Archivos de programa\Kit Logistics BE\Archivos config</>
+                        <ifexist >asknewer</>
+                        <if ></>
+                     </>
+                     <_ id = unpack >
+                        <desc ></>
+                        <comptype >default</>
+                        <ratio >r5</>
+                        <solid >0</>
+                        <varlist >
+                           <rows ></>
+                        </>
+                        <srclist >
+                           <rows >
+                              <_ >
+                                 <filename >C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe</>
+                                 <recurse >0</>
+                                 <justfile >0</>
+                                 <emptydir >0</>
+                                 <exclude ></>
+                              </>
+                           </>
+                        </>
+                        <path >inst</>
+                        <custpath ></>
+                        <ifexist >overnewer</>
+                        <if ></>
+                     </>
+                     <_ id = regdll >
+                        <desc ></>
+                        <dlllist >
+                           <rows >
+                              <_ >
+                                 <path >inst</>
+                                 <file >MSCOMCTL.OCX</>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                              <_ >
+                                 <path >custom</>
+                                 <file ></>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                           </>
+                        </>
+                     </>
+                     <_ id = regdll >
+                        <desc ></>
+                        <dlllist >
+                           <rows >
+                              <_ >
+                                 <path >inst</>
+                                 <file >MSCOMCT2.OCX</>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                              <_ >
+                                 <path >custom</>
+                                 <file ></>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                           </>
+                        </>
+                     </>
+                     <_ id = regdll >
+                        <desc ></>
+                        <dlllist >
+                           <rows >
+                              <_ >
+                                 <path >inst</>
+                                 <file >MSDATLST.OCX</>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                              <_ >
+                                 <path >custom</>
+                                 <file ></>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                           </>
+                        </>
+                     </>
+                     <_ id = regdll >
+                        <desc ></>
+                        <dlllist >
+                           <rows >
+                              <_ >
+                                 <path >inst</>
+                                 <file >PyFunPro.dll</>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                              <_ >
+                                 <path >custom</>
+                                 <file ></>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                           </>
+                        </>
+                     </>
+                     <_ id = regdll >
+                        <desc ></>
+                        <dlllist >
+                           <rows >
+                              <_ >
+                                 <path >inst</>
+                                 <file >PyConsultasKL.ocx</>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                              <_ >
+                                 <path >custom</>
+                                 <file ></>
+                                 <if ></>
+                                 <regsvr ></>
+                              </>
+                           </>
+                        </>
+                     </>
+                  </>
+                  <desc ></>
+                  <auto >0</>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows ></>
+                  </>
+                  <head ></>
+                  <headtext ></>
+                  <dlgtext ></>
+                  <if ></>
+               </>
+               <_ id = dlgfin >
+                  <desc ></>
+                  <buttons >c</>
+                  <design >left</>
+                  <headlogo ></>
+                  <chlist >
+                     <rows ></>
+                  </>
+                  <varlist >
+                     <rows ></>
+                  </>
+                  <head ></>
+                  <headtext ></>
+                  <dlgtext ></>
+               </>
+            </>
+            <icofile >Default</>
+            <resfile ></>
+            <leftimg >green-install</>
+            <caption ></>
+            <verinfo >1</>
+            <noadmin >0</>
+            <selfdelete >0</>
+         </>
+      </>
+   </>
+   <uninstallroot sorttype = 0 >
+      <children >
+         <uninstall id = uninstall expanded = 2 >
+            <children >
+               <_ id = varset >
+                  <desc ></>
+                  <varlist >
+                     <rows >
+                        <_ >
+                           <varname >runapp</>
+                           <value >1</>
+                        </>
+                     </>
+                  </>
+               </>
+               <_ id = dlguconf >
+                  <desc ></>
+                  <buttons >c</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows ></>
+                  </>
+               </>
+               <_ id = dlguprog expanded = 2 >
+                  <children >
+                     <_ id = unprocess >
+                        <desc ></>
+                     </>
+                  </>
+                  <desc ></>
+                  <auto >0</>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows ></>
+                  </>
+               </>
+               <_ id = dlgundel >
+                  <desc ></>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows ></>
+                  </>
+               </>
+               <_ id = dlgufin >
+                  <desc ></>
+                  <buttons >nc</>
+                  <design >left</>
+                  <headlogo ></>
+                  <varlist >
+                     <rows ></>
+                  </>
+               </>
+            </>
+            <unicon >Uninstall</>
+            <unresfile ></>
+            <leftimg >green-uninstall</>
+            <caption ></>
+            <noadmin >0</>
+         </>
+      </>
+   </>
+   <phone ></>
+   <shfolder ></>
+   <silentpar >-silent</>
+   <custfont ></>
+   <headcol ></>
+   <headtext ></>
+   <headimg ></>
+   <stretchback >0</>
+   <upinclude >0</>
+   <uppath >inst</>
+   <upexe >update.exe</>
+   <upurl ></>
+   <upxml >update.ini</>
+   <upredir ></>
+   <ignnotfound >0</>
+   <csfile ></>
+   <csinst >"<exefilename>"</>
+   <csuninst >"<exefilename>"</>
+   <csupdate >"<exefilename>"</>
+   <crautorun >0</>
+   <autoicon ></>
+   <multilist >
+      <rows ></>
+   </>
+</>

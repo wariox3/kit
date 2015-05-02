@@ -1,0 +1,13 @@
+FrmListas = 154, 154, 518, 500, C, 44, 44, 409, 390, C
+Principal = 88, 88, 444, 434, C, 22, 22, 387, 368, C
+Variables = 66, 66, 431, 412, C
+ModFuncionesBasicas = 154, 154, 518, 500, C
+ModRecorsets = 132, 132, 496, 478, C
+FrmConsultaCiudades = 66, 66, 431, 412, C, 22, 22, 387, 368, C
+FrmConsultaProductos = 88, 88, 453, 434, C, 0, 0, 365, 346, C
+FrmEditarRama = 132, 132, 497, 478, C, 110, 110, 475, 456, C
+FrmPresentacion = 0, 0, 356, 346, C, 66, 66, 422, 412, C
+FrmAcercaDe = 110, 110, 476, 456, C, 0, 0, 366, 346, C
+FrmListasPrecios = 66, 66, 706, 654, C, 44, 44, 684, 632, C
+FrmImportar = 132, 132, 732, 767, C, 110, 110, 710, 698, C
+FrmMantenimientoListas = 66, 66, 1130, 607, C, 44, 44, 1108, 585, C

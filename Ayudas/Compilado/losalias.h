@@ -1,0 +1,13 @@
+EST_COMUNES_000=DiseñoWeb\comunes_estandares\estandares_comunes.html
+EST_COMUNES_001=DiseñoWeb\comunes_estandares\presentaciones.html
+EST_COMUNES_002=DiseñoWeb\comunes_estandares\contraseña.html
+EST_COMUNES_003=DiseñoWeb\comunes_estandares\msgtit.html
+EST_COMUNES_004=DiseñoWeb\comunes_estandares\barra_herramientas.html
+MOD_RECOGIDAS_001=DiseñoWeb\Ke!Recogidas\introduccion_ke!recogidas.html
+MOD_RECOGIDAS_002=DiseñoWeb\Ke!Recogidas\ingresar_anuncio.html
+MOD_RECOGIDAS_003=DiseñoWeb\Ke!Recogidas\buscar_anuncios.html
+ERR_GENERAL=DiseñoWeb\comunes_estandares\Errores\errores.html
+ERR_ERRORXX_0001=DiseñoWeb\comunes_estandares\Errores\err0001.html
+ERR_ERRORXX_0002=DiseñoWeb\comunes_estandares\Errores\err0002.html
+ERR_ERRORXX_0003=DiseñoWeb\comunes_estandares\Errores\err0003.html
+ERR_ERRORXX_0004=DiseñoWeb\comunes_estandares\Errores\err0004.html

@@ -1,0 +1,45 @@
+[OPTIONS]
+Compatibility=1.1
+Compiled file=Help Kit logistic.chm
+Contents file=Tabla de contenido.hhc
+Default topic=DiseñoWeb\Principal.html
+Display compile progress=Yes
+Index file=Indice.hhk
+Language=0xc0a Español (alfabetización internacional)
+Title=Ayuda [KIT LOGISTIC]
+
+
+[FILES]
+DiseñoWeb\comunes_estandares\estandares_comunes.html
+DiseñoWeb\comunes_estandares\presentaciones.html
+DiseñoWeb\comunes_estandares\contraseña.html
+DiseñoWeb\comunes_estandares\msgtit.html
+DiseñoWeb\comunes_estandares\barra_herramientas.html
+DiseñoWeb\comunes_estandares\Errores\errores.html
+DiseñoWeb\comunes_estandares\Errores\err0001.html
+DiseñoWeb\comunes_estandares\Errores\err0002.html
+DiseñoWeb\comunes_estandares\Errores\err0003.html
+DiseñoWeb\comunes_estandares\Errores\err0004.html
+DiseñoWeb\principal.html
+DiseñoWeb\kelp.html
+DiseñoWeb\Kelp\Ingreso y reconocimiento.html
+DiseñoWeb\Kelp\Algo sobre las plantillas.html
+DiseñoWeb\Kelp\Abrir lista de precios.html
+DiseñoWeb\Kelp\agregar, editar, elminar precios de la lista.html
+DiseñoWeb\Kelp\Editar listas de precios en rama.html
+DiseñoWeb\Herramientas.html
+DiseñoWeb\Modulos de operacion.html
+DiseñoWeb\Ke!Movimiento\introduccion_ke!Movimiento.html
+DiseñoWeb\Ke!Movimiento\Ingreso.html
+DiseñoWeb\Ke!Movimiento\ingreso_clientes.html
+DiseñoWeb\Ke!Movimiento\dif_cli_cue_ter.html
+DiseñoWeb\Ke!Movimiento\ingreso_rutas.html
+DiseñoWeb\Ke!Recogidas\introduccion_ke!recogidas.html
+DiseñoWeb\Ke!Recogidas\ingresar_anuncio.html
+DiseñoWeb\Ke!Recogidas\buscar_anuncios.html
+
+[ALIAS]
+#include losalias.h
+
+[MAP]
+#include indiceref.h

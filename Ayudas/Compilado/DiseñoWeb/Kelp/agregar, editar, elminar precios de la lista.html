@@ -1,0 +1,163 @@
+<HTML>
+ <HEAD>
+  <TITLE>Agregar, editar, eliminar precios de la lista</TITLE>
+  <LINK rel="stylesheet" href="../Estilo.css" type="text/css">
+ </HEAD>
+ <BODY topmargin="13" leftmargin="13" bgcolor="#EFEFEF">
+  <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+   <TR>
+    <TD height="90">
+     <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="#FFFFFF">
+      <TR>
+       <TD width="20" height="20"><IMG src="../images/left.gif"></TD>
+       <TD rowspan="2" style="border-top: 1px solid #CDCDCC">
+        <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+         <TR>
+          <TD height="10"></TD>
+         </TR>
+	 <TR>
+	  <TD>
+       <font class="logo">Agregar, editar, eliminar precios de la lista</font>
+	  </TD>
+	 </TR>
+        </TABLE>
+       </TD>
+       <TD width="20"><IMG src="../images/right.gif"></TD>
+      </TR>
+      <TR>
+       <TD style="border-left: 1px solid #CDCDCC">&shy;</TD>
+       <TD style="border-right: 1px solid #CDCDCC">&shy;</TD>
+      </TR>
+     </TABLE>
+    </TD>
+   </TR>
+   <TR>
+    <TD height="25">
+     <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="#778EB5">
+      <TR>
+       <TD style="border: 1px solid #60698A">
+	<TABLE  cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+	 <TR>
+	  <TD width="20"></TD>
+	  <TD valign="center">
+       <font class="TTitulo"><a href="../kelp.html">Ir Introducción</a></font>
+	  </TD>
+	 </TR>
+	</TABLE>
+       </TD>
+      </TR>
+     </TABLE>
+    </TD>
+   </TR>
+   <TR>
+    <TD>
+     <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="#FFFFFF">
+      <TR>
+       <TD style="border-left: 1px solid #CDCDCC">&shy;</TD>
+       <TD valign="top">
+        <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%">
+         <TR>
+	  <TD height="20"></TD>
+	 </TR>
+	 <TR>
+	  <TD>
+           <TABLE cellpadding="0" cellspacing="0" border="0" width="100%" height="100%" bgcolor="BFCBDD">
+	    <TR>
+	     <TD colspan="3" height="1" background="./images/index_border_hor.gif"></TD>
+	    </TR>
+	    <TR>
+	     <TD width="1" background="../images/index_border_vert.gif">&nbsp;</TD>
+	     <TD>
+              <TABLE cellpadding="4" cellspacing="0" border="0" width="100%" height="100%">
+	       <TR>
+		<TD valign="top">
+         <p><font class="text_bold">Agregar</font><BR>
+         <font class="text">Agregar aun precio a la lista es muy sencillo, solo
+         debemos especificarle al sistema cual sera la ciudad de destino, el
+         producto y los precios para sus distintas unidades de medida.</font></p>
+         <p><font class="text">En el caso de no que no se sepa el código de la
+         ciudad puede presionar F2 para accionar el cuadro de dialogo para
+         buscar la ciudad <a href="http://">[Vea estándares de consulta]</a></font></p>
+         <p><font class="text">Cuando seleccione la ciudad y el producto al cual
+         le desea ingresar los precios debe llenar los siguiente campos de
+         datos.</font></p>
+         <ul>
+          <li>
+            <p><font class="text">Vr kilo: El valor del kilo para liquidar en
+            caso de que la opción de liquidación sea por kilo, en este caso el
+            sistema tomara este valor de kilo y lo multiplicara por los kilos
+            especificados asi: Ej. Vr Kilo=257, Kilos a facturar=59 entonces (Vr
+            Kilo * Kilos a facturar = Total liquidación) 257 * 59 = $ 15.163</font></p>
+          </li>
+          <li>
+            <p><font class="text">Vr unidad: Para este caso el sistema toma la
+            cantidad del producto y lo multiplica por el valor que ingresemos en
+            Vr unidad.</font></p>
+          </li>
+          <li>
+            <p><font class="text">K tope, Vr kilos tope y adicional: Esta es la
+            forma que quizás parezca mas enredada para liquidar pero se
+            convierte en una gran arma a la hora de negociar fletes. Para este
+            tipo de liquidación el sistema toma el valor que hay en kilos
+            tope&nbsp; y le cobra hasta esos kilos el valor del kilo tope, si la
+            cantidad de kilos tope es inferior, el sistema le cobrara el valor
+            del kilo tope, pero, en el caso de que sea mayor le cobrara hasta el
+            tope el valor kilo tope y los otros kilos por el valor de kilo
+            adicional así:&nbsp;</font></p>
+          </li>
+         </ul>
+         <blockquote>
+          <p><font class="text">Ej1:&nbsp;</font></p>
+          <p><font class="text">Kilos a facturar: 59, Kilos tope 28, Valor kilos
+          tope 3000, Valor kilos adicionales 115</font></p>
+          <p><font class="text">Vr Tope 28 = 3000</font></p>
+          <p><font class="text">Adicionales 59-28 = 31</font></p>
+          <p><font class="text">Vr Adicionales 31*115 = 3565</font></p>
+          <p><font class="text">Vr Total = Vr Tope + Adicionales = 3000+3565 =
+          6565</font></p>
+         </blockquote>
+         <p><font class="text">Luego de haber llenado los campos para la liquidación
+         con los valores respectivos presionamos en el botón agregar.&nbsp;</font></p>
+         <p><font class="text"><b>Nota:</b> Si ya existía un precio para esta
+         ciudad con este producto el sistema le pregunta si desea reemplazarlo.</font></p>
+         <p><font class="text_bold">Editar</font><BR>
+         <font class="text">Para editar los precios precios también es bastante
+         fácil, solo basta darle doble clic encima del precio en la grilla <a href="http://">[Estándares
+         de nombres]</a>. modifica los valores y le da clic en agregar, cuando
+         el sistema le pregunte que si desea sobrescribir los anteriores precios
+         (reemplazar) le decimos que si.</font></p>
+         <p><font class="text">Nota: Para editar los precios en rama le damos
+         clic en el botón &quot;Editar lista en rama&quot; <a href="http://">[Vea
+         editar listas de precios en rama]</a>&nbsp;</font></p>
+         <p><font class="text_bold">Eliminar</font><BR>
+         <font class="text">Cuando deseemos eliminar un precio de la lista, únicamente
+         lo ubicamos en la grilla o lista y presionamos el botón eliminar, el
+         sistema pregunta si esta seguro de eliminarlo y cuando presionemos en
+         si automáticamente quedara eliminado y la lista se actualiza.<br><br></font><font class="text"><i>&nbsp;</i></font><b><font class="text">&nbsp;</font></b></p>
+		</TD>
+	       </TR>
+	      </TABLE>
+             </TD>
+	     <TD width="1" background="../images/index_border_vert.gif"></TD>
+	    </TR>
+	    <TR>
+	     <TD colspan="3" height="1" background="../images/index_border_hor.gif"></TD>
+	    </TR>
+	   </TABLE>
+          </TD>
+	 </TR>
+	</TABLE>
+       </TD>
+       <TD style="border-right: 1px solid #CDCDCC">&shy;</TD>
+      </TR>
+      <TR>
+       <TD width="20" height="20"><IMG src="../images/bleft.gif"></TD>
+       <TD style="border-bottom: 1px solid #CDCDCC">&shy;</TD>
+       <TD width="20"><IMG src="../images/bright.gif"></TD>
+      </TR>
+     </TABLE>
+    </TD>
+   </TR>
+  </TABLE>
+ </BODY>
+</HTML>

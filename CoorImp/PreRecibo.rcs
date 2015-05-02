@@ -1,0 +1,20 @@
+"Recibo Normal",19,1,137,216
+"Nro recibo",135,32,1,14,"El numero de la remision",30
+"Fecha",15,32,1,10,"El numero de la remision",50
+"Cliente",15,38,1,10,"Es la fecha en que se imprimio",50
+"Nit Cliente",15,44,1,10,"Es la fecha en que se imprimio",50
+"Doc Cliente",135,54,1,10,"Es la fecha en que se imprimio",35
+"Remision",135,60,1,10,"Es la fecha en que se imprimio",50
+"Direccion",15,50,1,10,"Es la fecha en que se imprimio",50
+"Destinatario",15,56,1,10,"Es la fecha en que se imprimio",50
+"Direccion",15,62,1,10,"Es la fecha en que se imprimio",50
+"Destino",135,48,1,10,"Es la fecha en que se imprimio",50
+"Imputacion",17,89,1,10,"Es la fecha en que se imprimio",10
+"Concepto",40,89,1,10,"Es la fecha en que se imprimio",21
+"Debito",90,89,1,10,"Es la fecha en que se imprimio",10
+"Credito",120,89,1,10,"Es la fecha en que se imprimio",10
+"Valor declarado",135,66,1,10,"Es la fecha en que se imprimio",30
+"Unidades",135,72,1,10,"Es la fecha en que se imprimio",30
+"Vr Total",135,38,1,14,"Es la fecha en que se imprimio",30
+"Vr Tot letras",15,73,1,10,"Es la fecha en que se imprimio",100
+"Elaboro",15,110,1,12,"Es la fecha en que se imprimio",100

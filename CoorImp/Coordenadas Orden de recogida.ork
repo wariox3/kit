@@ -1,0 +1,15 @@
+"Orden de Recogida",14,1,279,217
+"Nº Anuncio",140,30,1,10,"Aqui va el numero del anuncio",10
+"Nit Cliente",20,35,1,10,"",10
+"Cliente",70,35,1,10,"",10
+"Telefono",20,40,1,10,"",10
+"Direccion",70,40,1,10,"",10
+"Fecha Rec",20,45,1,10,"",10
+"Hora Rec",30,45,1,10,"",10
+"Anunciante",70,45,1,10,"",10
+"Unidades",20,50,1,10,"",10
+"K Reales",50,50,1,10,"",10
+"K Vol",80,50,1,10,"",10
+"Ruta",90,50,1,10,"",10
+"Elaboro",110,50,1,10,"",10
+"Comentarios",20,60,1,10,"",15

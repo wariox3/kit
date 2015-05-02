@@ -1,0 +1,14 @@
+a:link, a:active, a:visited { color: #4B5061; font-family: FixedSys; font-size: 10pt; text-decoration: none} 
+a:hover { color: #4B5061; text-decoration: none}
+
+input { color: #4B5061; font: 10pt Arial;}
+
+textarea {color: #4B5061; font: 10pt Arial}
+
+.logo {font-family: Arial; font-size: 14pt;font-weight: bold;color: #4B5061}
+
+.text_bold {font-family: Arial; font-size: 11pt;font-weight: bold;color: #4B5061}
+
+.text {font-family: Arial; font-size: 10pt;color: #4B5061}
+
+.TTitulo { color: #4B5061; font-family: FixedSys; font-size: 10pt; text-decoration: none} 

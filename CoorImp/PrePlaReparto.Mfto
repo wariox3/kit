@@ -1,0 +1,12 @@
+"Planilla de reparto",11,1,279,217
+"Numero de Planilla",3,20,1,14,"Aqui se imprime el numero del manifiesto",10
+"Fecha Expedicion",35,20,1,10,"Es la fecha de expedicion del manifiesto",10
+"Encargado",60,20,1,10,"",10
+"Tipo",138,20,1,10,"",19
+"Guia",3,40,1,10,"",10
+"Remitente",30,40,1,10,"",10
+"Documento",60,40,1,10,"",10
+"Destinatario",90,40,1,10,"",10
+"Destino",125,40,1,10,"",10
+"Cantidad",155,40,1,10,"",10
+"Peso",180,40,1,10,"",10

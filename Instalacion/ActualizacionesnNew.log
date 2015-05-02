@@ -1,0 +1,96 @@
+
+Procesando 10/03/2015 10:27:52 a.m.
+Archivo Log 
+Generando fuentes... 
+Compilando fuentes de Gentee... 
+Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
+Añadiendo temporary archivos al EXE 
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 10/03/2015 10:27:52 a.m. 2013  50.91%
+C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
+C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
+C:\Archivos de programa\CreateInstall Free\res\leftimg\uninstall\green-uninstall.bmp 12/03/2008 03:34:02 a.m. 20680  24.95%
+Obteniendo lista de archivos 
+Comprimiendo archivos... 
+================================ 
+C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCT2.OCX 16/05/2013 10:22:14 a.m. 644400  51.28%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSCOMCTL.OCX 16/05/2013 10:22:15 a.m. 1077336  46.32%
+C:\kit\Instalacion\Componentes\dlls_ocx\MSDATLST.OCX 16/05/2013 10:22:14 a.m. 232248  46.87%
+C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  100.00%
+C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
+C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
+C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 14/01/2015 08:25:22 a.m. 606208  27.45%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 10/03/2015 10:18:45 a.m. 1945600  24.29%
+C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 14/01/2015 08:26:04 a.m. 430080  29.56%
+C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
+C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 17/02/2015 05:42:09 p.m. 241664  32.81%
+C:\kit\Kit logistics\Reportes\Facturacion\Cartera por edades.rpt 02/10/2013 07:48:18 a.m. 55808  17.97%
+C:\kit\Kit logistics\Reportes\Facturacion\Factura planillas.rpt 22/10/2013 12:18:13 p.m. 137410  45.81%
+C:\kit\Kit logistics\Reportes\Facturacion\Factura.rpt 20/11/2013 04:49:39 p.m. 146844  43.39%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaCaciqueTone.rpt 22/09/2014 04:58:05 p.m. 134948  46.23%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaConceptosCaciqueTone.rpt 22/09/2014 04:57:57 p.m. 124928  49.32%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaConceptosCuartas.rpt 27/02/2014 04:19:27 p.m. 131072  19.36%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaCotrascal.rpt 10/03/2015 10:26:30 a.m. 148112  42.94%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaCuartas.rpt 09/04/2014 07:52:58 a.m. 208694  37.40%
+C:\kit\Kit logistics\Reportes\Facturacion\Facturado.rpt 10/07/2014 03:40:32 p.m. 62976  9.58%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturadoAsesor.rpt 13/01/2015 10:23:32 a.m. 48640  10.39%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaPlanillasCuartas.rpt 21/03/2014 12:24:02 p.m. 191053  40.30%
+C:\kit\Kit logistics\Reportes\Facturacion\Imprimir nota credito.rpt 02/09/2013 04:20:13 p.m. 43520  21.66%
+C:\kit\Kit logistics\Reportes\Facturacion\Imprimir recibo caja.rpt 02/09/2013 04:17:28 p.m. 44032  21.30%
+C:\kit\Kit logistics\Reportes\Facturacion\ListaFacturas.rpt 13/01/2015 10:49:17 a.m. 31744  14.37%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar contado.rpt 17/06/2013 12:14:47 p.m. 43520  12.99%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar destino.rpt 17/06/2013 12:15:22 p.m. 43520  12.99%
+C:\kit\Kit logistics\Reportes\Facturacion\Pendientes por facturar.rpt 19/02/2014 11:08:03 a.m. 43520  12.56%
+C:\kit\Kit logistics\Reportes\listados\Control\Acuerdos comerciales.rpt 16/05/2013 10:22:41 a.m. 41984  11.15%
+C:\kit\Kit logistics\Reportes\listados\Rutas.rpt 16/05/2013 10:22:41 a.m. 24064  17.45%
+C:\kit\Kit logistics\Reportes\ListasPrecios\ListaPrecio.rpt 26/06/2014 12:20:16 p.m. 34816  21.00%
+C:\kit\Kit logistics\Reportes\monitoreo\1 Reporte de monitoreo.rpt 14/01/2015 08:23:31 a.m. 48128  12.34%
+C:\kit\Kit logistics\Reportes\monitoreo\Monitoreos.rpt 13/01/2015 10:23:32 a.m. 34304  13.11%
+C:\kit\Kit logistics\Reportes\Movimiento\10 Novedad.rpt 16/05/2013 10:22:41 a.m. 35328  13.71%
+C:\kit\Kit logistics\Reportes\Movimiento\12 Pendientes por descargar.rpt 16/05/2013 10:22:41 a.m. 39424  13.90%
+C:\kit\Kit logistics\Reportes\Movimiento\13 Produccion por ruta.rpt 16/05/2013 10:22:41 a.m. 59904  20.34%
+C:\kit\Kit logistics\Reportes\Movimiento\20 FletePagado vs FleteCobrado.rpt 16/05/2013 10:22:41 a.m. 46080  11.83%
+C:\kit\Kit logistics\Reportes\Movimiento\9 Novedades pendientes.rpt 16/05/2013 10:22:41 a.m. 31232  14.76%
+C:\kit\Kit logistics\Reportes\Movimiento\DESPACHOS PENDIENTES POR CERRAR.rpt 16/05/2013 10:22:41 a.m. 35328  15.24%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiaFactura.rpt 19/09/2013 12:49:02 p.m. 65536  14.73%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiasClientesCuartas.rpt 24/06/2014 02:08:42 p.m. 160742  26.19%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto.rpt 26/08/2014 07:32:56 a.m. 416706  36.16%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCaciqueTone.rpt 01/09/2014 03:58:56 p.m. 414037  36.42%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCuartas.rpt 26/08/2014 07:32:34 a.m. 419567  36.00%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoDetalle.rpt 07/10/2013 07:35:35 a.m. 103936  58.06%
+C:\kit\Kit logistics\Reportes\Movimiento\GuiaCaciqueTone.rpt 13/01/2015 10:49:17 a.m. 238966  19.00%
+C:\kit\Kit logistics\Reportes\Movimiento\GuiaCuartas.rpt 13/01/2015 10:49:17 a.m. 218302  20.33%
+C:\kit\Kit logistics\Reportes\Movimiento\Guias Contraentrega y Recaudos.rpt 03/03/2014 05:16:23 p.m. 50688  19.99%
+C:\kit\Kit logistics\Reportes\Movimiento\Guias factura backup.rpt 26/04/2014 11:20:53 a.m. 55808  15.51%
+C:\kit\Kit logistics\Reportes\Movimiento\Guias factura.rpt 02/09/2014 11:01:47 a.m. 53760  10.08%
+C:\kit\Kit logistics\Reportes\Movimiento\ImpGuia.rpt 06/05/2014 04:16:05 p.m. 97792  42.46%
+C:\kit\Kit logistics\Reportes\Movimiento\ImpManifiesto.rpt 16/05/2013 10:22:41 a.m. 72704  54.78%
+C:\kit\Kit logistics\Reportes\Movimiento\LiquidacionDespacho2.rpt 02/09/2014 04:15:56 p.m. 77575  9.69%
+C:\kit\Kit logistics\Reportes\Movimiento\Liquidar despacho.rpt 20/02/2015 04:34:25 p.m. 98671  18.70%
+C:\kit\Kit logistics\Reportes\Movimiento\ListaDespachos.rpt 24/11/2014 09:29:40 a.m. 34816  14.11%
+C:\kit\Kit logistics\Reportes\Movimiento\Novedades cliente.rpt 06/11/2013 12:12:15 p.m. 43520  21.89%
+C:\kit\Kit logistics\Reportes\Movimiento\Novedades Pendientes.rpt 16/05/2013 10:22:41 a.m. 50176  14.27%
+C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE DESPACHO.rpt 13/01/2015 10:49:17 a.m. 69120  10.43%
+C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE RECOGIDA.rpt 05/05/2014 10:14:10 a.m. 67072  24.97%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTE POR DESPACHAR CIUDAD.rpt 16/05/2013 10:22:41 a.m. 65024  10.80%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTE POR DESPACHAR.rpt 16/05/2013 10:22:41 a.m. 54784  11.69%
+C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTES POR ENTREGAR CLIENTE.rpt 16/05/2013 10:22:41 a.m. 34816  15.57%
+C:\kit\Kit logistics\Reportes\Movimiento\Producccion General por Clientes.rpt 26/06/2014 11:50:06 a.m. 42496  12.44%
+C:\kit\Kit logistics\Reportes\Movimiento\ProducccionAsesores.rpt 26/06/2014 10:41:28 a.m. 49152  10.82%
+C:\kit\Kit logistics\Reportes\Movimiento\ReciboCajaSoporte.rpt 25/02/2014 12:31:50 p.m. 52736  17.52%
+C:\kit\Kit logistics\Reportes\Movimiento\Redespachos.rpt 05/11/2013 03:48:55 p.m. 35328  23.56%
+C:\kit\Kit logistics\Reportes\Movimiento\RELACION DE GUIAS.rpt 16/05/2013 10:30:20 a.m. 69632  10.46%
+C:\kit\Kit logistics\Reportes\Movimiento\RelacionGuiasCumplidos.rpt 28/02/2014 10:53:55 a.m. 35840  20.98%
+C:\kit\Kit logistics\Reportes\Movimiento\RelacionRecibosCaja.rpt 02/09/2014 03:25:58 p.m. 26624  13.82%
+C:\kit\Kit logistics\Reportes\Movimiento\Resumen de Despacho.rpt 16/05/2013 10:22:41 a.m. 108354  7.70%
+C:\kit\Kit logistics\Reportes\Movimiento\Ventas Contado.rpt 02/09/2014 03:03:24 p.m. 46080  20.01%
+C:\kit\Kit logistics\Reportes\Recogidas\FormatoRecogidas.rpt 28/08/2014 10:40:55 a.m. 50176  18.47%
+C:\kit\Kit logistics\Reportes\Recogidas\LISTADO DE RECOGIDAS FECHA.rpt 16/05/2013 10:22:41 a.m. 45056  12.72%
+C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:22:41 a.m. 48128  12.24%
+C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
+C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 10/03/2015 10:18:55 a.m. 184320  36.64%
+================================ 
+Todos los archivos: 77 [ 11858KB => 3933KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4044 KB 
+Finalización exitosa 10/03/2015 10:27:56 a.m.
