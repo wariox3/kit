@@ -158,7 +158,7 @@ AbrirRecorset rstUniversal, "SELECT IdListaPrecios FROM listasprecios ORDER BY I
 FufuLo = rstUniversal!IdListaPrecios
 AbrirRecorset rstListaDetalleOriginal, "SELECT listaspreciosciudades.* FROM listaspreciosciudades WHERE IdListaPrecios = " & LstListasPrecios.SelectedItem, CnnPrincipal, adOpenDynamic, adLockOptimistic
 While rstListaDetalleOriginal.EOF = False
-  AbrirRecorset rstUniversal, "INSERT INTO listaspreciosciudades VALUES (" & FufuLo & ", " & rstListaDetalleOriginal!IdCiudad & ", " & rstListaDetalleOriginal!IdProducto & ", " & rstListaDetalleOriginal!VrKilo & ", " & rstListaDetalleOriginal!VrUnidad & ", " & rstListaDetalleOriginal!VrTonelada & ", " & rstListaDetalleOriginal!KTope & ", " & rstListaDetalleOriginal!VrKTope & ", " & rstListaDetalleOriginal!VrKAdicional & ", " & rstListaDetalleOriginal!Minimos & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstUniversal, "INSERT INTO listaspreciosciudades VALUES (" & FufuLo & ", " & rstListaDetalleOriginal!IdCiudadOrigen & ", " & rstListaDetalleOriginal!IdCiudad & ", " & rstListaDetalleOriginal!IdProducto & ", " & rstListaDetalleOriginal!VrKilo & ", " & rstListaDetalleOriginal!VrUnidad & ", " & rstListaDetalleOriginal!VrTonelada & ", " & rstListaDetalleOriginal!KTope & ", " & rstListaDetalleOriginal!VrKTope & ", " & rstListaDetalleOriginal!VrKAdicional & ", " & rstListaDetalleOriginal!Minimos & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
   rstListaDetalleOriginal.MoveNext
 Wend
 CerrarRecorset rstListaDetalleOriginal
