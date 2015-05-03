@@ -83,7 +83,7 @@ Begin VB.Form FrmDescargar
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   5
+      NumItems        =   6
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "Guia"
          Object.Width           =   2469
@@ -107,6 +107,11 @@ Begin VB.Form FrmDescargar
          SubItemIndex    =   4
          Text            =   "Entregada"
          Object.Width           =   1940
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
+         Text            =   "Tipo"
+         Object.Width           =   1411
       EndProperty
    End
    Begin VB.Label Label1 
@@ -247,14 +252,29 @@ Option Explicit
 Dim Descargado As Boolean
 Private Sub CmdDescargar_Click()
   Dim boolGuiasSinEntregar As Boolean
+  Dim boolDescargarDestino As Boolean
   boolGuiasSinEntregar = False
+  If CpPermisoEspecial(15, CodUsuarioActivo, CnnPrincipal) = True Then
+    boolDescargarDestino = True
+  End If
   II = 1
   While II <= LstGuias.ListItems.Count
     If LstGuias.ListItems(II).Checked = True Then
       If LstGuias.ListItems(II).SubItems(4) = "SI" Then
-        AbrirRecorset rstUniversal, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & Val(LstGuias.ListItems.Item(II)), CnnPrincipal, adOpenDynamic, adLockOptimistic
-        InsertarLog 5, Val(LstGuias.ListItems.Item(II))
-        LstGuias.ListItems.Remove (II)
+        If LstGuias.ListItems(II).SubItems(5) = 2 Then
+          If boolDescargarDestino = True Then
+            AbrirRecorset rstUniversal, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & Val(LstGuias.ListItems.Item(II)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            InsertarLog 5, Val(LstGuias.ListItems.Item(II))
+            LstGuias.ListItems.Remove (II)
+          Else
+            MsgBox "No tiene permiso para descargar guias destino", vbCritical
+            II = II + 1
+          End If
+        Else
+          AbrirRecorset rstUniversal, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & Val(LstGuias.ListItems.Item(II)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          InsertarLog 5, Val(LstGuias.ListItems.Item(II))
+          LstGuias.ListItems.Remove (II)
+        End If
       Else
         boolGuiasSinEntregar = True
         II = II + 1
@@ -276,15 +296,30 @@ End Sub
 
 Private Sub CmdDescargarPorDocumento_Click()
   Dim rstActGuia As New ADODB.Recordset
+    Dim boolDescargarDestino As Boolean
+    If CpPermisoEspecial(15, CodUsuarioActivo, CnnPrincipal) = True Then
+      boolDescargarDestino = True
+    End If
   rstActGuia.CursorLocation = adUseClient
   If Principal.ToolConsultas1.AbrirDevDatos("Numero de documento", "Digite el numero del documento de la guia que desea descargar", 2, 0) = True Then
-    AbrirRecorset rstUniversal, "Select Guia, Entregada from guias where IdDespacho = " & LblDespacho.Caption & " AND DocCliente='" & Principal.ToolConsultas1.DatSt & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    AbrirRecorset rstUniversal, "Select Guia, Entregada, TipoCobro from guias where IdDespacho = " & LblDespacho.Caption & " AND DocCliente='" & Principal.ToolConsultas1.DatSt & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
     If rstUniversal.RecordCount > 0 Then
       If Val(rstUniversal.Fields("Entregada")) = 1 Then
-        AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-        InsertarLog 5, Val(rstUniversal.Fields("Guia"))
-        CmdDescargarPorDocumento_Click
-        VerPendientes
+          If Val(rstUniversal.Fields("TipoCobro")) = 2 Then
+            If boolDescargarDestino = True Then
+              AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              InsertarLog 5, Val(rstUniversal.Fields("Guia"))
+              CmdDescargarPorDocumento_Click
+              VerPendientes
+            Else
+              MsgBox "No tiene permiso para descargar guias destino", vbCritical
+            End If
+          Else
+            AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            InsertarLog 5, Val(rstUniversal.Fields("Guia"))
+            CmdDescargarPorDocumento_Click
+            VerPendientes
+          End If
       End If
     Else
       MsgBox "No existen guias con este documento en este despacho", vbCritical
@@ -296,18 +331,34 @@ End Sub
 
 Private Sub CmdPorRemision_Click()
   Dim rstActGuia As New ADODB.Recordset
+  Dim boolDescargarDestino As Boolean
+  If CpPermisoEspecial(15, CodUsuarioActivo, CnnPrincipal) = True Then
+    boolDescargarDestino = True
+  End If
+  
   rstActGuia.CursorLocation = adUseClient
   If Principal.ToolConsultas1.AbrirDevDatos("Digite el numero de la guia", "Digite el numero de la guia que desea entregar", 3, 0) = True Then
-    AbrirRecorset rstUniversal, "Select Guia, Entregada, IdDespacho from guias where Guia=" & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    AbrirRecorset rstUniversal, "Select Guia, Entregada, IdDespacho, TipoCobro from guias where Guia=" & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
     If rstUniversal.RecordCount > 0 Then
       If ChkPermitirGuiasOtrosDespachos.value = 0 And rstUniversal.Fields("IdDespacho") <> Val(LblDespacho.Caption) Then
         MsgBox "La guia es de un despacho diferente y no esta habilitada la opcion de descargar guias de otros despachos"
       Else
         If Val(rstUniversal.Fields("Entregada")) = 1 Then
-          AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-          InsertarLog 5, Val(rstUniversal.Fields("Guia"))
-          CmdPorRemision_Click
-          VerPendientes
+          If Val(rstUniversal.Fields("TipoCobro")) = 2 Then
+            If boolDescargarDestino = True Then
+              AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              InsertarLog 5, Val(rstUniversal.Fields("Guia"))
+              CmdPorRemision_Click
+              VerPendientes
+            Else
+              MsgBox "No tiene permiso para descargar guias destino", vbCritical
+            End If
+          Else
+            AbrirRecorset rstActGuia, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & rstUniversal.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            InsertarLog 5, Val(rstUniversal.Fields("Guia"))
+            CmdPorRemision_Click
+            VerPendientes
+          End If
         End If
       End If
     Else
@@ -339,7 +390,7 @@ End Sub
 
 Sub VerPendientes()
   LstGuias.ListItems.Clear
-  AbrirRecorset rstUniversalAux, "SELECT guias.Guia, guias.DocCliente, guias.FhEntradaBodega, guias.Estado, guias.Entregada, guias.IdDespacho, ciudades.NmCiudad, Descargada FROM Guias INNER JOIN Ciudades ON Guias.IdCiuDestino = Ciudades.IdCiudad where Guias.IdDespacho=" & Val(LblDespacho) & " and Guias.Descargada=0", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+  AbrirRecorset rstUniversalAux, "SELECT guias.Guia, guias.DocCliente, guias.FhEntradaBodega, guias.Estado, guias.Entregada, guias.IdDespacho, ciudades.NmCiudad, Descargada, TipoCobro FROM Guias INNER JOIN Ciudades ON Guias.IdCiuDestino = Ciudades.IdCiudad where Guias.IdDespacho=" & Val(LblDespacho) & " and Guias.Descargada=0", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
   If rstUniversalAux.RecordCount > 0 Then
     'MsgBox "El despacho tiene " & rstUniversalAux.RecordCount & " guias pendientes por descargar", vbInformation, "Guias pendientes"
     IniProg 1, rstUniversalAux.RecordCount
@@ -349,6 +400,7 @@ Sub VerPendientes()
       Item.SubItems(1) = rstUniversalAux!DocCliente
       Item.SubItems(2) = rstUniversalAux!NmCiudad
       Item.SubItems(3) = rstUniversalAux!FhEntradaBodega
+      Item.SubItems(5) = rstUniversalAux!TipoCobro
       If Val(rstUniversalAux!Entregada) = 1 Then
         Item.SubItems(4) = "SI"
       Else
