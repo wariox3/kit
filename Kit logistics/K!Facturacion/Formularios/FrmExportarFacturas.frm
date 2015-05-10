@@ -14,10 +14,18 @@ Begin VB.Form FrmExportarFacturas
    ScaleWidth      =   14310
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdExportarSiigo 
+      Caption         =   "Exportar SIIGO"
+      Height          =   375
+      Left            =   5880
+      TabIndex        =   13
+      Top             =   6240
+      Width           =   1815
+   End
    Begin VB.CommandButton CmdConsultar 
       Caption         =   "Consultar"
       Height          =   375
-      Left            =   7800
+      Left            =   10800
       TabIndex        =   12
       Top             =   6240
       Width           =   1575
@@ -25,7 +33,7 @@ Begin VB.Form FrmExportarFacturas
    Begin VB.Frame Frame1 
       Caption         =   "Orden"
       Height          =   855
-      Left            =   6000
+      Left            =   9000
       TabIndex        =   9
       Top             =   6240
       Width           =   1695
