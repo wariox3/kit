@@ -434,6 +434,40 @@ End Sub
 
 
 
+Private Sub CmdExportarSiigo_Click()
+  Dim rstFactura As New ADODB.Recordset
+  rstFactura.CursorLocation = adUseClient
+  Dim strSql As String
+  Dim intSecuencia As Integer
+  II = 1
+  intSecuencia = 1
+  Open TxtRuta.Text & "facsiigoexp" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt" For Append As #1
+  IniProg LstFacturas.ListItems.Count
+  While II <= LstFacturas.ListItems.Count
+    If LstFacturas.ListItems(II).Checked = True Then
+      strSql = "SELECT facturas_venta.*, terceros.RazonSocial, ciudades.CuentaFlete, ciudades.CuentaManejo, ciudades.CuentaCartera, Prefijo " & _
+                          "FROM facturas_venta " & _
+                          "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
+                          "LEFT JOIN ciudades ON terceros.IdCiudad = ciudades.IdCiudad " & _
+                          "LEFT JOIN facturas_tipos ON facturas_venta.TipoFactura = facturas_tipos.IdTipoFactura " & _
+                          "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1)
+      rstFactura.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      'Cuenta Flete
+      Print #1, "F001" & Rellenar(rstFactura!Numero, 11, "0", 1) & Rellenar(intSecuencia, 5, "0", 1) & Rellenar(rstFactura!IDTercero, 13, "0", 1) & "000"
+      intSecuencia = intSecuencia + 1
+
+      rstFactura.Close
+      'rstFactura.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+      LstFacturas.ListItems.Remove (II)
+    Else
+     II = II + 1
+    End If
+    Prog (II)
+  Wend
+  FinProg
+  Close #1
+End Sub
+
 Private Sub CmdExportarTerceros_Click()
   Dim rstTerceros As New ADODB.Recordset
   rstTerceros.CursorLocation = adUseClient
