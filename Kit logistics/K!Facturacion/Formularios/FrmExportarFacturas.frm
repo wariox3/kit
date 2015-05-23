@@ -453,7 +453,10 @@ Private Sub CmdExportarSiigo_Click()
                           "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1)
       rstFactura.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
       'Cuenta Flete
-      Print #1, "F001" & Rellenar(rstFactura!Numero, 11, "0", 1) & Rellenar(intSecuencia, 5, "0", 1) & Rellenar(rstFactura!IDTercero, 13, "0", 1) & "000"
+      Dim strCuenta As String
+      strCuenta = "1405050101"
+      Print #1, "F001" & Rellenar(rstFactura!Numero, 11, "0", 1) & Rellenar("1", 5, "0", 1) & Rellenar(rstFactura!IDTercero, 13, "0", 1) & "000" & strCuenta & "0010001000025" & Format(rstFactura!Fecha, "yyyymmdd") & "0001" & "000" & Rellenar("FACTURA VENTA", 50, " ", 0) & "D" & Rellenar(rstFactura!VrFlete & "", 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "   " & "           " & "   " & Format(rstFactura!Fecha, "yyyymmdd") & "0001" & "00"
+      
       intSecuencia = intSecuencia + 1
 
       rstFactura.Close
