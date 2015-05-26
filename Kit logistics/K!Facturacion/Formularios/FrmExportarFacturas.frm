@@ -14,7 +14,7 @@ Begin VB.Form FrmExportarFacturas
    ScaleWidth      =   14310
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
-   Begin VB.CommandButton CmdExportarSiigo 
+   Begin VB.CommandButton CmdExportarSiigoCotrascal 
       Caption         =   "Exportar SIIGO"
       Height          =   375
       Left            =   5880
@@ -434,41 +434,138 @@ End Sub
 
 
 
-Private Sub CmdExportarSiigo_Click()
-  Dim rstFactura As New ADODB.Recordset
-  rstFactura.CursorLocation = adUseClient
-  Dim strSql As String
-  Dim intSecuencia As Integer
-  II = 1
-  intSecuencia = 1
-  Open TxtRuta.Text & "facsiigoexp" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt" For Append As #1
-  IniProg LstFacturas.ListItems.Count
-  While II <= LstFacturas.ListItems.Count
-    If LstFacturas.ListItems(II).Checked = True Then
-      strSql = "SELECT facturas_venta.*, terceros.RazonSocial, ciudades.CuentaFlete, ciudades.CuentaManejo, ciudades.CuentaCartera, Prefijo " & _
-                          "FROM facturas_venta " & _
-                          "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
-                          "LEFT JOIN ciudades ON terceros.IdCiudad = ciudades.IdCiudad " & _
-                          "LEFT JOIN facturas_tipos ON facturas_venta.TipoFactura = facturas_tipos.IdTipoFactura " & _
-                          "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1)
-      rstFactura.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-      'Cuenta Flete
-      Dim strCuenta As String
-      strCuenta = "1405050101"
-      Print #1, "F001" & Rellenar(rstFactura!Numero, 11, "0", 1) & Rellenar("1", 5, "0", 1) & Rellenar(rstFactura!IDTercero, 13, "0", 1) & "000" & strCuenta & "0010001000025" & Format(rstFactura!Fecha, "yyyymmdd") & "0001" & "000" & Rellenar("FACTURA VENTA", 50, " ", 0) & "D" & Rellenar(rstFactura!VrFlete & "", 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "   " & "           " & "   " & Format(rstFactura!Fecha, "yyyymmdd") & "0001" & "00"
-      
-      intSecuencia = intSecuencia + 1
-
-      rstFactura.Close
-      'rstFactura.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      LstFacturas.ListItems.Remove (II)
-    Else
-     II = II + 1
-    End If
-    Prog (II)
-  Wend
-  FinProg
-  Close #1
+Private Sub CmdExportarSiigoCotrascal_Click()
+  Dim RutaSalida As String
+  Dim Fila        As Long
+  Dim Columna     As Long
+  
+On Error GoTo Error_Handler
+    RutaSalida = TxtRuta.Text & "facexpsiigo" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt"
+    Dim J As Integer
+    Dim strCuenta As String
+    Dim strDetalle As String
+    Dim strTipo As String
+    Dim strComprobante As String
+    Dim douValor As Double
+    Dim strNumero As String
+    Dim intNroRegistros As Integer
+    Fila = 0
+    II = 1
+    Open RutaSalida For Append As #1
+    IniProg LstFacturas.ListItems.Count
+    'Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
+    While II <= LstFacturas.ListItems.Count
+      If LstFacturas.ListItems(II).Checked = True Then
+        rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial " & _
+                            "FROM facturas_venta " & _
+                            "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
+                            "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        'Corrientes o contados
+        If Val(rstFacturasExp.Fields("TipoFactura")) = 1 Or Val(rstFacturasExp.Fields("TipoFactura")) = 2 Then
+          intNroRegistros = 3
+        ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 3 Then
+          intNroRegistros = 5
+        Else
+          intNroRegistros = 0
+        End If
+        
+        For J = 1 To intNroRegistros Step 1
+          Fila = Fila + 1
+          Select Case Val(rstFacturasExp.Fields("TipoFactura"))
+            'Corriente
+            Case 1
+              Select Case J
+                Case 1
+                  strCuenta = "41450505"
+                  strTipo = "C"
+                  strDetalle = "FLETES"
+                  douValor = rstFacturasExp.Fields("VrFlete")
+                Case 2
+                  strCuenta = "41454005"
+                  strTipo = "C"
+                  strDetalle = "Valor Seguro Docto"
+                  douValor = rstFacturasExp.Fields("VrManejo")
+                Case 3
+                  strCuenta = "13050501"
+                  strTipo = "D"
+                  strDetalle = "VLR TOTAL DOC"
+                  douValor = rstFacturasExp.Fields("Total")
+              End Select
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 9, "0", 1)
+              strComprobante = "003"
+            'Contado
+            Case 2
+              Select Case J
+                Case 1
+                  strCuenta = "41450510"
+                  strTipo = "C"
+                  strDetalle = "FLETES"
+                  douValor = rstFacturasExp.Fields("VrFlete")
+                Case 2
+                  strCuenta = "41454005"
+                  strTipo = "C"
+                  strDetalle = "Valor Seguro Docto"
+                  douValor = rstFacturasExp.Fields("VrManejo")
+                Case 3
+                  strCuenta = "11050515"
+                  strTipo = "D"
+                  strDetalle = "VLR TOTAL DOC"
+                  douValor = rstFacturasExp.Fields("Total")
+              End Select
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 9, "0", 1)
+              strComprobante = "001"
+            'Destino
+            Case 3
+              Select Case J
+                Case 1
+                  strCuenta = "41450507"
+                  strTipo = "C"
+                  strDetalle = "FLETES"
+                  douValor = rstFacturasExp.Fields("VrFlete")
+                Case 2
+                  strCuenta = "41459507"
+                  strTipo = "C"
+                  strDetalle = "Valor Seguro Docto"
+                  douValor = rstFacturasExp.Fields("VrManejo")
+                Case 3
+                  strCuenta = "13050502"
+                  strTipo = "D"
+                  strDetalle = "VLR TOTAL DOC"
+                  douValor = rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")
+                Case 4
+                  strCuenta = "13559801"
+                  strTipo = "D"
+                  strDetalle = "FACTURA"
+                  douValor = ((rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")) * 0.8) / 100
+                Case 5
+                  strCuenta = "23657501"
+                  strTipo = "C"
+                  strDetalle = "FACTURA"
+                  douValor = ((rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")) * 0.8) / 100
+              End Select
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              strComprobante = "002"
+          End Select
+          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(rstFacturasExp!IDTercero, 13, "0", 1) & "000" & strCuenta & "0010001000025" & Format(rstFacturasExp!Fecha, "yyyymmdd") & "0001" & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(douValor & "", 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "   " & "           " & "   " & Format(rstFacturasExp!Fecha, "yyyymmdd") & "0001" & "00"
+          'Print #1, strCuenta & Chr(9) & "00003" & Chr(9) & Format(rstFacturasExp.Fields("Fecha"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstFacturasExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+          
+        Next
+          
+        
+        rstFacturasExp.Close
+        'rstFacturasExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        LstFacturas.ListItems.Remove (II)
+      Else
+       II = II + 1
+      End If
+      Prog (II)
+    Wend
+    FinProg
+    Close #1
+  
+  Exit Sub
+Error_Handler:
+    If Err.Number <> 0 Then MsgBox Err.Description, vbCritical
 End Sub
 
 Private Sub CmdExportarTerceros_Click()
