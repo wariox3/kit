@@ -205,6 +205,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuControlFacturas 
          Caption         =   "Control facturas"
       End
+      Begin VB.Menu MnuCorregirPuntoOperacionesFacturas 
+         Caption         =   "Corregir punto operaciones"
+      End
    End
    Begin VB.Menu MnuInformes 
       Caption         =   "Informes"
@@ -253,6 +256,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuFacturasPorImprimir 
          Caption         =   "Facturas sin imprimir"
       End
+      Begin VB.Menu MnuFacturacionConsolidado 
+         Caption         =   "Facturacion consolidado"
+      End
    End
 End
 Attribute VB_Name = "Principal"
@@ -287,8 +293,37 @@ Private Sub MnuControlFacturas_Click()
   FrmControlFacturas.Show 1
 End Sub
 
+Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
+  Dim rstFacturas As New ADODB.Recordset
+  rstFacturas.CursorLocation = adUseClient
+  Dim rstGuia As New ADODB.Recordset
+  rstGuia.CursorLocation = adUseClient
+  'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE TipoFactura=1", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  rstFacturas.Open "SELECT facturas_venta.* FROM facturas_venta WHERE TipoFactura <> 1 AND IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  IniProg rstFacturas.RecordCount
+  II = 1
+  Do While rstFacturas.EOF = False
+    rstGuia.Open "SELECT COIng FROM guias WHERE Guia = " & rstFacturas.Fields("Numero"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstGuia.RecordCount > 0 Then
+      rstUniversal.Open "UPDATE facturas_venta SET IdPO= " & rstGuia.Fields("COIng") & "  WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    Else
+      rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    End If
+    rstGuia.Close
+    rstFacturas.MoveNext
+    II = II + 1
+    Prog II
+  Loop
+End Sub
+
 Private Sub MnuExportarContabilidad_Click()
   FrmExportarFacturas.Show 1
+End Sub
+
+Private Sub MnuFacturacionConsolidado_Click()
+  If Principal.ToolConsultas1.AbrirDevFechas("Rango de fechas", "Digite un rango de fechas para ver el informe", 2) = True Then
+    Mostrar_Reporte CnnPrincipal, 51, "Select*from sql_if_facturas_consolidado where (Fecha >= '" & Format(Principal.ToolConsultas1.Fecha1, "yy-mm-dd") & " 00:00:00' and Fecha<='" & Format(Principal.ToolConsultas1.Fecha2, "yy-mm-dd") & " 23:59:00')", "Facturacion consolidado", 2
+  End If
 End Sub
 
 Private Sub MnuFacturado_Click()
