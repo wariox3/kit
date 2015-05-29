@@ -676,7 +676,7 @@ Private Sub CmdEditarRama_Click()
       rstListaPrecios.MoveFirst
       IniProg (rstListaPrecios.RecordCount)
       For II = 1 To rstListaPrecios.RecordCount
-        AbrirRecorset rstUniversal, "INSERT INTO TemPrecios VALUES (" & II & ", " & rstListaPrecios!IdListaPrecios & ", " & Val(rstListaPrecios!IdCiudad) & ", " & Val(rstListaPrecios!IdProducto) & ", " & Val(rstListaPrecios!VrKilo) & ", " & Val(rstListaPrecios!VrUnidad) & ", " & Val(rstListaPrecios!VrTonelada) & ", " & Val(rstListaPrecios!KTope) & ", " & Val(rstListaPrecios!VrKTope) & ", " & Val(rstListaPrecios!VrKAdicional) & ", " & Val(rstListaPrecios!Minimos) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        AbrirRecorset rstUniversal, "INSERT INTO TemPrecios VALUES (" & II & ", " & rstListaPrecios!IdListaPrecios & ", " & Val(rstListaPrecios!IdCiudad) & ", " & Val(rstListaPrecios!IdProducto) & ", " & Val(rstListaPrecios!VrKilo) & ", " & Val(rstListaPrecios!VrUnidad) & ", " & Val(rstListaPrecios!VrTonelada) & ", " & Val(rstListaPrecios!KTope) & ", " & Val(rstListaPrecios!VrKTope) & ", " & Val(rstListaPrecios!VrKAdicional) & ", " & Val(rstListaPrecios!Minimos) & ", " & rstListaPrecios!IdCiudadOrigen & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
         Prog (II)
         rstListaPrecios.MoveNext
       Next

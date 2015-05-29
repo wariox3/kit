@@ -1,11 +1,11 @@
 
-Procesando 02/05/2015 06:53:21 p.m.
+Procesando 28/05/2015 10:01:54 p.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 02/05/2015 06:53:23 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 28/05/2015 10:01:56 p.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -20,8 +20,8 @@ C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  1
 C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
 C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
 C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
-C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 14/01/2015 08:25:22 a.m. 606208  27.45%
-C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 02/05/2015 06:50:15 p.m. 1957888  24.21%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 27/05/2015 10:22:51 p.m. 622592  27.47%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 27/05/2015 10:22:36 p.m. 1957888  24.22%
 C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 14/01/2015 08:26:04 a.m. 430080  29.56%
 C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
 C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 17/02/2015 05:42:09 p.m. 241664  32.81%
@@ -36,6 +36,7 @@ C:\kit\Kit logistics\Reportes\Facturacion\FacturaCuartas.rpt 09/04/2014 07:52:58
 C:\kit\Kit logistics\Reportes\Facturacion\Facturado.rpt 10/07/2014 03:40:32 p.m. 62976  9.58%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturadoAsesor.rpt 13/01/2015 10:23:32 a.m. 48640  10.39%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturaPlanillasCuartas.rpt 21/03/2014 12:24:02 p.m. 191053  40.30%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturasConsolidado.rpt 27/05/2015 08:39:29 p.m. 49664  10.77%
 C:\kit\Kit logistics\Reportes\Facturacion\Imprimir nota credito.rpt 02/09/2013 04:20:13 p.m. 43520  21.66%
 C:\kit\Kit logistics\Reportes\Facturacion\Imprimir recibo caja.rpt 02/09/2013 04:17:28 p.m. 44032  21.30%
 C:\kit\Kit logistics\Reportes\Facturacion\ListaFacturas.rpt 13/01/2015 10:49:17 a.m. 31744  14.37%
@@ -56,6 +57,7 @@ C:\kit\Kit logistics\Reportes\Movimiento\DESPACHOS PENDIENTES POR CERRAR.rpt 16/
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiaFactura.rpt 19/09/2013 12:49:02 p.m. 65536  14.73%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiasClientesCuartas.rpt 24/06/2014 02:08:42 p.m. 160742  26.19%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto.rpt 26/08/2014 07:32:56 a.m. 416706  36.16%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto2.rpt 21/05/2015 08:23:29 p.m. 731870  36.56%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCaciqueTone.rpt 01/09/2014 03:58:56 p.m. 414037  36.42%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCuartas.rpt 26/08/2014 07:32:34 a.m. 419567  36.00%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoDetalle.rpt 07/10/2013 07:35:35 a.m. 103936  58.06%
@@ -89,8 +91,8 @@ C:\kit\Kit logistics\Reportes\Recogidas\FormatoRecogidas.rpt 28/08/2014 10:40:55
 C:\kit\Kit logistics\Reportes\Recogidas\LISTADO DE RECOGIDAS FECHA.rpt 16/05/2013 10:22:41 a.m. 45056  12.72%
 C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:22:41 a.m. 48128  12.24%
 C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
-C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 02/05/2015 04:35:55 p.m. 184320  36.73%
+C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 28/05/2015 09:56:51 p.m. 184320  36.81%
 ================================ 
-Todos los archivos: 77 [ 11870KB => 3935KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4045 KB 
-Finalización exitosa 02/05/2015 06:53:39 p.m.
+Todos los archivos: 79 [ 12649KB => 4206KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4317 KB 
+Finalización exitosa 28/05/2015 10:02:13 p.m.

@@ -402,7 +402,7 @@ If MsgBox("¿Esta seguro de actualizar la lista de precios?" & Chr(13) & "- Si pr
   rstUniversal.MoveFirst
   IniProg (rstUniversal.RecordCount)
   For II = 1 To rstUniversal.RecordCount
-    AbrirRecorset rstTem, "INSERT INTO listaspreciosciudades VALUES (" & rstUniversal!IdListaPrecios & ", " & Val(rstUniversal!IdCiudad) & ", " & Val(rstUniversal!IdProducto) & ", " & Val(rstUniversal!VrKilo) & ", " & Val(rstUniversal!VrUnidad) & ", " & Val(rstUniversal!VrTonelada) & ", " & Val(rstUniversal!KTope) & ", " & Val(rstUniversal!VrKTope) & ", " & Val(rstUniversal!VrKAdicional) & ", " & Val(rstUniversal!Minimos) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    AbrirRecorset rstTem, "INSERT INTO listaspreciosciudades VALUES (" & rstUniversal!IdListaPrecios & ", " & rstUniversal!IdCiudadOrigen & ", " & Val(rstUniversal!IdCiudad) & ", " & Val(rstUniversal!IdProducto) & ", " & Val(rstUniversal!VrKilo) & ", " & Val(rstUniversal!VrUnidad) & ", " & Val(rstUniversal!VrTonelada) & ", " & Val(rstUniversal!KTope) & ", " & Val(rstUniversal!VrKTope) & ", " & Val(rstUniversal!VrKAdicional) & ", " & Val(rstUniversal!Minimos) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
     Prog (II)
     rstUniversal.MoveNext
   Next
