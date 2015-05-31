@@ -15,6 +15,14 @@ Begin VB.Form FrmExportarGuiasFactura
    ScaleWidth      =   13215
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdExportarPorGuia 
+      Caption         =   "Exportar por guia"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   11
+      Top             =   5760
+      Width           =   2415
+   End
    Begin VB.Frame Frame1 
       Caption         =   "Orden"
       Height          =   855
@@ -143,7 +151,7 @@ Begin VB.Form FrmExportarGuiasFactura
       _ExtentY        =   556
       _Version        =   393216
       CustomFormat    =   "dd/MM/yy"
-      Format          =   49741827
+      Format          =   16777219
       CurrentDate     =   39740
    End
    Begin MSComCtl2.DTPicker DTPFechaHasta 
@@ -156,7 +164,7 @@ Begin VB.Form FrmExportarGuiasFactura
       _ExtentY        =   556
       _Version        =   393216
       CustomFormat    =   "dd/MM/yy"
-      Format          =   49741827
+      Format          =   16777219
       CurrentDate     =   39740
    End
    Begin VB.Label LblFecha 
@@ -190,6 +198,20 @@ Private Sub CmdActualizar_Click()
   verGuiasFactura
 End Sub
 
+Private Sub CmdExportarPorGuia_Click()
+  If Principal.ToolConsultas1.AbrirDevDatos("Digite el numero de la guia", "Digite el numero de la guia que desea entregar", 3, 0) = True Then
+    AbrirRecorset rstUniversal, "Select Guia from guias where ExportadaCartera = 0 AND Guia=" & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.RecordCount > 0 Then
+      ExportarGuiaFactura Principal.ToolConsultas1.DatLo
+      CmdExportarPorGuia_Click
+    Else
+      MsgBox "No se encontro la guia o ya estaba exportada", vbCritical
+      CmdExportarPorGuia_Click
+    End If
+    CerrarRecorset rstUniversal
+  End If
+End Sub
+
 Private Sub CmdExportarSeleccionadas_Click()
   II = 1
   While II <= LstGuias.ListItems.Count
@@ -201,6 +223,8 @@ Private Sub CmdExportarSeleccionadas_Click()
     End If
   Wend
 End Sub
+
+
 
 Private Sub CmdSalir_Click()
   Unload Me

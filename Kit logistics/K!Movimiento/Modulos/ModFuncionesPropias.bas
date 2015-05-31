@@ -344,7 +344,7 @@ Public Sub ExportarGuiaFactura(longGuia As Long)
   rstCuentasCobrar.CursorLocation = adUseClient
   Dim rstGuias As New ADODB.Recordset
   Dim douTotal As Double
-  AbrirRecorset rstGuias, "SELECT guias.* FROM guias WHERE Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstGuias, "SELECT guias.* FROM guias WHERE ExportadaCartera = 0 AND Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
   If rstGuias.RecordCount > 0 Then
     If Val(rstGuias!GuiFac) = 1 Then
       douTotal = rstGuias!VrFlete + rstGuias!VrManejo
