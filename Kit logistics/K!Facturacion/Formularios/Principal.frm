@@ -300,6 +300,7 @@ Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
   rstGuia.CursorLocation = adUseClient
   'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE TipoFactura=1", CnnPrincipal, adOpenDynamic, adLockOptimistic
   rstFacturas.Open "SELECT facturas_venta.* FROM facturas_venta WHERE TipoFactura <> 1 AND IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  MsgBox rstFacturas.RecordCount
   IniProg rstFacturas.RecordCount
   II = 1
   Do While rstFacturas.EOF = False
@@ -314,6 +315,7 @@ Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
     II = II + 1
     Prog II
   Loop
+  'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
 End Sub
 
 Private Sub MnuExportarContabilidad_Click()

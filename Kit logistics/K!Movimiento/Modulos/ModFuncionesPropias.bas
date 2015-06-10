@@ -396,3 +396,5 @@ Public Function DevImprimirGuiaFormato() As Boolean
   CerrarRecorset rstConfiguracion
   Set rstConfiguracion = Nothing
 End Function
+
+

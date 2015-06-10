@@ -212,6 +212,18 @@ Private Function Rellenar(Dato As String, Tamaño As Integer, Caracter As String,
   End If
 End Function
 
+Private Function Limpiar(Dato As String) As String
+  FufuSt = ""
+  If Len(Dato) > 0 Then
+    For FufuLo = 1 To Len(Dato)
+      If Mid(Dato, FufuLo, 1) <> "." Then
+        FufuSt = FufuSt & Mid(Dato, FufuLo, 1)
+      End If
+    Next
+  End If
+  Limpiar = FufuSt
+End Function
+
 Private Sub CmdConsultar_Click()
   VerFacturas
 End Sub
@@ -446,7 +458,10 @@ On Error GoTo Error_Handler
     Dim strDetalle As String
     Dim strTipo As String
     Dim strComprobante As String
+    Dim strNit As String
+    Dim strCentroCostos As String
     Dim douValor As Double
+    Dim strValor As String
     Dim strNumero As String
     Dim intNroRegistros As Integer
     Fila = 0
@@ -456,13 +471,16 @@ On Error GoTo Error_Handler
     'Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
     While II <= LstFacturas.ListItems.Count
       If LstFacturas.ListItems(II).Checked = True Then
-        rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial " & _
+        rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial, centrosoperaciones.cuenta_flete, centrosoperaciones.cuenta_manejo, centrosoperaciones.cuenta_cartera, centrosoperaciones.comprobante, centrosoperaciones.centro_costos " & _
                             "FROM facturas_venta " & _
                             "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
+                            "LEFT JOIN centrosoperaciones ON facturas_venta.IdPO = centrosoperaciones.IDPO " & _
                             "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
         'Corrientes o contados
-        If Val(rstFacturasExp.Fields("TipoFactura")) = 1 Or Val(rstFacturasExp.Fields("TipoFactura")) = 2 Then
-          intNroRegistros = 3
+        If Val(rstFacturasExp.Fields("TipoFactura")) = 1 Then
+          intNroRegistros = 6
+        ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 2 Then
+          intNroRegistros = 5
         ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 3 Then
           intNroRegistros = 5
         Else
@@ -474,48 +492,86 @@ On Error GoTo Error_Handler
           Select Case Val(rstFacturasExp.Fields("TipoFactura"))
             'Corriente
             Case 1
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              strComprobante = rstFacturasExp.Fields("comprobante")
+              strNit = rstFacturasExp!IDTercero
+              strCentroCostos = rstFacturasExp!centro_costos
               Select Case J
                 Case 1
-                  strCuenta = "41450505"
+                  strCuenta = rstFacturasExp.Fields("cuenta_flete")
                   strTipo = "C"
                   strDetalle = "FLETES"
                   douValor = rstFacturasExp.Fields("VrFlete")
                 Case 2
-                  strCuenta = "41454005"
+                  strCuenta = rstFacturasExp.Fields("cuenta_manejo")
                   strTipo = "C"
                   strDetalle = "Valor Seguro Docto"
+                  douValor = rstFacturasExp.Fields("VrManejo")
+                Case 3
+                  strCuenta = rstFacturasExp.Fields("cuenta_cartera")
+                  strTipo = "D"
+                  strDetalle = "VLR TOTAL DOC"
+                  douValor = rstFacturasExp.Fields("Total")
+                Case 4 'Retencion en la fuente
+                  strCuenta = "13551502"
+                  strTipo = "D"
+                  strDetalle = "RTE FTE"
+                  douValor = (rstFacturasExp.Fields("Total") * 1) / 100
+                Case 5 'Retencion CREE DEBITO
+                  strCuenta = "13559801"
+                  strTipo = "D"
+                  strDetalle = "CREE DEBITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
+                Case 6 'Retencion CREE CREDITO
+                  strCuenta = "23657501"
+                  strTipo = "C"
+                  strDetalle = "CREE CREDITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
+              End Select
+
+            'Contado
+            Case 2
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              strComprobante = "001"
+              strNit = rstFacturasExp!IDTercero
+              strCentroCostos = "0001"
+              Select Case J
+                Case 1
+                  strCuenta = "41450506"
+                  strTipo = "C"
+                  strDetalle = "FLETES"
+                  douValor = rstFacturasExp.Fields("VrFlete")
+                Case 2
+                  strCuenta = "41459506"
+                  strTipo = "C"
+                  strDetalle = "MANEJO"
                   douValor = rstFacturasExp.Fields("VrManejo")
                 Case 3
                   strCuenta = "13050501"
                   strTipo = "D"
                   strDetalle = "VLR TOTAL DOC"
                   douValor = rstFacturasExp.Fields("Total")
-              End Select
-              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 9, "0", 1)
-              strComprobante = "003"
-            'Contado
-            Case 2
-              Select Case J
-                Case 1
-                  strCuenta = "41450510"
-                  strTipo = "C"
-                  strDetalle = "FLETES"
-                  douValor = rstFacturasExp.Fields("VrFlete")
-                Case 2
-                  strCuenta = "41454005"
-                  strTipo = "C"
-                  strDetalle = "Valor Seguro Docto"
-                  douValor = rstFacturasExp.Fields("VrManejo")
-                Case 3
-                  strCuenta = "11050515"
+                Case 4 'Retencion CREE DEBITO
+                  strCuenta = "13559801"
                   strTipo = "D"
-                  strDetalle = "VLR TOTAL DOC"
-                  douValor = rstFacturasExp.Fields("Total")
+                  strDetalle = "CREE DEBITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
+                Case 5 'Retencion CREE CREDITO
+                  strCuenta = "23657501"
+                  strTipo = "C"
+                  strDetalle = "CREE CREDITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
               End Select
-              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 9, "0", 1)
-              strComprobante = "001"
             'Destino
             Case 3
+              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              strComprobante = "002"
+              strNit = rstFacturasExp!IDTercero
+              strCentroCostos = "0001"
               Select Case J
                 Case 1
                   strCuenta = "41450507"
@@ -525,30 +581,32 @@ On Error GoTo Error_Handler
                 Case 2
                   strCuenta = "41459507"
                   strTipo = "C"
-                  strDetalle = "Valor Seguro Docto"
+                  strDetalle = "MANEJO"
                   douValor = rstFacturasExp.Fields("VrManejo")
                 Case 3
                   strCuenta = "13050502"
                   strTipo = "D"
                   strDetalle = "VLR TOTAL DOC"
                   douValor = rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")
-                Case 4
+                Case 4 'Retencion CREE DEBITO
                   strCuenta = "13559801"
                   strTipo = "D"
-                  strDetalle = "FACTURA"
-                  douValor = ((rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")) * 0.8) / 100
-                Case 5
+                  strDetalle = "CREE DEBITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
+                Case 5 'Retencion CREE CREDITO
                   strCuenta = "23657501"
                   strTipo = "C"
-                  strDetalle = "FACTURA"
-                  douValor = ((rstFacturasExp.Fields("VrFlete") + rstFacturasExp.Fields("VrManejo")) * 0.8) / 100
+                  strDetalle = "CREE CREDITO"
+                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                  strNit = "900151590"
               End Select
-              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
-              strComprobante = "002"
+
           End Select
-          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(rstFacturasExp!IDTercero, 13, "0", 1) & "000" & strCuenta & "0010001000025" & Format(rstFacturasExp!Fecha, "yyyymmdd") & "0001" & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(douValor & "", 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "   " & "           " & "   " & Format(rstFacturasExp!Fecha, "yyyymmdd") & "0001" & "00"
+          strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstFacturasExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "000" & "00000000000" & "000" & "00000000" & "0000" & "00"
           'Print #1, strCuenta & Chr(9) & "00003" & Chr(9) & Format(rstFacturasExp.Fields("Fecha"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstFacturasExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
-          
+                    
         Next
           
         

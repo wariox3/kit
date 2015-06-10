@@ -3,17 +3,42 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmCorreccionDigitosVerificacion 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Corregir digitos de verificacion"
-   ClientHeight    =   6255
+   ClientHeight    =   8625
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   7305
+   ClientWidth     =   7245
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6255
-   ScaleWidth      =   7305
+   ScaleHeight     =   8625
+   ScaleWidth      =   7245
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton Command2 
+      Caption         =   "Guardar"
+      Height          =   375
+      Left            =   4800
+      TabIndex        =   6
+      Top             =   7080
+      Width           =   1935
+   End
+   Begin VB.CommandButton Command1 
+      Caption         =   "Leer"
+      Height          =   375
+      Left            =   4800
+      TabIndex        =   5
+      Top             =   6600
+      Width           =   1935
+   End
+   Begin VB.PictureBox Picture1 
+      Height          =   1815
+      Left            =   600
+      ScaleHeight     =   1755
+      ScaleWidth      =   2355
+      TabIndex        =   4
+      Top             =   6480
+      Width           =   2415
+   End
    Begin VB.CommandButton CmdSeleccionarTodos 
       Caption         =   "Seleccionar todos"
       Height          =   375
@@ -110,6 +135,23 @@ Private Sub CmdSeleccionarTodos_Click()
   Wend
 End Sub
 
+Private Sub Command1_Click()
+  Dim rstConductorFoto As New ADODB.Recordset
+  rstConductorFoto.CursorLocation = adUseClient
+  AbrirRecorset rstConductorFoto, "SELECT conductores_foto.* FROM conductores_foto", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  
+End Sub
+
+Private Sub GuardarImagen(sRuta As String, rst As ADODB.Recordset)
+Dim b() As Byte
+Open sRuta For Binary As #1
+ReDim b(FileLen(sRuta))
+Get #1, , b
+Close #1
+rst.AddNew
+rst.Fields("CampoBLOB").AppendChunk b
+rst.Update
+End Sub
 Private Sub Form_Load()
   Dim rstNits As New ADODB.Recordset
   rstNits.CursorLocation = adUseClient
