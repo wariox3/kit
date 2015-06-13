@@ -1,4 +1,4 @@
-Principal = 289, 59, 1218, 741, C, 284, 9, 1136, 641, C
+Principal = 289, 59, 1218, 741, C, 305, 76, 1157, 708, C
 FrmBuscarFacturas = 0, 0, 0, 0, C, 66, 66, 583, 386, C
 FrmFacturas = 66, 66, 548, 386, C, 110, 110, 627, 430, C
 FrmLlenarFacturas = 44, 44, 697, 364, C, 132, 132, 649, 452, C
@@ -13,7 +13,7 @@ ModFuncionesImpresion = 44, 44, 526, 364, C
 FrmLlenarFacturasPlanilla = 110, 110, 686, 430, C, 66, 66, 583, 386, C
 FrmBuscarNegociaciones = 0, 0, 0, 0, C, 88, 88, 605, 408, C
 ModFacturacion = 22, 22, 935, 554, C
-FrmExportarFacturas = 221, 9, 1126, 688, C, 110, 110, 627, 430, C
+FrmExportarFacturas = 273, -1, 1206, 698, C, 110, 110, 627, 430, C
 FrmFacturasPorImprimir = 88, 88, 630, 408, C, 66, 66, 637, 386, C
 FrmReciboCaja = 176, 176, 847, 622, C, 220, 220, 891, 666, C
 FrmAgregarCuentaCobrar = 0, 0, 0, 0, C, 66, 66, 737, 512, C

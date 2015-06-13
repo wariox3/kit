@@ -464,6 +464,7 @@ On Error GoTo Error_Handler
     Dim strValor As String
     Dim strNumero As String
     Dim intNroRegistros As Integer
+    Dim strDocumentoCruce As String
     Fila = 0
     II = 1
     Open RutaSalida For Append As #1
@@ -604,14 +605,17 @@ On Error GoTo Error_Handler
 
           End Select
           strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
-          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstFacturasExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & " " & "000" & "00000000000" & "000" & "00000000" & "0000" & "00"
-          'Print #1, strCuenta & Chr(9) & "00003" & Chr(9) & Format(rstFacturasExp.Fields("Fecha"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstFacturasExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
-                    
+          If Mid(strCuenta, 1, 4) = "1305" Then
+            strDocumentoCruce = "F" & strComprobante & strNumero & Rellenar(J & "", 3, "0", 1) & Format(rstFacturasExp!FhVence, "yyyymmdd") & "0001" & "00"
+          Else
+            strDocumentoCruce = " " & "000" & "00000000000" & "000" & "00000000" & "0000" & "00"
+          End If
+          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstFacturasExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
         Next
           
         
         rstFacturasExp.Close
-        'rstFacturasExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        rstFacturasExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
         LstFacturas.ListItems.Remove (II)
       Else
        II = II + 1
