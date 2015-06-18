@@ -461,6 +461,7 @@ On Error GoTo Error_Handler
     Dim strNit As String
     Dim strCentroCostos As String
     Dim douValor As Double
+    Dim douRetencionFuente As Double
     Dim strValor As String
     Dim strNumero As String
     Dim intNroRegistros As Integer
@@ -497,6 +498,7 @@ On Error GoTo Error_Handler
               strComprobante = rstFacturasExp.Fields("comprobante")
               strNit = rstFacturasExp!IDTercero
               strCentroCostos = rstFacturasExp!centro_costos
+              douRetencionFuente = (rstFacturasExp.Fields("Total") * 1) / 100
               Select Case J
                 Case 1
                   strCuenta = rstFacturasExp.Fields("cuenta_flete")
@@ -512,7 +514,7 @@ On Error GoTo Error_Handler
                   strCuenta = rstFacturasExp.Fields("cuenta_cartera")
                   strTipo = "D"
                   strDetalle = "VLR TOTAL DOC"
-                  douValor = rstFacturasExp.Fields("Total")
+                  douValor = rstFacturasExp.Fields("Total") - douRetencionFuente
                 Case 4 'Retencion en la fuente
                   strCuenta = "13551502"
                   strTipo = "D"
