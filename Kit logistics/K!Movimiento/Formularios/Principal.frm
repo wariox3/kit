@@ -395,6 +395,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuCorregirCobrosDestino 
          Caption         =   "Corregir cobros al destino"
       End
+      Begin VB.Menu MnuCorregirCodigosBarra 
+         Caption         =   "Corregir codigos barra"
+      End
    End
    Begin VB.Menu MnuInfRepLis 
       Caption         =   "Informes"
@@ -736,63 +739,69 @@ Private Sub MnuControlGuias_Click()
 End Sub
 
 Private Sub MnuCorregirCobrosDestino_Click()
-  Dim strSql As String
-  Dim intNumeroDespacho As Integer
-  Dim rstPagos As New ADODB.Recordset
-  Dim rstDespachos As New ADODB.Recordset
-  Dim rstDespachoAct As New ADODB.Recordset
-  Dim rstGuias As New ADODB.Recordset
-  Dim douTotalCobroFleteDestino As Double
-  Dim douTotalCobroManejoDestino As Double
-  Dim douAbonos As Double
-  rstGuias.CursorLocation = adUseClient
-  rstDespachos.CursorLocation = adUseClient
-  rstPagos.CursorLocation = adUseClient
-  rstDespachoAct.CursorLocation = adUseClient
-  strSql = "SELECT OrdDespacho FROM despachos WHERE 1"
-  AbrirRecorset rstDespachos, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-  Do While rstDespachos.EOF = False
-    intNumeroDespacho = rstDespachos!OrdDespacho
-    strSql = "SELECT Guia, VrFlete, VrManejo, Abonos FROM guias WHERE IdDespacho = " & intNumeroDespacho & " AND TipoCobro = 2"
-    AbrirRecorset rstGuias, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-    douTotalCobroFleteDestino = 0
-    douTotalCobroManejoDestino = 0
-    douAbonos = 0
-    Do While rstGuias.EOF = False
-        douTotalCobroFleteDestino = douTotalCobroFleteDestino + Val(rstGuias!VrFlete)
-        douTotalCobroManejoDestino = douTotalCobroManejoDestino + Val(rstGuias!VrManejo)
-        If Val(rstGuias!Abonos) > 0 Then
-          strSql = "SELECT VrFlete, VrManejo FROM recibos_caja_soporte WHERE Guia = " & rstGuias!Guia
-          AbrirRecorset rstPagos, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-          Do While rstPagos.EOF = False
-            douTotalCobroManejoDestino = douTotalCobroManejoDestino - Val(rstPagos!VrManejo)
-            douTotalCobroFleteDestino = douTotalCobroFleteDestino - Val(rstPagos!VrFlete)
-            rstPagos.MoveNext
-          Loop
-          CerrarRecorset rstPagos
-          douAbonos = douAbonos + Val(rstGuias!Abonos)
-        End If
-      rstGuias.MoveNext
-    Loop
-    AbrirRecorset rstDespachoAct, "UPDATE Despachos SET ManejoCE = " & douTotalCobroManejoDestino & ", FleteCE = " & douTotalCobroFleteDestino & ", AbonosCE=" & douAbonos & ", TotalCE=" & douTotalCobroManejoDestino + douTotalCobroFleteDestino & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
-    CerrarRecorset rstGuias
-    strSql = "SELECT TipoCobro, SUM(VrFlete) as VrFlete, SUM(VrManejo) as VrManejo FROM guias WHERE IdDespacho = " & intNumeroDespacho & " GROUP BY TipoCobro"
-    AbrirRecorset rstGuias, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-    Do While rstGuias.EOF = False
-      If Val(rstGuias!TipoCobro) = 1 Then
-        AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteContado=" & rstGuias!VrFlete & ", ManejoContado=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
-      End If
-      If Val(rstGuias!TipoCobro) = 2 Then
-        AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteCETotal=" & rstGuias!VrFlete & ", ManejoCETotal=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
-      End If
-      If Val(rstGuias!TipoCobro) = 3 Then
-        AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteCorriente=" & rstGuias!VrFlete & ", ManejoCorriente=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
-      End If
-      rstGuias.MoveNext
-    Loop
-    CerrarRecorset rstGuias
-    rstDespachos.MoveNext
-  Loop
+  'Dim strSql As String
+  'Dim intNumeroDespacho As Integer
+  'Dim rstPagos As New ADODB.Recordset
+  'Dim rstDespachos As New ADODB.Recordset
+  'Dim rstDespachoAct As New ADODB.Recordset
+  'Dim rstGuias As New ADODB.Recordset
+  'Dim douTotalCobroFleteDestino As Double
+  'Dim douTotalCobroManejoDestino As Double
+  'Dim douAbonos As Double
+  'rstGuias.CursorLocation = adUseClient
+  'rstDespachos.CursorLocation = adUseClient
+  'rstPagos.CursorLocation = adUseClient
+  'rstDespachoAct.CursorLocation = adUseClient
+  'strSql = "SELECT OrdDespacho FROM despachos WHERE 1"
+  'AbrirRecorset rstDespachos, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  'Do While rstDespachos.EOF = False
+  '  intNumeroDespacho = rstDespachos!OrdDespacho
+  '  strSql = "SELECT Guia, VrFlete, VrManejo, Abonos FROM guias WHERE IdDespacho = " & intNumeroDespacho & " AND TipoCobro = 2"
+  '  AbrirRecorset rstGuias, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  douTotalCobroFleteDestino = 0
+  '  douTotalCobroManejoDestino = 0
+  '  douAbonos = 0
+  '  Do While rstGuias.EOF = False
+  '      douTotalCobroFleteDestino = douTotalCobroFleteDestino + Val(rstGuias!VrFlete)
+  '      douTotalCobroManejoDestino = douTotalCobroManejoDestino + Val(rstGuias!VrManejo)
+  '      If Val(rstGuias!Abonos) > 0 Then
+  '        strSql = "SELECT VrFlete, VrManejo FROM recibos_caja_soporte WHERE Guia = " & rstGuias!Guia
+  '        AbrirRecorset rstPagos, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '        Do While rstPagos.EOF = False
+  '          douTotalCobroManejoDestino = douTotalCobroManejoDestino - Val(rstPagos!VrManejo)
+  '          douTotalCobroFleteDestino = douTotalCobroFleteDestino - Val(rstPagos!VrFlete)
+  '          rstPagos.MoveNext
+  '        Loop
+  '        CerrarRecorset rstPagos
+  '        douAbonos = douAbonos + Val(rstGuias!Abonos)
+  '      End If
+  '    rstGuias.MoveNext
+  '  Loop
+  '  AbrirRecorset rstDespachoAct, "UPDATE Despachos SET ManejoCE = " & douTotalCobroManejoDestino & ", FleteCE = " & douTotalCobroFleteDestino & ", AbonosCE=" & douAbonos & ", TotalCE=" & douTotalCobroManejoDestino + douTotalCobroFleteDestino & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  CerrarRecorset rstGuias
+  '  strSql = "SELECT TipoCobro, SUM(VrFlete) as VrFlete, SUM(VrManejo) as VrManejo FROM guias WHERE IdDespacho = " & intNumeroDespacho & " GROUP BY TipoCobro"
+  '  AbrirRecorset rstGuias, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  Do While rstGuias.EOF = False
+  '    If Val(rstGuias!TipoCobro) = 1 Then
+  '      AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteContado=" & rstGuias!VrFlete & ", ManejoContado=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '    End If
+  '    If Val(rstGuias!TipoCobro) = 2 Then
+  '      AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteCETotal=" & rstGuias!VrFlete & ", ManejoCETotal=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '    End If
+  '    If Val(rstGuias!TipoCobro) = 3 Then
+  '      AbrirRecorset rstDespachoAct, "UPDATE Despachos SET FleteCorriente=" & rstGuias!VrFlete & ", ManejoCorriente=" & rstGuias!VrManejo & " WHERE OrdDespacho = " & intNumeroDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '    End If
+  '    rstGuias.MoveNext
+  '  Loop
+  '  CerrarRecorset rstGuias
+  '  rstDespachos.MoveNext
+  'Loop
+End Sub
+
+Private Sub MnuCorregirCodigosBarra_Click()
+  AbrirRecorset rstUniversal, "Select guia from guias where CodigoBarras IS NULL", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  MsgBox "Este proceso tarda varios minutos por favor verificar que no este nadie en el sistema " & rstUniversal.RecordCount, vbCritical
+  AbrirRecorset rstUniversal, "UPDATE guias SET CodigoBarras = concat('*',guia,'*') WHERE CodigoBarras IS NULL limit 50000 ", CnnPrincipal, adOpenDynamic, adLockOptimistic
 End Sub
 
 Private Sub MnuCorregirDespacho_Click()
