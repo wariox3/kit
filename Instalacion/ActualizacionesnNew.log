@@ -1,11 +1,11 @@
 
-Procesando 03/07/2015 08:36:46 p.m.
+Procesando 21/07/2015 08:36:18 p.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 03/07/2015 08:36:48 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 21/07/2015 08:36:20 p.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -62,7 +62,7 @@ C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCaciqueTone.rpt 01/09/
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCuartas.rpt 26/08/2014 07:32:34 a.m. 419567  36.00%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoDetalle.rpt 07/10/2013 07:35:35 a.m. 103936  58.06%
 C:\kit\Kit logistics\Reportes\Movimiento\GuiaCaciqueTone.rpt 13/01/2015 10:49:17 a.m. 238966  19.00%
-C:\kit\Kit logistics\Reportes\Movimiento\GuiaCotrascal.rpt 03/07/2015 08:33:19 p.m. 274184  16.60%
+C:\kit\Kit logistics\Reportes\Movimiento\GuiaCotrascal.rpt 21/07/2015 08:31:36 p.m. 278922  16.75%
 C:\kit\Kit logistics\Reportes\Movimiento\GuiaCuartas.rpt 13/01/2015 10:49:17 a.m. 218302  20.33%
 C:\kit\Kit logistics\Reportes\Movimiento\Guias Contraentrega y Recaudos.rpt 03/03/2014 05:16:23 p.m. 50688  19.99%
 C:\kit\Kit logistics\Reportes\Movimiento\Guias factura backup.rpt 26/04/2014 11:20:53 a.m. 55808  15.51%
@@ -94,6 +94,6 @@ C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:2
 C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
 C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 28/05/2015 09:56:51 p.m. 184320  36.81%
 ================================ 
-Todos los archivos: 80 [ 12922KB => 4252KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4362 KB 
-Finalización exitosa 03/07/2015 08:37:02 p.m.
+Todos los archivos: 80 [ 12926KB => 4253KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4364 KB 
+Finalización exitosa 21/07/2015 08:36:38 p.m.
