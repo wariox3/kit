@@ -133,7 +133,7 @@ Private Sub CmdExportar_Click()
         'Flete
         douValor = rstDespachosExp.Fields("VrFlete")
         douBase = rstDespachosExp.Fields("VrFlete")
-        Print #1, "41450515" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Flete" & Chr(9) & "1" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        Print #1, "41450520" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Flete" & Chr(9) & "1" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
         'Retencion en la fuente
         douValor = rstDespachosExp.Fields("VrDctoRteFte")
         Print #1, "13551501" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Rte Fuente" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
@@ -185,9 +185,15 @@ Private Sub CmdExportar_Click()
 
         
         'total c x p
+        Dim strTipoCuenta As String
+        strTipoCuenta = 2
         douValor = rstDespachosExp.Fields("SaldoDesp")
         douValor = douValor - (rstDespachosExp.Fields("TRecaudo") + rstDespachosExp.Fields("TotalCE"))
-        Print #1, "28150505" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Total c x p" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
+        If douValor < 0 Then
+          douValor = douValor * -1
+          strTipoCuenta = 1
+        End If
+        Print #1, "28150505" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Total c x p" & Chr(9) & strTipoCuenta & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
         rstDespachosExp.Close
         rstDespachosExp.Open "UPDATE despachos SET ExportadoContabilidad=1 WHERE OrdDespacho=" & LstDespachos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
         LstDespachos.ListItems.Remove (II)

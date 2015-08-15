@@ -81,4 +81,4 @@ FrmBuscarCentroCostos = 110, 110, 1021, 674, C, 66, 66, 977, 630, C
 FrmCentrosCostos = 220, 220, 1131, 784, C, 176, 176, 1087, 740, C
 FrmInformacionLiquidarDespacho = 198, 198, 1109, 762, C, 110, 110, 1021, 674, C
 FrmIntercambioEje = 88, 88, 1010, 652, C, 22, 22, 944, 586, C
-FrmExportarManifiestosContabilidad = 176, 176, 1098, 740, C, 110, 110, 1032, 674, C
+FrmExportarManifiestosContabilidad = 176, 176, 1098, 740, Z, 110, 110, 1032, 674, C
