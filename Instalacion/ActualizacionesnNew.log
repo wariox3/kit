@@ -1,11 +1,11 @@
 
-Procesando 21/07/2015 08:36:18 p.m.
+Procesando 06/09/2015 04:07:15 p.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 21/07/2015 08:36:20 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 06/09/2015 04:07:17 p.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -21,7 +21,7 @@ C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 
 C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
 C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
 C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 17/06/2015 09:30:47 p.m. 630784  27.25%
-C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 03/07/2015 08:35:06 p.m. 1953792  24.28%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 06/09/2015 04:00:28 p.m. 1978368  24.25%
 C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 14/01/2015 08:26:04 a.m. 430080  29.56%
 C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
 C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 17/02/2015 05:42:09 p.m. 241664  32.81%
@@ -57,9 +57,9 @@ C:\kit\Kit logistics\Reportes\Movimiento\DESPACHOS PENDIENTES POR CERRAR.rpt 16/
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiaFactura.rpt 19/09/2013 12:49:02 p.m. 65536  14.73%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoGuiasClientesCuartas.rpt 24/06/2014 02:08:42 p.m. 160742  26.19%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto.rpt 26/08/2014 07:32:56 a.m. 416706  36.16%
-C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto2.rpt 21/05/2015 08:23:29 p.m. 731870  36.56%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiesto2.rpt 25/08/2015 11:01:49 p.m. 752449  38.18%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCaciqueTone.rpt 01/09/2014 03:58:56 p.m. 414037  36.42%
-C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCuartas.rpt 26/08/2014 07:32:34 a.m. 419567  36.00%
+C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoCuartas.rpt 25/08/2015 11:03:01 p.m. 440770  38.70%
 C:\kit\Kit logistics\Reportes\Movimiento\FormatoManifiestoDetalle.rpt 07/10/2013 07:35:35 a.m. 103936  58.06%
 C:\kit\Kit logistics\Reportes\Movimiento\GuiaCaciqueTone.rpt 13/01/2015 10:49:17 a.m. 238966  19.00%
 C:\kit\Kit logistics\Reportes\Movimiento\GuiaCotrascal.rpt 21/07/2015 08:31:36 p.m. 278922  16.75%
@@ -74,6 +74,7 @@ C:\kit\Kit logistics\Reportes\Movimiento\Liquidar despacho.rpt 20/02/2015 04:34:
 C:\kit\Kit logistics\Reportes\Movimiento\ListaDespachos.rpt 24/11/2014 09:29:40 a.m. 34816  14.11%
 C:\kit\Kit logistics\Reportes\Movimiento\Novedades cliente.rpt 06/11/2013 12:12:15 p.m. 43520  21.89%
 C:\kit\Kit logistics\Reportes\Movimiento\Novedades Pendientes.rpt 16/05/2013 10:22:41 a.m. 50176  14.27%
+C:\kit\Kit logistics\Reportes\Movimiento\NovedadesPendientesCO.rpt 06/09/2015 01:33:05 p.m. 33280  13.94%
 C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE DESPACHO.rpt 13/01/2015 10:49:17 a.m. 69120  10.43%
 C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE RECOGIDA.rpt 03/07/2015 07:08:05 p.m. 67584  24.91%
 C:\kit\Kit logistics\Reportes\Movimiento\PENDIENTE POR DESPACHAR CIUDAD.rpt 16/05/2013 10:22:41 a.m. 65024  10.80%
@@ -94,6 +95,6 @@ C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:2
 C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
 C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 28/05/2015 09:56:51 p.m. 184320  36.81%
 ================================ 
-Todos los archivos: 80 [ 12926KB => 4253KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4364 KB 
-Finalización exitosa 21/07/2015 08:36:38 p.m.
+Todos los archivos: 81 [ 13024KB => 4301KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4412 KB 
+Finalización exitosa 06/09/2015 04:07:35 p.m.

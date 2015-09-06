@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{CDE57A40-8B86-11D0-B3C6-00A0C90AEA82}#1.0#0"; "MSDATGRD.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "Comdlg32.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form FrmBuscarGuias 
    BorderStyle     =   4  'Fixed ToolWindow
@@ -16,13 +16,38 @@ Begin VB.Form FrmBuscarGuias
    ScaleWidth      =   12615
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox TxtIdCiudad 
+      BeginProperty DataFormat 
+         Type            =   1
+         Format          =   "0"
+         HaveTrueFalseNull=   0
+         FirstDayOfWeek  =   0
+         FirstWeekOfYear =   0
+         LCID            =   9226
+         SubFormatType   =   1
+      EndProperty
+      Height          =   285
+      Left            =   8640
+      TabIndex        =   32
+      Tag             =   "1"
+      Top             =   6360
+      Width           =   615
+   End
+   Begin VB.TextBox TxtNmCiudad 
+      Enabled         =   0   'False
+      Height          =   285
+      Left            =   9360
+      TabIndex        =   31
+      Top             =   6360
+      Width           =   3135
+   End
    Begin VB.CommandButton CmdExportar 
       Height          =   615
       Left            =   11880
       Picture         =   "FrmFiltrarGuias.frx":0000
       Style           =   1  'Graphical
       TabIndex        =   30
-      Top             =   6480
+      Top             =   6720
       Width           =   615
    End
    Begin VB.Frame Frame1 
@@ -41,7 +66,7 @@ Begin VB.Form FrmBuscarGuias
          _ExtentX        =   2566
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   16842754
+         Format          =   16908290
          CurrentDate     =   39775
       End
       Begin MSComCtl2.DTPicker DTPFechaEntregada 
@@ -53,7 +78,7 @@ Begin VB.Form FrmBuscarGuias
          _ExtentX        =   2355
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   16842753
+         Format          =   16908289
          CurrentDate     =   39775
       End
       Begin VB.CommandButton CmdEntregarGuia 
@@ -68,10 +93,10 @@ Begin VB.Form FrmBuscarGuias
    Begin VB.CommandButton CmdMasInformacion 
       Caption         =   "Mas informacion"
       Height          =   255
-      Left            =   10680
+      Left            =   9720
       TabIndex        =   25
-      Top             =   6120
-      Width           =   1815
+      Top             =   5760
+      Width           =   1335
    End
    Begin VB.CommandButton CmdGuardar 
       Caption         =   "Guardar"
@@ -345,8 +370,8 @@ Begin VB.Form FrmBuscarGuias
       EndProperty
    End
    Begin MSComDlg.CommonDialog Dialogo 
-      Left            =   8760
-      Top             =   6360
+      Left            =   0
+      Top             =   0
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
@@ -442,23 +467,23 @@ Begin VB.Form FrmBuscarGuias
    Begin VB.CommandButton CmdBuscar 
       Caption         =   "Filtrar"
       Height          =   255
-      Left            =   10680
+      Left            =   11160
       TabIndex        =   2
       Top             =   5760
-      Width           =   1815
+      Width           =   1335
    End
    Begin VB.TextBox TxtBuscamos 
       Height          =   285
       Left            =   3000
       TabIndex        =   1
       Top             =   5760
-      Width           =   7575
+      Width           =   6615
    End
    Begin VB.ComboBox CboOpcion 
       Height          =   315
       ItemData        =   "FrmFiltrarGuias.frx":0374
       Left            =   120
-      List            =   "FrmFiltrarGuias.frx":039C
+      List            =   "FrmFiltrarGuias.frx":039F
       Style           =   2  'Dropdown List
       TabIndex        =   0
       Top             =   5760
@@ -511,6 +536,15 @@ Begin VB.Form FrmBuscarGuias
          Width           =   510
       End
    End
+   Begin VB.Label Label5 
+      AutoSize        =   -1  'True
+      Caption         =   "Ciudad:"
+      Height          =   195
+      Left            =   8040
+      TabIndex        =   33
+      Top             =   6360
+      Width           =   540
+   End
    Begin VB.Label Label4 
       AutoSize        =   -1  'True
       Caption         =   "Nro Registros"
@@ -553,7 +587,7 @@ End Sub
 Private Sub CmdBuscar_Click()
 On Error GoTo SQLMalo
   If rstBuscar.State = adStateOpen Then rstBuscar.Close
-  If TxtBuscamos.Text <> "" Or CboOpcion.ListIndex = 1 Or CboOpcion.ListIndex = 2 Then
+  If TxtBuscamos.Text <> "" Or CboOpcion.ListIndex = 1 Or CboOpcion.ListIndex = 2 Or CboOpcion.ListIndex = 12 Then
     rstBuscar.Open TxtVerConsulta.Text, CnnPrincipal, adOpenDynamic, adLockOptimistic
     Set GrillaGuias.DataSource = rstBuscar
     If rstBuscar.RecordCount > 0 Then MsgBox rstBuscar.RecordCount & " registros encontrados", vbInformation
@@ -576,7 +610,7 @@ Function SacarCampo(Opcion As Byte)
     Case 4
       SacarCampo = "NmDestinatario "
     Case 5
-      SacarCampo = "NmCiudad "
+      SacarCampo = "IdCiudadDestino "
     Case 6
       SacarCampo = "IdRuta "
     Case 7
@@ -589,6 +623,8 @@ Function SacarCampo(Opcion As Byte)
       SacarCampo = "IdDespacho "
     Case 11
       SacarCampo = "Cuenta "
+    Case 12
+      SacarCampo = "IdCiuOrigen "
   End Select
 End Function
 
@@ -603,8 +639,8 @@ End Sub
 Private Sub CmdEntregarGuia_Click()
 If rstBuscar.State = adStateOpen Then
   If rstBuscar.EOF = False Then
-    If MsgBox("¿Desea entregar la guia " & rstBuscar.Fields("Guia") & " con fecha " & Format(DTPFechaEntregada, "dd/mm/yyyy") & " y hora " & Format(DTPHoraEntrega.Value, "h:m:s"), vbQuestion + vbYesNo, "Entregar guia") = vbYes Then
-        AbrirRecorset rstUniversal, "Update Guias Set Entregada=1, FhEntregaMercancia='" & Format(DTPFechaEntregada.Value, "yyyy/mm/dd") & " " & Format(DTPHoraEntrega.Value, "h:m:s") & "' where Guia=" & rstBuscar.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If MsgBox("¿Desea entregar la guia " & rstBuscar.Fields("Guia") & " con fecha " & Format(DTPFechaEntregada, "dd/mm/yyyy") & " y hora " & Format(DTPHoraEntrega.value, "h:m:s"), vbQuestion + vbYesNo, "Entregar guia") = vbYes Then
+        AbrirRecorset rstUniversal, "Update Guias Set Entregada=1, FhEntregaMercancia='" & Format(DTPFechaEntregada.value, "yyyy/mm/dd") & " " & Format(DTPHoraEntrega.value, "h:m:s") & "' where Guia=" & rstBuscar.Fields("Guia"), CnnPrincipal, adOpenDynamic, adLockOptimistic
     End If
   Else
     MsgBox "Debe seleccionar una guia", vbCritical
@@ -683,13 +719,17 @@ Private Sub VerC()
 Select Case CboOpcion.ListIndex
   Case 0, 6, 9, 10
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & TxtSelIni & TxtBuscamos & TxtSelFin
-    If ChkConFecha.Value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
+    If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
   Case 1, 2
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & ">='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and " & SacarCampo(CboOpcion.ListIndex) & " <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00'"
   Case 3, 4, 5, 7, 8, 11
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & TxtSelIni & TxtBuscamos & TxtSelFin
-    If ChkConFecha.Value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
+    If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
+  Case 12
+    TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & "=" & Val(TxtIdCiudad)
+    If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
   End Select
+  
   TxtVerConsulta.Text = TxtVerConsulta.Text & " Limit " & Val(TxtNroReg.Text)
 End Sub
 
@@ -705,6 +745,33 @@ Private Sub TxtBuscamos_KeyPress(KeyAscii As Integer)
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 
+
+Private Sub TxtIdCiudad_Change()
+  VerC
+End Sub
+
+Private Sub TxtIdCiudad_KeyDown(KeyCode As Integer, Shift As Integer)
+  If KeyCode = vbKeyF2 Then
+    Principal.ToolConsultas1.AbrirDevConsulta 1, CnnPrincipal
+    TxtIdCiudad.Text = Principal.ToolConsultas1.DatLo
+  End If
+End Sub
+
+Private Sub TxtIdCiudad_KeyPress(KeyAscii As Integer)
+  ValidarEntrada TxtIdCiudad, KeyAscii, 1
+End Sub
+
+Private Sub TxtIdCiudad_LostFocus()
+      If Val(TxtIdCiudad.Text) <> 0 Then
+        AbrirRecorset rstUniversal, "SELECT IdCiudad, NmCiudad, CodMinTrans  From Ciudades where IdCiudad=" & Val(TxtIdCiudad.Text), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          TxtNmCiudad.Text = rstUniversal!NmCiudad & ""
+        Else
+          TxtNmCiudad.Text = "": TxtIdCiudad.Text = ""
+        End If
+        CerrarRecorset rstUniversal
+      End If
+End Sub
 
 Private Sub TxtNroReg_Change()
   VerC

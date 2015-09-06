@@ -307,15 +307,15 @@ Sub AccionTool(Indice As Byte)
         Bloquear
       End If
     Case 9  'Buscar
-'      If Principal.ToolConsultas1.AbrirDevConsulta(7, CnnPrincipal) = True Then
-'        AbrirRecorset rstUniversal, "Select*from Terceros where IdTercero='" & Principal.ToolConsultas1.DatSt & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
-'        If rstUniversal.EOF = False Then
-'          Asignar rstUniversal
-'        Else
-'          MsgBox "No se encontraron terceros con este ID", vbCritical
-'        End If
-'        CerrarRecorset rstUniversal
-'      End If
+      If Principal.ToolConsultas1.AbrirDevDatos("Numero relacion", "Digite el numero de la relacion", 3, 0) = True Then
+        AbrirRecorset rstUniversal, strSqlRelEntegaDoc & " WHERE IDRel=" & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          Asignar rstUniversal
+        Else
+          MsgBox "No se encontraron relaciones con este numero", vbCritical
+        End If
+        CerrarRecorset rstUniversal
+      End If
     Case 11 'Primero
       UPrimero rstRelEntrega
       Asignar rstRelEntrega

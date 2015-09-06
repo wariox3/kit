@@ -212,7 +212,7 @@ Begin VB.Form FrmNovedades
          _ExtentX        =   1931
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   49741825
+         Format          =   50069505
          CurrentDate     =   38971
       End
       Begin MSComCtl2.DTPicker DPicFecha 
@@ -224,7 +224,7 @@ Begin VB.Form FrmNovedades
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   49741825
+         Format          =   50069505
          CurrentDate     =   38971
       End
       Begin VB.Label Label2 
@@ -507,8 +507,14 @@ Private Sub CmdEnviarCorreo_Click()
 End Sub
 
 Private Sub CmdGuardar_Click()
+  Dim IdCentroOperaciones As Integer
+  IdCentroOperaciones = 1
   If TxtIdNovedad.Text <> "" Then
-    AbrirRecorset rstUniversal, "INSERT INTO Novedades (Guia, IdNovedad, Comentarios, UsuIng, FhIngreso, FhNovedad, Solucion, UsuSol, FhSolucion, Solucionada) VALUES (" & Val(LblGuia) & ", " & Val(TxtIdNovedad.Text) & ", '" & TxtComentarios.Text & "', " & CodUsuarioActivo & ", '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & Format(DPicFecha.value, "yyyy/mm/dd") & " " & Format(DPicHora.value, "h:m:s") & "','', " & CodUsuarioActivo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "',0)", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    AbrirRecorset rstUniversal, "SELECT Guia, COIng FROM guias WHERE Guia = " & Val(LblGuia), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.RecordCount > 0 Then
+      IdCentroOperaciones = rstUniversal.Fields("COIng")
+    End If
+    AbrirRecorset rstUniversal, "INSERT INTO Novedades (Guia, IdNovedad, Comentarios, UsuIng, FhIngreso, FhNovedad, Solucion, UsuSol, FhSolucion, Solucionada, IdCentroOperaciones) VALUES (" & Val(LblGuia) & ", " & Val(TxtIdNovedad.Text) & ", '" & TxtComentarios.Text & "', " & CodUsuarioActivo & ", '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & Format(DPicFecha.value, "yyyy/mm/dd") & " " & Format(DPicHora.value, "h:m:s") & "','', " & CodUsuarioActivo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "',0, " & IdCentroOperaciones & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
     TxtIdNovedad.Text = ""
     TxtNovedad.Text = ""
     TxtComentarios.Text = ""

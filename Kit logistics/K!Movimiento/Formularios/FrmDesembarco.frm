@@ -161,6 +161,7 @@ Private Sub CmdDesembarcarMarcadas_Click()
   While II <= LstGuias.ListItems.Count
     If LstGuias.ListItems(II).Checked = True Then
       AbrirRecorset rstUniversal, "UPDATE Guias SET Estado='E', IdDespacho = NULL, Despachada = 0, CR=" & Coperaciones & "  where Guia=" & Val(LstGuias.ListItems.Item(II)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+      InsertarLog 9, Val(LstGuias.ListItems.Item(II))
       LstGuias.ListItems.Remove (II)
     Else
      II = II + 1

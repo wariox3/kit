@@ -490,6 +490,9 @@ Begin VB.MDIForm Principal
          Begin VB.Menu MnuNovedadesPendientes 
             Caption         =   "Novedades pendientes"
          End
+         Begin VB.Menu MnuNovedadesPendientesCO 
+            Caption         =   "Novedades pendientes centro operaciones"
+         End
          Begin VB.Menu MnuTodasLasNovedades 
             Caption         =   "Todas las novedades"
          End
@@ -1048,6 +1051,10 @@ End Sub
 
 Private Sub MnuNovedadesPendientes_Click()
   Mostrar_Reporte CnnPrincipal, 9, "Select*from sql_im_novedadespendientes", "", 2
+End Sub
+
+Private Sub MnuNovedadesPendientesCO_Click()
+  Mostrar_Reporte CnnPrincipal, 52, "Select*from sql_im_novedadespendientesco", "", 2
 End Sub
 
 Private Sub MnuPendCO_Click()
