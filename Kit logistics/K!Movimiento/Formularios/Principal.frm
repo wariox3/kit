@@ -499,6 +499,12 @@ Begin VB.MDIForm Principal
          Begin VB.Menu MnuInformeRedespachos 
             Caption         =   "Redespachos"
          End
+         Begin VB.Menu MnuInformeResumenNovedades 
+            Caption         =   "Resumen novedades"
+         End
+         Begin VB.Menu MnuInformeResumenNovedadesPend 
+            Caption         =   "Resumen novedades pendientes"
+         End
       End
       Begin VB.Menu MnuProduccionVentas 
          Caption         =   "Produccion, ventas"
@@ -1012,6 +1018,18 @@ Private Sub MnuInformeRedespachos_Click()
     Mostrar_Reporte CnnPrincipal, 37, "SELECT sql_im_redespachos.* FROM sql_im_redespachos WHERE Fecha >= '" & Format(Principal.ToolConsultas1.Fecha1, "yy-mm-dd") & " 00:00:00' and Fecha<='" & Format(Principal.ToolConsultas1.Fecha2, "yy-mm-dd") & " 23:59:00'", "", 2
   Else
     Mostrar_Reporte CnnPrincipal, 37, "SELECT sql_im_redespachos.* FROM sql_im_redespachos WHERE 1", "", 2
+  End If
+End Sub
+
+Private Sub MnuInformeResumenNovedades_Click()
+  If Principal.ToolConsultas1.AbrirDevFechas("Rango de fechas", "Digite un rango de fechas para ver el informe", 2) = True Then
+    Mostrar_Reporte CnnPrincipal, 53, "Select * from sql_im_novedades where FhNovedad >= '" & Format(Principal.ToolConsultas1.Fecha1, "yy-mm-dd") & " 00:00:00' and FhNovedad<='" & Format(Principal.ToolConsultas1.Fecha2, "yy-mm-dd") & " 23:59:00'", "", 2
+  End If
+End Sub
+
+Private Sub MnuInformeResumenNovedadesPend_Click()
+  If Principal.ToolConsultas1.AbrirDevFechas("Rango de fechas", "Digite un rango de fechas para ver el informe", 2) = True Then
+    Mostrar_Reporte CnnPrincipal, 53, "Select * from sql_im_novedades where Solucionada = 0 and FhNovedad >= '" & Format(Principal.ToolConsultas1.Fecha1, "yy-mm-dd") & " 00:00:00' and FhNovedad<='" & Format(Principal.ToolConsultas1.Fecha2, "yy-mm-dd") & " 23:59:00'", "", 2
   End If
 End Sub
 
