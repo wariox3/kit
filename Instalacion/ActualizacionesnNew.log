@@ -1,11 +1,11 @@
 
-Procesando 07/09/2015 09:30:03 p.m.
+Procesando 07/09/2015 09:50:43 p.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 07/09/2015 09:30:04 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 07/09/2015 09:50:44 p.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -74,7 +74,7 @@ C:\kit\Kit logistics\Reportes\Movimiento\Liquidar despacho.rpt 20/02/2015 04:34:
 C:\kit\Kit logistics\Reportes\Movimiento\ListaDespachos.rpt 24/11/2014 09:29:40 a.m. 34816  14.11%
 C:\kit\Kit logistics\Reportes\Movimiento\Novedades cliente.rpt 06/11/2013 12:12:15 p.m. 43520  21.89%
 C:\kit\Kit logistics\Reportes\Movimiento\Novedades Pendientes.rpt 16/05/2013 10:22:41 a.m. 50176  14.27%
-C:\kit\Kit logistics\Reportes\Movimiento\Novedades.rpt 07/09/2015 09:26:13 p.m. 35840  30.04%
+C:\kit\Kit logistics\Reportes\Movimiento\Novedades.rpt 07/09/2015 09:50:05 p.m. 28672  14.58%
 C:\kit\Kit logistics\Reportes\Movimiento\NovedadesPendientesCO.rpt 07/09/2015 08:25:23 p.m. 33792  13.73%
 C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE DESPACHO.rpt 13/01/2015 10:49:17 a.m. 69120  10.43%
 C:\kit\Kit logistics\Reportes\Movimiento\ORDEN DE RECOGIDA.rpt 03/07/2015 07:08:05 p.m. 67584  24.91%
@@ -96,6 +96,6 @@ C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:2
 C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
 C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 28/05/2015 09:56:51 p.m. 184320  36.81%
 ================================ 
-Todos los archivos: 82 [ 13059KB => 4312KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4422 KB 
-Finalización exitosa 07/09/2015 09:30:21 p.m.
+Todos los archivos: 82 [ 13052KB => 4305KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4416 KB 
+Finalización exitosa 07/09/2015 09:51:00 p.m.
