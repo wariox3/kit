@@ -66,7 +66,7 @@ Begin VB.Form FrmBuscarGuias
          _ExtentX        =   2566
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   16908290
+         Format          =   16842754
          CurrentDate     =   39775
       End
       Begin MSComCtl2.DTPicker DTPFechaEntregada 
@@ -78,7 +78,7 @@ Begin VB.Form FrmBuscarGuias
          _ExtentX        =   2355
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   16908289
+         Format          =   16842753
          CurrentDate     =   39775
       End
       Begin VB.CommandButton CmdEntregarGuia 
@@ -587,7 +587,7 @@ End Sub
 Private Sub CmdBuscar_Click()
 On Error GoTo SQLMalo
   If rstBuscar.State = adStateOpen Then rstBuscar.Close
-  If TxtBuscamos.Text <> "" Or CboOpcion.ListIndex = 1 Or CboOpcion.ListIndex = 2 Or CboOpcion.ListIndex = 12 Then
+  If TxtBuscamos.Text <> "" Or CboOpcion.ListIndex = 1 Or CboOpcion.ListIndex = 2 Or CboOpcion.ListIndex = 5 Or CboOpcion.ListIndex = 12 Then
     rstBuscar.Open TxtVerConsulta.Text, CnnPrincipal, adOpenDynamic, adLockOptimistic
     Set GrillaGuias.DataSource = rstBuscar
     If rstBuscar.RecordCount > 0 Then MsgBox rstBuscar.RecordCount & " registros encontrados", vbInformation
@@ -610,7 +610,7 @@ Function SacarCampo(Opcion As Byte)
     Case 4
       SacarCampo = "NmDestinatario "
     Case 5
-      SacarCampo = "IdCiudadDestino "
+      SacarCampo = "IdCiuDestino "
     Case 6
       SacarCampo = "IdRuta "
     Case 7
@@ -722,10 +722,10 @@ Select Case CboOpcion.ListIndex
     If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
   Case 1, 2
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & ">='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and " & SacarCampo(CboOpcion.ListIndex) & " <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00'"
-  Case 3, 4, 5, 7, 8, 11
+  Case 3, 4, 7, 8, 11
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & TxtSelIni & TxtBuscamos & TxtSelFin
     If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
-  Case 12
+  Case 12, 5
     TxtVerConsulta.Text = Consulta & SacarCampo(CboOpcion.ListIndex) & "=" & Val(TxtIdCiudad)
     If ChkConFecha.value = 1 Then TxtVerConsulta.Text = TxtVerConsulta.Text & " and (FhEntradaBodega>='" & Format(TxtFh1, "yy-mm-dd") & " 00:00:00' and FhEntradaBodega <='" & Format(TxtFh2, "yy-mm-dd") & " 23:59:00')"
   End Select
