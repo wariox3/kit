@@ -14,16 +14,16 @@ Begin VB.MDIForm Principal
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
    Begin ConsultasKL.ToolConsultas ToolConsultas1 
-      Left            =   5400
-      Top             =   3240
+      Left            =   5160
+      Top             =   1800
       _ExtentX        =   423
       _ExtentY        =   423
    End
    Begin VB.Timer TmPrincipal 
       Enabled         =   0   'False
       Interval        =   8000
-      Left            =   4800
-      Top             =   1320
+      Left            =   4680
+      Top             =   1800
    End
    Begin VB.PictureBox PicMensajes 
       Align           =   2  'Align Bottom
@@ -77,7 +77,7 @@ Begin VB.MDIForm Principal
       End
    End
    Begin MSComctlLib.ImageList IgListTool 
-      Left            =   4680
+      Left            =   3600
       Top             =   1800
       _ExtentX        =   1005
       _ExtentY        =   1005
@@ -147,8 +147,8 @@ Begin VB.MDIForm Principal
       EndProperty
    End
    Begin MSComDlg.CommonDialog CDExa 
-      Left            =   3840
-      Top             =   2520
+      Left            =   4200
+      Top             =   1800
       _ExtentX        =   847
       _ExtentY        =   847
       _Version        =   393216
@@ -178,23 +178,20 @@ Begin VB.MDIForm Principal
          Caption         =   "Facturas"
          Shortcut        =   ^F
       End
+      Begin VB.Menu MnuPendientesPorFacturar 
+         Caption         =   "Pendientes por facturar"
+      End
       Begin VB.Menu MnuSep10 
          Caption         =   "-"
       End
       Begin VB.Menu MnuRecibosCaja 
          Caption         =   "Recibos Caja"
       End
-      Begin VB.Menu MnuSeparador6 
-         Caption         =   "-"
-      End
       Begin VB.Menu MnuNotasCredito 
          Caption         =   "Notas credito"
       End
-      Begin VB.Menu MnuSep11 
-         Caption         =   "-"
-      End
-      Begin VB.Menu MnuPendientesPorFacturar 
-         Caption         =   "Pendientes por facturar"
+      Begin VB.Menu MnuNotasDebito 
+         Caption         =   "Notas debito"
       End
    End
    Begin VB.Menu MnuProcesos 
@@ -211,20 +208,14 @@ Begin VB.MDIForm Principal
    End
    Begin VB.Menu MnuInformes 
       Caption         =   "Informes"
-      Begin VB.Menu MnuInformesCartera 
+      Begin VB.Menu MnuCartera 
          Caption         =   "Cartera"
-         Begin VB.Menu MnuCarteraPorEdades 
+         Begin VB.Menu MnuCarteraEdades 
             Caption         =   "Cartera por edades"
          End
       End
       Begin VB.Menu MnuPendientesFacturar 
          Caption         =   "Pendientes por facturar Corriente"
-      End
-      Begin VB.Menu MnuPendientesFacturarCon 
-         Caption         =   "Pendientes por facturar Contado"
-      End
-      Begin VB.Menu MnuPendientesFacturarDest 
-         Caption         =   "Pendientes por facturar Destino"
       End
       Begin VB.Menu MnuPendientesFacturarCli 
          Caption         =   "Pendientes por facturar (Cliente) Corriente"
@@ -240,18 +231,6 @@ Begin VB.MDIForm Principal
       End
       Begin VB.Menu MnuFacturadoAsesor 
          Caption         =   "Facturado (Asesor) detallado"
-      End
-      Begin VB.Menu MnuInformesFacturas 
-         Caption         =   "Facturas"
-         Begin VB.Menu MnuNotasCreditoPorFecha 
-            Caption         =   "Notas Credito < Por Fecha >"
-         End
-         Begin VB.Menu MnuNotasDebitoPorFecha 
-            Caption         =   "Notas Debito < Por Fecha >"
-         End
-         Begin VB.Menu MnuAbonos 
-            Caption         =   "Abonos < Fecha >"
-         End
       End
       Begin VB.Menu MnuFacturasPorImprimir 
          Caption         =   "Facturas sin imprimir"
@@ -283,6 +262,10 @@ Private Sub MnuCarteraPorEdades_Click()
   FrmInformeCarteraEdades.Show 1
 End Sub
 
+Private Sub MnuCarteraEdades_Click()
+  Mostrar_Reporte CnnPrincipal, 30, "Select*from sql_ic_cartera_edades ", "Cartera por edades", 2
+End Sub
+
 Private Sub MnuConfiguracion_Click()
   FrmConfiguracion.Show 1
 End Sub
@@ -294,27 +277,27 @@ Private Sub MnuControlFacturas_Click()
 End Sub
 
 Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
-  Dim rstFacturas As New ADODB.Recordset
-  rstFacturas.CursorLocation = adUseClient
-  Dim rstGuia As New ADODB.Recordset
-  rstGuia.CursorLocation = adUseClient
-  'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE TipoFactura=1", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  rstFacturas.Open "SELECT facturas_venta.* FROM facturas_venta WHERE TipoFactura <> 1 AND IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  MsgBox rstFacturas.RecordCount
-  IniProg rstFacturas.RecordCount
-  II = 1
-  Do While rstFacturas.EOF = False
-    rstGuia.Open "SELECT COIng FROM guias WHERE Guia = " & rstFacturas.Fields("Numero"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-    If rstGuia.RecordCount > 0 Then
-      rstUniversal.Open "UPDATE facturas_venta SET IdPO= " & rstGuia.Fields("COIng") & "  WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-    Else
-      rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-    End If
-    rstGuia.Close
-    rstFacturas.MoveNext
-    II = II + 1
-    Prog II
-  Loop
+  'Dim rstFacturas As New ADODB.Recordset
+  'rstFacturas.CursorLocation = adUseClient
+  'Dim rstGuia As New ADODB.Recordset
+  'rstGuia.CursorLocation = adUseClient
+  ''rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE TipoFactura=1", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  'rstFacturas.Open "SELECT facturas_venta.* FROM facturas_venta WHERE TipoFactura <> 1 AND IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  'MsgBox rstFacturas.RecordCount
+  'IniProg rstFacturas.RecordCount
+  'II = 1
+  'Do While rstFacturas.EOF = False
+  '  rstGuia.Open "SELECT COIng FROM guias WHERE Guia = " & rstFacturas.Fields("Numero"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  If rstGuia.RecordCount > 0 Then
+  '    rstUniversal.Open "UPDATE facturas_venta SET IdPO= " & rstGuia.Fields("COIng") & "  WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  Else
+  '    rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '  End If
+  '  rstGuia.Close
+  '  rstFacturas.MoveNext
+  '  II = II + 1
+  '  Prog II
+  'Loop
   'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
 End Sub
 
@@ -353,6 +336,10 @@ End Sub
 
 Private Sub MnuFacturasPorImprimir_Click()
   FrmFacturasPorImprimir.Show 1
+End Sub
+
+Private Sub MnuInformesFacturas_Click()
+
 End Sub
 
 Private Sub MnuListaFacturas_Click()

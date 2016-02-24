@@ -6,14 +6,22 @@ Begin VB.Form FrmExportarFacturas
    ClientHeight    =   7200
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   14310
+   ClientWidth     =   15060
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   7200
-   ScaleWidth      =   14310
+   ScaleWidth      =   15060
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdActivarFacturas 
+      Caption         =   "Activar facturas"
+      Height          =   375
+      Left            =   7920
+      TabIndex        =   14
+      Top             =   6240
+      Width           =   1815
+   End
    Begin VB.CommandButton CmdExportarSiigoCotrascal 
       Caption         =   "Exportar SIIGO"
       Height          =   375
@@ -25,17 +33,17 @@ Begin VB.Form FrmExportarFacturas
    Begin VB.CommandButton CmdConsultar 
       Caption         =   "Consultar"
       Height          =   375
-      Left            =   10800
+      Left            =   11640
       TabIndex        =   12
       Top             =   6240
-      Width           =   1575
+      Width           =   1455
    End
    Begin VB.Frame Frame1 
       Caption         =   "Orden"
       Height          =   855
-      Left            =   9000
+      Left            =   9840
       TabIndex        =   9
-      Top             =   6240
+      Top             =   6120
       Width           =   1695
       Begin VB.OptionButton OptNumero 
          Caption         =   "Numero"
@@ -98,7 +106,7 @@ Begin VB.Form FrmExportarFacturas
       Cancel          =   -1  'True
       Caption         =   "Salir"
       Height          =   375
-      Left            =   12480
+      Left            =   13200
       TabIndex        =   2
       Top             =   6240
       Width           =   1575
@@ -116,8 +124,8 @@ Begin VB.Form FrmExportarFacturas
       Left            =   120
       TabIndex        =   0
       Top             =   600
-      Width           =   13935
-      _ExtentX        =   24580
+      Width           =   14655
+      _ExtentX        =   25850
       _ExtentY        =   9763
       View            =   3
       LabelEdit       =   1
@@ -130,7 +138,7 @@ Begin VB.Form FrmExportarFacturas
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   9
+      NumItems        =   11
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "Factura"
          Object.Width           =   1940
@@ -179,6 +187,16 @@ Begin VB.Form FrmExportarFacturas
          Text            =   "Total"
          Object.Width           =   2540
       EndProperty
+      BeginProperty ColumnHeader(10) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   9
+         Text            =   "CO"
+         Object.Width           =   1764
+      EndProperty
+      BeginProperty ColumnHeader(11) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   10
+         Text            =   "Asesor"
+         Object.Width           =   1764
+      EndProperty
    End
    Begin VB.Label LblRuta 
       AutoSize        =   -1  'True
@@ -223,6 +241,16 @@ Private Function Limpiar(Dato As String) As String
   End If
   Limpiar = FufuSt
 End Function
+
+Private Sub CmdActivarFacturas_Click()
+  FrmDevuelveRangoFacturas.Show 1
+  If FufuLo = 1 Then
+    FufuSt = "UPDATE facturas_venta SET Exportada = 0 WHERE TipoFactura = " & TipoFactura & " AND Numero >= " & NumeroFacturaDesde & " AND Numero <= " & NumeroFacturaHasta
+    AbrirRecorset rstUniversal, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    MsgBox "Se han habilidato con exito las facturas", vbInformation
+    VerFacturas
+  End If
+End Sub
 
 Private Sub CmdConsultar_Click()
   VerFacturas
@@ -460,6 +488,7 @@ On Error GoTo Error_Handler
     Dim strComprobante As String
     Dim strNit As String
     Dim strCentroCostos As String
+    Dim strVendedor As String
     Dim douValor As Double
     Dim douRetencionFuente As Double
     Dim strValor As String
@@ -473,21 +502,24 @@ On Error GoTo Error_Handler
     'Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
     While II <= LstFacturas.ListItems.Count
       If LstFacturas.ListItems(II).Checked = True Then
-        rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial, centrosoperaciones.cuenta_flete, centrosoperaciones.cuenta_manejo, centrosoperaciones.cuenta_cartera, centrosoperaciones.comprobante, centrosoperaciones.centro_costos " & _
+        rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial, centrosoperaciones.cuenta_flete, centrosoperaciones.cuenta_manejo, centrosoperaciones.cuenta_cartera, centrosoperaciones.comprobante, centrosoperaciones.centro_costos, asesores.codigo_interface " & _
                             "FROM facturas_venta " & _
                             "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
                             "LEFT JOIN centrosoperaciones ON facturas_venta.IdPO = centrosoperaciones.IDPO " & _
+                            "LEFT JOIN asesores ON facturas_venta.IdAsesor = asesores.IdAsesor " & _
                             "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
         'Corrientes o contados
         If Val(rstFacturasExp.Fields("TipoFactura")) = 1 Then
-          intNroRegistros = 6
+          intNroRegistros = 4
         ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 2 Then
-          intNroRegistros = 5
+          intNroRegistros = 3
         ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 3 Then
-          intNroRegistros = 5
+          intNroRegistros = 3
         Else
           intNroRegistros = 0
         End If
+        strCentroCostos = rstFacturasExp!centro_costos
+        strVendedor = rstFacturasExp!codigo_interface
         
         For J = 1 To intNroRegistros Step 1
           Fila = Fila + 1
@@ -497,7 +529,6 @@ On Error GoTo Error_Handler
               strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
               strComprobante = rstFacturasExp.Fields("comprobante")
               strNit = rstFacturasExp!IDTercero
-              strCentroCostos = rstFacturasExp!centro_costos
               douRetencionFuente = (rstFacturasExp.Fields("Total") * 1) / 100
               Select Case J
                 Case 1
@@ -539,7 +570,7 @@ On Error GoTo Error_Handler
               strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
               strComprobante = "001"
               strNit = rstFacturasExp!IDTercero
-              strCentroCostos = "0001"
+              strCentroCostos = rstFacturasExp!centro_costos
               Select Case J
                 Case 1
                   strCuenta = "41450506"
@@ -574,7 +605,7 @@ On Error GoTo Error_Handler
               strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
               strComprobante = "002"
               strNit = rstFacturasExp!IDTercero
-              strCentroCostos = "0001"
+              strCentroCostos = rstFacturasExp!centro_costos
               Select Case J
                 Case 1
                   strCuenta = "41450507"
@@ -606,13 +637,14 @@ On Error GoTo Error_Handler
               End Select
 
           End Select
+          douValor = Round(douValor)
           strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
           If Mid(strCuenta, 1, 4) = "1305" Then
             strDocumentoCruce = "F" & strComprobante & strNumero & Rellenar(J & "", 3, "0", 1) & Format(rstFacturasExp!FhVence, "yyyymmdd") & "0001" & "00"
           Else
             strDocumentoCruce = " " & "000" & "00000000000" & "000" & "00000000" & "0000" & "00"
           End If
-          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstFacturasExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & "0001" & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+          Print #1, "F" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstFacturasExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
         Next
           
         
@@ -656,13 +688,16 @@ Private Sub CmdSalir_Click()
   Unload Me
 End Sub
 Private Sub VerFacturas()
+  Dim strSql As String
   LstFacturas.ListItems.Clear
-  rstFacturasExp.Open "SELECT facturas_venta.*, terceros.RazonSocial, NmTipoFactura " & _
+  strSql = "SELECT facturas_venta.*, terceros.RazonSocial, NmTipoFactura " & _
                           "FROM facturas_venta " & _
                           "LEFT JOIN terceros ON facturas_venta.IdTercero = terceros.IdTercero " & _
                           "LEFT JOIN facturas_tipos ON facturas_venta.TipoFactura = facturas_tipos.IdTipoFactura " & _
-                          "WHERE Exportada=0 " & _
-                          DevOrden, CnnPrincipal, adOpenDynamic, adLockOptimistic
+                          "WHERE Exportada=0 " & DevOrden
+  'strSql = "SELECT facturas_venta.* FROM facturas_venta limit 100"
+  'AbrirRecorset rstFacturasExp, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  rstFacturasExp.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg rstFacturasExp.RecordCount
   If rstFacturasExp.RecordCount > 0 Then
     Do While rstFacturasExp.EOF = False
@@ -676,6 +711,8 @@ Private Sub VerFacturas()
       Item.SubItems(6) = Format(rstFacturasExp!VrManejo, "0;(0)")
       Item.SubItems(7) = Format(rstFacturasExp!VrOtros, "0;(0)")
       Item.SubItems(8) = Format(rstFacturasExp!Total, "0;(0)")
+      Item.SubItems(9) = rstFacturasExp!IdPo
+      Item.SubItems(10) = rstFacturasExp!IdAsesor & ""
       rstFacturasExp.MoveNext
     Loop
   End If
@@ -685,9 +722,9 @@ End Sub
 
 Private Function DevOrden() As String
   If OptTipo.Value = True Then
-    DevOrden = "ORDER BY TipoFactura, Numero"
+    DevOrden = "ORDER BY facturas_venta.TipoFactura, facturas_venta.Numero"
   Else
-    DevOrden = "ORDER BY Numero, TipoFactura"
+    DevOrden = "ORDER BY facturas_venta.Numero, facturas_venta.TipoFactura"
   End If
 End Function
 

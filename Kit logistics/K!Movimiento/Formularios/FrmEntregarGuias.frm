@@ -16,6 +16,14 @@ Begin VB.Form FrmEntregarGuias
    ScaleWidth      =   10695
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdImportar 
+      Caption         =   "Importar"
+      Height          =   375
+      Left            =   5400
+      TabIndex        =   19
+      Top             =   8280
+      Width           =   2535
+   End
    Begin VB.CheckBox ChkPermitirGuiasOtrosDespachos 
       Caption         =   "Permitir guias de otros despachos"
       Height          =   255
@@ -71,7 +79,7 @@ Begin VB.Form FrmEntregarGuias
          _ExtentX        =   2566
          _ExtentY        =   529
          _Version        =   393216
-         Format          =   50003969
+         Format          =   16842753
          CurrentDate     =   38971
       End
       Begin VB.Label Label3 
@@ -325,6 +333,76 @@ rstAct.CursorLocation = adUseClient
     VerPendientes
     CmdEntregarPorDocumento_Click
   End If
+End Sub
+
+Private Sub CmdImportar_Click()
+  Dim strRuta As String
+  Dim Registro As String
+  Dim strArray() As String
+  Dim strFechaEntrega As String
+  
+  Dim FechaServidor As Date
+  Dim rstDespacho As New ADODB.Recordset
+  rstDespacho.CursorLocation = adUseClient
+  Dim rstTemp As New ADODB.Recordset
+  rstTemp.CursorLocation = adUseClient
+  Dim rstAct As New ADODB.Recordset
+  rstAct.CursorLocation = adUseClient
+  
+  Principal.CDExa.ShowOpen
+  If Principal.CDExa.FileName <> "" Then
+    strRuta = Principal.CDExa.FileName
+    Open strRuta For Input As #1
+    Do While Not EOF(1)
+      Input #1, Registro
+      strArray = Split(Registro, ";")
+      If strArray(1) = "Entregado" Then
+            AbrirRecorset rstUniversal, "Select Guia, FhEntradaBodega, IdDespacho from guias where Despachada=1 and Anulada=0 and Entregada=0 AND Guia=" & Val(strArray(0)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            If rstUniversal.RecordCount > 0 Then
+              If ChkPermitirGuiasOtrosDespachos.value = 0 And rstUniversal.Fields("IdDespacho") <> Val(LblDespacho.Caption) Then
+                MsgBox "La guia no pertenece a este despacho y no esta habilitada la opcion de entregar guias de otros despachos"
+              Else
+                strFechaEntrega = strArray(2)
+                If CDate(rstUniversal.Fields("FhEntradaBodega")) > CDate(strFechaEntrega) Then
+                  MsgBox "La fecha de despacho de la remision " & rstUniversal.Fields("Guia") & " fue: [" & Format(rstUniversal.Fields("FhEntradaBodega"), "dd mmmm yyyy") & "] no puede descargar esta remision con una fecha inferior", vbCritical, "No se puede descargar"
+                  Exit Sub
+                Else
+                  AbrirRecorset rstDespacho, "select OrdDespacho, FhExpedicion from despachos where OrdDespacho=" & rstUniversal.Fields("IdDespacho"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+                  If rstDespacho.RecordCount > 0 Then
+                    If CDate(rstDespacho.Fields("FhExpedicion")) > CDate(strFechaEntrega) Then
+                      MsgBox "La fecha del despacho no puede ser menor a la fecha de entrega", vbCritical
+                      Exit Sub
+                    Else
+                      AbrirRecorset rstTemp, "Select now() as Fh", CnnPrincipal, adOpenDynamic, adLockOptimistic
+                      FechaServidor = rstTemp.Fields("Fh")
+                      CerrarRecorset rstTemp
+                      If CDate(FechaServidor) < CDate(strFechaEntrega) Then
+                        MsgBox "No puede entregar una guia con una fecha posterior a la actual"
+                        Exit Sub
+                      Else
+                        AbrirRecorset rstAct, "UPDATE Guias SET Entregada=1, Estado='G', FhEntregaMercancia= '" & Format(CDate(strFechaEntrega), "yyyy/mm/dd h:m:s") & "', FhRegistroEntrega = '" & Format(Date, "yyyy/mm/dd") & "' where Guia=" & Val(rstUniversal.Fields("Guia")), CnnPrincipal, adOpenDynamic, adLockOptimistic
+                        InsertarLog 4, Val(rstUniversal.Fields("Guia"))
+                        If ChkDescargar.value = 1 Then
+                          AbrirRecorset rstAct, "UPDATE Guias SET Descargada=1, Estado='G', FhDescargada= '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "' where Guia=" & Val(rstUniversal.Fields("Guia")), CnnPrincipal, adOpenDynamic, adLockOptimistic
+                          InsertarLog 5, Val(rstUniversal.Fields("Guia"))
+                        End If
+                      End If
+                    End If
+                  End If
+                  CerrarRecorset rstDespacho
+                End If
+              End If
+            Else
+              MsgBox "Verifique el numero de la guia (" & strArray(0) & "), que no este anulada, que este despachada y que no este entregada", vbCritical
+            End If
+            CerrarRecorset rstUniversal
+      End If
+    Loop
+    Close #1
+    VerPendientes
+  End If
+  
+
 End Sub
 
 Private Sub CmdPorRemision_Click()

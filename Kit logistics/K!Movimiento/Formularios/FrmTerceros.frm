@@ -54,10 +54,8 @@ Begin VB.Form FrmTerceros
       TabCaption(1)   =   "Comercial"
       TabPicture(1)   =   "FrmTerceros.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FraDatosComerciales"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "FraNegociaciones"
-      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).Control(0)=   "FraNegociaciones"
+      Tab(1).Control(1)=   "FraDatosComerciales"
       Tab(1).ControlCount=   2
       Begin VB.Frame FraNegociaciones 
          Enabled         =   0   'False
@@ -66,10 +64,34 @@ Begin VB.Form FrmTerceros
          TabIndex        =   39
          Top             =   2280
          Width           =   8535
+         Begin VB.CheckBox ChkCorriente 
+            Caption         =   "Corriente"
+            Height          =   255
+            Left            =   7200
+            TabIndex        =   54
+            Top             =   720
+            Width           =   1095
+         End
+         Begin VB.CheckBox ChkDestino 
+            Caption         =   "Destino"
+            Height          =   255
+            Left            =   7200
+            TabIndex        =   53
+            Top             =   480
+            Width           =   975
+         End
+         Begin VB.CheckBox ChkContado 
+            Caption         =   "Contado"
+            Height          =   255
+            Left            =   7200
+            TabIndex        =   52
+            Top             =   240
+            Width           =   1095
+         End
          Begin VB.CommandButton CmdQuitar 
             Caption         =   "Quitar"
             Height          =   255
-            Left            =   5520
+            Left            =   4440
             TabIndex        =   42
             Top             =   600
             Width           =   975
@@ -77,7 +99,7 @@ Begin VB.Form FrmTerceros
          Begin VB.CommandButton CmdAgregarNegociacion 
             Caption         =   "Agregar"
             Height          =   255
-            Left            =   5520
+            Left            =   4440
             TabIndex        =   41
             Top             =   240
             Width           =   975
@@ -87,8 +109,8 @@ Begin VB.Form FrmTerceros
             Left            =   120
             TabIndex        =   40
             Top             =   240
-            Width           =   5295
-            _ExtentX        =   9340
+            Width           =   4215
+            _ExtentX        =   7435
             _ExtentY        =   2778
             View            =   3
             LabelEdit       =   1
@@ -120,11 +142,19 @@ Begin VB.Form FrmTerceros
          TabIndex        =   33
          Top             =   360
          Width           =   8535
+         Begin VB.TextBox TxtCampo 
+            Height          =   285
+            Index           =   16
+            Left            =   4920
+            TabIndex        =   47
+            Top             =   600
+            Width           =   3495
+         End
          Begin VB.TextBox TxtNmCentroCostos 
             Enabled         =   0   'False
             Height          =   285
             Left            =   3360
-            TabIndex        =   48
+            TabIndex        =   49
             Top             =   1320
             Width           =   5055
          End
@@ -140,7 +170,7 @@ Begin VB.Form FrmTerceros
             Enabled         =   0   'False
             Height          =   285
             Left            =   3360
-            TabIndex        =   47
+            TabIndex        =   48
             Top             =   960
             Width           =   5055
          End
@@ -170,13 +200,22 @@ Begin VB.Form FrmTerceros
             Top             =   600
             Width           =   1815
          End
+         Begin VB.Label Label18 
+            AutoSize        =   -1  'True
+            Caption         =   "Condicion comercial:"
+            Height          =   195
+            Left            =   3360
+            TabIndex        =   51
+            Top             =   600
+            Width           =   1470
+         End
          Begin VB.Label Label17 
             Alignment       =   1  'Right Justify
             AutoSize        =   -1  'True
             Caption         =   "Centro costos:"
             Height          =   195
             Left            =   345
-            TabIndex        =   49
+            TabIndex        =   50
             Top             =   1320
             Width           =   1020
          End
@@ -684,7 +723,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 15
+  For II = 0 To 16
     TxtCampo(II) = rstAsignar.Fields(II) & ""
   Next
   TxtNmCiudad.Text = rstAsignar!NmCiudad & ""
@@ -699,11 +738,14 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
     LblEstado.Caption = "Inactivo"
     CmdInactivar.Caption = "Activar"
   End If
+  ChkContado.value = DevCheck(rstAsignar!ManejaCobroContado)
+  ChkDestino.value = DevCheck(rstAsignar!ManejaCobroDestino)
+  ChkCorriente.value = DevCheck(rstAsignar!ManejaCobroCorriente)
   VerNegociaciones
 End Sub
 
 Private Sub limpiar()
-  For II = 0 To 15
+  For II = 0 To 16
     TxtCampo(II).Text = ""
   Next
   TxtNmCiudad.Text = ""
@@ -742,6 +784,8 @@ Sub AccionTool(Indice As Byte)
           FraNegociaciones.Enabled = False
           TxtCampo(14).Text = 1
           TxtCampo(15).Text = 1
+          ChkContado.value = 1
+          ChkDestino.value = 1
         Else
           MsgBox "Ya hay un tercero creado con esta identificacion, no se pueden crear dos datos con esta identificacion", vbCritical, "El tercero ya existe"
         End If
@@ -751,7 +795,7 @@ Sub AccionTool(Indice As Byte)
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             Bloquear
-            AbrirRecorset rstUniversal, "Update terceros set TpDoc='" & TxtCampo(1).Text & "', RazonSocial='" & TxtCampo(2).Text & "', Nombre='" & TxtCampo(3).Text & "', Apellido1='" & TxtCampo(4).Text & "', Apellido2='" & TxtCampo(5).Text & "', Direccion='" & TxtCampo(6).Text & "', Telefono='" & TxtCampo(7).Text & "', IdCiudad=" & Val(TxtCampo(8).Text) & ", IdCliente=" & Val(TxtCampo(9).Text) & ", Email='" & TxtCampo(10).Text & "', Celular='" & TxtCampo(11).Text & "', Plazo = " & Val(TxtCampo(12).Text) & ", DigitoVerificacion= " & Val(TxtCampo(13).Text) & ", IdAsesor= " & Val(TxtCampo(14).Text) & ", IdCentroCostos= " & Val(TxtCampo(15).Text) & ", IdFormaPago = " & CboFormaPago.ListIndex + 1 & " where IdTercero='" & TxtCampo(0).Text & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update terceros set TpDoc='" & TxtCampo(1).Text & "', RazonSocial='" & TxtCampo(2).Text & "', Nombre='" & TxtCampo(3).Text & "', Apellido1='" & TxtCampo(4).Text & "', Apellido2='" & TxtCampo(5).Text & "', Direccion='" & TxtCampo(6).Text & "', Telefono='" & TxtCampo(7).Text & "', IdCiudad=" & Val(TxtCampo(8).Text) & ", IdCliente=" & Val(TxtCampo(9).Text) & ", Email='" & TxtCampo(10).Text & "', Celular='" & TxtCampo(11).Text & "', Plazo = " & Val(TxtCampo(12).Text) & ", DigitoVerificacion= " & Val(TxtCampo(13).Text) & ", IdAsesor= " & Val(TxtCampo(14).Text) & ", IdCentroCostos= " & Val(TxtCampo(15).Text) & ", IdFormaPago = " & CboFormaPago.ListIndex + 1 & ", CondicionComercial = '" & TxtCampo(16).Text & "', ManejaCobroContado =" & ChkContado.value & ", ManejaCobroDestino=" & ChkDestino.value & ", ManejaCobroCorriente=" & ChkCorriente.value & " where IdTercero='" & TxtCampo(0).Text & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
             AccionTool 17
           End If
         Else
@@ -760,7 +804,7 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-          AbrirRecorset rstUniversal, "INSERT INTO Terceros (IdTercero, TpDoc, RazonSocial, Nombre, Apellido1, Apellido2, Direccion, Telefono, IdCiudad, IdCliente, Email, Celular, Plazo, DigitoVerificacion, IdAsesor, IdCentroCostos, IdFormaPago) VALUES ('" & TxtCampo(0).Text & "', '" & TxtCampo(1).Text & "', '" & TxtCampo(2).Text & "', '" & TxtCampo(3).Text & "', '" & TxtCampo(4).Text & "', '" & TxtCampo(5).Text & "', '" & TxtCampo(6).Text & "', '" & TxtCampo(7).Text & "', " & Val(TxtCampo(8).Text) & ", " & Val(TxtCampo(9).Text) & ", '" & TxtCampo(10).Text & "', '" & TxtCampo(11).Text & "', " & Val(TxtCampo(12).Text) & ", " & Val(TxtCampo(13).Text) & ", " & Val(TxtCampo(14).Text) & ", " & Val(TxtCampo(15).Text) & ", " & CboFormaPago.ListIndex + 1 & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+          AbrirRecorset rstUniversal, "INSERT INTO Terceros (IdTercero, TpDoc, RazonSocial, Nombre, Apellido1, Apellido2, Direccion, Telefono, IdCiudad, IdCliente, Email, Celular, Plazo, DigitoVerificacion, IdAsesor, IdCentroCostos, IdFormaPago, CondicionComercial, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente) VALUES ('" & TxtCampo(0).Text & "', '" & TxtCampo(1).Text & "', '" & TxtCampo(2).Text & "', '" & TxtCampo(3).Text & "', '" & TxtCampo(4).Text & "', '" & TxtCampo(5).Text & "', '" & TxtCampo(6).Text & "', '" & TxtCampo(7).Text & "', " & Val(TxtCampo(8).Text) & ", " & Val(TxtCampo(9).Text) & ", '" & TxtCampo(10).Text & "', '" & TxtCampo(11).Text & "', " & Val(TxtCampo(12).Text) & ", " & Val(TxtCampo(13).Text) & ", " & Val(TxtCampo(14).Text) & ", " & Val(TxtCampo(15).Text) & ", " & CboFormaPago.ListIndex + 1 & ", '" & TxtCampo(16).Text & "', " & ChkContado.value & ", " & ChkDestino.value & ", " & ChkCorriente.value & " )", CnnPrincipal, adOpenDynamic, adLockOptimistic
           AccionTool 17
           Bloquear
         End If

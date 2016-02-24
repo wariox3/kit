@@ -23,3 +23,7 @@ Public Type CoordenadasImpresion
   Tamaño As Byte
   Longitud As Integer
 End Type
+
+Public NumeroFacturaDesde As Long
+Public NumeroFacturaHasta As Long
+Public TipoFactura As Integer

@@ -3,31 +3,46 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmAsesores 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Asesores"
-   ClientHeight    =   1635
+   ClientHeight    =   2010
    ClientLeft      =   45
    ClientTop       =   285
-   ClientWidth     =   8760
+   ClientWidth     =   9450
    ControlBox      =   0   'False
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   1635
-   ScaleWidth      =   8760
+   ScaleHeight     =   2010
+   ScaleWidth      =   9450
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FraDatos 
       Enabled         =   0   'False
-      Height          =   735
+      Height          =   1215
       Left            =   120
       TabIndex        =   0
       Top             =   600
       Width           =   8055
+      Begin VB.TextBox TxtCodigoInterface 
+         Height          =   285
+         Left            =   1560
+         TabIndex        =   5
+         Top             =   600
+         Width           =   1335
+      End
       Begin VB.TextBox TxtNmAsesor 
          Height          =   285
          Left            =   1560
          TabIndex        =   1
          Top             =   240
          Width           =   6255
+      End
+      Begin VB.Label Label1 
+         Caption         =   "Codigo interface:"
+         Height          =   255
+         Left            =   120
+         TabIndex        =   6
+         Top             =   600
+         Width           =   1215
       End
       Begin VB.Label LblIdAsesor 
          BackColor       =   &H00FFFFFF&
@@ -55,8 +70,8 @@ Begin VB.Form FrmAsesores
       Left            =   0
       TabIndex        =   4
       Top             =   0
-      Width           =   8760
-      _ExtentX        =   15452
+      Width           =   9450
+      _ExtentX        =   16669
       _ExtentY        =   1005
       ButtonWidth     =   847
       ButtonHeight    =   953
@@ -164,10 +179,12 @@ End Sub
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
   LblIdAsesor.Caption = rstAsignar!IdAsesor
   TxtNmAsesor.Text = rstAsignar!NmAsesor & ""
+  TxtCodigoInterface.Text = rstAsignar!codigo_interface & ""
 End Sub
 Private Sub limpiar()
   LblIdAsesor.Caption = ""
   TxtNmAsesor.Text = ""
+  TxtCodigoInterface.Text = ""
 End Sub
 
 Private Sub Desbloquear()
@@ -183,12 +200,13 @@ Sub AccionTool(Indice As Byte)
     Case 3  'Nuevo
       Desbloquear
       limpiar
+      Editando = False
     Case 4  'Guardar
       If Editando = True Then
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             Bloquear
-            AbrirRecorset rstUniversal, "Update asesores set NmAsesor='" & TxtNmAsesor & "' where IdAsesor=" & Val(LblIdAsesor), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update asesores set NmAsesor='" & TxtNmAsesor & "', codigo_interface='" & TxtCodigoInterface & "' where IdAsesor=" & Val(LblIdAsesor), CnnPrincipal, adOpenDynamic, adLockOptimistic
           End If
         Else
           Editando = False
@@ -196,7 +214,7 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-          AbrirRecorset rstUniversal, "INSERT INTO asesores (NmAsesor) VALUES ('" & TxtNmAsesor & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+          AbrirRecorset rstUniversal, "INSERT INTO asesores (NmAsesor, codigo_interface) VALUES ('" & TxtNmAsesor & "','" & TxtCodigoInterface & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
           Bloquear
         End If
       End If

@@ -344,12 +344,12 @@ Public Sub ExportarGuiaFactura(longGuia As Long)
   rstCuentasCobrar.CursorLocation = adUseClient
   Dim rstGuias As New ADODB.Recordset
   Dim douTotal As Double
-  AbrirRecorset rstGuias, "SELECT guias.* FROM guias WHERE ExportadaCartera = 0 AND Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstGuias, "SELECT guias.*, terceros.IdAsesor FROM guias LEFT JOIN terceros ON guias.Cuenta = terceros.IDTercero WHERE ExportadaCartera = 0 AND Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
   If rstGuias.RecordCount > 0 Then
     If Val(rstGuias!GuiFac) = 1 Then
       douTotal = rstGuias!VrFlete + rstGuias!VrManejo
       AbrirRecorset rstCuentasCobrar, "INSERT INTO cuentas_cobrar(NroDocumento, TipoFactura, FechaDoc, FhVence, IdTercero, Total, Saldo, VrFlete, VrManejo, GuiaFactura) VALUES (" & rstGuias!Guia & ", " & rstGuias!GuiaTipo & ", '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & rstGuias!Cuenta & "', " & douTotal & ", " & douTotal & ", " & rstGuias!VrFlete & ", " & rstGuias!VrManejo & ", 1)", CnnPrincipal, adOpenDynamic, adLockOptimistic
-      AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, IdPO) VALUES (" & rstGuias!Guia & ", " & rstGuias!GuiaTipo & ", '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & rstGuias!Cuenta & "', 0, " & douTotal & ", " & rstGuias!VrFlete & ", " & rstGuias!VrManejo & ", " & rstGuias!COIng & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+      AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, IdPO, IdAsesor) VALUES (" & rstGuias!Guia & ", " & rstGuias!GuiaTipo & ", '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & rstGuias!Cuenta & "', 0, " & douTotal & ", " & rstGuias!VrFlete & ", " & rstGuias!VrManejo & ", " & rstGuias!COIng & ", " & rstGuias!IdAsesor & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
       AbrirRecorset rstUniversal, "UPDATE Guias SET ExportadaCartera = 1 WHERE Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
     End If
   End If

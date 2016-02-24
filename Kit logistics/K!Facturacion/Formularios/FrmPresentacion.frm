@@ -55,6 +55,7 @@ Private Sub Form_Load()
   CnnPrincipal.CursorLocation = adUseClient
   rstUniversal.CursorLocation = adUseClient
   CnnPrincipal.Open "DRIVER=" & GetSetting("Kit Logistics", "Configuracion", "CnnDriver") & "; SERVER=" & GetSetting("Kit Logistics", "Configuracion", "CnnServidor") & "; PORT=" & GetSetting("Kit Logistics", "Configuracion", "CnnPuerto") & "; DATABASE=" & GetSetting("Kit Logistics", "Configuracion", "CnnBaseDatos") & "; PWD=" & GetSetting("Kit Logistics", "Configuracion", "CnnContraseña") & "; UID=" & GetSetting("Kit Logistics", "Configuracion", "CnnUsuario") & ";OPTION=3"
+  Coperaciones = GetSetting("Kit Logistics", "Configuracion", "Coperaciones")
   Me.Show
     LblEmpresa = GetSetting("Kit Logistics", "InfoSoftware", "Empresa", "1")
     LblPropietario = GetSetting("Kit Logistics", "InfoSoftware", "Propietario", "1")

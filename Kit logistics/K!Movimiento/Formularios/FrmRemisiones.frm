@@ -1509,6 +1509,9 @@ Dim douDctoKilo As Double
 Dim douKilosMinimos As Double
 Dim boolNoAplicarDctoReexpediciones As Integer
 Dim boolRedondearFlete As Integer
+Dim ManejaCobroContado As Integer
+Dim ManejaCobroDestino As Integer
+Dim ManejaCobroCorriente As Integer
 
 Private Sub Campo_Change(Index As Integer)
   If Index = 19 Then TxtEstado.Text = DevEstadoDespacho(Campo(19))
@@ -1633,9 +1636,12 @@ Private Sub Campo_Validate(Index As Integer, Cancel As Boolean)
       End If
     Case 24
       If Campo(24).Text <> "" Then
-        AbrirRecorset rstUniversal, "Select IdTercero, RazonSocial, IdCliente from Terceros where IdTercero='" & Campo(24) & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        AbrirRecorset rstUniversal, "Select IdTercero, RazonSocial, IdCliente, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente from Terceros where IdTercero='" & Campo(24) & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
           If rstUniversal.EOF = False Then
             Campo(25).Text = rstUniversal.Fields("RazonSocial") & ""
+            ManejaCobroContado = rstUniversal.Fields("ManejaCobroContado")
+            ManejaCobroDestino = rstUniversal.Fields("ManejaCobroDestino")
+            ManejaCobroCorriente = rstUniversal.Fields("ManejaCobroCorriente")
             If Campo(2) = "" Then Campo(2) = rstUniversal.Fields("RazonSocial") & ""
             Campo(3).Text = rstUniversal.Fields("IdCliente") & ""
             If ClienteViejo = Campo(24) Then
@@ -2209,7 +2215,19 @@ Private Function Validacion() As Boolean
                   If CboTpServicio.ListIndex = -1 Then
                     Validacion = False: MsgTit "Debe elegir algun tipo de servicio permitido por el cliente": CboTpServicio.SetFocus
                   Else
-                    Validacion = True
+                    If CboTipo.ListIndex = 0 And ManejaCobroCorriente = 0 Then
+                      Validacion = False: MsgTit "El cliente no maneja cobro corriente": CboTipo.SetFocus
+                    Else
+                      If CboTipo.ListIndex = 1 And ManejaCobroContado = 0 Then
+                        Validacion = False: MsgTit "El cliente no maneja cobro contado": CboTipo.SetFocus
+                      Else
+                        If CboTipo.ListIndex = 2 And ManejaCobroDestino = 0 Then
+                          Validacion = False: MsgTit "El cliente no maneja cobro destino": CboTipo.SetFocus
+                        Else
+                          Validacion = True
+                        End If
+                      End If
+                    End If
                   End If
                 Else
                   Validacion = False: MsgTit "Los kilos a facturar no pueden ser 0": Campo(16).SetFocus

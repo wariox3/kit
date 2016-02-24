@@ -15,6 +15,14 @@ Begin VB.Form FrmExportarGuiasFactura
    ScaleWidth      =   13215
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdExportarExcel 
+      Caption         =   "Exrportar excel"
+      Height          =   375
+      Left            =   8760
+      TabIndex        =   12
+      Top             =   5760
+      Width           =   1815
+   End
    Begin VB.CommandButton CmdExportarPorGuia 
       Caption         =   "Exportar por guia"
       Height          =   375
@@ -151,7 +159,7 @@ Begin VB.Form FrmExportarGuiasFactura
       _ExtentY        =   556
       _Version        =   393216
       CustomFormat    =   "dd/MM/yy"
-      Format          =   16777219
+      Format          =   50003971
       CurrentDate     =   39740
    End
    Begin MSComCtl2.DTPicker DTPFechaHasta 
@@ -164,7 +172,7 @@ Begin VB.Form FrmExportarGuiasFactura
       _ExtentY        =   556
       _Version        =   393216
       CustomFormat    =   "dd/MM/yy"
-      Format          =   16777219
+      Format          =   50003971
       CurrentDate     =   39740
    End
    Begin VB.Label LblFecha 
@@ -196,6 +204,16 @@ Dim rstGuiasFactura As New ADODB.Recordset
 
 Private Sub CmdActualizar_Click()
   verGuiasFactura
+End Sub
+
+Private Sub CmdExportarExcel_Click()
+AbrirRecorset rstGuiasFactura, DevSql(), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+If rstGuiasFactura.State = adStateOpen Then
+  If rstGuiasFactura.EOF = False Then
+    ExportarExcel rstGuiasFactura
+  End If
+End If
+CerrarRecorset rstGuiasFactura
 End Sub
 
 Private Sub CmdExportarPorGuia_Click()
@@ -265,10 +283,11 @@ End Sub
 
 Private Function DevSql() As String
   Dim strSql As String
-  strSql = "SELECT Guia, FhEntradaBodega, DocCliente, Cliente, NmCiudad, VrFlete, VrManejo, NmTipoCobro " & _
+  strSql = "SELECT Guia, FhEntradaBodega, DocCliente, Cliente, NmCiudad, VrFlete, VrManejo, NmTipoCobro, centrosoperaciones.NmPuntoOperaciones " & _
            "FROM guias " & _
            "LEFT JOIN ciudades ON guias.IdCiuDestino = ciudades.IdCiudad " & _
            "LEFT JOIN tipos_cobro ON guias.TipoCobro = tipos_cobro.IdTipoCobro " & _
+           "LEFT JOIN centrosoperaciones ON guias.COIng = centrosoperaciones.IDPO " & _
            "WHERE ExportadaCartera = 0 AND (TipoCobro = 1 OR TipoCobro = 2) AND FhEntradaBodega >='" & Format(DTPFechaDesde.value, "yyyy/mm/dd") & " 00:00:00' AND FhEntradaBodega <='" & Format(DTPFechaHasta.value, "yyyy/mm/dd") & " 23:59:00' "
            
   If OptOrdFecha.value = True Then

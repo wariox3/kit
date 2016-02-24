@@ -5,15 +5,15 @@ Begin VB.Form FrmAgregarCuentaCobrar
    ClientHeight    =   5970
    ClientLeft      =   60
    ClientTop       =   345
-   ClientWidth     =   7095
+   ClientWidth     =   10125
    ControlBox      =   0   'False
    LinkTopic       =   "Form1"
    ScaleHeight     =   5970
-   ScaleWidth      =   7095
+   ScaleWidth      =   10125
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtBuscamos 
       Height          =   285
-      Left            =   5400
+      Left            =   8400
       TabIndex        =   0
       Top             =   120
       Width           =   1575
@@ -22,7 +22,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
       Cancel          =   -1  'True
       Caption         =   "Cancelar"
       Height          =   375
-      Left            =   5280
+      Left            =   120
       TabIndex        =   3
       Top             =   5520
       Width           =   1695
@@ -30,7 +30,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
    Begin VB.CommandButton CmdAceptar 
       Caption         =   "Aceptar"
       Height          =   375
-      Left            =   3480
+      Left            =   8280
       TabIndex        =   2
       Top             =   5520
       Width           =   1695
@@ -40,8 +40,8 @@ Begin VB.Form FrmAgregarCuentaCobrar
       Left            =   120
       TabIndex        =   1
       Top             =   480
-      Width           =   6855
-      _ExtentX        =   12091
+      Width           =   9855
+      _ExtentX        =   17383
       _ExtentY        =   8705
       _Version        =   393216
       AllowUpdate     =   0   'False
@@ -66,7 +66,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
          Italic          =   0   'False
          Strikethrough   =   0   'False
       EndProperty
-      ColumnCount     =   4
+      ColumnCount     =   5
       BeginProperty Column00 
          DataField       =   "IdCxC"
          Caption         =   "ID"
@@ -81,6 +81,19 @@ Begin VB.Form FrmAgregarCuentaCobrar
          EndProperty
       EndProperty
       BeginProperty Column01 
+         DataField       =   "NmTipoFactura"
+         Caption         =   "Tipo"
+         BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
+            Type            =   0
+            Format          =   ""
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   9226
+            SubFormatType   =   0
+         EndProperty
+      EndProperty
+      BeginProperty Column02 
          DataField       =   "NroDocumento"
          Caption         =   "Numero"
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -93,7 +106,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
             SubFormatType   =   0
          EndProperty
       EndProperty
-      BeginProperty Column02 
+      BeginProperty Column03 
          DataField       =   "FechaDoc"
          Caption         =   "Fecha"
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -106,7 +119,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
             SubFormatType   =   0
          EndProperty
       EndProperty
-      BeginProperty Column03 
+      BeginProperty Column04 
          DataField       =   "Saldo"
          Caption         =   "Saldo"
          BeginProperty DataFormat {6D835690-900B-11D0-9484-00A0C91110ED} 
@@ -126,16 +139,19 @@ Begin VB.Form FrmAgregarCuentaCobrar
             ColumnWidth     =   494.929
          EndProperty
          BeginProperty Column01 
-            Locked          =   -1  'True
-            ColumnWidth     =   1679.811
+            ColumnWidth     =   1904.882
          EndProperty
          BeginProperty Column02 
             Locked          =   -1  'True
+            ColumnWidth     =   1679.811
          EndProperty
          BeginProperty Column03 
+            Locked          =   -1  'True
+         EndProperty
+         BeginProperty Column04 
             Alignment       =   1
             Locked          =   -1  'True
-            ColumnWidth     =   2174.74
+            ColumnWidth     =   1739.906
          EndProperty
       EndProperty
    End
@@ -159,7 +175,7 @@ Begin VB.Form FrmAgregarCuentaCobrar
       AutoSize        =   -1  'True
       Caption         =   "Numero:"
       Height          =   195
-      Left            =   4680
+      Left            =   7680
       TabIndex        =   4
       Top             =   120
       Width           =   600
@@ -193,7 +209,7 @@ Private Sub Form_Load()
 End Sub
 Sub Filtrar()
   Dim Consulta As String
-  Consulta = "SELECT cuentas_cobrar.* FROM cuentas_cobrar WHERE IdTercero = '" & Val(LblNit.Caption) & "'"
+  Consulta = "SELECT cuentas_cobrar.*, NmTipoFactura FROM cuentas_cobrar LEFT JOIN facturas_tipos ON cuentas_cobrar.TipoFactura=facturas_tipos.IdTipoFactura WHERE IdTercero = '" & Val(LblNit.Caption) & "' AND saldo > 0"
   If TxtBuscamos <> "" Then
     Consulta = Consulta + " AND NroDocumento like '%" & TxtBuscamos.Text & "%' order by NroDocumento"
   End If

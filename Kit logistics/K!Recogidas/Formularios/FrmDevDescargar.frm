@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomct2.ocx"
+Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form FrmDevDescargar 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Descargar recogida...."
@@ -33,7 +33,7 @@ Begin VB.Form FrmDevDescargar
       _ExtentY        =   503
       _Version        =   393216
       CustomFormat    =   "hh:mm"
-      Format          =   16777218
+      Format          =   60555266
       UpDown          =   -1  'True
       CurrentDate     =   38517
    End
@@ -87,7 +87,7 @@ Begin VB.Form FrmDevDescargar
       _ExtentX        =   2566
       _ExtentY        =   503
       _Version        =   393216
-      Format          =   16777217
+      Format          =   60555265
       CurrentDate     =   38517
    End
    Begin VB.Label LblTitulos 
@@ -187,6 +187,11 @@ End Sub
 Private Sub DTPHora_KeyDown(KeyCode As Integer, Shift As Integer)
   If KeyCode = vbKeyReturn Then SendKeys vbTab
 End Sub
+
+Private Sub Form_Load()
+  DTPFecha.Value = Date
+End Sub
+
 Private Sub TxtKReales_GotFocus()
   EnfocarT TxtKReales
 End Sub

@@ -20,14 +20,14 @@ Begin VB.Form FrmFacturas
       Enabled         =   0   'False
       Height          =   615
       Left            =   240
-      TabIndex        =   61
-      Top             =   7920
+      TabIndex        =   62
+      Top             =   8160
       Width           =   10335
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   19
          Left            =   7680
-         TabIndex        =   67
+         TabIndex        =   68
          Top             =   240
          Width           =   735
       End
@@ -35,7 +35,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   18
          Left            =   4800
-         TabIndex        =   65
+         TabIndex        =   66
          Top             =   240
          Width           =   735
       End
@@ -43,7 +43,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   17
          Left            =   1800
-         TabIndex        =   63
+         TabIndex        =   64
          Top             =   240
          Width           =   735
       End
@@ -52,7 +52,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Nro Conceptos:"
          Height          =   195
          Left            =   6480
-         TabIndex        =   66
+         TabIndex        =   67
          Top             =   240
          Width           =   1110
       End
@@ -61,7 +61,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Nro Planillas:"
          Height          =   195
          Left            =   3840
-         TabIndex        =   64
+         TabIndex        =   65
          Top             =   240
          Width           =   915
       End
@@ -70,20 +70,20 @@ Begin VB.Form FrmFacturas
          Caption         =   "Nro Guias:"
          Height          =   195
          Left            =   960
-         TabIndex        =   62
+         TabIndex        =   63
          Top             =   240
          Width           =   750
       End
    End
    Begin TabDlg.SSTab SSTDatos 
-      Height          =   5055
+      Height          =   5295
       Left            =   240
-      TabIndex        =   4
+      TabIndex        =   5
       Tag             =   "Vacia"
       Top             =   1320
       Width           =   10335
       _ExtentX        =   18230
-      _ExtentY        =   8916
+      _ExtentY        =   9340
       _Version        =   393216
       Style           =   1
       TabHeight       =   520
@@ -121,15 +121,15 @@ Begin VB.Form FrmFacturas
          Caption         =   "Liberar guias"
          Height          =   255
          Left            =   240
-         TabIndex        =   79
-         Top             =   4680
+         TabIndex        =   80
+         Top             =   4920
          Width           =   2055
       End
       Begin VB.CommandButton CmdMantenimientoConceptos 
          Caption         =   "Agergar / Quitar Conceptos"
          Height          =   255
          Left            =   -74760
-         TabIndex        =   73
+         TabIndex        =   74
          Top             =   4320
          Width           =   2535
       End
@@ -137,7 +137,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Ver conceptos"
          Height          =   255
          Left            =   -68520
-         TabIndex        =   72
+         TabIndex        =   73
          Top             =   4320
          Width           =   2535
       End
@@ -145,7 +145,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Agregar / Quitar planillas"
          Height          =   255
          Left            =   -74640
-         TabIndex        =   71
+         TabIndex        =   72
          Top             =   4200
          Width           =   2295
       End
@@ -153,7 +153,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Ver Planillas"
          Height          =   255
          Left            =   -67680
-         TabIndex        =   70
+         TabIndex        =   71
          Top             =   4200
          Width           =   1575
       End
@@ -162,14 +162,14 @@ Begin VB.Form FrmFacturas
          Enabled         =   0   'False
          Height          =   3675
          Left            =   -74760
-         TabIndex        =   55
+         TabIndex        =   56
          Top             =   480
          Width           =   8775
          Begin VB.CommandButton CmdCambiarNPlanilla 
             Caption         =   "Cambiar"
             Height          =   255
             Left            =   4080
-            TabIndex        =   75
+            TabIndex        =   76
             Top             =   3720
             Width           =   975
          End
@@ -177,7 +177,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Quitar"
             Height          =   255
             Left            =   3120
-            TabIndex        =   69
+            TabIndex        =   70
             Top             =   3720
             Width           =   855
          End
@@ -185,7 +185,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Cargar guias"
             Height          =   255
             Left            =   5400
-            TabIndex        =   60
+            TabIndex        =   61
             Top             =   3720
             Width           =   1575
          End
@@ -193,21 +193,21 @@ Begin VB.Form FrmFacturas
             Caption         =   "Agregar"
             Height          =   255
             Left            =   2280
-            TabIndex        =   59
+            TabIndex        =   60
             Top             =   3720
             Width           =   855
          End
          Begin VB.TextBox TxtRelCliente 
             Height          =   285
             Left            =   1080
-            TabIndex        =   58
+            TabIndex        =   59
             Top             =   3720
             Width           =   1095
          End
          Begin MSComctlLib.ListView LstPlanillas 
             Height          =   3255
             Left            =   120
-            TabIndex        =   57
+            TabIndex        =   58
             Top             =   240
             Width           =   8535
             _ExtentX        =   15055
@@ -257,7 +257,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Rel Cliente:"
             Height          =   195
             Left            =   120
-            TabIndex        =   68
+            TabIndex        =   69
             Top             =   3720
             Width           =   810
          End
@@ -267,14 +267,14 @@ Begin VB.Form FrmFacturas
          Enabled         =   0   'False
          Height          =   3000
          Left            =   -74760
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   480
          Width           =   8775
          Begin VB.TextBox TxtIdConcepto 
             Enabled         =   0   'False
             Height          =   285
             Left            =   6360
-            TabIndex        =   74
+            TabIndex        =   75
             Top             =   3360
             Width           =   495
          End
@@ -282,7 +282,7 @@ Begin VB.Form FrmFacturas
             Alignment       =   1  'Right Justify
             Height          =   285
             Left            =   7560
-            TabIndex        =   51
+            TabIndex        =   52
             Top             =   3000
             Width           =   1095
          End
@@ -290,7 +290,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Agregar"
             Height          =   255
             Left            =   960
-            TabIndex        =   52
+            TabIndex        =   53
             Top             =   3360
             Width           =   1935
          End
@@ -298,14 +298,14 @@ Begin VB.Form FrmFacturas
             Caption         =   "Quitar"
             Height          =   255
             Left            =   3000
-            TabIndex        =   56
+            TabIndex        =   57
             Top             =   3360
             Width           =   1935
          End
          Begin MSComctlLib.ListView LstConceptos 
             Height          =   2655
             Left            =   120
-            TabIndex        =   49
+            TabIndex        =   50
             Tag             =   "Vacia"
             Top             =   240
             Width           =   8535
@@ -342,7 +342,7 @@ Begin VB.Form FrmFacturas
          Begin MSDataListLib.DataCombo CboConceptos 
             Height          =   315
             Left            =   960
-            TabIndex        =   50
+            TabIndex        =   51
             Top             =   3000
             Width           =   5895
             _ExtentX        =   10398
@@ -355,7 +355,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Valor:"
             Height          =   195
             Left            =   7080
-            TabIndex        =   54
+            TabIndex        =   55
             Top             =   3000
             Width           =   405
          End
@@ -364,7 +364,7 @@ Begin VB.Form FrmFacturas
             Caption         =   "Concepto:"
             Height          =   195
             Left            =   120
-            TabIndex        =   53
+            TabIndex        =   54
             Top             =   3000
             Width           =   735
          End
@@ -373,16 +373,16 @@ Begin VB.Form FrmFacturas
          Caption         =   "Agregar/Quitar guias >>"
          Height          =   255
          Left            =   8160
-         TabIndex        =   36
-         Top             =   4680
+         TabIndex        =   37
+         Top             =   4920
          Width           =   2055
       End
       Begin VB.CommandButton CmdVerGuias 
          Caption         =   "Ver Guias"
          Height          =   255
          Left            =   6000
-         TabIndex        =   35
-         Top             =   4680
+         TabIndex        =   36
+         Top             =   4920
          Width           =   2055
       End
       Begin VB.Frame FraNotas 
@@ -390,30 +390,39 @@ Begin VB.Form FrmFacturas
          Enabled         =   0   'False
          Height          =   855
          Left            =   240
-         TabIndex        =   32
-         Top             =   1560
+         TabIndex        =   33
+         Top             =   1680
          Width           =   9975
          Begin VB.TextBox TxtCampos 
             Height          =   495
             Index           =   5
             Left            =   120
             MultiLine       =   -1  'True
-            TabIndex        =   3
+            TabIndex        =   4
             Top             =   240
             Width           =   9735
          End
       End
       Begin VB.Frame FraCliente 
          Enabled         =   0   'False
-         Height          =   1155
+         Height          =   1335
          Left            =   240
-         TabIndex        =   5
+         TabIndex        =   6
          Top             =   360
          Width           =   9975
          Begin VB.TextBox TxtCampos 
             Height          =   285
+            Index           =   22
+            Left            =   1800
+            Locked          =   -1  'True
+            TabIndex        =   3
+            Top             =   960
+            Width           =   1455
+         End
+         Begin VB.TextBox TxtCampos 
+            Height          =   285
             Index           =   21
-            Left            =   1320
+            Left            =   1800
             Locked          =   -1  'True
             TabIndex        =   1
             Top             =   600
@@ -422,7 +431,7 @@ Begin VB.Form FrmFacturas
          Begin VB.TextBox TxtCampos 
             Height          =   285
             Index           =   20
-            Left            =   8160
+            Left            =   8640
             TabIndex        =   2
             Top             =   600
             Width           =   615
@@ -430,33 +439,50 @@ Begin VB.Form FrmFacturas
          Begin VB.TextBox TxtNmCliente 
             Enabled         =   0   'False
             Height          =   285
-            Left            =   2880
-            TabIndex        =   6
+            Left            =   3360
+            TabIndex        =   7
             Top             =   240
             Width           =   5895
          End
          Begin VB.TextBox TxtCampos 
             Height          =   285
             Index           =   3
-            Left            =   1320
+            Left            =   1800
             TabIndex        =   0
             Top             =   240
             Width           =   1455
+         End
+         Begin VB.Label Label11 
+            AutoSize        =   -1  'True
+            Caption         =   "Centro operaciones:"
+            Height          =   195
+            Left            =   360
+            TabIndex        =   82
+            Top             =   960
+            Width           =   1425
+         End
+         Begin VB.Label LblNmCentroOperaciones 
+            BorderStyle     =   1  'Fixed Single
+            Height          =   255
+            Left            =   3360
+            TabIndex        =   81
+            Top             =   960
+            Width           =   4575
          End
          Begin VB.Label Label9 
             AutoSize        =   -1  'True
             Caption         =   "Plazo:"
             Height          =   195
-            Left            =   7560
-            TabIndex        =   78
+            Left            =   8040
+            TabIndex        =   79
             Top             =   600
             Width           =   435
          End
          Begin VB.Label LblFormaPago 
             BorderStyle     =   1  'Fixed Single
             Height          =   255
-            Left            =   2880
-            TabIndex        =   77
+            Left            =   3360
+            TabIndex        =   78
             Top             =   600
             Width           =   4575
          End
@@ -464,8 +490,8 @@ Begin VB.Form FrmFacturas
             AutoSize        =   -1  'True
             Caption         =   "Forma pago:"
             Height          =   195
-            Left            =   360
-            TabIndex        =   76
+            Left            =   840
+            TabIndex        =   77
             Top             =   600
             Width           =   885
          End
@@ -474,8 +500,8 @@ Begin VB.Form FrmFacturas
             Caption         =   "ID Cliente:"
             Height          =   195
             Index           =   0
-            Left            =   480
-            TabIndex        =   7
+            Left            =   960
+            TabIndex        =   8
             Top             =   240
             Width           =   735
          End
@@ -483,8 +509,8 @@ Begin VB.Form FrmFacturas
       Begin MSDataGridLib.DataGrid GrillaFacturadas 
          Height          =   2175
          Left            =   240
-         TabIndex        =   37
-         Top             =   2460
+         TabIndex        =   38
+         Top             =   2640
          Width           =   9975
          _ExtentX        =   17595
          _ExtentY        =   3836
@@ -681,8 +707,8 @@ Begin VB.Form FrmFacturas
       Enabled         =   0   'False
       Height          =   1335
       Left            =   8160
-      TabIndex        =   23
-      Top             =   6480
+      TabIndex        =   24
+      Top             =   6720
       Width           =   2415
       Begin VB.TextBox TxtCampos 
          Alignment       =   1  'Right Justify
@@ -698,7 +724,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   15
          Left            =   840
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   960
          Width           =   1455
       End
@@ -716,7 +742,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   16
          Left            =   840
-         TabIndex        =   30
+         TabIndex        =   31
          Top             =   600
          Width           =   1455
       End
@@ -734,7 +760,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   14
          Left            =   840
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   240
          Width           =   1455
       End
@@ -744,7 +770,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   4
          Left            =   240
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   960
          Width           =   405
       End
@@ -754,7 +780,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   13
          Left            =   240
-         TabIndex        =   31
+         TabIndex        =   32
          Top             =   600
          Width           =   450
       End
@@ -764,7 +790,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   12
          Left            =   180
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   240
          Width           =   510
       End
@@ -774,8 +800,8 @@ Begin VB.Form FrmFacturas
       Enabled         =   0   'False
       Height          =   1335
       Left            =   3360
-      TabIndex        =   22
-      Top             =   6480
+      TabIndex        =   23
+      Top             =   6720
       Width           =   3975
       Begin VB.TextBox TxtCampos 
          Alignment       =   1  'Right Justify
@@ -791,7 +817,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   12
          Left            =   3240
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   600
          Width           =   615
       End
@@ -809,7 +835,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   10
          Left            =   3240
-         TabIndex        =   42
+         TabIndex        =   43
          Top             =   240
          Width           =   615
       End
@@ -818,7 +844,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   13
          Left            =   3240
-         TabIndex        =   33
+         TabIndex        =   34
          Top             =   960
          Width           =   615
       End
@@ -836,7 +862,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   11
          Left            =   960
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   600
          Width           =   1455
       End
@@ -854,7 +880,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   9
          Left            =   960
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   240
          Width           =   1455
       End
@@ -863,7 +889,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Base:"
          Height          =   195
          Left            =   2760
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   600
          Width           =   405
       End
@@ -872,7 +898,7 @@ Begin VB.Form FrmFacturas
          Caption         =   "Base:"
          Height          =   195
          Left            =   2790
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   240
          Width           =   405
       End
@@ -882,7 +908,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   9
          Left            =   2520
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   960
          Width           =   675
       End
@@ -892,7 +918,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   11
          Left            =   120
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   240
          Width           =   735
       End
@@ -902,7 +928,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   10
          Left            =   120
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   600
          Width           =   780
       End
@@ -912,8 +938,8 @@ Begin VB.Form FrmFacturas
       Enabled         =   0   'False
       Height          =   1335
       Left            =   240
-      TabIndex        =   13
-      Top             =   6480
+      TabIndex        =   14
+      Top             =   6720
       Width           =   2415
       Begin VB.TextBox TxtCampos 
          Alignment       =   1  'Right Justify
@@ -929,7 +955,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   6
          Left            =   840
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   240
          Width           =   1455
       End
@@ -947,7 +973,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   7
          Left            =   840
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   600
          Width           =   1455
       End
@@ -965,7 +991,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   8
          Left            =   840
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   960
          Width           =   1455
       End
@@ -975,7 +1001,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   1
          Left            =   390
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   240
          Width           =   390
       End
@@ -985,7 +1011,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   2
          Left            =   210
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   600
          Width           =   570
       End
@@ -995,7 +1021,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   3
          Left            =   360
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   960
          Width           =   420
       End
@@ -1004,13 +1030,13 @@ Begin VB.Form FrmFacturas
       Enabled         =   0   'False
       Height          =   615
       Left            =   240
-      TabIndex        =   8
+      TabIndex        =   9
       Top             =   600
       Width           =   10335
       Begin VB.TextBox TxtEstado 
          Height          =   285
          Left            =   7680
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   240
          Width           =   2535
       End
@@ -1019,7 +1045,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   4
          Left            =   7320
-         TabIndex        =   39
+         TabIndex        =   40
          Top             =   240
          Width           =   255
       End
@@ -1027,7 +1053,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   1
          Left            =   2640
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   240
          Width           =   2175
       End
@@ -1035,7 +1061,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   2
          Left            =   5520
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   240
          Width           =   1095
       End
@@ -1043,7 +1069,7 @@ Begin VB.Form FrmFacturas
          Height          =   285
          Index           =   0
          Left            =   840
-         TabIndex        =   9
+         TabIndex        =   10
          Top             =   240
          Width           =   1095
       End
@@ -1053,7 +1079,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   8
          Left            =   6720
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   240
          Width           =   540
       End
@@ -1063,7 +1089,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   7
          Left            =   4920
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   240
          Width           =   510
       End
@@ -1073,7 +1099,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   6
          Left            =   2040
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   240
          Width           =   495
       End
@@ -1083,7 +1109,7 @@ Begin VB.Form FrmFacturas
          Height          =   195
          Index           =   5
          Left            =   120
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   240
          Width           =   585
       End
@@ -1092,7 +1118,7 @@ Begin VB.Form FrmFacturas
       Align           =   1  'Align Top
       Height          =   570
       Left            =   0
-      TabIndex        =   38
+      TabIndex        =   39
       Top             =   0
       Width           =   14880
       _ExtentX        =   26247
@@ -1467,11 +1493,12 @@ Private Sub Form_Load()
   rstFacturas.CursorLocation = adUseServer
   rstTem.CursorLocation = adUseClient
   strSqlFacturas = "SELECT facturas.*, " & _
-                "terceros.RazonSocial, formas_pago.NmFormaPago " & _
+                "terceros.RazonSocial, formas_pago.NmFormaPago, centrosoperaciones.NmPuntoOperaciones " & _
                 "FROM facturas " & _
                 "LEFT JOIN terceros ON facturas.IdCliente = terceros.IDTercero " & _
-                "LEFT JOIN formas_pago ON facturas.IdFormaPago = formas_pago.IdFormaPago "
-                
+                "LEFT JOIN formas_pago ON facturas.IdFormaPago = formas_pago.IdFormaPago " & _
+                "LEFT JOIN centrosoperaciones ON facturas.codigo_centro_operaciones_fk = centrosoperaciones.IDPO "
+
   AbrirRecorset rstFacturas, strSqlFacturas & " Order by IdFactura Desc Limit 100", CnnPrincipal, adOpenDynamic, adLockOptimistic
   Formatos rstFacturas
   Asignar rstFacturas
@@ -1480,11 +1507,12 @@ Private Sub Form_Load()
   rstTipoFacturas.CursorLocation = adUseClient
 End Sub
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 21
+  For II = 0 To 22
     TxtCampos(II).Text = rstAsignar.Fields(II) & ""
   Next
   TxtNmCliente = rstAsignar!RazonSocial
   LblFormaPago.Caption = rstAsignar!NmFormaPago & ""
+  LblNmCentroOperaciones.Caption = rstAsignar!NmPuntoOperaciones
   
   If GrillaFacturadas.Tag = "Llena" Then
     Set rstTem.DataSource = Nothing
@@ -1513,7 +1541,7 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
   
 End Sub
 Private Sub Formatos(rstForma As ADODB.Recordset)
-  For II = 0 To 21
+  For II = 0 To 22
     Set rstForma.Fields(II).DataFormat = TxtCampos(II).DataFormat
   Next
 End Sub
@@ -1544,6 +1572,7 @@ Sub AccionTool(Indice As Byte)
         TxtCampos(3).SetFocus
         TxtCampos(4).Text = "D"
         TxtCampos(20).Text = "0"
+        TxtCampos(22).Text = Coperaciones
       End If
     Case 4  'Guardar
       If Editando = True Then
@@ -1552,7 +1581,7 @@ Sub AccionTool(Indice As Byte)
             Dim FechaFactura As Date
             FechaFactura = TxtCampos(1).Text
             Bloquear
-            AbrirRecorset rstUniversal, "Update Facturas set IdCliente='" & TxtCampos(3).Text & "', Notas='" & TxtCampos(5) & "', FhVenceFac='" & Format(FechaFactura + Val(TxtCampos(20).Text), "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', IdFormaPago = " & Val(TxtCampos(21).Text) & ", Plazo = " & Val(TxtCampos(20).Text) & " WHERE IdFactura=" & Val(TxtCampos(0)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update Facturas set IdCliente='" & TxtCampos(3).Text & "', Notas='" & TxtCampos(5) & "', FhVenceFac='" & Format(FechaFactura + Val(TxtCampos(20).Text), "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', IdFormaPago = " & Val(TxtCampos(21).Text) & ", codigo_centro_operaciones_fk = " & Val(TxtCampos(22).Text) & ", Plazo = " & Val(TxtCampos(20).Text) & " WHERE IdFactura=" & Val(TxtCampos(0)), CnnPrincipal, adOpenDynamic, adLockOptimistic
             Editando = False
           End If
         Else
@@ -1562,8 +1591,8 @@ Sub AccionTool(Indice As Byte)
       Else
         If Validacion = True Then
             TxtCampos(0).Text = SacarConsecutivo("PreFactura", CnnPrincipal)
-            AbrirRecorset rstUniversal, "INSERT INTO Facturas (IdFactura, FhFac, FhVenceFac, IdCliente, Estado, Notas, TFlete, TManejo, TOtros, DctoComercial, BaseCCial, DctoFinanciero, BaseFin, AntesDeDcto, Abonos, TotalFactura, Saldo, NroGuias, NroPlanillas, NroConceptos, Exportada, IdFormaPago, Plazo) " & _
-                                        "VALUES (" & Val(TxtCampos(0).Text) & ", '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & Format(Date + Val(TxtCampos(20).Text), "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(3).Text & "', 'D', '" & TxtCampos(5).Text & "', 0, 0, 0, 0, " & Val(Format(TxtCampos(10).Text, "0;(0)")) & ", 0," & Val(Format(TxtCampos(12).Text, "0;(0)")) & ", " & Val(Format(TxtCampos(13).Text, "0;(0)")) & ", 0, 0, 0, 0, 0, 0, 0, " & Val(TxtCampos(21).Text) & ", " & Val(TxtCampos(20).Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "INSERT INTO Facturas (IdFactura, FhFac, FhVenceFac, IdCliente, Estado, Notas, TFlete, TManejo, TOtros, DctoComercial, BaseCCial, DctoFinanciero, BaseFin, AntesDeDcto, Abonos, TotalFactura, Saldo, NroGuias, NroPlanillas, NroConceptos, Exportada, IdFormaPago, codigo_centro_operaciones_fk, Plazo) " & _
+                                        "VALUES (" & Val(TxtCampos(0).Text) & ", '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & Format(Date + Val(TxtCampos(20).Text), "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(3).Text & "', 'D', '" & TxtCampos(5).Text & "', 0, 0, 0, 0, " & Val(Format(TxtCampos(10).Text, "0;(0)")) & ", 0," & Val(Format(TxtCampos(12).Text, "0;(0)")) & ", " & Val(Format(TxtCampos(13).Text, "0;(0)")) & ", 0, 0, 0, 0, 0, 0, 0, " & Val(TxtCampos(21).Text) & ", " & Val(TxtCampos(22).Text) & ", " & Val(TxtCampos(20).Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
             Bloquear
             AccionTool 17
             AccionTool 11
@@ -1660,15 +1689,20 @@ Private Sub Bloquear()
 End Sub
 
 Private Sub Limpiar()
-  For II = 0 To 21
+  For II = 0 To 22
     TxtCampos(II).Text = ""
   Next
   TxtNmCliente.Text = ""
   LblFormaPago.Caption = ""
+  LblNmCentroOperaciones.Caption = ""
 End Sub
 Function Validacion() As Boolean
   If TxtCampos(3).Text <> "" And TxtCampos(0).Text <> "0" Then
-    Validacion = True
+    If TxtCampos(22).Text <> "" And Val(TxtCampos(22).Text) <> 0 Then
+      Validacion = True
+    Else
+      Validacion = False: MsgTit "La factura debe tener un centro operaciones": TxtCampos(22).SetFocus
+    End If
   Else
     Validacion = False: MsgTit "La factura debe tener un cliente": TxtCampos(3).SetFocus
   End If
@@ -1770,6 +1804,11 @@ Private Sub TxtCampos_KeyDown(Index As Integer, KeyCode As Integer, Shift As Int
         Principal.ToolConsultas1.AbrirDevConsulta 7, CnnPrincipal
         TxtCampos(3).Text = Principal.ToolConsultas1.DatSt
       End If
+    Case 22
+      If KeyCode = vbKeyF2 Then
+        FrmBuscarCO.Show 1
+        TxtCampos(22).Text = FufuLo
+      End If
   End Select
   
 End Sub
@@ -1812,6 +1851,18 @@ Private Sub TxtCampos_LostFocus(Index As Integer)
           TxtNmCliente = "": TxtCampos(3).Text = ""
         End If
         CerrarRecorset rstUniversal
+      End If
+    Case 22
+      If Val(TxtCampos(22).Text) <> 0 Then
+        AbrirRecorset rstUniversal, "SELECT IDPO, NmPuntoOperaciones From centrosoperaciones where IDPO=" & TxtCampos(22), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          LblNmCentroOperaciones.Caption = rstUniversal!NmPuntoOperaciones & ""
+        Else
+          LblNmCentroOperaciones.Caption = "": TxtCampos(22) = ""
+        End If
+        CerrarRecorset rstUniversal
+      Else
+          LblNmCentroOperaciones.Caption = "": TxtCampos(22) = ""
       End If
   End Select
 End Sub
@@ -1881,8 +1932,8 @@ Private Sub EstadoImpresoFactura(intNumeroFactura As Long)
   ValorLetras = UCase(CovLetras(Val(rstFactura.Fields("TFlete")) + Val(rstFactura.Fields("TManejo")) + Val(rstFactura.Fields("TOtros"))))
   AbrirRecorset rstUniversal, "UPDATE facturas set IdFactura=" & NroFactura & ", FhFac='" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', FhVenceFac='" & Format(Date + Plazo, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', Estado='I', ValorEnLetras='" & ValorLetras & "' WHERE IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
   
-  AbrirRecorset rstFactura, "SELECT IdFactura, FhFac, FhVenceFac, IdCliente, Plazo, TotalFactura, TFlete, TManejo, TOtros FROM facturas WHERE IdFactura = " & NroFactura, CnnPrincipal, adOpenDynamic, adLockOptimistic
-  AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, VrOtros, IdPO) VALUES (" & NroFactura & ", 1, '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!Plazo & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", 0, 1)", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstFactura, "SELECT IdFactura, FhFac, FhVenceFac, facturas.IdCliente, facturas.Plazo, TotalFactura, TFlete, TManejo, TOtros, codigo_centro_operaciones_fk, terceros.IdAsesor FROM facturas LEFT JOIN terceros ON facturas.IdCliente = terceros.IDTercero WHERE IdFactura = " & NroFactura, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, VrOtros, IdPO, IdAsesor) VALUES (" & NroFactura & ", 1, '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!Plazo & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", 0, " & rstFactura!codigo_centro_operaciones_fk & ", " & rstFactura!IdAsesor & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
   AbrirRecorset rstUniversal, "INSERT INTO cuentas_cobrar(NroDocumento, TipoFactura, FechaDoc, FhVence, IdTercero, Total, Saldo, VrFlete, VrManejo, GuiaFactura) VALUES (" & NroFactura & ", " & 1 & ", '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!TotalFactura & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", " & rstFactura!TOtros & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
 
   TxtCampos(0).Text = NroFactura
