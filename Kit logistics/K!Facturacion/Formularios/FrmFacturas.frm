@@ -1924,7 +1924,7 @@ Private Sub EstadoImpresoFactura(intNumeroFactura As Long)
   Dim NroFactura As Long
   Dim Plazo As Integer
   rstFactura.CursorLocation = adUseClient
-  AbrirRecorset rstFactura, "SELECT Plazo, FhFac, TFlete, TManejo, TOtros FROM facturas WHERE IdFactura = " & intNumeroFactura, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstFactura, "SELECT facturas.Plazo, FhFac, TFlete, TManejo, TOtros, IdAsesor FROM facturas LEFT JOIN terceros ON facturas.IdCliente = terceros.IdTercero WHERE IdFactura = " & intNumeroFactura, CnnPrincipal, adOpenDynamic, adLockOptimistic
   Plazo = Val(rstFactura!Plazo)
   NroFactura = SacarConsecutivo("Facturas", CnnPrincipal)
   AbrirRecorset rstUniversal, "UPDATE guias SET IdFactura=" & NroFactura & " WHERE IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
@@ -1934,7 +1934,7 @@ Private Sub EstadoImpresoFactura(intNumeroFactura As Long)
   
   AbrirRecorset rstFactura, "SELECT IdFactura, FhFac, FhVenceFac, facturas.IdCliente, facturas.Plazo, TotalFactura, TFlete, TManejo, TOtros, codigo_centro_operaciones_fk, terceros.IdAsesor FROM facturas LEFT JOIN terceros ON facturas.IdCliente = terceros.IDTercero WHERE IdFactura = " & NroFactura, CnnPrincipal, adOpenDynamic, adLockOptimistic
   AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, VrOtros, IdPO, IdAsesor) VALUES (" & NroFactura & ", 1, '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!Plazo & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", 0, " & rstFactura!codigo_centro_operaciones_fk & ", " & rstFactura!IdAsesor & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  AbrirRecorset rstUniversal, "INSERT INTO cuentas_cobrar(NroDocumento, TipoFactura, FechaDoc, FhVence, IdTercero, Total, Saldo, VrFlete, VrManejo, GuiaFactura) VALUES (" & NroFactura & ", " & 1 & ", '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!TotalFactura & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", " & rstFactura!TOtros & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstUniversal, "INSERT INTO cuentas_cobrar(NroDocumento, TipoFactura, FechaDoc, FhVence, IdTercero, Total, Saldo, VrFlete, VrManejo, GuiaFactura, Condicion, IdAsesor, IdPO) VALUES (" & NroFactura & ", " & 1 & ", '" & Format(rstFactura!FhFac, "yyyy/mm/dd") & "', '" & Format(rstFactura!FhVenceFac, "yyyy/mm/dd") & "', '" & rstFactura!IdCliente & "', " & rstFactura!TotalFactura & ", " & rstFactura!TotalFactura & ", " & rstFactura!TFlete & ", " & rstFactura!TManejo & ", 0," & rstFactura!Plazo & "," & rstFactura!IdAsesor & "," & rstFactura!codigo_centro_operaciones_fk & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
 
   TxtCampos(0).Text = NroFactura
 End Sub

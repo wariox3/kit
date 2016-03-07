@@ -100,3 +100,49 @@ Public Function DigitoVerificacion(ByVal sNit As String) As String
     DigitoVerificacion = DigitoVerificacion
     'By GeNeTiKo
 End Function
+
+Public Sub ExportarExcel(rstTemp As ADODB.Recordset)
+  Dim RutaSalida As String
+  Dim o_Excel     As Object
+  Dim o_Libro     As Object
+  Dim o_Hoja      As Object
+  Dim Fila        As Long
+  Dim Columna     As Long
+  
+On Error GoTo Error_Handler
+
+  Principal.CDExa.DialogTitle = "Guardar como"
+  Principal.CDExa.Filter = "Archivo Excel|*.xls"
+  Principal.CDExa.ShowSave
+  If Principal.CDExa.FileName <> "" Then
+    RutaSalida = Principal.CDExa.FileName
+    Set o_Excel = CreateObject("Excel.Application")
+    Set o_Libro = o_Excel.Workbooks.Add
+    Set o_Hoja = o_Libro.Worksheets.Add
+    For Columna = 1 To rstTemp.Fields.Count
+      o_Hoja.Cells(1, Columna).Value = rstTemp.Fields(Columna - 1).Name
+    Next
+    
+    With rstTemp
+        For Fila = 2 To .RecordCount + 1
+            For Columna = 0 To .Fields.Count - 1
+                o_Hoja.Cells(Fila, Columna + 1).Value = .Fields(Columna).Value
+            Next
+            .MoveNext
+        Next
+    End With
+    o_Libro.Close True, RutaSalida
+    o_Excel.Quit
+    
+  End If
+  Exit Sub
+Error_Handler:
+    If Not o_Libro Is Nothing Then: o_Libro.Close False
+    If Not o_Excel Is Nothing Then: o_Excel.Quit
+    
+    If Not o_Excel Is Nothing Then Set o_Excel = Nothing
+    If Not o_Libro Is Nothing Then Set o_Libro = Nothing
+    If Not o_Hoja Is Nothing Then Set o_Hoja = Nothing
+        
+    If Err.Number <> 1004 Then MsgBox Err.Description, vbCritical
+End Sub

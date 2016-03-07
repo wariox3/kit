@@ -71,8 +71,16 @@ Begin VB.Form FrmNotasCredito
       Width           =   9255
       Begin VB.TextBox TxtCampos 
          Height          =   285
+         Index           =   5
+         Left            =   2280
+         TabIndex        =   26
+         Top             =   240
+         Width           =   1095
+      End
+      Begin VB.TextBox TxtCampos 
+         Height          =   285
          Index           =   0
-         Left            =   840
+         Left            =   360
          TabIndex        =   16
          Top             =   240
          Width           =   1095
@@ -80,7 +88,7 @@ Begin VB.Form FrmNotasCredito
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   1
-         Left            =   2640
+         Left            =   4800
          TabIndex        =   15
          Top             =   240
          Width           =   1935
@@ -96,20 +104,30 @@ Begin VB.Form FrmNotasCredito
       End
       Begin VB.Label LblTitulo 
          AutoSize        =   -1  'True
-         Caption         =   "Nota:"
+         Caption         =   "Numero:"
+         Height          =   195
+         Index           =   0
+         Left            =   1560
+         TabIndex        =   27
+         Top             =   240
+         Width           =   600
+      End
+      Begin VB.Label LblTitulo 
+         AutoSize        =   -1  'True
+         Caption         =   "ID:"
          Height          =   195
          Index           =   5
          Left            =   120
          TabIndex        =   19
          Top             =   240
-         Width           =   390
+         Width           =   210
       End
       Begin VB.Label LblTitulo 
          AutoSize        =   -1  'True
          Caption         =   "Fecha:"
          Height          =   195
          Index           =   6
-         Left            =   2040
+         Left            =   4200
          TabIndex        =   18
          Top             =   240
          Width           =   495
@@ -378,6 +396,8 @@ Private Sub CmdAgregar_Click()
           AbrirRecorset rstUniversal, "INSERT INTO notas_credito_det (IdNotaCredito, IdCxC, Valor) VALUES (" & Val(TxtCampos(0).Text) & ", " & Val(TxtCuentaCobrar.Text) & ", " & Val(TxtValor.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
           AbrirRecorset rstUniversal, "UPDATE notas_credito SET Total = Total + " & Val(TxtValor.Text) & " WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
           AbrirRecorset rstUniversal, "UPDATE cuentas_cobrar SET Saldo = Saldo - " & Val(TxtValor.Text) & " WHERE IdCxC = " & rstCuentaCobrar!IdCxC, CnnPrincipal, adOpenDynamic, adLockOptimistic
+          TxtCampos(3).Text = Val(TxtCampos(3).Text) + Val(TxtValor.Text)
+          AccionTool 17
           LimpiarAgregar
           VerDetalle
           TxtCuentaCobrar.SetFocus
@@ -403,10 +423,12 @@ Private Sub CmdRetirar_Click()
   II = 1
   While II <= LstNotaCreditoDet.ListItems.Count
     If LstNotaCreditoDet.ListItems(II).Checked = True Then
-      AbrirRecorset rstNotaCreditoDet, "SELECT notas_credito_det.* FROM notas_credito_det WHERE IdNotaCreditoDet = " & LstNotaCreditoDet.SelectedItem, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      AbrirRecorset rstNotaCreditoDet, "SELECT notas_credito_det.* FROM notas_credito_det WHERE IdNotaCreditoDet = " & Val(LstNotaCreditoDet.ListItems.Item(II)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        FufuLo = rstNotaCreditoDet!Valor
         AbrirRecorset rstUniversal, "UPDATE notas_credito SET Total = Total - " & rstNotaCreditoDet!Valor & " WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
         AbrirRecorset rstUniversal, "UPDATE cuentas_cobrar SET Saldo = Saldo + " & rstNotaCreditoDet!Valor & " WHERE IdCxC = " & rstNotaCreditoDet!IdCxC, CnnPrincipal, adOpenDynamic, adLockOptimistic
         AbrirRecorset rstUniversal, "DELETE FROM notas_credito_det WHERE IdNotaCreditoDet=" & Val(LstNotaCreditoDet.SelectedItem), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        TxtCampos(3).Text = Val(TxtCampos(3).Text) - rstNotaCreditoDet!Valor
       CerrarRecorset rstNotaCreditoDet
       LstNotaCreditoDet.ListItems.Remove (II)
     Else
@@ -439,7 +461,7 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 4
+  For II = 0 To 5
     TxtCampos(II).Text = rstAsignar.Fields(II) & ""
   Next
   TxtNmTercero.Caption = rstAsignar!RazonSocial & ""
@@ -458,9 +480,10 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
     LstNotaCreditoDet.ListItems.Clear
     LstNotaCreditoDet.Tag = "Vacia"
   End If
+  VerDetalle
 End Sub
 Private Sub Formatos(rstForma As ADODB.Recordset)
-  For II = 0 To 4
+  For II = 0 To 5
     Set rstForma.Fields(II).DataFormat = TxtCampos(II).DataFormat
   Next
 End Sub
@@ -485,13 +508,12 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-            TxtCampos(0).Text = SacarConsecutivo("NotasCredito", CnnPrincipal)
-            AbrirRecorset rstUniversal, "INSERT INTO notas_credito (IdNotaCredito, Fecha, IdTercero, Total, Comentarios) " & _
-                                        "VALUES (" & TxtCampos(0).Text & ", '" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "INSERT INTO notas_credito (Fecha, IdTercero, Total, Comentarios) " & _
+                                        "VALUES ('" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
             Bloquear
             AccionTool 17
             AccionTool 11
-            TxtCuentaCobrar.SetFocus
+            'TxtCuentaCobrar.SetFocus
         End If
       End If
     Case 5  'Editar
@@ -558,7 +580,8 @@ Sub AccionTool(Indice As Byte)
       AbrirRecorset rstUniversal, "SELECT notas_credito.* FROM notas_credito WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
       If rstUniversal.RecordCount > 0 Then
         If Val(rstUniversal!Impreso) = 0 Then
-          AbrirRecorset rstUniversal, "UPDATE notas_credito SET Impreso = 1 WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          FufuLo = SacarConsecutivo("NotasCredito", CnnPrincipal)
+          AbrirRecorset rstUniversal, "UPDATE notas_credito SET Impreso = 1, numeroNotaCredito = " & FufuLo & " WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
           Mostrar_Reporte CnnPrincipal, 32, "SELECT sql_ic_imprimir_nota_credito.* FROM sql_ic_imprimir_nota_credito WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), "Imprimir nota credito", 2
           AccionTool 17
           Asignar rstNotasCredito
@@ -592,6 +615,7 @@ Private Sub Limpiar()
     TxtCampos(II).Text = ""
   Next
   TxtNmTercero.Caption = ""
+  LstNotaCreditoDet.ListItems.Clear
 End Sub
 Private Sub LimpiarAgregar()
   TxtCuentaCobrar.Text = ""

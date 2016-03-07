@@ -184,8 +184,12 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuSep10 
          Caption         =   "-"
       End
+      Begin VB.Menu MnuCuentasCobrar 
+         Caption         =   "Cuentas por cobrar"
+      End
       Begin VB.Menu MnuRecibosCaja 
          Caption         =   "Recibos Caja"
+         Shortcut        =   ^R
       End
       Begin VB.Menu MnuNotasCredito 
          Caption         =   "Notas credito"
@@ -211,7 +215,13 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuCartera 
          Caption         =   "Cartera"
          Begin VB.Menu MnuCarteraEdades 
-            Caption         =   "Cartera por edades"
+            Caption         =   "Cartera por edades (Cliente)"
+         End
+         Begin VB.Menu MnuCarteraEdadesAsesor 
+            Caption         =   "Cartera por edades (Asesor)"
+         End
+         Begin VB.Menu MnuInfCarteraRecibos 
+            Caption         =   "Recibos"
          End
       End
       Begin VB.Menu MnuPendientesFacturar 
@@ -263,15 +273,22 @@ Private Sub MnuCarteraPorEdades_Click()
 End Sub
 
 Private Sub MnuCarteraEdades_Click()
-  Mostrar_Reporte CnnPrincipal, 30, "Select*from sql_ic_cartera_edades ", "Cartera por edades", 2
+  FrmInformeCarteraEdades.Show 1
+  If varParametrosCartera.Generar = True Then
+    Mostrar_Reporte CnnPrincipal, 30, varParametrosCartera.sql, "Cartera por edades", 2
+  End If
+End Sub
+
+Private Sub MnuCarteraEdadesAsesor_Click()
+  FrmInformeCarteraEdades.Show 1
+  If varParametrosCartera.Generar = True Then
+    Mostrar_Reporte CnnPrincipal, 54, varParametrosCartera.sql, "Cartera por edades asesor", 2
+  End If
 End Sub
 
 Private Sub MnuConfiguracion_Click()
   FrmConfiguracion.Show 1
 End Sub
-
-
-
 Private Sub MnuControlFacturas_Click()
   FrmControlFacturas.Show 1
 End Sub
@@ -299,6 +316,10 @@ Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
   '  Prog II
   'Loop
   'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
+End Sub
+
+Private Sub MnuCuentasCobrar_Click()
+  FrmCuentasCobrar.Show 1
 End Sub
 
 Private Sub MnuExportarContabilidad_Click()
@@ -342,6 +363,17 @@ Private Sub MnuInformesFacturas_Click()
 
 End Sub
 
+Private Sub MnuInfCarteraRecibos_Click()
+  FrmInformeRecibosCaja.Show 1
+  If varParametrosRecibo.Generar = True Then
+    If varParametrosRecibo.InformeDetallado = True Then
+      Mostrar_Reporte CnnPrincipal, 57, varParametrosRecibo.sql, "Recibos detallados", 2
+    Else
+      Mostrar_Reporte CnnPrincipal, 56, varParametrosRecibo.sql, "Recibos", 2
+    End If
+  End If
+End Sub
+
 Private Sub MnuListaFacturas_Click()
   If Principal.ToolConsultas1.AbrirDevFechas("Rango de fechas", "Digite un rango de fechas para ver el informe", 2) = True Then
     Mostrar_Reporte CnnPrincipal, 47, "Select*from sql_if_lista_facturas where FhFac >= '" & Format(Principal.ToolConsultas1.Fecha1, "yy-mm-dd") & " 00:00:00' and FhFac<='" & Format(Principal.ToolConsultas1.Fecha2, "yy-mm-dd") & " 23:59:00'", "Listado facturas", 2
@@ -350,6 +382,10 @@ End Sub
 
 Private Sub MnuNotasCredito_Click()
   FrmNotasCredito.Show 1
+End Sub
+
+Private Sub MnuNotasDebito_Click()
+  FrmNotasDebito.Show 1
 End Sub
 
 Private Sub MnuPendientesFacturar_Click()

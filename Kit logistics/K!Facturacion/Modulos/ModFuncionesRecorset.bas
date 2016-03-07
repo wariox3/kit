@@ -19,3 +19,4 @@ Public Function BuscaRegistro(Criterio As String, Recorset As ADODB.Recordset) A
     BuscaRegistro = True
   End If
 End Function
+

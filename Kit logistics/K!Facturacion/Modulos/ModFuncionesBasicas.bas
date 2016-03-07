@@ -32,23 +32,23 @@ Sub IconosTool(Tool As Toolbar, ListaImagenes As ImageList)
 End Sub
 
 Sub BotTool(Inicio As Byte, Fin As Byte, ElTool As Toolbar, Bloqueo As Boolean)
-Dim i As Byte
+Dim I As Byte
 If Bloqueo = True Then
-  For i = Inicio To Fin
-    If i <> 7 Then
-      ElTool.Buttons.Item(i).Enabled = False
+  For I = Inicio To Fin
+    If I <> 7 Then
+      ElTool.Buttons.Item(I).Enabled = False
     End If
-  Next i
+  Next I
   ElTool.Buttons.Item(4).Enabled = True
   ElTool.Buttons.Item(7).Enabled = True
   ElTool.Buttons.Item(18).Enabled = False
   ElTool.Buttons.Item(19).Enabled = False
 Else
-  For i = Inicio To Fin
-    If i <> 7 Then
-      ElTool.Buttons.Item(i).Enabled = True
+  For I = Inicio To Fin
+    If I <> 7 Then
+      ElTool.Buttons.Item(I).Enabled = True
     End If
-  Next i
+  Next I
   ElTool.Buttons.Item(4).Enabled = False
   ElTool.Buttons.Item(7).Enabled = False
   ElTool.Buttons.Item(18).Enabled = True
@@ -85,3 +85,4 @@ Public Sub LaTecla(LaTec As KeyCodeConstants, ElTool As Toolbar)
       If ElTool.Buttons.Item(4).Enabled = False Then Screen.ActiveForm.AccionTool (19)
   End Select
 End Sub
+

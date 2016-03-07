@@ -96,6 +96,7 @@ Form=Formularios\FrmCentrosCostos.frm
 Form=Formularios\FrmInformacionLiquidarDespacho.frm
 Form=Formularios\FrmIntercambioEje.frm
 Form=Formularios\FrmExportarManifiestosContabilidad.frm
+Form=Formularios\FrmCuentasCobrar.frm
 IconForm="Principal"
 Startup="FrmPresentacion"
 HelpFile=""

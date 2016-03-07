@@ -826,25 +826,20 @@ Private Sub TxtKMinimos_KeyPress(KeyAscii As Integer)
 End Sub
 
 Private Sub TxtVlrKilo_KeyPress(KeyAscii As Integer)
-  ValidarEntrada TxtVlrKilo, KeyAscii, 1
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 Private Sub TxtVlrKiloAdicional_KeyPress(KeyAscii As Integer)
-  ValidarEntrada TxtVlrKiloAdicional, KeyAscii, 1
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 Private Sub TxtVlrKilosTope_KeyPress(KeyAscii As Integer)
-  ValidarEntrada TxtVlrKilosTope, KeyAscii, 1
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 
 Private Sub TxtVlrTonelada_KeyPress(KeyAscii As Integer)
-  ValidarEntrada TxtVlrTonelada, KeyAscii, 1
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 
 Private Sub TxtVlrUnidad_KeyPress(KeyAscii As Integer)
-  ValidarEntrada TxtVlrUnidad, KeyAscii, 1
   If KeyAscii = 13 Then SendKeys vbTab
 End Sub
 

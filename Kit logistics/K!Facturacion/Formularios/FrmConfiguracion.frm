@@ -42,43 +42,43 @@ Begin VB.Form FrmConfiguracion
       _Version        =   393216
       Style           =   1
       Tabs            =   2
-      Tab             =   1
       TabsPerRow      =   2
       TabHeight       =   520
       TabCaption(0)   =   "Consecutivos"
       TabPicture(0)   =   "FrmConfiguracion.frx":0000
-      Tab(0).ControlEnabled=   0   'False
-      Tab(0).Control(0)=   "TxtNotasCredito"
-      Tab(0).Control(1)=   "TxtRecibos"
-      Tab(0).Control(2)=   "TxtFacturas"
-      Tab(0).Control(3)=   "Label3"
-      Tab(0).Control(4)=   "Label1"
-      Tab(0).Control(5)=   "Label2"
+      Tab(0).ControlEnabled=   -1  'True
+      Tab(0).Control(0)=   "Label2"
+      Tab(0).Control(0).Enabled=   0   'False
+      Tab(0).Control(1)=   "Label1"
+      Tab(0).Control(1).Enabled=   0   'False
+      Tab(0).Control(2)=   "Label3"
+      Tab(0).Control(2).Enabled=   0   'False
+      Tab(0).Control(3)=   "TxtFacturas"
+      Tab(0).Control(3).Enabled=   0   'False
+      Tab(0).Control(4)=   "TxtRecibos"
+      Tab(0).Control(4).Enabled=   0   'False
+      Tab(0).Control(5)=   "TxtNotasCredito"
+      Tab(0).Control(5).Enabled=   0   'False
       Tab(0).ControlCount=   6
       TabCaption(1)   =   "Rutas"
       TabPicture(1)   =   "FrmConfiguracion.frx":001C
-      Tab(1).ControlEnabled=   -1  'True
-      Tab(1).Control(0)=   "Label4"
-      Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "Label5"
-      Tab(1).Control(1).Enabled=   0   'False
+      Tab(1).ControlEnabled=   0   'False
+      Tab(1).Control(0)=   "TxtRutaExportarFacturas"
+      Tab(1).Control(1)=   "TxtRutaCoordenadasImpresionFactura"
       Tab(1).Control(2)=   "CmdCargarRutaFactura"
-      Tab(1).Control(2).Enabled=   0   'False
-      Tab(1).Control(3)=   "TxtRutaCoordenadasImpresionFactura"
-      Tab(1).Control(3).Enabled=   0   'False
-      Tab(1).Control(4)=   "TxtRutaExportarFacturas"
-      Tab(1).Control(4).Enabled=   0   'False
+      Tab(1).Control(3)=   "Label5"
+      Tab(1).Control(4)=   "Label4"
       Tab(1).ControlCount=   5
       Begin VB.TextBox TxtRutaExportarFacturas 
          Height          =   285
-         Left            =   2160
+         Left            =   -72840
          TabIndex        =   12
          Top             =   960
          Width           =   4335
       End
       Begin VB.TextBox TxtRutaCoordenadasImpresionFactura 
          Height          =   285
-         Left            =   2160
+         Left            =   -72840
          TabIndex        =   10
          Top             =   600
          Width           =   4335
@@ -86,7 +86,7 @@ Begin VB.Form FrmConfiguracion
       Begin VB.CommandButton CmdCargarRutaFactura 
          Caption         =   "..."
          Height          =   255
-         Left            =   6600
+         Left            =   -68400
          TabIndex        =   9
          Top             =   600
          Width           =   495
@@ -94,7 +94,7 @@ Begin VB.Form FrmConfiguracion
       Begin VB.TextBox TxtNotasCredito 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   -73560
+         Left            =   1440
          TabIndex        =   7
          Top             =   1320
          Width           =   1215
@@ -102,7 +102,7 @@ Begin VB.Form FrmConfiguracion
       Begin VB.TextBox TxtRecibos 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   -73560
+         Left            =   1440
          TabIndex        =   4
          Top             =   600
          Width           =   1215
@@ -110,7 +110,7 @@ Begin VB.Form FrmConfiguracion
       Begin VB.TextBox TxtFacturas 
          Alignment       =   1  'Right Justify
          Height          =   285
-         Left            =   -73560
+         Left            =   1440
          TabIndex        =   3
          Top             =   960
          Width           =   1215
@@ -119,7 +119,7 @@ Begin VB.Form FrmConfiguracion
          AutoSize        =   -1  'True
          Caption         =   "Ruta exportar archivo fac:"
          Height          =   195
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   13
          Top             =   960
          Width           =   1845
@@ -128,7 +128,7 @@ Begin VB.Form FrmConfiguracion
          AutoSize        =   -1  'True
          Caption         =   "Ruta coordedanas factura:"
          Height          =   195
-         Left            =   120
+         Left            =   -74880
          TabIndex        =   11
          Top             =   600
          Width           =   1905
@@ -137,7 +137,7 @@ Begin VB.Form FrmConfiguracion
          AutoSize        =   -1  'True
          Caption         =   "Notas Credito:"
          Height          =   195
-         Left            =   -74775
+         Left            =   225
          TabIndex        =   8
          Top             =   1320
          Width           =   1005
@@ -146,7 +146,7 @@ Begin VB.Form FrmConfiguracion
          AutoSize        =   -1  'True
          Caption         =   "Recibos:"
          Height          =   195
-         Left            =   -74400
+         Left            =   600
          TabIndex        =   6
          Top             =   600
          Width           =   630
@@ -155,7 +155,7 @@ Begin VB.Form FrmConfiguracion
          AutoSize        =   -1  'True
          Caption         =   "Facturas:"
          Height          =   195
-         Left            =   -74430
+         Left            =   570
          TabIndex        =   5
          Top             =   960
          Width           =   660

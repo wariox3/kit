@@ -14,8 +14,8 @@ Begin VB.MDIForm Principal
    StartUpPosition =   2  'CenterScreen
    WindowState     =   2  'Maximized
    Begin ConsultasKL.ToolConsultas ToolConsultas1 
-      Left            =   5400
-      Top             =   3480
+      Left            =   2400
+      Top             =   1080
       _ExtentX        =   423
       _ExtentY        =   423
    End
@@ -99,7 +99,7 @@ Begin VB.MDIForm Principal
       EndProperty
    End
    Begin MSComDlg.CommonDialog CDExa 
-      Left            =   3720
+      Left            =   3600
       Top             =   600
       _ExtentX        =   847
       _ExtentY        =   847
@@ -317,6 +317,9 @@ Begin VB.MDIForm Principal
       End
       Begin VB.Menu MnuExportarGuiasFactura 
          Caption         =   "Exportar guias factura"
+      End
+      Begin VB.Menu MnuCuentasCobrar 
+         Caption         =   "Cuentas por cobrar"
       End
       Begin VB.Menu MnuVerGuiasFactura 
          Caption         =   "Ver guias factura"
@@ -858,6 +861,10 @@ Private Sub MnuCorregirGuia_Click()
   Else
     MsgBox "No tiene permiso para corregir guias", vbCritical
   End If
+End Sub
+
+Private Sub MnuCuentasCobrar_Click()
+  FrmCuentasCobrar.Show 1
 End Sub
 
 Private Sub MnuDescargar_Click()
