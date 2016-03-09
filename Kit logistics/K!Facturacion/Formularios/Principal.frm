@@ -200,6 +200,9 @@ Begin VB.MDIForm Principal
    End
    Begin VB.Menu MnuProcesos 
       Caption         =   "Procesos"
+      Begin VB.Menu MnuExportarRecibos 
+         Caption         =   "Exportar recibos a contabilidad"
+      End
       Begin VB.Menu MnuExportarContabilidad 
          Caption         =   "Exportar facturas contabilidad"
       End
@@ -324,6 +327,10 @@ End Sub
 
 Private Sub MnuExportarContabilidad_Click()
   FrmExportarFacturas.Show 1
+End Sub
+
+Private Sub MnuExportarRecibos_Click()
+  FrmExportarRecibos.Show 1
 End Sub
 
 Private Sub MnuFacturacionConsolidado_Click()

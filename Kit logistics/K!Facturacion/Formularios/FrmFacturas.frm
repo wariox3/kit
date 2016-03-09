@@ -1381,15 +1381,19 @@ End Sub
 
 
 Private Sub CmdLiberarGuias_Click()
-  AbrirRecorset rstUniversal, "SELECT IdFactura, Estado FROM facturas WHERE IdFactura = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-  If rstUniversal.RecordCount > 0 Then
-    If rstUniversal!Estado = "I" Then
-      If MsgBox("Esta seguro de liberar las guias para volver a facturar?", vbQuestion + vbYesNo, "Liberar guias de la factura") = vbYes Then
-        AbrirRecorset rstUniversal, "UPDATE guias SET IdFactura=0, Facturada=0, IdPlanillaFactura=null WHERE IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+  If CpPermisoEspecial(16, CodUsuarioActivo, CnnPrincipal) = True Then
+    AbrirRecorset rstUniversal, "SELECT IdFactura, Estado FROM facturas WHERE IdFactura = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.RecordCount > 0 Then
+      If rstUniversal!Estado = "I" Then
+        If MsgBox("Esta seguro de liberar las guias para volver a facturar?", vbQuestion + vbYesNo, "Liberar guias de la factura") = vbYes Then
+          AbrirRecorset rstUniversal, "UPDATE guias SET IdFactura=0, Facturada=0, IdPlanillaFactura=null WHERE IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        End If
+      Else
+        MsgBox "Solo se pueden liberar las guias de facturas impresas", vbInformation
       End If
-    Else
-      MsgBox "Solo se pueden liberar las guias de facturas impresas", vbInformation
     End If
+  Else
+    MsgBox "El usuario no tiene permiso para liberar guias"
   End If
 End Sub
 
@@ -1610,20 +1614,20 @@ Sub AccionTool(Indice As Byte)
       End If
     Case 6 'Eliminar
       'MsgBox "Las facturas no se pueden anular, debe realizar una nota credito y liberar las guias para volver a facturar", vbInformation
-      If CpPermiso(3, CodUsuarioActivo, 4, CnnPrincipal) = True Then
-        If MsgBox("¿Esta seguro de anular la factura?", vbQuestion + vbYesNo) = vbYes Then
-          If ExRecorset("Select IdFactura, Estado from facturas where IdFactura=" & Val(TxtCampos(0)) & " and Estado='I'") = True Then
-            AbrirRecorset rstUniversal, "Update guias Set IdFactura=0, Facturada=0, IdPlanillaFactura=null where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-            AbrirRecorset rstUniversal, "Update Facturas Set Estado='A', TFlete=0, TManejo=0, TOtros=0, TotalFactura=0, Saldo=0, NroGuias=0, NroPlanillas=0, NroConceptos=0 where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-            AbrirRecorset rstUniversal, "UPDATE facturas_venta SET Total = 0, VrFlete = 0, VrManejo = 0, VrOtros = 0 WHERE TipoFactura =1 AND Numero = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-            TxtCampos(4).Text = "A"
-            AccionTool 17
-            MsgBox "Factura Anulada con exito", vbInformation
-          Else
-            MsgBox "La factura debe estar impresa", vbCritical
-          End If
-        End If
-      End If
+      'If CpPermiso(3, CodUsuarioActivo, 4, CnnPrincipal) = True Then
+      '  If MsgBox("¿Esta seguro de anular la factura?", vbQuestion + vbYesNo) = vbYes Then
+      '    If ExRecorset("Select IdFactura, Estado from facturas where IdFactura=" & Val(TxtCampos(0)) & " and Estado='I'") = True Then
+      '      AbrirRecorset rstUniversal, "Update guias Set IdFactura=0, Facturada=0, IdPlanillaFactura=null where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+      '      AbrirRecorset rstUniversal, "Update Facturas Set Estado='A', TFlete=0, TManejo=0, TOtros=0, TotalFactura=0, Saldo=0, NroGuias=0, NroPlanillas=0, NroConceptos=0 where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+      '      AbrirRecorset rstUniversal, "UPDATE facturas_venta SET Total = 0, VrFlete = 0, VrManejo = 0, VrOtros = 0 WHERE TipoFactura =1 AND Numero = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+      '      TxtCampos(4).Text = "A"
+      '      AccionTool 17
+      '      MsgBox "Factura Anulada con exito", vbInformation
+      '    Else
+      '      MsgBox "La factura debe estar impresa", vbCritical
+      '    End If
+      '  End If
+      'End If
       
     Case 7 'Cancelar
       If Editando = True Then

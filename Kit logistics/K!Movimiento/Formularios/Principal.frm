@@ -728,6 +728,22 @@ Private Sub MnuClientes_Click()
 End Sub
 
 Private Sub MnuConfiguracion_Click()
+  'Dim rstGuia As New ADODB.Recordset
+  'rstGuia.CursorLocation = adUseClient
+  'Dim rstActualizar As New ADODB.Recordset
+  'rstActualizar.CursorLocation = adUseClient
+  'AbrirRecorset rstUniversal, "SELECT cuentas_cobrar.* from cuentas_cobrar where TipoFactura = 2 OR TipoFactura = 3", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+  '  Do While rstUniversal.EOF = False
+  '    FufuSt = "Select Guia, ciudades.NmCiudad from guias left join ciudades on guias.IdCiuDestino = ciudades.IdCiudad where Guia = " & rstUniversal!NroDocumento
+  '    AbrirRecorset rstGuia, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '    If rstGuia.RecordCount > 0 Then
+  '      FufuSt = "update cuentas_cobrar set Soporte = '" & rstGuia!NmCiudad & "' where IdCxC = " & rstUniversal!IdCxC
+  '      AbrirRecorset rstActualizar, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  '    End If
+  '    CerrarRecorset rstGuia
+  '    rstUniversal.MoveNext
+  '  Loop
+  'CerrarRecorset rstUniversal
   If CpPermisoEspecial(1, CodUsuarioActivo, CnnPrincipal) = True Then
     FrmConfiguracion.Show 1
   Else

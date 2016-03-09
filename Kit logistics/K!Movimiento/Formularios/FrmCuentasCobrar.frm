@@ -7,12 +7,12 @@ Begin VB.Form FrmCuentasCobrar
    ClientHeight    =   8175
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   13080
+   ClientWidth     =   13905
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   8175
-   ScaleWidth      =   13080
+   ScaleWidth      =   13905
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.CommandButton CmdGenerarReciboPorGuia 
@@ -26,7 +26,7 @@ Begin VB.Form FrmCuentasCobrar
    Begin VB.CommandButton CmdExportarExcel 
       Caption         =   "Exportar excel"
       Height          =   375
-      Left            =   8880
+      Left            =   9720
       TabIndex        =   3
       Top             =   7080
       Width           =   2055
@@ -42,7 +42,7 @@ Begin VB.Form FrmCuentasCobrar
    Begin VB.CommandButton CmdSalir 
       Caption         =   "Salir"
       Height          =   375
-      Left            =   11040
+      Left            =   11880
       TabIndex        =   0
       Top             =   7080
       Width           =   1815
@@ -52,8 +52,8 @@ Begin VB.Form FrmCuentasCobrar
       Left            =   120
       TabIndex        =   1
       Top             =   120
-      Width           =   12735
-      _ExtentX        =   22463
+      Width           =   13575
+      _ExtentX        =   23945
       _ExtentY        =   12091
       View            =   3
       LabelEdit       =   1
@@ -66,7 +66,7 @@ Begin VB.Form FrmCuentasCobrar
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   9
+      NumItems        =   10
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "ID"
          Object.Width           =   1587
@@ -79,12 +79,12 @@ Begin VB.Form FrmCuentasCobrar
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   2
          Text            =   "Numero"
-         Object.Width           =   2540
+         Object.Width           =   2117
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
          Text            =   "Fecha"
-         Object.Width           =   2540
+         Object.Width           =   2117
       EndProperty
       BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   4
@@ -112,7 +112,12 @@ Begin VB.Form FrmCuentasCobrar
       BeginProperty ColumnHeader(9) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   8
          Text            =   "Centro Operaciones"
-         Object.Width           =   4410
+         Object.Width           =   3528
+      EndProperty
+      BeginProperty ColumnHeader(10) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   9
+         Text            =   "Soporte"
+         Object.Width           =   3528
       EndProperty
    End
    Begin MSComCtl2.DTPicker DPFechaPago 
@@ -124,7 +129,7 @@ Begin VB.Form FrmCuentasCobrar
       _ExtentX        =   2990
       _ExtentY        =   529
       _Version        =   393216
-      Format          =   49807361
+      Format          =   49872897
       CurrentDate     =   38971
    End
    Begin VB.Label Label10 
@@ -210,6 +215,8 @@ rstRecibo.CursorLocation = adUseClient
           Else
             MsgBox "la cuenta no tiene saldo"
           End If
+        Else
+          MsgBox "No existe la cuenta por cobrar, verifique si la guia ya fue exportada a contabilidad"
         End If
         CerrarRecorset rstCuentaCobrarTemp
       Else
@@ -247,6 +254,7 @@ Private Sub Ver()
       Item.SubItems(6) = rstUniversal.Fields("Total")
       Item.SubItems(7) = rstUniversal.Fields("Saldo")
       Item.SubItems(8) = rstUniversal.Fields("NmPuntoOperaciones") & ""
+      Item.SubItems(9) = rstUniversal.Fields("Soporte") & ""
       rstUniversal.MoveNext
     Loop
   CerrarRecorset rstUniversal

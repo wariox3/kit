@@ -500,7 +500,7 @@ Private Sub CmdAgregar_Click()
       AbrirRecorset rstCuentaCobrar, "SELECT cuentas_cobrar.* FROM cuentas_cobrar WHERE IdCxC = " & Val(TxtCuentaCobrar.Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
       If rstCuentaCobrar.RecordCount > 0 Then
         floTotal = Val(TxtValor.Text) + Val(TxtDescuento.Text) + Val(TxtAjustePeso.Text)
-        MsgBox floTotal
+        'MsgBox floTotal
         If floTotal <= rstCuentaCobrar!Saldo Then
           AbrirRecorset rstUniversal, "INSERT INTO recibos_caja_det (IdRecibo, codigo_cuenta_cobrar_fk, valor, descuento, ajuste_peso) VALUES (" & Val(TxtCampos(0).Text) & ", " & Val(TxtCuentaCobrar.Text) & ", " & Val(TxtValor.Text) & ", " & Val(TxtDescuento.Text) & ", " & Val(TxtAjustePeso.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
           AbrirRecorset rstUniversal, "UPDATE recibos_caja SET Total = Total + " & Val(TxtValor.Text) & " WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
