@@ -54,9 +54,9 @@ Begin VB.Form FrmTerceros
       TabCaption(1)   =   "Comercial"
       TabPicture(1)   =   "FrmTerceros.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FraDatosComerciales"
+      Tab(1).Control(0)=   "FraNegociaciones"
       Tab(1).Control(0).Enabled=   0   'False
-      Tab(1).Control(1)=   "FraNegociaciones"
+      Tab(1).Control(1)=   "FraDatosComerciales"
       Tab(1).Control(1).Enabled=   0   'False
       Tab(1).ControlCount=   2
       Begin VB.Frame FraNegociaciones 
@@ -655,6 +655,9 @@ Private Sub CmdCambiarNit_Click()
         CerrarRecorset rstUniversal
         AbrirRecorset rstUniversal, "Update Facturas set IdCliente='" & NuevoNit & "' where IdCliente='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
         AbrirRecorset rstUniversal, "Update Guias set Cuenta='" & NuevoNit & "' where Cuenta='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        AbrirRecorset rstUniversal, "Update cuentas_cobrar set IdTercero='" & NuevoNit & "' where IdTercero='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        AbrirRecorset rstUniversal, "Update facturas_venta set IdTercero='" & NuevoNit & "' where IdTercero='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        
         MsgBox "La informacion del nit " & ViejoNit & " se paso exitosamente al nit " & NuevoNit, vbInformation
       Else
         MsgBox "El nit" & NuevoNit & " no existe para pasarle los movimientos de este nit", vbCritical

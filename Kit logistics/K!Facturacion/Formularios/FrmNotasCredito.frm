@@ -2,29 +2,37 @@ VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmNotasCredito 
    Caption         =   "Notas credito..."
-   ClientHeight    =   6735
+   ClientHeight    =   7485
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   9810
    ControlBox      =   0   'False
    LinkTopic       =   "Form1"
-   ScaleHeight     =   6735
+   ScaleHeight     =   7485
    ScaleWidth      =   9810
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame FraDatos 
       Enabled         =   0   'False
-      Height          =   1335
+      Height          =   1815
       Left            =   120
-      TabIndex        =   20
+      TabIndex        =   21
       Top             =   1200
       Width           =   9255
+      Begin VB.TextBox TxtCampos 
+         Height          =   285
+         Index           =   6
+         Left            =   840
+         TabIndex        =   1
+         Top             =   600
+         Width           =   1455
+      End
       Begin VB.TextBox TxtCampos 
          Height          =   615
          Index           =   4
          Left            =   2400
          MultiLine       =   -1  'True
-         TabIndex        =   1
-         Top             =   600
+         TabIndex        =   2
+         Top             =   960
          Width           =   6735
       End
       Begin VB.TextBox TxtCampos 
@@ -35,11 +43,28 @@ Begin VB.Form FrmNotasCredito
          Top             =   240
          Width           =   1455
       End
+      Begin VB.Label Label4 
+         AutoSize        =   -1  'True
+         Caption         =   "Tipo:"
+         Height          =   195
+         Left            =   360
+         TabIndex        =   30
+         Top             =   600
+         Width           =   360
+      End
+      Begin VB.Label TxtNmTipo 
+         BorderStyle     =   1  'Fixed Single
+         Height          =   285
+         Left            =   2400
+         TabIndex        =   29
+         Top             =   600
+         Width           =   6735
+      End
       Begin VB.Label TxtNmTercero 
          BorderStyle     =   1  'Fixed Single
          Height          =   285
          Left            =   2400
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   240
          Width           =   6735
       End
@@ -48,8 +73,8 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Comentarios:"
          Height          =   195
          Left            =   1440
-         TabIndex        =   22
-         Top             =   600
+         TabIndex        =   23
+         Top             =   960
          Width           =   915
       End
       Begin VB.Label Label1 
@@ -57,7 +82,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Tercero:"
          Height          =   195
          Left            =   120
-         TabIndex        =   21
+         TabIndex        =   22
          Top             =   240
          Width           =   600
       End
@@ -66,14 +91,14 @@ Begin VB.Form FrmNotasCredito
       Enabled         =   0   'False
       Height          =   615
       Left            =   120
-      TabIndex        =   13
+      TabIndex        =   14
       Top             =   600
       Width           =   9255
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   5
          Left            =   2280
-         TabIndex        =   26
+         TabIndex        =   27
          Top             =   240
          Width           =   1095
       End
@@ -81,7 +106,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   285
          Index           =   0
          Left            =   360
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   240
          Width           =   1095
       End
@@ -89,7 +114,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   285
          Index           =   1
          Left            =   4800
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   240
          Width           =   1935
       End
@@ -98,7 +123,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   285
          Index           =   3
          Left            =   7560
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   240
          Width           =   1575
       End
@@ -108,7 +133,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   195
          Index           =   0
          Left            =   1560
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   240
          Width           =   600
       End
@@ -118,7 +143,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   195
          Index           =   5
          Left            =   120
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   240
          Width           =   210
       End
@@ -128,7 +153,7 @@ Begin VB.Form FrmNotasCredito
          Height          =   195
          Index           =   6
          Left            =   4200
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   240
          Width           =   495
       End
@@ -137,7 +162,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Total:"
          Height          =   195
          Left            =   7080
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   240
          Width           =   405
       End
@@ -146,14 +171,14 @@ Begin VB.Form FrmNotasCredito
       Enabled         =   0   'False
       Height          =   975
       Left            =   120
-      TabIndex        =   9
-      Top             =   5640
+      TabIndex        =   10
+      Top             =   6120
       Width           =   6855
       Begin VB.CommandButton CmdRetirar 
          Caption         =   "Retirar marcados"
          Height          =   255
          Left            =   4920
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   600
          Width           =   1815
       End
@@ -161,14 +186,14 @@ Begin VB.Form FrmNotasCredito
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   3240
-         TabIndex        =   3
+         TabIndex        =   4
          Top             =   240
          Width           =   1575
       End
       Begin VB.TextBox TxtCuentaCobrar 
          Height          =   285
          Left            =   1320
-         TabIndex        =   2
+         TabIndex        =   3
          Top             =   240
          Width           =   1095
       End
@@ -176,7 +201,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Agregar"
          Height          =   255
          Left            =   4920
-         TabIndex        =   4
+         TabIndex        =   5
          Top             =   240
          Width           =   1815
       End
@@ -185,7 +210,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Valor:"
          Height          =   195
          Left            =   2760
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   240
          Width           =   405
       End
@@ -194,7 +219,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Cuenta cobrar:"
          Height          =   195
          Left            =   240
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   240
          Width           =   1050
       End
@@ -203,22 +228,22 @@ Begin VB.Form FrmNotasCredito
       Caption         =   "Ver detalles"
       Height          =   255
       Left            =   7200
-      TabIndex        =   8
-      Top             =   5760
+      TabIndex        =   9
+      Top             =   6240
       Width           =   2175
    End
    Begin VB.Frame Frame1 
       Enabled         =   0   'False
       Height          =   495
       Left            =   7080
-      TabIndex        =   5
-      Top             =   2530
+      TabIndex        =   6
+      Top             =   3015
       Width           =   2295
       Begin VB.CheckBox ChkAnulado 
          Caption         =   "Anulado"
          Height          =   255
          Left            =   1080
-         TabIndex        =   7
+         TabIndex        =   8
          Top             =   120
          Width           =   975
       End
@@ -226,7 +251,7 @@ Begin VB.Form FrmNotasCredito
          Caption         =   "Impreso"
          Height          =   255
          Left            =   120
-         TabIndex        =   6
+         TabIndex        =   7
          Top             =   120
          Width           =   975
       End
@@ -234,8 +259,8 @@ Begin VB.Form FrmNotasCredito
    Begin MSComctlLib.ListView LstNotaCreditoDet 
       Height          =   2415
       Left            =   120
-      TabIndex        =   12
-      Top             =   3120
+      TabIndex        =   13
+      Top             =   3600
       Width           =   9255
       _ExtentX        =   16325
       _ExtentY        =   4260
@@ -281,7 +306,7 @@ Begin VB.Form FrmNotasCredito
       Align           =   1  'Align Top
       Height          =   570
       Left            =   0
-      TabIndex        =   23
+      TabIndex        =   24
       Top             =   0
       Width           =   9810
       _ExtentX        =   17304
@@ -381,9 +406,7 @@ Dim rstNotasCredito As New ADODB.Recordset
 Dim strSqlNotasCredito As String
 Dim Editando As Boolean
 
-Private Sub CboTipo_KeyPress(KeyAscii As Integer)
-  If KeyAscii = 13 Then SendKeys vbTab
-End Sub
+
 
 Private Sub CmdAgregar_Click()
   If Val(TxtCuentaCobrar.Text) > 0 Then
@@ -451,9 +474,10 @@ Private Sub Form_Load()
   rstNotasCredito.CursorLocation = adUseServer
   
   strSqlNotasCredito = "SELECT notas_credito.*, " & _
-                "terceros.RazonSocial " & _
+                "terceros.RazonSocial, nota_credito_tipo.Nombre " & _
                 "FROM notas_credito " & _
-                "LEFT JOIN terceros ON notas_credito.IdTercero = terceros.IDTercero"
+                "LEFT JOIN terceros ON notas_credito.IdTercero = terceros.IDTercero " & _
+                "LEFT JOIN nota_credito_tipo ON notas_credito.IdNotaCreditoTipo = nota_credito_tipo.IdNotaCreditoTipo"
   AbrirRecorset rstNotasCredito, strSqlNotasCredito & " Order by IdNotaCredito Desc Limit 100", CnnPrincipal, adOpenDynamic, adLockOptimistic
   Formatos rstNotasCredito
   Asignar rstNotasCredito
@@ -461,20 +485,17 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 5
+  For II = 0 To 6
     TxtCampos(II).Text = rstAsignar.Fields(II) & ""
   Next
   TxtNmTercero.Caption = rstAsignar!RazonSocial & ""
+  TxtNmTipo.Caption = rstAsignar!Nombre & ""
   ChkImpreso.Value = DevCheck(rstAsignar!Impreso)
   ChkAnulado.Value = DevCheck(rstAsignar!Anulado)
   If Val(rstAsignar!Impreso) = 1 Or Val(rstAsignar!Anulado) = 1 Then
     FraAgregar.Enabled = False
-    CmdRetirar.Enabled = False
   Else
     FraAgregar.Enabled = True
-    If Editando = True Then
-      CmdRetirar.Enabled = False
-    End If
   End If
   If LstNotaCreditoDet.Tag = "Llena" Then
     LstNotaCreditoDet.ListItems.Clear
@@ -483,7 +504,7 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
   VerDetalle
 End Sub
 Private Sub Formatos(rstForma As ADODB.Recordset)
-  For II = 0 To 5
+  For II = 0 To 6
     Set rstForma.Fields(II).DataFormat = TxtCampos(II).DataFormat
   Next
 End Sub
@@ -499,7 +520,7 @@ Sub AccionTool(Indice As Byte)
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             Bloquear
-            AbrirRecorset rstUniversal, "Update notas_credito SET IdTercero='" & TxtCampos(2).Text & "', Total= " & Val(TxtCampos(3).Text) & ", Comentarios = '" & TxtCampos(4).Text & "'  WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update notas_credito SET IdTercero='" & TxtCampos(2).Text & "', Total= " & Val(TxtCampos(3).Text) & ", Comentarios = '" & TxtCampos(4).Text & "', IdNotaCreditoTipo = " & TxtCampos(6).Text & "  WHERE IdNotaCredito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
             Editando = False
           End If
         Else
@@ -508,8 +529,8 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-            AbrirRecorset rstUniversal, "INSERT INTO notas_credito (Fecha, IdTercero, Total, Comentarios) " & _
-                                        "VALUES ('" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "INSERT INTO notas_credito (Fecha, IdTercero, Total, Comentarios, IdNotaCreditoTipo) " & _
+                                        "VALUES ('" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "', " & Val(TxtCampos(6).Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
             Bloquear
             AccionTool 17
             AccionTool 11
@@ -599,7 +620,6 @@ Private Sub Desbloquear()
   BotTool 3, 17, ToolNotasCredito, True
   FraDatos.Enabled = True
   FraAgregar.Enabled = False
-  CmdRetirar.Enabled = False
   CmdVerDetalles.Enabled = False
 End Sub
 
@@ -607,14 +627,14 @@ Private Sub Bloquear()
   BotTool 3, 17, ToolNotasCredito, False
   FraDatos.Enabled = False
   CmdVerDetalles.Enabled = True
-  CmdRetirar.Enabled = True
 End Sub
 
 Private Sub Limpiar()
-  For II = 0 To 4
+  For II = 0 To 6
     TxtCampos(II).Text = ""
   Next
   TxtNmTercero.Caption = ""
+  TxtNmTipo.Caption = ""
   LstNotaCreditoDet.ListItems.Clear
 End Sub
 Private Sub LimpiarAgregar()
@@ -623,9 +643,13 @@ Private Sub LimpiarAgregar()
 End Sub
 Function Validacion() As Boolean
   If TxtCampos(2).Text <> "" Then
-    Validacion = True
+    If Val(TxtCampos(6).Text) <> 0 Then
+      Validacion = True
+    Else
+      Validacion = False: MsgTit "La nota debe tener un tipo": TxtCampos(6).SetFocus
+    End If
   Else
-    Validacion = False: MsgTit "La factura debe tener un cliente": TxtCampos(2).SetFocus
+    Validacion = False: MsgTit "La nota debe tener un cliente": TxtCampos(2).SetFocus
   End If
 End Function
 
@@ -639,6 +663,11 @@ Private Sub TxtCampos_KeyDown(Index As Integer, KeyCode As Integer, Shift As Int
       If KeyCode = vbKeyF2 Then
         Principal.ToolConsultas1.AbrirDevConsulta 7, CnnPrincipal
         TxtCampos(2).Text = Principal.ToolConsultas1.DatSt
+      End If
+    Case 6
+      If KeyCode = vbKeyF2 Then
+        FrmBuscarNotaCreditoTipo.Show 1
+        TxtCampos(6).Text = FufuLo
       End If
   End Select
 
@@ -666,12 +695,19 @@ Private Sub TxtCampos_LostFocus(Index As Integer)
         End If
         CerrarRecorset rstUniversal
       End If
+    Case 6
+      If Val(TxtCampos(6).Text) <> 0 Then
+        AbrirRecorset rstUniversal, "SELECT Nombre FROM nota_credito_tipo WHERE IdNotaCreditoTipo=" & Val(TxtCampos(6).Text), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          TxtNmTipo = rstUniversal!Nombre & ""
+        Else
+          TxtNmTipo = "": TxtCampos(6).Text = ""
+        End If
+        CerrarRecorset rstUniversal
+      End If
   End Select
 End Sub
 
-Private Sub TxtCuenta_KeyPress(KeyAscii As Integer)
-  If KeyAscii = 13 Then SendKeys vbTab
-End Sub
 
 Private Sub TxtCuentaCobrar_KeyDown(KeyCode As Integer, Shift As Integer)
   If KeyCode = vbKeyF2 Then

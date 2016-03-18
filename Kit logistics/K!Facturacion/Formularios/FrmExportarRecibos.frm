@@ -134,7 +134,7 @@ On Error GoTo Error_Handler
                             "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
                             "WHERE Exportado=0 AND IdRecibo = " & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
 
-        Print #1, "R" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstRecibosExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+        'Print #1, "R" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstRecibosExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
      
         rstRecibosExp.Close
         'rstRecibosExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstRecibos.ListItems(II) & " AND TipoFactura = " & LstRecibos.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic

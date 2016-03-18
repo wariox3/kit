@@ -6,6 +6,7 @@ Begin VB.Form FrmNotasDebito
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   9630
+   ControlBox      =   0   'False
    LinkTopic       =   "Form1"
    ScaleHeight     =   6750
    ScaleWidth      =   9630
@@ -519,26 +520,28 @@ Sub AccionTool(Indice As Byte)
           Desbloquear
       End If
     Case 6 'Eliminar
-      MsgBox "Esta opcion debe ser consultada con el desarrollador del sistema"
-      'Dim rstActualizar As New ADODB.Recordset
-      'rstActualizar.CursorLocation = adUseClient
-      'AbrirRecorset rstUniversal, "SELECT notas_debito.* FROM notas_debito WHERE IdNotaDebito = " & Val(TxtCampos(0).Text) & " AND Impreso = 1 AND Anulado = 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
-      'If rstUniversal.RecordCount > 0 Then
-      '  AbrirRecorset rstUniversal, "SELECT notas_debito_det.* FROM notas_debito_det WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '  Do While rstUniversal.EOF = False
-      '    AbrirRecorset rstActualizar, "UPDATE cuentas_cobrar SET Saldo = Saldo + " & rstUniversal!Valor & " WHERE IdCxC = " & rstUniversal!IdCxC, CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '    rstUniversal.MoveNext
-      '  Loop
-      '  CerrarRecorset rstUniversal
-      '  AbrirRecorset rstActualizar, "UPDATE notas_debito_det SET Valor = 0 WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '  AbrirRecorset rstActualizar, "UPDATE notas_debito SET Total = 0, Anulado = 1 WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '  MsgBox "Nota debito anulado con exito", vbInformation
-      '  AccionTool 17
-      '  Asignar rstNotasDebito
-      'Else
-      '  MsgBox "La nota debito debe estar impreso y sin anular para poder ser anulado", vbCritical
-      'End If
-      'CerrarRecorset rstUniversal
+      'MsgBox "Esta opcion debe ser consultada con el desarrollador del sistema"
+      If MsgBox("Desea anular esta nota debito?", vbQuestion + vbYesNo) = vbYes Then
+        Dim rstActualizar As New ADODB.Recordset
+        rstActualizar.CursorLocation = adUseClient
+        AbrirRecorset rstUniversal, "SELECT notas_debito.* FROM notas_debito WHERE IdNotaDebito = " & Val(TxtCampos(0).Text) & " AND Impreso = 1 AND Anulado = 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        If rstUniversal.RecordCount > 0 Then
+          AbrirRecorset rstUniversal, "SELECT notas_debito_det.* FROM notas_debito_det WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          Do While rstUniversal.EOF = False
+            AbrirRecorset rstActualizar, "UPDATE cuentas_cobrar SET Saldo = Saldo - " & rstUniversal!Valor & " WHERE IdCxC = " & rstUniversal!IdCxC, CnnPrincipal, adOpenDynamic, adLockOptimistic
+            rstUniversal.MoveNext
+          Loop
+          CerrarRecorset rstUniversal
+          AbrirRecorset rstActualizar, "UPDATE notas_debito_det SET Valor = 0 WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          AbrirRecorset rstActualizar, "UPDATE notas_debito SET Total = 0, Anulado = 1 WHERE IdNotaDebito = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          MsgBox "Nota debito anulado con exito", vbInformation
+          AccionTool 17
+          Asignar rstNotasDebito
+        Else
+          MsgBox "La nota debito debe estar impreso y sin anular para poder ser anulado", vbCritical
+        End If
+        CerrarRecorset rstUniversal
+      End If
     Case 7 'Cancelar
       If Editando = True Then
         AccionTool 4
