@@ -14,30 +14,63 @@ Begin VB.Form FrmCuentasCobrar
    ScaleWidth      =   13590
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdVerdetalles 
+      Caption         =   "Detalles"
+      Height          =   375
+      Left            =   7800
+      TabIndex        =   9
+      Top             =   7200
+      Width           =   1335
+   End
+   Begin VB.CommandButton CmdBuscar 
+      Caption         =   "Buscar"
+      Height          =   375
+      Left            =   4680
+      TabIndex        =   8
+      Top             =   7200
+      Width           =   1335
+   End
+   Begin VB.TextBox TxtNumero 
+      Height          =   315
+      Left            =   3120
+      TabIndex        =   6
+      Top             =   7200
+      Width           =   1455
+   End
+   Begin VB.ComboBox CboTipo 
+      Height          =   315
+      ItemData        =   "FrmCuentasCobrar.frx":0000
+      Left            =   720
+      List            =   "FrmCuentasCobrar.frx":0013
+      Style           =   2  'Dropdown List
+      TabIndex        =   4
+      Top             =   7200
+      Width           =   1695
+   End
    Begin VB.CommandButton CmdExportar 
       Caption         =   "Exportar"
       Height          =   375
-      Left            =   240
+      Left            =   9240
       TabIndex        =   3
       Top             =   7200
-      Width           =   1815
+      Width           =   1335
    End
    Begin VB.CommandButton CmdFiltrar 
       Caption         =   "Filtrar"
       Height          =   375
-      Left            =   9720
+      Left            =   10680
       TabIndex        =   2
       Top             =   7200
-      Width           =   1695
+      Width           =   1335
    End
    Begin VB.CommandButton CmdSalir 
       Cancel          =   -1  'True
       Caption         =   "Salir"
       Height          =   375
-      Left            =   11520
+      Left            =   12120
       TabIndex        =   0
       Top             =   7200
-      Width           =   1935
+      Width           =   1335
    End
    Begin MSDataGridLib.DataGrid Grilla 
       Height          =   6855
@@ -224,6 +257,24 @@ Begin VB.Form FrmCuentasCobrar
          EndProperty
       EndProperty
    End
+   Begin VB.Label Label3 
+      AutoSize        =   -1  'True
+      Caption         =   "Numero:"
+      Height          =   195
+      Left            =   2520
+      TabIndex        =   7
+      Top             =   7200
+      Width           =   600
+   End
+   Begin VB.Label Label1 
+      AutoSize        =   -1  'True
+      Caption         =   "Tipo:"
+      Height          =   195
+      Left            =   240
+      TabIndex        =   5
+      Top             =   7200
+      Width           =   360
+   End
 End
 Attribute VB_Name = "FrmCuentasCobrar"
 Attribute VB_GlobalNameSpace = False
@@ -232,6 +283,24 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim rstCuentasCobrar As New ADODB.Recordset
+
+Private Sub CmdBuscar_Click()
+    If Val(TxtNumero.Text) <> 0 Then
+      Dim strSql As String
+      strSql = "Select cuentas_cobrar.*, NmTipoFactura, NmAsesor, NmPuntoOperaciones, RazonSocial " & _
+                "from cuentas_cobrar " & _
+                "left join terceros on cuentas_cobrar.IdTercero = terceros.IDTercero " & _
+                "left join facturas_tipos on cuentas_cobrar.TipoFactura = facturas_tipos.IdTipoFactura " & _
+                "left join asesores on cuentas_cobrar.IdAsesor = asesores.IdAsesor " & _
+                "left join centrosoperaciones on cuentas_cobrar.IdPO = centrosoperaciones.IDPO " & _
+                "where NroDocumento = " & TxtNumero.Text & " "
+      If CboTipo.ListIndex <> 0 Then
+        strSql = strSql & "and TipoFactura = " & CboTipo.ListIndex & ""
+      End If
+      AbrirRecorset rstCuentasCobrar, strSql, CnnPrincipal, adOpenStatic, adLockReadOnly
+      Set Grilla.DataSource = rstCuentasCobrar
+    End If
+End Sub
 
 Private Sub CmdExportar_Click()
 If rstCuentasCobrar.State = adStateOpen Then
@@ -254,8 +323,18 @@ Private Sub CmdSalir_Click()
   Unload Me
 End Sub
 
+Private Sub CmdVerdetalles_Click()
+  If rstCuentasCobrar.State = adStateOpen Then
+    If rstCuentasCobrar.EOF = False Then
+      FufuLo = rstCuentasCobrar.Fields("IdCxC")
+      FrmVerCuentaCobrar.Show 1
+    End If
+  End If
+End Sub
+
 Private Sub Form_Load()
   rstCuentasCobrar.CursorLocation = adUseClient
+  CboTipo.ListIndex = 0
   Filtrar
 End Sub
 

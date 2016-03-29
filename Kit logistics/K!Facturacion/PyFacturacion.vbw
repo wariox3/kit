@@ -31,3 +31,4 @@ FrmNotasDebito = 0, 0, 757, 446, C, 198, 198, 955, 644, C
 FrmInformeRecibosCaja = 22, 22, 763, 468, C, 0, 0, 741, 446, C
 FrmExportarRecibos = 66, 66, 807, 512, C, 44, 44, 785, 490, C
 FrmBuscarNotaCreditoTipo = 198, 198, 939, 644, C, 154, 154, 895, 600, C
+FrmVerCuentaCobrar = 220, 220, 1195, 694, C, 0, 0, 115, 239, C

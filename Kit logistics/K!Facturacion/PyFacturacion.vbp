@@ -44,6 +44,7 @@ Form=Formularios\FrmNotasDebito.frm
 Form=Formularios\FrmInformeRecibosCaja.frm
 Form=Formularios\FrmExportarRecibos.frm
 Form=Formularios\FrmBuscarNotaCreditoTipo.frm
+Form=Formularios\FrmVerCuentaCobrar.frm
 IconForm="Principal"
 Startup="FrmPresentacion"
 HelpFile=""

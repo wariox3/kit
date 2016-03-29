@@ -18,9 +18,9 @@ Begin VB.Form FrmReciboCaja
    Begin VB.CommandButton CmdVerDetalles 
       Caption         =   "Ver detalles"
       Height          =   255
-      Left            =   9360
+      Left            =   9240
       TabIndex        =   28
-      Top             =   6240
+      Top             =   5760
       Width           =   2175
    End
    Begin VB.Frame FraAgregar 
@@ -395,7 +395,7 @@ Begin VB.Form FrmReciboCaja
          _ExtentX        =   2990
          _ExtentY        =   529
          _Version        =   393216
-         Format          =   16842753
+         Format          =   16908289
          CurrentDate     =   38971
       End
       Begin VB.Label Label10 
@@ -611,7 +611,7 @@ Private Sub CmdRetirar_Click()
   Wend
 End Sub
 
-Private Sub CmdVerDetalles_Click()
+Private Sub CmdVerdetalles_Click()
   VerDetalle
 End Sub
 
@@ -790,14 +790,14 @@ Private Sub Desbloquear()
   BotTool 3, 17, ToolRecibos, True
   FraDatos.Enabled = True
   FraAgregar.Enabled = False
-  CmdVerDetalles.Enabled = False
+  CmdVerdetalles.Enabled = False
 End Sub
 
 Private Sub Bloquear()
   BotTool 3, 17, ToolRecibos, False
   FraDatos.Enabled = False
   FraAgregar.Enabled = True
-  CmdVerDetalles.Enabled = True
+  CmdVerdetalles.Enabled = True
 End Sub
 
 Private Sub Limpiar()
