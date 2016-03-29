@@ -198,6 +198,12 @@ Begin VB.MDIForm Principal
          Caption         =   "Notas debito"
       End
    End
+   Begin VB.Menu MnuContro 
+      Caption         =   "Control"
+      Begin VB.Menu MenuRecibosSinImprimir 
+         Caption         =   "Recibos sin imprimir"
+      End
+   End
    Begin VB.Menu MnuProcesos 
       Caption         =   "Procesos"
       Begin VB.Menu MnuExportarRecibos 
@@ -260,6 +266,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+
+Private Sub MenuRecibosSinImprimir_Click()
+  FrmRecibosSinImprimir.Show 1
+End Sub
 
 Private Sub MnuArchivoFacturas_Click()
   If CpPermiso(3, CodUsuarioActivo, 1, CnnPrincipal) = True Then

@@ -395,7 +395,7 @@ Begin VB.Form FrmReciboCaja
          _ExtentX        =   2990
          _ExtentY        =   529
          _Version        =   393216
-         Format          =   16908289
+         Format          =   16777217
          CurrentDate     =   38971
       End
       Begin VB.Label Label10 
@@ -494,6 +494,14 @@ Begin VB.Form FrmReciboCaja
          BeginProperty Button9 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Caption         =   "Bus"
             Object.ToolTipText     =   "Buscar [Inicio]"
+            Style           =   5
+            BeginProperty ButtonMenus {66833FEC-8583-11D1-B16A-00C0F0283628} 
+               NumButtonMenus  =   1
+               BeginProperty ButtonMenu1 {66833FEE-8583-11D1-B16A-00C0F0283628} 
+                  Object.Tag             =   "Buscar1"
+                  Text            =   "Por codigo"
+               EndProperty
+            EndProperty
          EndProperty
          BeginProperty Button10 {66833FEA-8583-11D1-B16A-00C0F0283628} 
             Style           =   3
@@ -611,7 +619,7 @@ Private Sub CmdRetirar_Click()
   Wend
 End Sub
 
-Private Sub CmdVerdetalles_Click()
+Private Sub CmdVerDetalles_Click()
   VerDetalle
 End Sub
 
@@ -712,19 +720,32 @@ Sub AccionTool(Indice As Byte)
       If MsgBox("Desea anular este recibo de caja?", vbQuestion + vbYesNo) = vbYes Then
         Dim rstActualizar As New ADODB.Recordset
         rstActualizar.CursorLocation = adUseClient
-        AbrirRecorset rstUniversal, "SELECT recibos_caja.* FROM recibos_caja WHERE IdRecibo = " & Val(TxtCampos(0).Text) & " AND Impreso = 1 AND Anulado = 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        AbrirRecorset rstUniversal, "SELECT recibos_caja.* FROM recibos_caja WHERE IdRecibo = " & Val(TxtCampos(0).Text) & " AND Anulado = 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
         If rstUniversal.RecordCount > 0 Then
-          AbrirRecorset rstUniversal, "SELECT recibos_caja_det.* FROM recibos_caja_det WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-          Do While rstUniversal.EOF = False
-            AbrirRecorset rstActualizar, "UPDATE cuentas_cobrar SET Saldo = Saldo + " & (rstUniversal!Valor + rstUniversal!descuento + rstUniversal.Fields("ajuste_peso") + rstUniversal.Fields("retencion_ica") + rstUniversal.Fields("retencion_fuente")) & " WHERE IdCxC = " & rstUniversal.Fields("codigo_cuenta_cobrar_fk"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-            rstUniversal.MoveNext
-          Loop
-          CerrarRecorset rstUniversal
-          AbrirRecorset rstActualizar, "UPDATE recibos_caja_det SET Valor = 0, descuento=0, ajuste_peso = 0, retencion_ica = 0, retencion_fuente = 0 WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-          AbrirRecorset rstActualizar, "UPDATE recibos_caja SET Total = 0, Anulado = 1 WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-          MsgBox "Recibo anulado con exito", vbInformation
-          AccionTool 17
-          Asignar rstRecibos
+          If Val(rstUniversal.Fields("Impreso")) = 0 Then
+            AbrirRecorset rstUniversal, "SELECT recibos_caja_det.* FROM recibos_caja_det WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            If rstUniversal.RecordCount > 0 Then
+              MsgBox "Debe retirar las cuentas por cobrar del recibo antes de eliminar"
+            Else
+              AbrirRecorset rstActualizar, "DELETE FROM recibos_caja WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              AccionTool 17
+              Asignar rstRecibos
+            End If
+          Else
+            AbrirRecorset rstUniversal, "SELECT recibos_caja_det.* FROM recibos_caja_det WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            Do While rstUniversal.EOF = False
+              AbrirRecorset rstActualizar, "UPDATE cuentas_cobrar SET Saldo = Saldo + " & (rstUniversal!Valor + rstUniversal!descuento + rstUniversal.Fields("ajuste_peso") + rstUniversal.Fields("retencion_ica") + rstUniversal.Fields("retencion_fuente")) & " WHERE IdCxC = " & rstUniversal.Fields("codigo_cuenta_cobrar_fk"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              rstUniversal.MoveNext
+            Loop
+            CerrarRecorset rstUniversal
+            AbrirRecorset rstActualizar, "UPDATE recibos_caja_det SET Valor = 0, descuento=0, ajuste_peso = 0, retencion_ica = 0, retencion_fuente = 0 WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstActualizar, "UPDATE recibos_caja SET Total = 0, Anulado = 1 WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            MsgBox "Recibo procesado con exito", vbInformation
+            AccionTool 17
+            Asignar rstRecibos
+          End If
+          
+
         Else
           MsgBox "El recibo debe estar impreso y sin anular para poder ser anulado", vbCritical
         End If
@@ -790,14 +811,14 @@ Private Sub Desbloquear()
   BotTool 3, 17, ToolRecibos, True
   FraDatos.Enabled = True
   FraAgregar.Enabled = False
-  CmdVerdetalles.Enabled = False
+  CmdVerDetalles.Enabled = False
 End Sub
 
 Private Sub Bloquear()
   BotTool 3, 17, ToolRecibos, False
   FraDatos.Enabled = False
   FraAgregar.Enabled = True
-  CmdVerdetalles.Enabled = True
+  CmdVerDetalles.Enabled = True
 End Sub
 
 Private Sub Limpiar()
@@ -833,6 +854,21 @@ End Function
 
 Private Sub ToolRecibos_ButtonClick(ByVal Button As MSComctlLib.Button)
     AccionTool Button.Index
+End Sub
+
+Private Sub ToolRecibos_ButtonMenuClick(ByVal ButtonMenu As MSComctlLib.ButtonMenu)
+  Select Case ButtonMenu.Tag
+    Case "Buscar1"
+      If Principal.ToolConsultas1.AbrirDevDatos("Codigo de recibo", "Digite el codigo del recibo que desea buscar", 3, 0) = True Then
+        AbrirRecorset rstUniversal, strSqlRecibos & " WHERE IdRecibo = " & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          Asignar rstUniversal
+        Else
+          MsgBox "No se encontraron recibos con este codigo", vbCritical
+        End If
+        CerrarRecorset rstUniversal
+      End If
+  End Select
 End Sub
 
 Private Sub TxtAjustePeso_KeyPress(KeyAscii As Integer)

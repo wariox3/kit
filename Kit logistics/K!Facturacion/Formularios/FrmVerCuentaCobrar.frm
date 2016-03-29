@@ -45,7 +45,7 @@ Begin VB.Form FrmVerCuentaCobrar
       Appearance      =   1
       NumItems        =   8
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         Text            =   "ID"
+         Text            =   "Codigo"
          Object.Width           =   1764
       EndProperty
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
@@ -116,7 +116,7 @@ Private Sub VerDetalle()
   LstReciboDet.ListItems.Clear
   If rstRecibosDetalle.RecordCount > 0 Then
     Do While rstRecibosDetalle.EOF = False
-      Set Item = LstReciboDet.ListItems.Add(, , rstRecibosDetalle!IdReciboDet)
+      Set Item = LstReciboDet.ListItems.Add(, , rstRecibosDetalle!IdRecibo)
       Item.SubItems(1) = rstRecibosDetalle!Numero & ""
       Item.SubItems(2) = rstRecibosDetalle!FechaPago & ""
       Item.SubItems(3) = rstRecibosDetalle.Fields("valor")
