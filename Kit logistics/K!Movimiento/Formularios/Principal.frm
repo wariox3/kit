@@ -327,6 +327,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuGenerarGuiasClientes 
          Caption         =   "Generar guias formatos"
       End
+      Begin VB.Menu MnuControlGuiasCliente 
+         Caption         =   "Control guias cliente"
+      End
    End
    Begin VB.Menu MnuComplementos 
       Caption         =   "&Complementos"
@@ -764,6 +767,10 @@ End Sub
 
 Private Sub MnuControlGuias_Click()
   FrmControlGuiasServicio.Show 1
+End Sub
+
+Private Sub MnuControlGuiasCliente_Click()
+  FrmControlGuiasCliente.Show 1
 End Sub
 
 Private Sub MnuCorregirCobrosDestino_Click()

@@ -27,6 +27,7 @@ Public Item As ListItem
 
 Public FufuSt As String
 Public FufuLo As Long
+Public FufuLo2 As Long
 Public FufuDo As Double
 
 Type TipListaPrecios

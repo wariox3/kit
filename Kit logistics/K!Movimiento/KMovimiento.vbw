@@ -83,3 +83,5 @@ FrmInformacionLiquidarDespacho = 198, 198, 1109, 762, C, 110, 110, 1021, 674, C
 FrmIntercambioEje = 88, 88, 1010, 652, C, 22, 22, 944, 586, C
 FrmExportarManifiestosContabilidad = 176, 176, 1098, 740, C, 110, 110, 1032, 674, C
 FrmCuentasCobrar = 66, 66, 807, 512, C, 44, 44, 785, 490, C
+FrmControlGuiasCliente = 88, 88, 829, 534, C, 66, 66, 807, 512, C
+FrmValidarRangoGuias = 176, 176, 917, 622, C, 154, 154, 895, 600, C

@@ -103,12 +103,16 @@ Option Explicit
 Dim rstRecibosExp As New ADODB.Recordset
 
 Private Sub CmdExportarSiigoCotrascal_Click()
+  Dim rstReciboDetalle As New ADODB.Recordset
+  rstReciboDetalle.CursorLocation = adUseClient
   Dim RutaSalida As String
   Dim Fila        As Long
   Dim Columna     As Long
   
+  
 On Error GoTo Error_Handler
     RutaSalida = TxtRuta.Text & "recexpsiigo" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt"
+    Dim strSql As String
     Dim J As Integer
     Dim strCuenta As String
     Dim strDetalle As String
@@ -133,7 +137,15 @@ On Error GoTo Error_Handler
                             "FROM recibos_caja " & _
                             "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
                             "WHERE Exportado=0 AND IdRecibo = " & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
-
+        If rstRecibosExp.RecordCount > 0 Then
+          strSql = "Select recibos_caja_det.* from recibos_caja_det where IdRecibo = " & rstRecibosExp!IdRecibo
+          AbrirRecorset rstReciboDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+          Do While rstReciboDetalle.EOF = False
+            MsgBox rstReciboDetalle.Fields("IdReciboDet")
+            rstReciboDetalle.MoveNext
+          Loop
+          CerrarRecorset rstReciboDetalle
+        End If
         'Print #1, "R" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstRecibosExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
      
         rstRecibosExp.Close
@@ -166,7 +178,7 @@ Private Sub VerRecibos()
   strSql = "SELECT recibos_caja.*, terceros.RazonSocial " & _
                           "FROM recibos_caja " & _
                           "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
-                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0"
+                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0 AND numero = 3105"
   rstRecibosExp.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg rstRecibosExp.RecordCount
   If rstRecibosExp.RecordCount > 0 Then
