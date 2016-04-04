@@ -352,6 +352,8 @@ Public Sub ExportarGuiaFactura(longGuia As Long)
       AbrirRecorset rstUniversal, "INSERT INTO facturas_venta (Numero, TipoFactura, Fecha, FhVence, IdTercero, Plazo, Total, VrFlete, VrManejo, IdPO, IdAsesor) VALUES (" & rstGuias!Guia & ", " & rstGuias!GuiaTipo & ", '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & Format(rstGuias!FhEntradaBodega, "yyyy-mm-dd") & "', '" & rstGuias!Cuenta & "', 0, " & douTotal & ", " & rstGuias!VrFlete & ", " & rstGuias!VrManejo & ", " & rstGuias!COIng & ", " & rstGuias!IdAsesor & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
       AbrirRecorset rstUniversal, "UPDATE Guias SET ExportadaCartera = 1 WHERE Guia = " & longGuia, CnnPrincipal, adOpenDynamic, adLockOptimistic
     End If
+  Else
+    MsgBox "No se encuentra la guia " & longGuia & " o ya fue exportada", vbCritical
   End If
 End Sub
 

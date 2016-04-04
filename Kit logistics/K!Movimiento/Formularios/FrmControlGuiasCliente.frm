@@ -15,6 +15,22 @@ Begin VB.Form FrmControlGuiasCliente
    ScaleWidth      =   10845
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdCerrar 
+      Caption         =   "Cerrar"
+      Height          =   255
+      Left            =   1560
+      TabIndex        =   14
+      Top             =   3120
+      Width           =   1335
+   End
+   Begin VB.CommandButton CmdImprimir 
+      Caption         =   "Imprimir"
+      Height          =   255
+      Left            =   9240
+      TabIndex        =   13
+      Top             =   3120
+      Width           =   1455
+   End
    Begin VB.CommandButton CmdEliminar 
       Caption         =   "Eliminar"
       Height          =   255
@@ -26,7 +42,7 @@ Begin VB.Form FrmControlGuiasCliente
    Begin VB.CommandButton CmdValidar 
       Caption         =   "Validar"
       Height          =   255
-      Left            =   1560
+      Left            =   7800
       TabIndex        =   11
       Top             =   3120
       Width           =   1335
@@ -84,7 +100,7 @@ Begin VB.Form FrmControlGuiasCliente
          Top             =   600
          Width           =   510
       End
-      Begin VB.Label LblNmCliente 
+      Begin VB.Label LblNmTercero 
          BackColor       =   &H80000005&
          BorderStyle     =   1  'Fixed Single
          Height          =   255
@@ -107,10 +123,10 @@ Begin VB.Form FrmControlGuiasCliente
       Cancel          =   -1  'True
       Caption         =   "Salir"
       Height          =   255
-      Left            =   9000
+      Left            =   9240
       TabIndex        =   0
-      Top             =   3120
-      Width           =   1695
+      Top             =   4920
+      Width           =   1455
    End
    Begin MSComctlLib.ListView LstGuiasCliente 
       Height          =   2895
@@ -182,6 +198,18 @@ Private Sub CmdAgregar_Click()
   Ver
 End Sub
 
+Private Sub CmdCerrar_Click()
+  Dim rstGuiasCliente As New ADODB.Recordset
+  rstGuiasCliente.CursorLocation = adUseClient
+
+  AbrirRecorset rstGuiasCliente, "SELECT guias_cliente.* FROM guias_cliente WHERE Estado = 'P' AND IdGuiaCliente = " & LstGuiasCliente.SelectedItem, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstGuiasCliente.RecordCount > 0 Then
+      AbrirRecorset rstUniversal, "UPDATE guias_cliente SET Estado = 'C' WHERE IdGuiaCliente=" & Val(LstGuiasCliente.SelectedItem), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    End If
+  CerrarRecorset rstGuiasCliente
+  Ver
+End Sub
+
 Private Sub CmdEliminar_Click()
   Dim rstGuiasCliente As New ADODB.Recordset
   rstGuiasCliente.CursorLocation = adUseClient
@@ -200,6 +228,10 @@ Private Sub CmdEliminar_Click()
      II = II + 1
     End If
   Wend
+End Sub
+
+Private Sub CmdImprimir_Click()
+  Mostrar_Reporte CnnPrincipal, 58, "Select*from sql_im_imprimirrango where IdGuiaCliente = " & LstGuiasCliente.SelectedItem, "", 2
 End Sub
 
 Private Sub CmdSalir_Click()
@@ -236,4 +268,31 @@ End Sub
 
 Private Sub Form_Load()
   Ver
+End Sub
+
+Private Sub TxtIdTercero_KeyDown(KeyCode As Integer, Shift As Integer)
+  If KeyCode = vbKeyF2 Then
+    Principal.ToolConsultas1.AbrirDevConsulta 7, CnnPrincipal
+    TxtIdTercero.Text = Principal.ToolConsultas1.DatSt
+  End If
+End Sub
+
+Private Sub TxtIdTercero_KeyPress(KeyAscii As Integer)
+  If KeyAscii = 13 Then SendKeys vbTab
+End Sub
+
+Private Sub TxtIdTercero_Validate(Cancel As Boolean)
+  If TxtIdTercero = "0" And TxtIdTercero.Text = "" Then
+      LblNmTercero.Caption = ""
+  Else
+    AbrirRecorset rstUniversal, "SELECT IdTercero, RazonSocial " & _
+                                "FROM terceros " & _
+                                "WHERE IdTercero='" & TxtIdTercero.Text & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+    If rstUniversal.EOF = False Then
+      LblNmTercero.Caption = rstUniversal!RazonSocial & ""
+    Else
+      LblNmTercero.Caption = "": TxtIdTercero.Text = ""
+    End If
+    CerrarRecorset rstUniversal
+  End If
 End Sub

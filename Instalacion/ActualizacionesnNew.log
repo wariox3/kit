@@ -1,11 +1,11 @@
 
-Procesando 31/03/2016 02:13:48 p.m.
+Procesando 04/04/2016 09:50:18 a.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 31/03/2016 02:13:49 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 04/04/2016 09:50:19 a.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -20,8 +20,8 @@ C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  1
 C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
 C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
 C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
-C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 29/03/2016 12:51:52 p.m. 782336  26.59%
-C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 14/03/2016 04:01:37 p.m. 2019328  24.31%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 04/04/2016 09:46:47 a.m. 786432  26.48%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 04/04/2016 09:49:37 a.m. 2039808  24.25%
 C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 09/11/2015 07:58:49 p.m. 430080  29.57%
 C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
 C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 17/02/2015 05:42:09 p.m. 241664  32.81%
@@ -73,6 +73,7 @@ C:\kit\Kit logistics\Reportes\Movimiento\Guias factura backup.rpt 26/04/2014 11:
 C:\kit\Kit logistics\Reportes\Movimiento\Guias factura.rpt 02/09/2014 11:01:47 a.m. 53760  10.08%
 C:\kit\Kit logistics\Reportes\Movimiento\ImpGuia.rpt 06/05/2014 04:16:05 p.m. 97792  42.46%
 C:\kit\Kit logistics\Reportes\Movimiento\ImpManifiesto.rpt 16/05/2013 10:22:41 a.m. 72704  54.78%
+C:\kit\Kit logistics\Reportes\Movimiento\ImprimirRango.rpt 04/04/2016 09:36:26 a.m. 18432  18.14%
 C:\kit\Kit logistics\Reportes\Movimiento\LiquidacionDespacho2.rpt 02/09/2014 04:15:56 p.m. 77575  9.69%
 C:\kit\Kit logistics\Reportes\Movimiento\Liquidar despacho.rpt 20/02/2015 04:34:25 p.m. 98671  18.70%
 C:\kit\Kit logistics\Reportes\Movimiento\ListaDespachos.rpt 24/11/2014 09:29:40 a.m. 34816  14.11%
@@ -100,6 +101,6 @@ C:\kit\Kit logistics\Reportes\Recogidas\Listado de recogidas.rpt 16/05/2013 10:2
 C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2013 12:37:20 p.m. 3483  25.03%
 C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 05/03/2016 11:37:42 a.m. 184320  36.86%
 ================================ 
-Todos los archivos: 86 [ 14053KB => 4459KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4570 KB 
-Finalización exitosa 31/03/2016 02:13:58 p.m.
+Todos los archivos: 87 [ 14095KB => 4466KB ] 
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4577 KB 
+Finalización exitosa 04/04/2016 09:50:29 a.m.

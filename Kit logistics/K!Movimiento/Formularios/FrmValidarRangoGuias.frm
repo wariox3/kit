@@ -52,7 +52,7 @@ Begin VB.Form FrmValidarRangoGuias
    Begin VB.Label LblHasta 
       BorderStyle     =   1  'Fixed Single
       Height          =   255
-      Left            =   3360
+      Left            =   4200
       TabIndex        =   5
       Top             =   120
       Width           =   1335
@@ -69,7 +69,7 @@ Begin VB.Form FrmValidarRangoGuias
       AutoSize        =   -1  'True
       Caption         =   "Hasta:"
       Height          =   195
-      Left            =   2880
+      Left            =   3600
       TabIndex        =   3
       Top             =   120
       Width           =   465
@@ -104,12 +104,17 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Ver()
-AbrirRecorset rstUniversal, "SELECT guias.Guia from guias where Guia >= " & Val(LblDesde) & " AND Guia <=" & Val(LblHasta), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
-
-CerrarRecorset rstUniversal
-
+AbrirRecorset rstUniversal, "SELECT guias.Guia from guias where Guia >= " & Val(LblDesde) & " AND Guia <=" & Val(LblHasta) & " order by Guia", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
 LstGuias.ListItems.Clear
 For II = FufuLo To FufuLo2 Step 1
-  Set Item = LstGuias.ListItems.Add(, , II)
+  If rstUniversal.EOF = False Then
+    If II <> rstUniversal.Fields("Guia") Then
+      Set Item = LstGuias.ListItems.Add(, , II)
+    End If
+    rstUniversal.MoveNext
+  Else
+    Set Item = LstGuias.ListItems.Add(, , II)
+  End If
 Next
+CerrarRecorset rstUniversal
 End Sub
