@@ -564,7 +564,7 @@ On Error GoTo Error_Handler
                   douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
                   strNit = "900151590"
               End Select
-
+              
             'Contado
             Case 2
               strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
