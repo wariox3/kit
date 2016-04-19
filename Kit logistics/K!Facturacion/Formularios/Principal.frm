@@ -307,27 +307,38 @@ Private Sub MnuControlFacturas_Click()
 End Sub
 
 Private Sub MnuCorregirPuntoOperacionesFacturas_Click()
-  'Dim rstFacturas As New ADODB.Recordset
-  'rstFacturas.CursorLocation = adUseClient
-  'Dim rstGuia As New ADODB.Recordset
-  'rstGuia.CursorLocation = adUseClient
-  ''rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE TipoFactura=1", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  'rstFacturas.Open "SELECT facturas_venta.* FROM facturas_venta WHERE TipoFactura <> 1 AND IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  'MsgBox rstFacturas.RecordCount
-  'IniProg rstFacturas.RecordCount
-  'II = 1
-  'Do While rstFacturas.EOF = False
-  '  rstGuia.Open "SELECT COIng FROM guias WHERE Guia = " & rstFacturas.Fields("Numero"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-  '  If rstGuia.RecordCount > 0 Then
-  '    rstUniversal.Open "UPDATE facturas_venta SET IdPO= " & rstGuia.Fields("COIng") & "  WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-  '  Else
-  '    rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE Numero = " & rstFacturas.Fields("Numero") & " AND TipoFactura=" & rstFacturas.Fields("TipoFactura"), CnnPrincipal, adOpenDynamic, adLockOptimistic
-  '  End If
-  '  rstGuia.Close
-  '  rstFacturas.MoveNext
-  '  II = II + 1
-  '  Prog II
-  'Loop
+  Dim rstRecibos As New ADODB.Recordset
+  rstRecibos.CursorLocation = adUseClient
+  Dim rstRecibosDet As New ADODB.Recordset
+  rstRecibosDet.CursorLocation = adUseClient
+  Dim descuento As Double
+  Dim ajustePeso As Double
+  Dim retencionIca As Double
+  Dim retencionFuente As Double
+  Dim strSql As String
+  rstRecibos.Open "SELECT recibos_caja.* FROM recibos_caja WHERE Fecha >= '2016-04-15'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  MsgBox rstRecibos.RecordCount
+  IniProg rstRecibos.RecordCount
+  II = 1
+  Do While rstRecibos.EOF = False
+    descuento = 0
+    ajustePeso = 0
+    retencionIca = 0
+    retencionFuente = 0
+    strSql = "Select sum(descuento) as descuento, sum(ajuste_peso) as ajuste_peso, sum(retencion_ica) as retencion_ica, sum(retencion_fuente) as retencion_fuente from recibos_caja_det where IdRecibo=" & rstRecibos.Fields("IdRecibo")
+    AbrirRecorset rstRecibosDet, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstRecibosDet.RecordCount > 0 Then
+      descuento = Val(rstRecibosDet.Fields("descuento") & "")
+      ajustePeso = Val(rstRecibosDet.Fields("ajuste_peso") & "")
+      retencionIca = Val(rstRecibosDet.Fields("retencion_ica") & "")
+      retencionFuente = Val(rstRecibosDet.Fields("retencion_fuente") & "")
+      rstUniversal.Open "UPDATE recibos_caja SET descuento=" & descuento & ", ajuste_peso=" & ajustePeso & ", retencion_ica=" & retencionIca & ", retencion_fuente=" & retencionFuente & " WHERE IdRecibo = " & rstRecibos.Fields("IdRecibo"), CnnPrincipal, adOpenDynamic, adLockOptimistic
+    End If
+    CerrarRecorset rstRecibosDet
+    rstRecibos.MoveNext
+    II = II + 1
+    Prog II
+  Loop
   'rstUniversal.Open "UPDATE facturas_venta SET IdPO=1 WHERE IdPO is null", CnnPrincipal, adOpenDynamic, adLockOptimistic
 End Sub
 

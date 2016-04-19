@@ -113,7 +113,7 @@ Private Sub CmdExportarSiigoCotrascal_Click()
 On Error GoTo Error_Handler
     RutaSalida = TxtRuta.Text & "recexpsiigo" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt"
     Dim strSql As String
-    Dim J As Integer
+    Dim intSecuencia As Integer
     Dim strCuenta As String
     Dim strDetalle As String
     Dim strTipo As String
@@ -133,20 +133,102 @@ On Error GoTo Error_Handler
     'Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
     While II <= LstRecibos.ListItems.Count
       If LstRecibos.ListItems(II).Checked = True Then
-        rstRecibosExp.Open "SELECT recibos_caja.*, terceros.RazonSocial " & _
+        rstRecibosExp.Open "SELECT recibos_caja.*, terceros.RazonSocial, bancos.cuenta_contable as cuentaBanco, bancos.nombre as nombreBanco " & _
                             "FROM recibos_caja " & _
                             "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
+                            "LEFT JOIN bancos ON recibos_caja.codigo_banco_fk = bancos.codigo_banco_pk " & _
                             "WHERE Exportado=0 AND IdRecibo = " & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
         If rstRecibosExp.RecordCount > 0 Then
-          strSql = "Select recibos_caja_det.* from recibos_caja_det where IdRecibo = " & rstRecibosExp!IdRecibo
+          strComprobante = "001"
+          strNumero = Rellenar(rstRecibosExp.Fields("numero"), 11, "0", 1)
+          intSecuencia = 1
+          strNit = rstRecibosExp!IdTercero
+          strCentroCostos = "0001"
+          strVendedor = "0001"
+          strSql = "Select recibos_caja_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.FhVence from recibos_caja_det left join cuentas_cobrar ON recibos_caja_det.codigo_cuenta_cobrar_fk = cuentas_cobrar.IdCxC where IdRecibo = " & rstRecibosExp!IdRecibo
           AbrirRecorset rstReciboDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
           Do While rstReciboDetalle.EOF = False
-            MsgBox rstReciboDetalle.Fields("IdReciboDet")
+            'Cuenta cliente
+            strCuenta = "1305050300"
+            strDetalle = "CANC FACT " & rstReciboDetalle!NroDocumento
+            strTipo = "C"
+            douValor = rstReciboDetalle.Fields("valor") + rstReciboDetalle.Fields("retencion_ica") + rstReciboDetalle.Fields("retencion_fuente") + rstReciboDetalle.Fields("descuento") + rstReciboDetalle.Fields("ajuste_peso")
+            douValor = Round(douValor)
+            strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+            strDocumentoCruce = "F003" & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+            Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+            intSecuencia = intSecuencia + 1
+            
+            'Cuenta Rte Ica
+            If Val(rstReciboDetalle.Fields("retencion_ica")) > 0 Then
+              strCuenta = "1355180100"
+              strDetalle = "RTE ICA  " & rstReciboDetalle!NroDocumento
+              strTipo = "D"
+              douValor = rstReciboDetalle.Fields("retencion_ica")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+            End If
+            
+            'Cuenta Rte fte
+            If Val(rstReciboDetalle.Fields("retencion_fuente")) > 0 Then
+              strCuenta = "1355150200"
+              strDetalle = "RTE FUENTE " & rstReciboDetalle!NroDocumento
+              strTipo = "D"
+              douValor = rstReciboDetalle.Fields("retencion_fuente")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+            End If
+            
+            'Descuento
+            If Val(rstReciboDetalle.Fields("descuento")) > 0 Then
+              strCuenta = "5305350100"
+              strDetalle = "DESCUENTO " & rstReciboDetalle!NroDocumento
+              strTipo = "D"
+              douValor = rstReciboDetalle.Fields("descuento")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+            End If
+            
+            'Ajuste al peso
+            If Val(rstReciboDetalle.Fields("ajuste_peso")) <> 0 Then
+              If Val(rstReciboDetalle.Fields("ajuste_peso")) > 0 Then
+                strCuenta = "5395950100"
+                strTipo = "D"
+              Else
+                strCuenta = "4295810100"
+                strTipo = "C"
+              End If
+              strDetalle = "AJUSTE PESO " & rstReciboDetalle!NroDocumento
+              douValor = rstReciboDetalle.Fields("ajuste_peso")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;##0.00") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+            End If
+            
             rstReciboDetalle.MoveNext
           Loop
+          'Banco
+          strCuenta = rstRecibosExp.Fields("cuentaBanco")
+          strDetalle = rstRecibosExp.Fields("nombreBanco")
+          strTipo = "D"
+          douValor = rstRecibosExp.Fields("Total")
+          douValor = Round(douValor)
+          strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+          strDocumentoCruce = "R001" & Rellenar(rstRecibosExp!Numero, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstRecibosExp!FechaPago, "yyyymmdd") & "0001" & "00"
+          Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
           CerrarRecorset rstReciboDetalle
         End If
-        'Print #1, "R" & strComprobante & strNumero & Rellenar(J & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstRecibosExp!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
      
         rstRecibosExp.Close
         'rstRecibosExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstRecibos.ListItems(II) & " AND TipoFactura = " & LstRecibos.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
@@ -178,7 +260,7 @@ Private Sub VerRecibos()
   strSql = "SELECT recibos_caja.*, terceros.RazonSocial " & _
                           "FROM recibos_caja " & _
                           "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
-                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0 AND numero = 3105"
+                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0 AND numero = 7039"
   rstRecibosExp.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg rstRecibosExp.RecordCount
   If rstRecibosExp.RecordCount > 0 Then
@@ -196,3 +278,28 @@ Private Sub VerRecibos()
   rstRecibosExp.Close
 End Sub
 
+Private Function Rellenar(Dato As String, Tamaño As Integer, Caracter As String, Posicion As Byte) As String
+  FufuSt = ""
+  If Len(Dato) < Tamaño Then
+    For FufuLo = 1 To Tamaño - Len(Dato)
+      FufuSt = FufuSt & Caracter
+    Next
+    If Posicion = 1 Then
+      Rellenar = FufuSt & Dato
+    Else
+      Rellenar = Dato & FufuSt
+    End If
+  End If
+End Function
+
+Private Function Limpiar(Dato As String) As String
+  FufuSt = ""
+  If Len(Dato) > 0 Then
+    For FufuLo = 1 To Len(Dato)
+      If Mid(Dato, FufuLo, 1) <> "." Then
+        FufuSt = FufuSt & Mid(Dato, FufuLo, 1)
+      End If
+    Next
+  End If
+  Limpiar = FufuSt
+End Function
