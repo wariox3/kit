@@ -3,7 +3,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmExportarRecibos 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Exportar recibos caja"
-   ClientHeight    =   6585
+   ClientHeight    =   6900
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   11340
@@ -11,9 +11,31 @@ Begin VB.Form FrmExportarRecibos
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6585
+   ScaleHeight     =   6900
    ScaleWidth      =   11340
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdActivar 
+      Caption         =   "Activar para exportar"
+      Height          =   375
+      Left            =   4440
+      TabIndex        =   9
+      Top             =   6120
+      Width           =   2055
+   End
+   Begin VB.TextBox TxtDesde 
+      Height          =   285
+      Left            =   3360
+      TabIndex        =   6
+      Top             =   6120
+      Width           =   975
+   End
+   Begin VB.TextBox TxtHasta 
+      Height          =   285
+      Left            =   3360
+      TabIndex        =   5
+      Top             =   6480
+      Width           =   975
+   End
    Begin VB.CommandButton CmdExportarSiigoCotrascal 
       Caption         =   "Exportar SIIGO"
       Height          =   375
@@ -84,6 +106,24 @@ Begin VB.Form FrmExportarRecibos
          Object.Width           =   2540
       EndProperty
    End
+   Begin VB.Label Label1 
+      AutoSize        =   -1  'True
+      Caption         =   "Desde:"
+      Height          =   195
+      Left            =   2760
+      TabIndex        =   8
+      Top             =   6120
+      Width           =   510
+   End
+   Begin VB.Label Label2 
+      AutoSize        =   -1  'True
+      Caption         =   "Hasta:"
+      Height          =   195
+      Left            =   2760
+      TabIndex        =   7
+      Top             =   6480
+      Width           =   465
+   End
    Begin VB.Label LblRuta 
       AutoSize        =   -1  'True
       Caption         =   "Ruta:"
@@ -101,6 +141,17 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 Dim rstRecibosExp As New ADODB.Recordset
+
+Private Sub CmdActivar_Click()
+  If Val(TxtDesde.Text) <> 0 Then
+    If Val(TxtHasta.Text) <> 0 Then
+      FufuSt = "UPDATE recibos_caja SET Exportado = 0 WHERE numero >= " & Val(TxtDesde.Text) & " AND numero <= " & Val(TxtHasta.Text)
+      AbrirRecorset rstUniversal, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      MsgBox "Se han habilidato con exito los recibos", vbInformation
+      VerRecibos
+    End If
+  End If
+End Sub
 
 Private Sub CmdExportarSiigoCotrascal_Click()
   Dim rstReciboDetalle As New ADODB.Recordset
@@ -231,7 +282,7 @@ On Error GoTo Error_Handler
         End If
      
         rstRecibosExp.Close
-        'rstRecibosExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstRecibos.ListItems(II) & " AND TipoFactura = " & LstRecibos.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        rstRecibosExp.Open "UPDATE recibos_caja SET Exportado=1 where IdRecibo=" & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
         LstRecibos.ListItems.Remove (II)
       Else
        II = II + 1
@@ -260,7 +311,7 @@ Private Sub VerRecibos()
   strSql = "SELECT recibos_caja.*, terceros.RazonSocial " & _
                           "FROM recibos_caja " & _
                           "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
-                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0 AND numero = 7039"
+                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0"
   rstRecibosExp.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg rstRecibosExp.RecordCount
   If rstRecibosExp.RecordCount > 0 Then
