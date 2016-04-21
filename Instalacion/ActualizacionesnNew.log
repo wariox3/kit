@@ -1,11 +1,11 @@
 
-Procesando 19/04/2016 06:12:07 p.m.
+Procesando 20/04/2016 10:41:57 a.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 19/04/2016 06:12:08 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 20/04/2016 10:41:58 a.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -20,7 +20,7 @@ C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  1
 C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
 C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
 C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
-C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 19/04/2016 06:11:33 p.m. 823296  25.94%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 20/04/2016 10:41:22 a.m. 823296  25.93%
 C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 04/04/2016 09:49:37 a.m. 2039808  24.25%
 C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 09/11/2015 07:58:49 p.m. 430080  29.57%
 C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
@@ -103,4 +103,4 @@ C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 05/03/2016 11:37:42 a
 ================================ 
 Todos los archivos: 87 [ 14131KB => 4471KB ] 
 Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4582 KB 
-Finalización exitosa 19/04/2016 06:12:16 p.m.
+Finalización exitosa 20/04/2016 10:42:07 a.m.

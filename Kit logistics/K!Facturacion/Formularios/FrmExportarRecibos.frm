@@ -14,6 +14,14 @@ Begin VB.Form FrmExportarRecibos
    ScaleHeight     =   6900
    ScaleWidth      =   11340
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdSeleccionarTodo 
+      Caption         =   "Seleccionar todo"
+      Height          =   375
+      Left            =   120
+      TabIndex        =   10
+      Top             =   6120
+      Width           =   1455
+   End
    Begin VB.CommandButton CmdActivar 
       Caption         =   "Activar para exportar"
       Height          =   375
@@ -39,7 +47,7 @@ Begin VB.Form FrmExportarRecibos
    Begin VB.CommandButton CmdExportarSiigoCotrascal 
       Caption         =   "Exportar SIIGO"
       Height          =   375
-      Left            =   120
+      Left            =   7920
       TabIndex        =   4
       Top             =   6120
       Width           =   1815
@@ -297,6 +305,13 @@ End Sub
 
 Private Sub CmdSalir_Click()
   Unload Me
+End Sub
+
+Private Sub CmdSeleccionarTodo_Click()
+  II = 1
+  For II = 1 To LstRecibos.ListItems.Count
+    LstRecibos.ListItems(II).Checked = True
+  Next
 End Sub
 
 Private Sub Form_Load()
