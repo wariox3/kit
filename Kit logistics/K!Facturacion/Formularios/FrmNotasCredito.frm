@@ -571,7 +571,7 @@ Sub AccionTool(Indice As Byte)
       End If
     Case 9  'Buscar
       If Principal.ToolConsultas1.AbrirDevDatos("Numero de nota credito", "Digite el numero del nota credito que desea buscar", 3, 0) = True Then
-        AbrirRecorset rstUniversal, strSqlNotasCredito & " WHERE IdNotaCredito = " & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        AbrirRecorset rstUniversal, strSqlNotasCredito & " WHERE numeroNotaCredito = " & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenForwardOnly, adLockReadOnly
         If rstUniversal.EOF = False Then
           Asignar rstUniversal
         Else

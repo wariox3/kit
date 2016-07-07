@@ -432,30 +432,30 @@ Private Sub CmdExportarAltius_Click()
       rstFactura.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
       'Cuenta Flete
       Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & rstFactura!CuentaFlete & Chr(34) & "," & Replace(rstFactura!VrFlete, ",", ".") & "," & Chr(34) & "C" & Chr(34) & _
-                  "," & Chr(34) & rstFactura!IDTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+                  "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                   "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                   "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
       'Cuenta Manejo
       Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & rstFactura!CuentaManejo & Chr(34) & ", " & Replace(rstFactura!VrManejo, ",", ".") & ", " & Chr(34) & "C" & Chr(34) & "" _
-                  ; "," & Chr(34) & rstFactura!IDTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+                  ; "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                   "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                   "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
       
       'Cuenta clientes nacionales (Cartera)
       Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & rstFactura!CuentaCartera & Chr(34) & "," & Replace(rstFactura!VrFlete + rstFactura!VrManejo, ",", ".") & "," & Chr(34) & "D" & Chr(34) & _
-                  "," & Chr(34) & rstFactura!IDTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+                  "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                   "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                   "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
                   
         'Cree debito 13551525
         Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "13552001" & Chr(34) & "," & Replace((rstFactura!Total * 0.6 / 100), ",", ".") & "," & Chr(34) & "D" & Chr(34) & _
-                    "," & Chr(34) & rstFactura!IDTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                     "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                     "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
                     
         'Cree credito 23690510
         Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "23657501" & Chr(34) & "," & Replace((rstFactura!Total * 0.6 / 100), ",", ".") & "," & Chr(34) & "C" & Chr(34) & _
-                    "," & Chr(34) & rstFactura!IDTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                     "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                     "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
 
@@ -510,7 +510,7 @@ On Error GoTo Error_Handler
                             "WHERE Exportada=0 AND Numero = " & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
         'Corrientes o contados
         If Val(rstFacturasExp.Fields("TipoFactura")) = 1 Then
-          intNroRegistros = 4
+          intNroRegistros = 3
         ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 2 Then
           intNroRegistros = 3
         ElseIf Val(rstFacturasExp.Fields("TipoFactura")) = 3 Then
@@ -528,7 +528,7 @@ On Error GoTo Error_Handler
             Case 1
               strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
               strComprobante = rstFacturasExp.Fields("comprobante")
-              strNit = rstFacturasExp!IDTercero
+              strNit = rstFacturasExp!IdTercero
               douRetencionFuente = (rstFacturasExp.Fields("Total") * 1) / 100
               Select Case J
                 Case 1
@@ -545,31 +545,37 @@ On Error GoTo Error_Handler
                   strCuenta = rstFacturasExp.Fields("cuenta_cartera")
                   strTipo = "D"
                   strDetalle = "VLR TOTAL DOC"
-                  douValor = rstFacturasExp.Fields("Total") - douRetencionFuente
-                Case 4 'Retencion en la fuente
-                  strCuenta = "13551502"
-                  strTipo = "D"
-                  strDetalle = "RTE FTE"
-                  douValor = (rstFacturasExp.Fields("Total") * 1) / 100
-                Case 5 'Retencion CREE DEBITO
-                  strCuenta = "13559801"
-                  strTipo = "D"
-                  strDetalle = "CREE DEBITO"
-                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
-                  strNit = "900151590"
-                Case 6 'Retencion CREE CREDITO
-                  strCuenta = "23657501"
-                  strTipo = "C"
-                  strDetalle = "CREE CREDITO"
-                  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
-                  strNit = "900151590"
+                  douValor = rstFacturasExp.Fields("Total")
+                'Case 4 'Retencion en la fuente
+                '  strCuenta = "13551502"
+                '  strTipo = "D"
+                '  strDetalle = "RTE FTE"
+                '  douValor = (rstFacturasExp.Fields("Total") * 1) / 100
+                'Case 5 'Retencion CREE DEBITO
+                '  strCuenta = "13559801"
+                '  strTipo = "D"
+                '  strDetalle = "CREE DEBITO"
+                '  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                '  strNit = "900151590"
+                'Case 6 'Retencion CREE CREDITO
+                '  strCuenta = "23657501"
+                '  strTipo = "C"
+                '  strDetalle = "CREE CREDITO"
+                '  douValor = (rstFacturasExp.Fields("Total") * 0.8) / 100
+                '  strNit = "900151590"
               End Select
               
             'Contado
             Case 2
-              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              If rstFacturasExp.Fields("Numero") > 1000000 Then
+                strNumero = CStr(rstFacturasExp.Fields("Numero"))
+                strNumero = Mid(strNumero, 3, 6)
+                strNumero = Rellenar(strNumero, 11, "0", 1)
+              Else
+                strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              End If
               strComprobante = "001"
-              strNit = rstFacturasExp!IDTercero
+              strNit = rstFacturasExp!IdTercero
               strCentroCostos = rstFacturasExp!centro_costos
               Select Case J
                 Case 1
@@ -602,9 +608,15 @@ On Error GoTo Error_Handler
               End Select
             'Destino
             Case 3
-              strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              If rstFacturasExp.Fields("Numero") > 1000000 Then
+                strNumero = CStr(rstFacturasExp.Fields("Numero"))
+                strNumero = Mid(strNumero, 3, 6)
+                strNumero = Rellenar(strNumero, 11, "0", 1)
+              Else
+                strNumero = Rellenar(rstFacturasExp.Fields("Numero"), 11, "0", 1)
+              End If
               strComprobante = "002"
-              strNit = rstFacturasExp!IDTercero
+              strNit = rstFacturasExp!IdTercero
               strCentroCostos = rstFacturasExp!centro_costos
               Select Case J
                 Case 1
@@ -676,7 +688,7 @@ Private Sub CmdExportarTerceros_Click()
   AbrirRecorset rstTerceros, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   Open TxtRuta.Text & "terexp" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt" For Append As #1
   While rstTerceros.EOF = False
-      Print #1, Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!TpDoc & Chr(34) & "," & Chr(34) & rstTerceros!IDTercero & Chr(34) & "," & Chr(34) & DigitoVerificacion(rstTerceros!IDTercero) & Chr(34) & ","; Chr(34) & rstTerceros!Apellido1 & Chr(34) & "," & Chr(34) & rstTerceros!Apellido2 & Chr(34) & "," & Chr(34) & rstTerceros!Nombre & Chr(34) & "," & Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!RazonSocial & Chr(34) & "," & Chr(34) & rstTerceros!RazonSocial & Chr(34) & "," & Chr(34) & rstTerceros!Direccion & Chr(34) & "," & Chr(34) & rstTerceros!Telefono & Chr(34) & "," & Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!Celular & Chr(34) & "," & Chr(34) & rstTerceros!IdDepartamento & Chr(34) & "," & Chr(34) & rstTerceros!NmDepartamento & Chr(34) & "," & Chr(34) & rstTerceros!CodigoDivision & Chr(34) & "," & Chr(34) & _
+      Print #1, Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!TpDoc & Chr(34) & "," & Chr(34) & rstTerceros!IdTercero & Chr(34) & "," & Chr(34) & DigitoVerificacion(rstTerceros!IdTercero) & Chr(34) & ","; Chr(34) & rstTerceros!Apellido1 & Chr(34) & "," & Chr(34) & rstTerceros!Apellido2 & Chr(34) & "," & Chr(34) & rstTerceros!Nombre & Chr(34) & "," & Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!RazonSocial & Chr(34) & "," & Chr(34) & rstTerceros!RazonSocial & Chr(34) & "," & Chr(34) & rstTerceros!Direccion & Chr(34) & "," & Chr(34) & rstTerceros!Telefono & Chr(34) & "," & Chr(34) & Chr(34) & "," & Chr(34) & rstTerceros!Celular & Chr(34) & "," & Chr(34) & rstTerceros!IdDepartamento & Chr(34) & "," & Chr(34) & rstTerceros!NmDepartamento & Chr(34) & "," & Chr(34) & rstTerceros!CodigoDivision & Chr(34) & "," & Chr(34) & _
       rstTerceros!NmCiudad & Chr(34) & "," & Chr(34) & "0" & Chr(34) & "," & Chr(34) & "01" & Chr(34) & "," & Chr(34) & "0" & Chr(34) & "," & Chr(34) & "0" & Chr(34) & "," & Chr(34) & "0" & Chr(34) & _
       "," & Chr(34) & "V00001" & Chr(34) & "," & Chr(34) & "N" & Chr(34) & "," & Chr(34) & "0" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "00" & Chr(34) & "," & Chr(34) & rstTerceros!Email & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & rstTerceros!CodigoDivision & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34) & "," & Chr(34) & "" & Chr(34)
     rstTerceros.MoveNext

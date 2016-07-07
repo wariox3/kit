@@ -85,3 +85,5 @@ FrmExportarManifiestosContabilidad = 176, 176, 1098, 740, C, 110, 110, 1032, 674
 FrmCuentasCobrar = 66, 66, 807, 512, C, 44, 44, 785, 490, C
 FrmControlGuiasCliente = 88, 88, 829, 534, C, 66, 66, 807, 512, C
 FrmValidarRangoGuias = 176, 176, 917, 622, C, 154, 154, 895, 600, C
+FrmImportarGuias2 = 66, 66, 807, 512, C, 44, 44, 785, 490, C
+FrmRangoGuias = 22, 22, 760, 468, C, 0, 0, 738, 446, C

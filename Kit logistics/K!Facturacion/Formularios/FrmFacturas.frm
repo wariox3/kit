@@ -106,16 +106,16 @@ Begin VB.Form FrmFacturas
       TabCaption(1)   =   "&Planillas"
       TabPicture(1)   =   "FrmFacturas.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FraPlanillas"
+      Tab(1).Control(0)=   "CmdManPlanillas"
       Tab(1).Control(1)=   "CmdVerPlanillas"
-      Tab(1).Control(2)=   "CmdManPlanillas"
+      Tab(1).Control(2)=   "FraPlanillas"
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "&Otros Conceptos"
       TabPicture(2)   =   "FrmFacturas.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FraConceptos"
+      Tab(2).Control(0)=   "CmdMantenimientoConceptos"
       Tab(2).Control(1)=   "CmdVerConceptos"
-      Tab(2).Control(2)=   "CmdMantenimientoConceptos"
+      Tab(2).Control(2)=   "FraConceptos"
       Tab(2).ControlCount=   3
       Begin VB.CommandButton CmdLiberarGuias 
          Caption         =   "Liberar guias"
@@ -1613,21 +1613,38 @@ Sub AccionTool(Indice As Byte)
         End If
       End If
     Case 6 'Eliminar
-      'MsgBox "Las facturas no se pueden anular, debe realizar una nota credito y liberar las guias para volver a facturar", vbInformation
-      'If CpPermiso(3, CodUsuarioActivo, 4, CnnPrincipal) = True Then
-      '  If MsgBox("¿Esta seguro de anular la factura?", vbQuestion + vbYesNo) = vbYes Then
-      '    If ExRecorset("Select IdFactura, Estado from facturas where IdFactura=" & Val(TxtCampos(0)) & " and Estado='I'") = True Then
-      '      AbrirRecorset rstUniversal, "Update guias Set IdFactura=0, Facturada=0, IdPlanillaFactura=null where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '      AbrirRecorset rstUniversal, "Update Facturas Set Estado='A', TFlete=0, TManejo=0, TOtros=0, TotalFactura=0, Saldo=0, NroGuias=0, NroPlanillas=0, NroConceptos=0 where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '      AbrirRecorset rstUniversal, "UPDATE facturas_venta SET Total = 0, VrFlete = 0, VrManejo = 0, VrOtros = 0 WHERE TipoFactura =1 AND Numero = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
-      '      TxtCampos(4).Text = "A"
-      '      AccionTool 17
-      '      MsgBox "Factura Anulada con exito", vbInformation
-      '    Else
-      '      MsgBox "La factura debe estar impresa", vbCritical
-      '    End If
-      '  End If
-      'End If
+      If CpPermiso(3, CodUsuarioActivo, 4, CnnPrincipal) = True Then
+        If MsgBox("¿Esta seguro de anular la factura?", vbQuestion + vbYesNo) = vbYes Then
+          If ExRecorset("Select IdFactura, Estado from facturas where IdFactura=" & Val(TxtCampos(0)) & " and Estado='I'") = True Then
+            Dim boolError As Boolean
+            boolError = False
+            AbrirRecorset rstUniversal, "Select IdCxC from cuentas_cobrar where NroDocumento = " & Val(TxtCampos(0)) & " AND TipoFactura = 1", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            If rstUniversal.RecordCount > 0 Then
+                Dim IdCuentaCobrar As Integer
+                IdCuentaCobrar = rstUniversal.Fields("IdCxC")
+                If ExRecorset("Select IdReciboDet from recibos_caja_det where codigo_cuenta_cobrar_fk=" & IdCuentaCobrar) = True Then
+                  boolError = True
+                End If
+                If ExRecorset("Select IdNotaCreditoDet from notas_credito_det where IdCxC=" & IdCuentaCobrar) = True Then
+                  boolError = True
+                End If
+            End If
+            If boolError = False Then
+              AbrirRecorset rstUniversal, "Update guias Set IdFactura=0, Facturada=0, IdPlanillaFactura=null where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              AbrirRecorset rstUniversal, "Update Facturas Set Estado='A', TFlete=0, TManejo=0, TOtros=0, TotalFactura=0, Saldo=0, NroGuias=0, NroPlanillas=0, NroConceptos=0 where IdFactura=" & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              AbrirRecorset rstUniversal, "UPDATE facturas_venta SET Total = 0, VrFlete = 0, VrManejo = 0, VrOtros = 0 WHERE TipoFactura =1 AND Numero = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              AbrirRecorset rstUniversal, "UPDATE cuentas_cobrar SET Total = 0, Abono = 0, Saldo = 0, VrFlete = 0, VrManejo = 0 WHERE TipoFactura =1 AND NroDocumento = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+              TxtCampos(4).Text = "A"
+              AccionTool 17
+              MsgBox "Factura Anulada con exito", vbInformation
+            Else
+              MsgBox "La factura tiene un recibo de caja o nota credito que la esta afectando y no se puede anular"
+            End If
+          Else
+            MsgBox "La factura debe estar impresa", vbCritical
+          End If
+        End If
+      End If
       
     Case 7 'Cancelar
       If Editando = True Then
@@ -1642,7 +1659,7 @@ Sub AccionTool(Indice As Byte)
         If rstUniversal.EOF = False Then
           Asignar rstUniversal
         Else
-          MsgBox "No se encontraron guias con este numero", vbCritical
+          MsgBox "No se encontraron facturas con este numero", vbCritical
         End If
         CerrarRecorset rstUniversal
       End If

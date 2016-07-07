@@ -4,7 +4,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmReciboCaja 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Recibos Caja..."
-   ClientHeight    =   8055
+   ClientHeight    =   8130
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   11595
@@ -12,14 +12,14 @@ Begin VB.Form FrmReciboCaja
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   8055
+   ScaleHeight     =   8130
    ScaleWidth      =   11595
    StartUpPosition =   2  'CenterScreen
    Begin VB.Frame Frame1 
       Enabled         =   0   'False
-      Height          =   2295
+      Height          =   2535
       Left            =   9000
-      TabIndex        =   42
+      TabIndex        =   43
       Top             =   1200
       Width           =   2535
       Begin VB.TextBox TxtCampos 
@@ -27,7 +27,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   8
          Left            =   960
-         TabIndex        =   51
+         TabIndex        =   52
          Top             =   360
          Width           =   1455
       End
@@ -36,7 +36,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   7
          Left            =   960
-         TabIndex        =   49
+         TabIndex        =   50
          Top             =   720
          Width           =   1455
       End
@@ -45,7 +45,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   9
          Left            =   960
-         TabIndex        =   47
+         TabIndex        =   48
          Top             =   1080
          Width           =   1455
       End
@@ -54,7 +54,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   10
          Left            =   960
-         TabIndex        =   45
+         TabIndex        =   46
          Top             =   1440
          Width           =   1455
       End
@@ -63,7 +63,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   3
          Left            =   960
-         TabIndex        =   43
+         TabIndex        =   44
          Top             =   1800
          Width           =   1455
       End
@@ -72,7 +72,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Ajuste peso:"
          Height          =   195
          Left            =   120
-         TabIndex        =   52
+         TabIndex        =   53
          Top             =   360
          Width           =   870
       End
@@ -81,7 +81,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Descuento:"
          Height          =   195
          Left            =   120
-         TabIndex        =   50
+         TabIndex        =   51
          Top             =   720
          Width           =   825
       End
@@ -90,7 +90,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Rte Ica:"
          Height          =   195
          Left            =   120
-         TabIndex        =   48
+         TabIndex        =   49
          Top             =   1080
          Width           =   570
       End
@@ -99,7 +99,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Rte Fte:"
          Height          =   195
          Left            =   120
-         TabIndex        =   46
+         TabIndex        =   47
          Top             =   1440
          Width           =   570
       End
@@ -108,7 +108,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Total:"
          Height          =   195
          Left            =   120
-         TabIndex        =   44
+         TabIndex        =   45
          Top             =   1800
          Width           =   405
       End
@@ -116,22 +116,22 @@ Begin VB.Form FrmReciboCaja
    Begin VB.CommandButton CmdVerDetalles 
       Caption         =   "Ver detalles"
       Height          =   255
-      Left            =   9240
-      TabIndex        =   26
-      Top             =   5760
+      Left            =   9360
+      TabIndex        =   27
+      Top             =   6000
       Width           =   2175
    End
    Begin VB.Frame FraAgregar 
       Enabled         =   0   'False
       Height          =   2175
       Left            =   120
-      TabIndex        =   23
-      Top             =   5760
+      TabIndex        =   24
+      Top             =   5880
       Width           =   6375
       Begin VB.TextBox TxtNroDocumento 
          Height          =   285
          Left            =   1440
-         TabIndex        =   40
+         TabIndex        =   41
          Top             =   600
          Width           =   1575
       End
@@ -139,7 +139,7 @@ Begin VB.Form FrmReciboCaja
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   4560
-         TabIndex        =   17
+         TabIndex        =   18
          Top             =   960
          Width           =   1575
       End
@@ -147,7 +147,7 @@ Begin VB.Form FrmReciboCaja
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   4560
-         TabIndex        =   16
+         TabIndex        =   17
          Top             =   600
          Width           =   1575
       End
@@ -155,7 +155,7 @@ Begin VB.Form FrmReciboCaja
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   4560
-         TabIndex        =   18
+         TabIndex        =   19
          Top             =   1320
          Width           =   1575
       End
@@ -163,7 +163,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Retirar"
          Height          =   255
          Left            =   240
-         TabIndex        =   34
+         TabIndex        =   35
          Top             =   1800
          Width           =   1215
       End
@@ -171,7 +171,7 @@ Begin VB.Form FrmReciboCaja
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   4560
-         TabIndex        =   15
+         TabIndex        =   16
          Top             =   240
          Width           =   1575
       End
@@ -179,14 +179,14 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Agregar"
          Height          =   255
          Left            =   4920
-         TabIndex        =   19
+         TabIndex        =   20
          Top             =   1800
          Width           =   1215
       End
       Begin VB.TextBox TxtCuentaCobrar 
          Height          =   285
          Left            =   1440
-         TabIndex        =   13
+         TabIndex        =   14
          Top             =   240
          Width           =   1575
       End
@@ -194,7 +194,7 @@ Begin VB.Form FrmReciboCaja
          Alignment       =   1  'Right Justify
          Height          =   285
          Left            =   1440
-         TabIndex        =   14
+         TabIndex        =   15
          Top             =   960
          Width           =   1575
       End
@@ -203,7 +203,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Documento:"
          Height          =   195
          Left            =   510
-         TabIndex        =   41
+         TabIndex        =   42
          Top             =   600
          Width           =   870
       End
@@ -212,7 +212,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Rte Fte:"
          Height          =   195
          Left            =   3855
-         TabIndex        =   39
+         TabIndex        =   40
          Top             =   960
          Width           =   570
       End
@@ -221,7 +221,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Rte ICA:"
          Height          =   195
          Left            =   3825
-         TabIndex        =   38
+         TabIndex        =   39
          Top             =   600
          Width           =   600
       End
@@ -230,7 +230,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Ajuste peso:"
          Height          =   195
          Left            =   3555
-         TabIndex        =   35
+         TabIndex        =   36
          Top             =   1320
          Width           =   870
       End
@@ -239,7 +239,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Descuento:"
          Height          =   195
          Left            =   3600
-         TabIndex        =   27
+         TabIndex        =   28
          Top             =   240
          Width           =   825
       End
@@ -248,7 +248,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Codigo:"
          Height          =   195
          Left            =   840
-         TabIndex        =   25
+         TabIndex        =   26
          Top             =   240
          Width           =   540
       End
@@ -257,7 +257,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Valor:"
          Height          =   195
          Left            =   975
-         TabIndex        =   24
+         TabIndex        =   25
          Top             =   960
          Width           =   405
       End
@@ -265,8 +265,8 @@ Begin VB.Form FrmReciboCaja
    Begin MSComctlLib.ListView LstReciboDet 
       Height          =   2055
       Left            =   120
-      TabIndex        =   22
-      Top             =   3600
+      TabIndex        =   23
+      Top             =   3840
       Width           =   11415
       _ExtentX        =   20135
       _ExtentY        =   3625
@@ -336,14 +336,14 @@ Begin VB.Form FrmReciboCaja
       Enabled         =   0   'False
       Height          =   615
       Left            =   120
-      TabIndex        =   9
+      TabIndex        =   10
       Top             =   600
       Width           =   8775
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   6
          Left            =   2760
-         TabIndex        =   32
+         TabIndex        =   33
          Top             =   240
          Width           =   1095
       End
@@ -351,7 +351,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Anulado"
          Height          =   255
          Left            =   7680
-         TabIndex        =   29
+         TabIndex        =   30
          Top             =   240
          Width           =   975
       End
@@ -359,7 +359,7 @@ Begin VB.Form FrmReciboCaja
          Caption         =   "Impreso"
          Height          =   255
          Left            =   6720
-         TabIndex        =   28
+         TabIndex        =   29
          Top             =   240
          Width           =   975
       End
@@ -367,7 +367,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   1
          Left            =   4680
-         TabIndex        =   11
+         TabIndex        =   12
          Top             =   240
          Width           =   1935
       End
@@ -375,7 +375,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   285
          Index           =   0
          Left            =   840
-         TabIndex        =   10
+         TabIndex        =   11
          Top             =   240
          Width           =   1095
       End
@@ -385,7 +385,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   195
          Index           =   0
          Left            =   2040
-         TabIndex        =   33
+         TabIndex        =   34
          Top             =   240
          Width           =   600
       End
@@ -395,7 +395,7 @@ Begin VB.Form FrmReciboCaja
          Height          =   195
          Index           =   6
          Left            =   4080
-         TabIndex        =   20
+         TabIndex        =   21
          Top             =   240
          Width           =   495
       End
@@ -405,85 +405,109 @@ Begin VB.Form FrmReciboCaja
          Height          =   195
          Index           =   5
          Left            =   600
-         TabIndex        =   12
+         TabIndex        =   13
          Top             =   240
          Width           =   210
       End
    End
    Begin VB.Frame FraDatos 
       Enabled         =   0   'False
-      Height          =   2295
+      Height          =   2535
       Left            =   120
-      TabIndex        =   5
+      TabIndex        =   6
       Top             =   1200
       Width           =   8775
+      Begin VB.TextBox TxtCampos 
+         Height          =   285
+         Index           =   11
+         Left            =   1440
+         TabIndex        =   4
+         Top             =   1440
+         Width           =   1215
+      End
+      Begin VB.TextBox TxtNmCentroOperaciones 
+         Height          =   285
+         Left            =   2760
+         TabIndex        =   54
+         Top             =   1440
+         Width           =   5895
+      End
       Begin VB.ComboBox CboTpRecibo 
          Height          =   315
          ItemData        =   "FrmReciboCaja.frx":0000
-         Left            =   840
+         Left            =   1440
          List            =   "FrmReciboCaja.frx":000A
          Style           =   2  'Dropdown List
          TabIndex        =   0
          Top             =   240
-         Width           =   2775
+         Width           =   3255
       End
       Begin VB.TextBox TxtNmBanco 
          Height          =   285
-         Left            =   2400
-         TabIndex        =   30
+         Left            =   2760
+         TabIndex        =   31
          Top             =   1080
-         Width           =   6135
+         Width           =   5895
       End
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   5
-         Left            =   840
+         Left            =   1440
          TabIndex        =   3
          Top             =   1080
-         Width           =   1455
+         Width           =   1215
       End
       Begin VB.TextBox TxtCampos 
          Height          =   285
          Index           =   2
-         Left            =   840
+         Left            =   1440
          TabIndex        =   2
          Top             =   720
-         Width           =   1455
+         Width           =   1215
       End
       Begin VB.TextBox TxtNmTercero 
          Height          =   285
-         Left            =   2400
-         TabIndex        =   6
+         Left            =   2760
+         TabIndex        =   7
          Top             =   720
-         Width           =   6135
+         Width           =   5895
       End
       Begin VB.TextBox TxtCampos 
          Height          =   615
          Index           =   4
-         Left            =   2400
+         Left            =   2760
          MultiLine       =   -1  'True
-         TabIndex        =   4
-         Top             =   1560
-         Width           =   6135
+         TabIndex        =   5
+         Top             =   1800
+         Width           =   5895
       End
       Begin MSComCtl2.DTPicker DPFechaPago 
          Height          =   300
-         Left            =   5040
+         Left            =   6960
          TabIndex        =   1
          Top             =   240
          Width           =   1695
          _ExtentX        =   2990
          _ExtentY        =   529
          _Version        =   393216
-         Format          =   16908289
+         Format          =   16842753
          CurrentDate     =   38971
+      End
+      Begin VB.Label Label18 
+         AutoSize        =   -1  'True
+         Caption         =   "C. Operaciones:"
+         Height          =   195
+         Left            =   120
+         TabIndex        =   55
+         Top             =   1440
+         Width           =   1140
       End
       Begin VB.Label Label10 
          AutoSize        =   -1  'True
          Caption         =   "Fecha pago:"
          Height          =   195
-         Left            =   4080
-         TabIndex        =   37
+         Left            =   5880
+         TabIndex        =   38
          Top             =   240
          Width           =   900
       End
@@ -491,8 +515,8 @@ Begin VB.Form FrmReciboCaja
          AutoSize        =   -1  'True
          Caption         =   "Tipo:"
          Height          =   195
-         Left            =   360
-         TabIndex        =   36
+         Left            =   900
+         TabIndex        =   37
          Top             =   240
          Width           =   360
       End
@@ -500,8 +524,8 @@ Begin VB.Form FrmReciboCaja
          AutoSize        =   -1  'True
          Caption         =   "Banco:"
          Height          =   195
-         Left            =   240
-         TabIndex        =   31
+         Left            =   750
+         TabIndex        =   32
          Top             =   1080
          Width           =   510
       End
@@ -509,8 +533,8 @@ Begin VB.Form FrmReciboCaja
          AutoSize        =   -1  'True
          Caption         =   "Tercero:"
          Height          =   195
-         Left            =   120
-         TabIndex        =   8
+         Left            =   660
+         TabIndex        =   9
          Top             =   720
          Width           =   600
       End
@@ -518,9 +542,9 @@ Begin VB.Form FrmReciboCaja
          AutoSize        =   -1  'True
          Caption         =   "Comentarios:"
          Height          =   195
-         Left            =   1440
-         TabIndex        =   7
-         Top             =   1560
+         Left            =   1800
+         TabIndex        =   8
+         Top             =   1800
          Width           =   915
       End
    End
@@ -528,7 +552,7 @@ Begin VB.Form FrmReciboCaja
       Align           =   1  'Align Top
       Height          =   570
       Left            =   0
-      TabIndex        =   21
+      TabIndex        =   22
       Top             =   0
       Width           =   11595
       _ExtentX        =   20452
@@ -658,8 +682,12 @@ Private Sub CmdAgregar_Click()
           TxtCampos(3).Text = Val(TxtCampos(3).Text) + Val(TxtValor.Text)
           LimpiarAgregar
           VerDetalle
-          AccionTool 17
-          Asignar rstRecibos
+          AbrirRecorset rstUniversal, strSqlRecibos & " WHERE IdRecibo = " & Val(TxtCampos(0)), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+          If rstUniversal.EOF = False Then
+            Asignar rstUniversal
+          End If
+          'AccionTool 17
+          'Asignar rstRecibos
           TxtCuentaCobrar.SetFocus
         Else
           MsgBox "El valor pagado es mayor al saldo de la cuenta por cobrar", vbCritical
@@ -692,8 +720,10 @@ Private Sub CmdRetirar_Click()
         End If
       CerrarRecorset rstReciboDet
       LstReciboDet.ListItems.Remove (II)
-      AccionTool 17
-      Asignar rstRecibos
+      AbrirRecorset rstUniversal, strSqlRecibos & " WHERE IdRecibo = " & Val(TxtCampos(0)), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+      If rstUniversal.EOF = False Then
+        Asignar rstUniversal
+      End If
     Else
      II = II + 1
     End If
@@ -718,10 +748,11 @@ Private Sub Form_Load()
   rstRecibos.CursorLocation = adUseServer
   
   strSqlRecibos = "SELECT recibos_caja.*, " & _
-                "terceros.RazonSocial, bancos.nombre as nombreBanco " & _
+                "terceros.RazonSocial, bancos.nombre as nombreBanco, centrosoperaciones.NmPuntoOperaciones " & _
                 "FROM recibos_caja " & _
                 "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IDTercero " & _
-                "LEFT JOIN bancos ON recibos_caja.codigo_banco_fk = bancos.codigo_banco_pk "
+                "LEFT JOIN bancos ON recibos_caja.codigo_banco_fk = bancos.codigo_banco_pk " & _
+                "LEFT JOIN centrosoperaciones ON recibos_caja.IdCentroOperaciones = centrosoperaciones.IDPO "
   AbrirRecorset rstRecibos, strSqlRecibos & " Order by IdRecibo Desc Limit 100", CnnPrincipal, adOpenDynamic, adLockOptimistic
   Formatos rstRecibos
   Asignar rstRecibos
@@ -729,12 +760,13 @@ Private Sub Form_Load()
 End Sub
 
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 10
+  For II = 0 To 11
     TxtCampos(II).Text = rstAsignar.Fields(II) & ""
   Next
   CboTpRecibo.ListIndex = Val(rstAsignar!IdReciboTipo) - 1
   TxtNmTercero.Text = rstAsignar!RazonSocial & ""
   TxtNmBanco.Text = rstAsignar!nombreBanco & ""
+  TxtNmCentroOperaciones.Text = rstAsignar!NmPuntoOperaciones & ""
   ChkImpreso.Value = DevCheck(rstAsignar!Impreso)
   ChkAnulado.Value = DevCheck(rstAsignar!Anulado)
   DPFechaPago.Value = rstAsignar!FechaPago
@@ -751,7 +783,7 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
   VerDetalle
 End Sub
 Private Sub Formatos(rstForma As ADODB.Recordset)
-  For II = 0 To 10
+  For II = 0 To 11
     Set rstForma.Fields(II).DataFormat = TxtCampos(II).DataFormat
   Next
 End Sub
@@ -763,12 +795,13 @@ Sub AccionTool(Indice As Byte)
         TxtCampos(1) = Format(Date, "dd/mm/yy") & " " & Format(Time, "h:m:s")
         DPFechaPago.Value = Date
         CboTpRecibo.SetFocus
+        TxtCampos(11).Text = Coperaciones
     Case 4  'Guardar
       If Editando = True Then
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             Bloquear
-            AbrirRecorset rstUniversal, "Update recibos_caja SET IdTercero='" & TxtCampos(2).Text & "', Total= " & Val(TxtCampos(3).Text) & ", Comentarios = '" & TxtCampos(4).Text & "', codigo_banco_fk = " & Val(TxtCampos(5).Text) & ", IdReciboTipo = " & CboTpRecibo.ListIndex + 1 & ", FechaPago = '" & Format(DPFechaPago.Value, "yyyy-mm-dd") & "'  WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update recibos_caja SET IdTercero='" & TxtCampos(2).Text & "', Total= " & Val(TxtCampos(3).Text) & ", Comentarios = '" & TxtCampos(4).Text & "', codigo_banco_fk = " & Val(TxtCampos(5).Text) & ", IdReciboTipo = " & CboTpRecibo.ListIndex + 1 & ", FechaPago = '" & Format(DPFechaPago.Value, "yyyy-mm-dd") & "', IdCentroOperaciones=" & Val(TxtCampos(11).Text) & "  WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
             Editando = False
             AccionTool 17
             TxtCuentaCobrar.SetFocus
@@ -779,8 +812,8 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-            AbrirRecorset rstUniversal, "INSERT INTO recibos_caja (Fecha, IdTercero, Total, Comentarios, codigo_banco_fk, IdReciboTipo, FechaPago) " & _
-                                        "VALUES ('" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "', " & Val(TxtCampos(5).Text) & ", " & CboTpRecibo.ListIndex + 1 & ", '" & Format(DPFechaPago.Value, "yyyy-mm-dd") & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "INSERT INTO recibos_caja (Fecha, IdTercero, Total, Comentarios, codigo_banco_fk, IdReciboTipo, FechaPago, IdCentroOperaciones) " & _
+                                        "VALUES ('" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & TxtCampos(2).Text & "', " & Val(TxtCampos(3).Text) & ", '" & TxtCampos(4).Text & "', " & Val(TxtCampos(5).Text) & ", " & CboTpRecibo.ListIndex + 1 & ", '" & Format(DPFechaPago.Value, "yyyy-mm-dd") & "', " & Val(TxtCampos(11).Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
             Bloquear
             AccionTool 17
             AccionTool 11
@@ -904,11 +937,12 @@ Private Sub Bloquear()
 End Sub
 
 Private Sub Limpiar()
-  For II = 0 To 10
+  For II = 0 To 11
     TxtCampos(II).Text = ""
   Next
   TxtNmTercero.Text = ""
   TxtNmBanco.Text = ""
+  TxtNmCentroOperaciones.Text = ""
   CboTpRecibo.ListIndex = 0
   LstReciboDet.ListItems.Clear
 End Sub
@@ -969,6 +1003,11 @@ Private Sub TxtCampos_KeyDown(Index As Integer, KeyCode As Integer, Shift As Int
         FrmBuscarBanco.Show 1
         TxtCampos(5).Text = FufuLo
       End If
+    Case 11
+      If KeyCode = vbKeyF2 Then
+        FrmBuscarCO.Show 1
+        TxtCampos(11).Text = FufuLo
+      End If
   End Select
 
 End Sub
@@ -1004,6 +1043,18 @@ Private Sub TxtCampos_LostFocus(Index As Integer)
           TxtNmBanco = "": TxtCampos(5).Text = ""
         End If
         CerrarRecorset rstUniversal
+      End If
+    Case 11
+      If Val(TxtCampos(11).Text) <> 0 Then
+        AbrirRecorset rstUniversal, "SELECT IDPO, NmPuntoOperaciones From centrosoperaciones where IDPO=" & TxtCampos(11), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        If rstUniversal.EOF = False Then
+          TxtNmCentroOperaciones.Text = rstUniversal.Fields("NmPuntoOperaciones") & ""
+        Else
+          TxtNmCentroOperaciones.Text = "": TxtCampos(11) = ""
+        End If
+        CerrarRecorset rstUniversal
+      Else
+          TxtNmCentroOperaciones.Text = "": TxtCampos(11) = ""
       End If
   End Select
 End Sub

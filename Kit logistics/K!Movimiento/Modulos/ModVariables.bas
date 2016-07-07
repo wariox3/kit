@@ -29,6 +29,8 @@ Public FufuSt As String
 Public FufuLo As Long
 Public FufuLo2 As Long
 Public FufuDo As Double
+Public GuiaDesde As Double
+Public GuiaHasta As Double
 
 Type TipListaPrecios
   Devuelve As Boolean
@@ -47,7 +49,7 @@ Type EstructuraMatrizProductos
   Largo As Long
   Alto As Long
   KilosVol As Long
-  KilosReales As Long
+  kilosReales As Long
   KilosFacturados As Long
   Cantidad As Integer
   VrFlete As Currency

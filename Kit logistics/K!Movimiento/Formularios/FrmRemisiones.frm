@@ -2309,7 +2309,7 @@ Sub PasarDatosLiquidacion()
       Item.SubItems(6) = MProductos(II).Largo
       Item.SubItems(7) = MProductos(II).Alto
       Item.SubItems(8) = MProductos(II).Cantidad
-      Item.SubItems(9) = MProductos(II).KilosReales
+      Item.SubItems(9) = MProductos(II).kilosReales
       Item.SubItems(10) = MProductos(II).KilosVol
       Item.SubItems(11) = MProductos(II).KilosFacturados
       Item.SubItems(12) = MProductos(II).VrFlete
@@ -2328,7 +2328,7 @@ Sub LlenarGrillaProductos()
       MProductos(II).Largo = rstUniversal.Fields("largo")
       MProductos(II).Alto = rstUniversal.Fields("altura")
       MProductos(II).Cantidad = rstUniversal.Fields("cant")
-      MProductos(II).KilosReales = rstUniversal.Fields("KilosReal")
+      MProductos(II).kilosReales = rstUniversal.Fields("KilosReal")
       MProductos(II).KilosVol = rstUniversal.Fields("KilosVol")
       MProductos(II).KilosFacturados = rstUniversal.Fields("KilosFacturados")
       MProductos(II).VrFlete = rstUniversal.Fields("VlrFlete")
@@ -2342,7 +2342,7 @@ Sub VaciarGrilla()
     For II = 1 To 6
       If MProductos(II).IdProducto = 0 Then Exit For
       Prog (II)
-      AbrirRecorset rstUniversal, "INSERT INTO MvtoGuias (Guia, IdProducto, IdEmpaque, Largo, Ancho, Altura, KilosReal, KilosVol, Kilosfacturados, Cant, VlrFlete, Lote) VALUES (" & Val(Campo(0)) & "," & MProductos(II).IdProducto & "," & MProductos(II).IdEmpaque & "," & MProductos(II).Largo & "," & MProductos(II).Ancho & "," & MProductos(II).Largo & "," & MProductos(II).KilosReales & "," & MProductos(II).KilosVol & "," & MProductos(II).KilosFacturados & "," & MProductos(II).Cantidad & "," & Val(MProductos(II).VrFlete) & ",'" & MProductos(II).Lote & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+      AbrirRecorset rstUniversal, "INSERT INTO MvtoGuias (Guia, IdProducto, IdEmpaque, Largo, Ancho, Altura, KilosReal, KilosVol, Kilosfacturados, Cant, VlrFlete, Lote) VALUES (" & Val(Campo(0)) & "," & MProductos(II).IdProducto & "," & MProductos(II).IdEmpaque & "," & MProductos(II).Largo & "," & MProductos(II).Ancho & "," & MProductos(II).Largo & "," & MProductos(II).kilosReales & "," & MProductos(II).KilosVol & "," & MProductos(II).KilosFacturados & "," & MProductos(II).Cantidad & "," & Val(MProductos(II).VrFlete) & ",'" & MProductos(II).Lote & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
     Next
   Erase MProductos
   FinProg

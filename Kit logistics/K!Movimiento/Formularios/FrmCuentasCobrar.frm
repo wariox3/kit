@@ -129,7 +129,7 @@ Begin VB.Form FrmCuentasCobrar
       _ExtentX        =   2990
       _ExtentY        =   529
       _Version        =   393216
-      Format          =   49872897
+      Format          =   49807361
       CurrentDate     =   38971
    End
    Begin VB.Label Label10 
@@ -172,7 +172,7 @@ Private Sub CmdGenerarReciboCaja_Click()
         AbrirRecorset rstCuenta, FufuSt, CnnPrincipal, adOpenDynamic, adLockReadOnly
         FufuLo = SacarConsecutivo("RecibosCaja", CnnPrincipal)
         AbrirRecorset rstUniversal, "INSERT INTO recibos_caja (numero, Fecha, IdTercero, Total, Comentarios, codigo_banco_fk, Impreso, IdReciboTipo, FechaPago) " & _
-                                        "VALUES (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & rstCuenta.Fields("IdTercero") & "', " & rstCuenta.Fields("Saldo") & ", '', 6, 1, 2, '" & Format(DPFechaPago.value, "yyyy-mm-dd") & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+                                        "VALUES (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & rstCuenta.Fields("IdTercero") & "', " & rstCuenta.Fields("Saldo") & ", '', 7, 1, 2, '" & Format(DPFechaPago.value, "yyyy-mm-dd") & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
         FufuSt = "Select recibos_caja.* from recibos_caja where numero=" & FufuLo
         AbrirRecorset rstRecibo, FufuSt, CnnPrincipal, adOpenDynamic, adLockReadOnly
         
@@ -205,7 +205,7 @@ rstRecibo.CursorLocation = adUseClient
           If Val(rstCuentaCobrarTemp.Fields("Saldo")) > 0 Then
             FufuLo = SacarConsecutivo("RecibosCaja", CnnPrincipal)
             AbrirRecorset rstActualizar, "INSERT INTO recibos_caja (numero, Fecha, IdTercero, Total, Comentarios, codigo_banco_fk, Impreso, IdReciboTipo, FechaPago) " & _
-                                            "VALUES (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & rstCuentaCobrarTemp.Fields("IdTercero") & "', " & rstCuentaCobrarTemp.Fields("Saldo") & ", '', 6, 1, 2, '" & Format(DPFechaPago.value, "yyyy-mm-dd") & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+                                            "VALUES (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "', '" & rstCuentaCobrarTemp.Fields("IdTercero") & "', " & rstCuentaCobrarTemp.Fields("Saldo") & ", '', 7, 1, 2, '" & Format(DPFechaPago.value, "yyyy-mm-dd") & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
             FufuSt = "Select recibos_caja.* from recibos_caja where numero=" & FufuLo
             AbrirRecorset rstRecibo, FufuSt, CnnPrincipal, adOpenDynamic, adLockReadOnly
             AbrirRecorset rstActualizar, "INSERT INTO recibos_caja_det (IdRecibo, codigo_cuenta_cobrar_fk, valor) VALUES (" & rstRecibo.Fields("IdRecibo") & ", " & rstCuentaCobrarTemp.Fields("IdCxC") & ", " & rstCuentaCobrarTemp.Fields("Saldo") & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic

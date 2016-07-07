@@ -93,15 +93,15 @@ On Error GoTo SinConexion
     End If
     rstUniversal.Close
     
-    Dim Version As String
-    Version = App.Major & "." & App.Minor & "." & App.Revision
-    AbrirRecorset rstUniversal, "SELECT registro_scripts.* FROM registro_scripts WHERE Version = '" & Version & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
-    If rstUniversal.RecordCount <= 0 Then
-      MsgBox "No a ejecutado el script necesario de la version " & Version & " debe hacerlo para poder ingresar a la aplicacion", vbCritical
-      Unload Me
-    Else
+    'Dim Version As String
+    'Version = App.Major & "." & App.Minor & "." & App.Revision
+    'AbrirRecorset rstUniversal, "SELECT registro_scripts.* FROM registro_scripts WHERE Version = '" & Version & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    'If rstUniversal.RecordCount <= 0 Then
+    '  MsgBox "No a ejecutado el script necesario de la version " & Version & " debe hacerlo para poder ingresar a la aplicacion", vbCritical
+    '  Unload Me
+    'Else
       Principal.Show
-    End If
+    'End If
   End If
   Unload Me
 SinConexion:

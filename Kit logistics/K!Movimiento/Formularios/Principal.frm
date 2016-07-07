@@ -223,6 +223,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuImpGuiaFormato 
          Caption         =   "Imprimir guia en formato"
       End
+      Begin VB.Menu MnuImpGuiaFormatoRango 
+         Caption         =   "Imprimir guia en formato rango"
+      End
       Begin VB.Menu MnuSep 
          Caption         =   "-"
          Index           =   10
@@ -307,7 +310,10 @@ Begin VB.MDIForm Principal
          Caption         =   "Analisis de rentabilidad de despachos pendietes por ruta"
       End
       Begin VB.Menu MnuImportarGuias 
-         Caption         =   "Importar Guias"
+         Caption         =   "Importar guias"
+      End
+      Begin VB.Menu MnuImportarGuias2 
+         Caption         =   "Importar guias 2"
       End
       Begin VB.Menu MnuExportarDespachos 
          Caption         =   "Exportar despachos"
@@ -1014,11 +1020,19 @@ Private Sub MnuImpGuiaFormato_Click()
     AbrirRecorset rstUniversal, "Select Guia from Guias where Guia=" & Principal.ToolConsultas1.DatLo, CnnPrincipal, adOpenForwardOnly, adLockReadOnly
     If rstUniversal.EOF = False Then
       Mostrar_Reporte CnnPrincipal, 15, "Select*from sql_im_impguia where Guia=" & Principal.ToolConsultas1.DatLo, "", 2
+      'Mostrar_Reporte CnnPrincipal, 15, "Select*from sql_im_impguia where Guia >= 2005 and Guia <= 2007", "", 2
       InsertarLog 7, Principal.ToolConsultas1.DatLo
     Else
       MsgBox "No se encontraron guias con este numero", vbCritical
     End If
     CerrarRecorset rstUniversal
+  End If
+End Sub
+
+Private Sub MnuImpGuiaFormatoRango_Click()
+  FrmRangoGuias.Show 1
+  If FufuLo = 1 Then
+    Mostrar_Reporte CnnPrincipal, 15, "Select*from sql_im_impguia where Guia>=" & GuiaDesde & " and Guia <= " & GuiaHasta, "", 2
   End If
 End Sub
 
@@ -1030,6 +1044,10 @@ Private Sub MnuImportarGuiasArchivo_Click()
 
 End Sub
 
+
+Private Sub MnuImportarGuias2_Click()
+  FrmImportarGuias2.Show 1
+End Sub
 
 Private Sub MnuImprimirFormatoGuiaFactura_Click()
   If Principal.ToolConsultas1.AbrirDevDatos("Digite el numero de la guia", "Digite el numero de la guia para ver el formato", 3, 0) = True Then

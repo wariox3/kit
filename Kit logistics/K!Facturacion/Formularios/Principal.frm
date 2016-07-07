@@ -206,11 +206,14 @@ Begin VB.MDIForm Principal
    End
    Begin VB.Menu MnuProcesos 
       Caption         =   "Procesos"
+      Begin VB.Menu MnuExportarContabilidad 
+         Caption         =   "Exportar facturas contabilidad"
+      End
       Begin VB.Menu MnuExportarRecibos 
          Caption         =   "Exportar recibos a contabilidad"
       End
-      Begin VB.Menu MnuExportarContabilidad 
-         Caption         =   "Exportar facturas contabilidad"
+      Begin VB.Menu MnuExportarNotasCredito 
+         Caption         =   "Exportar notas credito"
       End
       Begin VB.Menu MnuControlFacturas 
          Caption         =   "Control facturas"
@@ -266,6 +269,10 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 Option Explicit
 
+
+Private Sub MDIForm_Load()
+  Me.Caption = Me.Caption & " V" & App.Major & "." & App.Minor & "." & App.Revision
+End Sub
 
 Private Sub MenuRecibosSinImprimir_Click()
   FrmRecibosSinImprimir.Show 1
@@ -348,6 +355,10 @@ End Sub
 
 Private Sub MnuExportarContabilidad_Click()
   FrmExportarFacturas.Show 1
+End Sub
+
+Private Sub MnuExportarNotasCredito_Click()
+  FrmExportarNotasCredito.Show 1
 End Sub
 
 Private Sub MnuExportarRecibos_Click()

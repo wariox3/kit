@@ -46,6 +46,7 @@ Form=Formularios\FrmExportarRecibos.frm
 Form=Formularios\FrmBuscarNotaCreditoTipo.frm
 Form=Formularios\FrmVerCuentaCobrar.frm
 Form=Formularios\FrmRecibosSinImprimir.frm
+Form=Formularios\FrmExportarNotasCredito.frm
 IconForm="Principal"
 Startup="FrmPresentacion"
 HelpFile=""
@@ -58,8 +59,8 @@ HelpContextID="0"
 CompatibleMode="0"
 MajorVer=1
 MinorVer=0
-RevisionVer=0
-AutoIncrementVer=0
+RevisionVer=4
+AutoIncrementVer=1
 ServerSupportFiles=0
 VersionCompanyName="tc"
 CompilationType=0
@@ -77,6 +78,7 @@ Unattended=0
 Retained=0
 ThreadPerObject=0
 MaxNumberOfThreads=1
+DebugStartupOption=0
 
 [MS Transaction Server]
 AutoRefresh=1
