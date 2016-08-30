@@ -55,9 +55,7 @@ Begin VB.Form FrmTerceros
       TabPicture(1)   =   "FrmTerceros.frx":001C
       Tab(1).ControlEnabled=   0   'False
       Tab(1).Control(0)=   "FraNegociaciones"
-      Tab(1).Control(0).Enabled=   0   'False
       Tab(1).Control(1)=   "FraDatosComerciales"
-      Tab(1).Control(1).Enabled=   0   'False
       Tab(1).ControlCount=   2
       Begin VB.Frame FraNegociaciones 
          Enabled         =   0   'False
@@ -678,20 +676,24 @@ Private Sub CmdCrearNegociacion_Click()
 End Sub
 
 Private Sub CmdInactivar_Click()
-  rstAct.CursorLocation = adUseClient
-  AbrirRecorset rstUniversal, "Select IDTercero, Inactivo from terceros where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
-  If rstUniversal.EOF = False Then
-    If Val(rstUniversal.Fields("Inactivo")) = 0 Then
-      AbrirRecorset rstAct, "Update terceros set Inactivo=1 where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
-      LblEstado.Caption = "Inactivo"
-      CmdInactivar.Caption = "Activar"
-    Else
-      AbrirRecorset rstAct, "Update terceros set Inactivo=0 where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
-      LblEstado.Caption = "Activo"
-      CmdInactivar.Caption = "Inactivar"
+  If CpPermisoEspecial(17, CodUsuarioActivo, CnnPrincipal) = True Then
+    rstAct.CursorLocation = adUseClient
+    AbrirRecorset rstUniversal, "Select IDTercero, Inactivo from terceros where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.EOF = False Then
+      If Val(rstUniversal.Fields("Inactivo")) = 0 Then
+        AbrirRecorset rstAct, "Update terceros set Inactivo=1 where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        LblEstado.Caption = "Inactivo"
+        CmdInactivar.Caption = "Activar"
+      Else
+        AbrirRecorset rstAct, "Update terceros set Inactivo=0 where IDTercero='" & Val(TxtCampo(0).Text) & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        LblEstado.Caption = "Activo"
+        CmdInactivar.Caption = "Inactivar"
+      End If
     End If
+    CerrarRecorset rstUniversal
+  Else
+    MsgBox "No tiene permisos para esta opcion", vbCritical
   End If
-  CerrarRecorset rstUniversal
 End Sub
 
 Private Sub CmdQuitar_Click()

@@ -1,11 +1,11 @@
 
-Procesando 05/07/2016 02:55:26 p.m.
+Procesando 30/08/2016 05:46:54 p.m.
 Archivo Log 
 Generando fuentes... 
 Compilando fuentes de Gentee... 
 Creando archivo instalador: C:\kit\Setups\Actualizaciones.exe 
 Añadiendo temporary archivos al EXE 
-C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 05/07/2016 02:55:27 p.m. 2013  50.91%
+C:\DOCUME~1\DESARR~1\CONFIG~1\Temp\gentee01\spanish.lng 30/08/2016 05:46:55 p.m. 2013  50.91%
 C:\kit\licencia1.txt 16/05/2013 10:22:24 a.m. 27651  41.23%
 C:\Archivos de programa\CreateInstall Free\res\leftimg\install\green-install.bmp 11/03/2008 09:04:08 a.m. 20680  24.78%
 C:\Archivos de programa\CreateInstall Free\res\logo\green-logo.bmp 18/03/2008 12:43:36 a.m. 3626  60.94%
@@ -20,8 +20,8 @@ C:\kit\Ayudas\Compilado\Help Kit logistic.chm 16/05/2013 10:22:18 a.m. 400030  1
 C:\kit\Kit logistics\Dlls\Funciones_Procedimientos\comp\PyFunPro.dll 26/08/2013 09:34:49 a.m. 81920  33.95%
 C:\kit\Kit logistics\K!Administrador\Comp\Administrador.exe 14/01/2015 08:25:03 a.m. 188416  26.54%
 C:\kit\Kit logistics\ocx\Consultas\comp\PyConsultasKL.ocx 09/10/2013 01:07:05 p.m. 155648  25.36%
-C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 05/07/2016 02:53:39 p.m. 856064  25.76%
-C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 04/06/2016 10:46:54 a.m. 2068480  24.22%
+C:\kit\Kit logistics\K!Facturacion\comp\Facturacion.exe 30/08/2016 05:46:13 p.m. 856064  25.74%
+C:\kit\Kit logistics\K!Movimiento\Comp\Movimiento.exe 20/08/2016 10:16:59 a.m. 2068480  24.25%
 C:\kit\Kit logistics\K!Recogidas\Comp\Recogidas.exe 09/11/2015 07:58:49 p.m. 430080  29.57%
 C:\kit\Kit logistics\K!Seguridad y monitoreo\comp\Seguridad y Monitoreo.exe 14/01/2015 08:26:17 a.m. 307200  33.24%
 C:\kit\Kit logistics\K!Vehiculos\comp\Vehiculos.exe 17/02/2015 05:42:09 p.m. 241664  32.81%
@@ -32,7 +32,7 @@ C:\kit\Kit logistics\Reportes\Facturacion\Factura.rpt 20/11/2013 04:49:39 p.m. 1
 C:\kit\Kit logistics\Reportes\Facturacion\FacturaCaciqueTone.rpt 27/01/2016 09:33:34 p.m. 135032  46.23%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturaConceptosCaciqueTone.rpt 22/09/2014 04:57:57 p.m. 124928  49.32%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturaConceptosCuartas.rpt 18/02/2016 09:24:55 p.m. 131072  19.36%
-C:\kit\Kit logistics\Reportes\Facturacion\FacturaCotrascal.rpt 13/02/2016 10:08:06 a.m. 149305  42.65%
+C:\kit\Kit logistics\Reportes\Facturacion\FacturaCotrascal.rpt 10/08/2016 12:28:10 p.m. 149871  42.60%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturaCuartas.rpt 18/02/2016 09:25:22 p.m. 208678  37.34%
 C:\kit\Kit logistics\Reportes\Facturacion\Facturado.rpt 10/07/2014 03:40:32 p.m. 62976  9.58%
 C:\kit\Kit logistics\Reportes\Facturacion\FacturadoAsesor.rpt 13/01/2015 10:23:32 a.m. 48640  10.39%
@@ -102,5 +102,5 @@ C:\Archivos de programa\Kit Logistics BE\Archivos config\InfReportes.Kin 24/07/2
 C:\kit\Kit logistics\ListasPrecios\Comp\Listas Precios.exe 05/03/2016 11:37:42 a.m. 184320  36.86%
 ================================ 
 Todos los archivos: 87 [ 14198KB => 4485KB ] 
-Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4595 KB 
-Finalización exitosa 05/07/2016 02:55:40 p.m.
+Tamaño del archivo C:\kit\Setups\Actualizaciones.exe: 4596 KB 
+Finalización exitosa 30/08/2016 05:47:05 p.m.

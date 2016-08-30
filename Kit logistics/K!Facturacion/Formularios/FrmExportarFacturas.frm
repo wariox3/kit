@@ -661,7 +661,7 @@ On Error GoTo Error_Handler
           
         
         rstFacturasExp.Close
-        rstFacturasExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        'rstFacturasExp.Open "UPDATE facturas_venta SET Exportada=1 where Numero=" & LstFacturas.ListItems(II) & " AND TipoFactura = " & LstFacturas.ListItems(II).SubItems(1), CnnPrincipal, adOpenDynamic, adLockOptimistic
         LstFacturas.ListItems.Remove (II)
       Else
        II = II + 1

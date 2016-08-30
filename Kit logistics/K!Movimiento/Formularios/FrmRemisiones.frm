@@ -1636,19 +1636,24 @@ Private Sub Campo_Validate(Index As Integer, Cancel As Boolean)
       End If
     Case 24
       If Campo(24).Text <> "" Then
-        AbrirRecorset rstUniversal, "Select IdTercero, RazonSocial, IdCliente, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente from Terceros where IdTercero='" & Campo(24) & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+        AbrirRecorset rstUniversal, "Select IdTercero, RazonSocial, IdCliente, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente, Inactivo from Terceros where IdTercero='" & Campo(24) & "'", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
           If rstUniversal.EOF = False Then
-            Campo(25).Text = rstUniversal.Fields("RazonSocial") & ""
-            ManejaCobroContado = rstUniversal.Fields("ManejaCobroContado")
-            ManejaCobroDestino = rstUniversal.Fields("ManejaCobroDestino")
-            ManejaCobroCorriente = rstUniversal.Fields("ManejaCobroCorriente")
-            If Campo(2) = "" Then Campo(2) = rstUniversal.Fields("RazonSocial") & ""
-            Campo(3).Text = rstUniversal.Fields("IdCliente") & ""
-            If ClienteViejo = Campo(24) Then
-              Campo(3).Text = NegociacionVieja
+            If Val(rstUniversal.Fields("Inactivo")) = 0 Then
+              Campo(25).Text = rstUniversal.Fields("RazonSocial") & ""
+              ManejaCobroContado = rstUniversal.Fields("ManejaCobroContado")
+              ManejaCobroDestino = rstUniversal.Fields("ManejaCobroDestino")
+              ManejaCobroCorriente = rstUniversal.Fields("ManejaCobroCorriente")
+              If Campo(2) = "" Then Campo(2) = rstUniversal.Fields("RazonSocial") & ""
+              Campo(3).Text = rstUniversal.Fields("IdCliente") & ""
+              If ClienteViejo = Campo(24) Then
+                Campo(3).Text = NegociacionVieja
+              End If
+              CerrarRecorset rstUniversal
+              CargarNegociacion
+            Else
+              MsgBox "El cliente se encuentra inactivo", vbCritical
+              Campo(24).Text = ""
             End If
-            CerrarRecorset rstUniversal
-            CargarNegociacion
           Else
             If MsgBox("El tercero no existe ¿Desea crearlo?", vbQuestion + vbYesNo, "No existe el tercero") = vbYes Then
               FufuSt = Campo(24).Text
