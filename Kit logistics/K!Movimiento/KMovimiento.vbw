@@ -87,3 +87,4 @@ FrmControlGuiasCliente = 88, 88, 829, 534, C, 66, 66, 807, 512, C
 FrmValidarRangoGuias = 176, 176, 917, 622, C, 154, 154, 895, 600, C
 FrmImportarGuias2 = 66, 66, 807, 512, C, 44, 44, 785, 490, C
 FrmRangoGuias = 22, 22, 760, 468, C, 0, 0, 738, 446, C
+FrmCostoReexpedicion = 0, 0, 730, 446, C, 220, 220, 950, 666, C

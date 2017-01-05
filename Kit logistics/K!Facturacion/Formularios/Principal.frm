@@ -1,6 +1,6 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "Comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Object = "{8072DC64-8993-404F-8876-E5392C16A5C4}#1.0#0"; "PyConsultasKL.ocx"
 Begin VB.MDIForm Principal 
    BackColor       =   &H8000000C&
@@ -234,6 +234,9 @@ Begin VB.MDIForm Principal
          End
          Begin VB.Menu MnuInfCarteraRecibos 
             Caption         =   "Recibos"
+         End
+         Begin VB.Menu MnuReporteNotasCredito 
+            Caption         =   "Notas credito"
          End
       End
       Begin VB.Menu MnuPendientesFacturar 
@@ -493,6 +496,17 @@ End Sub
 
 Private Sub MnuRecibosCaja_Click()
   FrmReciboCaja.Show 1
+End Sub
+
+Private Sub MnuReporteNotasCredito_Click()
+  FrmInformeNotaCredito.Show 1
+  If varParametrosNotaCredito.Generar = True Then
+    If varParametrosNotaCredito.InformeDetallado = True Then
+      Mostrar_Reporte CnnPrincipal, 60, varParametrosNotaCredito.sql, "Nota credito detallados", 2
+    Else
+      Mostrar_Reporte CnnPrincipal, 59, varParametrosNotaCredito.sql, "Notas creditos", 2
+    End If
+  End If
 End Sub
 
 Private Sub MnuSalir_Click()

@@ -48,8 +48,22 @@ Public Type parametrosRecibo
   InformeDetallado As Boolean
 End Type
 
+Public Type parametrosNotaCredito
+  Generar As Boolean
+  GenerarExcel As Boolean
+  sql As String
+  IdCliente As Long
+  Numero As Long
+  Tipo As Integer
+  Fecha As Boolean
+  FechaDesde As String
+  FechaHasta As String
+  InformeDetallado As Boolean
+End Type
+
 Public varParametrosCartera As parametrosCartera
 Public varParametrosRecibo As parametrosRecibo
+Public varParametrosNotaCredito As parametrosNotaCredito
 Public NumeroFacturaDesde As Long
 Public NumeroFacturaHasta As Long
 Public TipoFactura As Integer

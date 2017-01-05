@@ -74,6 +74,10 @@ On Error GoTo SinConexion
     LblPropietario = GetSetting("Kit Logistics", "InfoSoftware", "Propietario")
     LblIdProducto = GetSetting("Kit Logistics", "InfoSoftware", "Serial")
     CodUsuarioActivo = IngresoSistema(CnnPrincipal, 2)
+    AbrirRecorset rstUniversal, "SELECT NmUsuario FROM usuarios WHERE IDUsuario = " & CodUsuarioActivo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.RecordCount > 0 Then
+      NmUsuarioActivo = rstUniversal.Fields("NmUsuario")
+    End If
     If CodUsuarioActivo <> 0 Then Principal.Show
 
   Unload Me

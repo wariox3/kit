@@ -41,7 +41,7 @@ Begin VB.Form FrmRegistroDeMonitoreo
       _ExtentX        =   2778
       _ExtentY        =   503
       _Version        =   393216
-      Format          =   72417281
+      Format          =   16777217
       CurrentDate     =   39146
    End
    Begin MSComCtl2.DTPicker DTPHora 
@@ -53,7 +53,7 @@ Begin VB.Form FrmRegistroDeMonitoreo
       _ExtentX        =   2778
       _ExtentY        =   503
       _Version        =   393216
-      Format          =   72417282
+      Format          =   16777218
       UpDown          =   -1  'True
       CurrentDate     =   39146
    End
@@ -162,7 +162,7 @@ Option Explicit
 
 Private Sub CmdAceptar_Click()
   If TxtIdControlPost.Text <> "" Then
-    rstUniversal.Open "INSERT INTO MonitoreoControlPost (IdMonitoreo, IdControlPost, FhHrReporte, Notas) VALUES (" & Val(LblDespacho) & ", " & Val(TxtIdControlPost.Text) & ", '" & Format(DTPFecha.Value, "yyyy/mm/dd") & " " & Format(DTPHora.Value, "h:m:s") & "', '" & TxtNotas & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    rstUniversal.Open "INSERT INTO monitoreocontrolpost (IdMonitoreo, IdControlPost, FhHrReporte, Notas, usuario) VALUES (" & Val(LblDespacho) & ", " & Val(TxtIdControlPost.Text) & ", '" & Format(DTPFecha.Value, "yyyy/mm/dd") & " " & Format(DTPHora.Value, "h:m:s") & "', '" & TxtNotas & "', '" & NmUsuarioActivo & "')", CnnPrincipal, adOpenDynamic, adLockOptimistic
     rstUniversal.Open "Update MonitoreoVehiculos set UltReporte='" & Format(DTPFecha.Value, "yyyy/mm/dd") & " " & Format(DTPHora.Value, "h:m:s") & "' where ID=" & LblDespacho, CnnPrincipal, adOpenDynamic, adLockOptimistic
     MsgBox "Monitoreo ingresado con exito", vbInformation
     Unload Me

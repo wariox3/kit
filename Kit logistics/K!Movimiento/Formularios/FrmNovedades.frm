@@ -4,7 +4,7 @@ Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form FrmNovedades 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Nove dades..."
-   ClientHeight    =   4995
+   ClientHeight    =   3675
    ClientLeft      =   45
    ClientTop       =   285
    ClientWidth     =   12105
@@ -12,7 +12,7 @@ Begin VB.Form FrmNovedades
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   4995
+   ScaleHeight     =   3675
    ScaleWidth      =   12105
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
@@ -212,7 +212,7 @@ Begin VB.Form FrmNovedades
          _ExtentX        =   1931
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   50069505
+         Format          =   49938433
          CurrentDate     =   38971
       End
       Begin MSComCtl2.DTPicker DPicFecha 
@@ -224,7 +224,7 @@ Begin VB.Form FrmNovedades
          _ExtentX        =   2778
          _ExtentY        =   661
          _Version        =   393216
-         Format          =   50069505
+         Format          =   49938433
          CurrentDate     =   38971
       End
       Begin VB.Label Label2 

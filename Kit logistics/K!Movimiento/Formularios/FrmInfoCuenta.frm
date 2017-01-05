@@ -156,7 +156,7 @@ Begin VB.Form FrmInfoCuenta
          _ExtentX        =   3201
          _ExtentY        =   450
          _Version        =   393216
-         Format          =   49807361
+         Format          =   16842753
          CurrentDate     =   38971
       End
       Begin VB.CheckBox ChKRecoge 
@@ -878,12 +878,12 @@ Private Sub Form_Load()
     LblNmCliente = rstUniversal!NmNegociacion & ""
     TxtFechaIng = rstUniversal!FecIng
     ChkInactivo.value = DevCheck(rstUniversal.Fields("Inactivo"))
-    ChkTpCtaFleCor.value = DevCheck(rstUniversal.Fields("TpCtaFleCor").value)
-    ChkTpCtaFleCon.value = DevCheck(rstUniversal!TpCtaFleCon)
-    ChkTpCtaConFleEnt.value = DevCheck(rstUniversal!TpCtaConFleEnt)
-    ChkTpCtaManCtaCor.value = DevCheck(rstUniversal!TpCtaManCtaCor)
-    ChkTpCtaManCon.value = DevCheck(rstUniversal!TpCtaManCon)
-    ChkTpCtaManCtraEnt.value = DevCheck(rstUniversal!TpCtaManCtraEnt)
+    'ChkTpCtaFleCor.value = DevCheck(rstUniversal.Fields("TpCtaFleCor").value)
+    'ChkTpCtaFleCon.value = DevCheck(rstUniversal!TpCtaFleCon)
+    'ChkTpCtaConFleEnt.value = DevCheck(rstUniversal!TpCtaConFleEnt)
+    'ChkTpCtaManCtaCor.value = DevCheck(rstUniversal!TpCtaManCtaCor)
+    'ChkTpCtaManCon.value = DevCheck(rstUniversal!TpCtaManCon)
+    'ChkTpCtaManCtraEnt.value = DevCheck(rstUniversal!TpCtaManCtraEnt)
     TxtCupoCredito = rstUniversal!CupoCredito
     TxtDctoPieFac = rstUniversal!DctoPieFac & ""
     TxtAntesDe = rstUniversal!AntesDe & ""

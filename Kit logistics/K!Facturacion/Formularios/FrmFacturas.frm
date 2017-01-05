@@ -5,7 +5,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{F0D2F211-CCB0-11D0-A316-00AA00688B10}#1.0#0"; "MSDATLST.OCX"
 Begin VB.Form FrmFacturas 
    Caption         =   "Facturas..."
-   ClientHeight    =   11070
+   ClientHeight    =   9540
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   14880
@@ -13,7 +13,7 @@ Begin VB.Form FrmFacturas
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   11070
+   ScaleHeight     =   9540
    ScaleWidth      =   14880
    WindowState     =   2  'Maximized
    Begin VB.Frame FraRecuento 

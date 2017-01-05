@@ -163,7 +163,9 @@ End Sub
 
 Private Sub CmdExportarSiigoCotrascal_Click()
   Dim rstReciboDetalle As New ADODB.Recordset
+  Dim rstCuentaCobrar As New ADODB.Recordset
   rstReciboDetalle.CursorLocation = adUseClient
+  rstCuentaCobrar.CursorLocation = adUseClient
   Dim RutaSalida As String
   Dim Fila        As Long
   Dim Columna     As Long
@@ -208,6 +210,24 @@ Private Sub CmdExportarSiigoCotrascal_Click()
           strSql = "Select recibos_caja_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.FhVence, cuentas_cobrar.TipoFactura from recibos_caja_det left join cuentas_cobrar ON recibos_caja_det.codigo_cuenta_cobrar_fk = cuentas_cobrar.IdCxC where IdRecibo = " & rstRecibosExp!IdRecibo
           AbrirRecorset rstReciboDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
           Do While rstReciboDetalle.EOF = False
+          
+            strSql = "SELECT centrosoperaciones.cuenta_cartera, cuentas_cobrar.TipoFactura " & _
+                    "FROM cuentas_cobrar " & _
+                    "LEFT JOIN centrosoperaciones ON cuentas_cobrar.IdPO = centrosoperaciones.IDPO " & _
+                    "WHERE IdCxC=" & rstReciboDetalle.Fields("codigo_cuenta_cobrar_fk")
+            
+            AbrirRecorset rstCuentaCobrar, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+              If Val(rstCuentaCobrar.Fields("TipoFactura")) = 1 Then
+                strCuenta = rstCuentaCobrar.Fields("cuenta_cartera")
+              End If
+              If Val(rstCuentaCobrar.Fields("TipoFactura")) = 2 Then
+                strCuenta = "13050501"
+              End If
+              If Val(rstCuentaCobrar.Fields("TipoFactura")) = 3 Then
+                strCuenta = "13050502"
+              End If
+              
+            CerrarRecorset rstCuentaCobrar
             'Cuenta cliente
             strDetalle = "CANC FACT " & rstReciboDetalle!NroDocumento
             strTipo = "C"
@@ -217,20 +237,18 @@ Private Sub CmdExportarSiigoCotrascal_Click()
             'Corriente
             If Val(rstReciboDetalle!TipoFactura) = 1 Or Val(rstReciboDetalle!TipoFactura) = 4 Then
               strTipoDocumentoCruce = "F003"
-              strCuenta = "1305050300"
             End If
             'Contado
             If Val(rstReciboDetalle!TipoFactura) = 2 Then
               strTipoDocumentoCruce = "F001"
-              strCuenta = "1305050100"
             End If
             'Destino
             If Val(rstReciboDetalle!TipoFactura) = 3 Then
-            strCuenta = "1305050200"
               strTipoDocumentoCruce = "F002"
             End If
+            
             strDocumentoCruce = strTipoDocumentoCruce & Rellenar(rstReciboDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstReciboDetalle!FhVence, "yyyymmdd") & "0001" & "00"
-            Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+            Print #1, "R" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "000000000000000" & Format(rstRecibosExp!FechaPago, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
             intSecuencia = intSecuencia + 1
             
             'Cuenta Rte Ica
@@ -337,7 +355,7 @@ Private Sub VerRecibos()
   strSql = "SELECT recibos_caja.*, terceros.RazonSocial " & _
                           "FROM recibos_caja " & _
                           "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
-                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0"
+                          "WHERE Exportado=0 AND Impreso = 1 AND numero <> 0 order by FechaPago"
   rstRecibosExp.Open strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg rstRecibosExp.RecordCount
   If rstRecibosExp.RecordCount > 0 Then
@@ -357,7 +375,7 @@ End Sub
 
 Private Function Rellenar(Dato As String, Tamaño As Integer, Caracter As String, Posicion As Byte) As String
   FufuSt = ""
-  If Len(Dato) < Tamaño Then
+  If Len(Dato) <= Tamaño Then
     For FufuLo = 1 To Tamaño - Len(Dato)
       FufuSt = FufuSt & Caracter
     Next

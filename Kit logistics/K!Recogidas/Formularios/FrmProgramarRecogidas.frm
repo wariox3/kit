@@ -1,18 +1,18 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Object = "{86CF1D34-0C5F-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCT2.OCX"
 Begin VB.Form FrmProgramarRecogidas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Programar recogidas..."
-   ClientHeight    =   6015
+   ClientHeight    =   7725
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   12930
+   ClientWidth     =   13050
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6015
-   ScaleWidth      =   12930
+   ScaleHeight     =   7725
+   ScaleWidth      =   13050
    ShowInTaskbar   =   0   'False
    StartUpPosition =   1  'CenterOwner
    Begin VB.CommandButton CmdImprimirOrden 
@@ -20,7 +20,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   5880
       TabIndex        =   13
-      Top             =   5280
+      Top             =   7080
       Width           =   1575
    End
    Begin VB.CommandButton CmdCerrarRecogida 
@@ -28,19 +28,19 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   12
-      Top             =   4920
+      Top             =   5040
       Width           =   1815
    End
    Begin MSComCtl2.DTPicker DTPFechaVehiculos 
       Height          =   375
       Left            =   3720
       TabIndex        =   11
-      Top             =   5280
+      Top             =   7080
       Width           =   2055
       _ExtentX        =   3625
       _ExtentY        =   661
       _Version        =   393216
-      Format          =   16842753
+      Format          =   16908289
       CurrentDate     =   40634
    End
    Begin VB.CommandButton CmdAgregarAnunciosProgramados 
@@ -48,7 +48,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   10
-      Top             =   5640
+      Top             =   5760
       Width           =   1815
    End
    Begin VB.CommandButton CmdDescargasRemotas 
@@ -56,7 +56,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   7560
       TabIndex        =   8
-      Top             =   5280
+      Top             =   7080
       Width           =   1815
    End
    Begin VB.CommandButton CmdOpciones 
@@ -64,7 +64,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   9480
       TabIndex        =   7
-      Top             =   5280
+      Top             =   7080
       Width           =   1455
    End
    Begin VB.CommandButton CmdAliminarRecogida 
@@ -72,7 +72,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   4
-      Top             =   5280
+      Top             =   5400
       Width           =   1815
    End
    Begin VB.CommandButton CmdReProgramar 
@@ -80,7 +80,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   3
-      Top             =   4560
+      Top             =   4680
       Width           =   1815
    End
    Begin VB.Timer TmActualizar 
@@ -93,7 +93,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   2
-      Top             =   4200
+      Top             =   4320
       Width           =   1815
    End
    Begin VB.CommandButton CmdAsignar 
@@ -101,7 +101,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   1
-      Top             =   3840
+      Top             =   3960
       Width           =   1815
    End
    Begin VB.CommandButton CmdAct 
@@ -109,17 +109,17 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   255
       Left            =   11040
       TabIndex        =   0
-      Top             =   3480
+      Top             =   3600
       Width           =   1815
    End
    Begin MSComctlLib.ListView LstVehiculos 
-      Height          =   1695
+      Height          =   3375
       Left            =   120
       TabIndex        =   6
-      Top             =   3480
+      Top             =   3600
       Width           =   10815
       _ExtentX        =   19076
-      _ExtentY        =   2990
+      _ExtentY        =   5953
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   -1  'True
@@ -132,7 +132,7 @@ Begin VB.Form FrmProgramarRecogidas
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   8
+      NumItems        =   9
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "Asignacion"
          Object.Width           =   1764
@@ -177,15 +177,20 @@ Begin VB.Form FrmProgramarRecogidas
          Text            =   "Ruta"
          Object.Width           =   4762
       EndProperty
+      BeginProperty ColumnHeader(9) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   8
+         Text            =   "Conductor"
+         Object.Width           =   5292
+      EndProperty
    End
    Begin MSComctlLib.ListView LstAnuncios 
-      Height          =   3255
+      Height          =   3375
       Left            =   120
       TabIndex        =   5
       Top             =   120
       Width           =   12735
       _ExtentX        =   22463
-      _ExtentY        =   5741
+      _ExtentY        =   5953
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   -1  'True
@@ -286,7 +291,7 @@ Begin VB.Form FrmProgramarRecogidas
       Height          =   570
       Left            =   120
       TabIndex        =   9
-      Top             =   5280
+      Top             =   7080
       Width           =   3330
       _ExtentX        =   5874
       _ExtentY        =   1005
@@ -468,7 +473,7 @@ End Sub
 
 Private Sub LlenarVehiculos()
   LstVehiculos.ListItems.Clear
-  AbrirRecorset rstUniversal, "Select vehiculosrecogida.*, NmRuta from vehiculosrecogida left join rutasurbanas on vehiculosrecogida.IdRuta=rutasurbanas.IdRutaRec where Fecha='" & Format(DTPFechaVehiculos.Value, "yyyy-mm-dd") & "' and Coperaciones=" & Coperaciones, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstUniversal, "Select vehiculosrecogida.*, NmRuta, concat(Nombre, ' ', Apellido1, ' ', Apellido2) as NmConductor from vehiculosrecogida left join rutasurbanas on vehiculosrecogida.IdRuta=rutasurbanas.IdRutaRec left join conductores on vehiculosrecogida.IdConductor=conductores.IdConductor where Fecha='" & Format(DTPFechaVehiculos.Value, "yyyy-mm-dd") & "' and Coperaciones=" & Coperaciones, CnnPrincipal, adOpenDynamic, adLockOptimistic
   Do While rstUniversal.EOF = False
     If rstUniversal!Pend <= 0 Then
       Set Item = LstVehiculos.ListItems.Add(, , rstUniversal!IdAsignacion, , "Ok")
@@ -482,6 +487,7 @@ Private Sub LlenarVehiculos()
       Item.SubItems(5) = rstUniversal!KilosReales
       Item.SubItems(6) = rstUniversal!KilosVol
       Item.SubItems(7) = rstUniversal!NmRuta
+      Item.SubItems(8) = rstUniversal!NmConductor & ""
     rstUniversal.MoveNext
   Loop
   CerrarRecorset rstUniversal
@@ -556,6 +562,7 @@ End Sub
 Private Sub ToolVehiculos_ButtonClick(ByVal Button As MSComctlLib.Button)
   Select Case Button.Index
     Case 3
+      FufuLo = 0
       Me.Tag = 1
       FrmAgregarVehiculo.Show 1
       Me.Tag = 0
@@ -563,6 +570,9 @@ Private Sub ToolVehiculos_ButtonClick(ByVal Button As MSComctlLib.Button)
         LlenarVehiculos
       End If
     Case 4
+      FufuLo = LstVehiculos.ListItems(LstVehiculos.SelectedItem.Index)
+      FrmAgregarVehiculo.Show 1
+      LlenarVehiculos
     Case 5
       On Error GoTo SinItem
       If Val(LstVehiculos.SelectedItem.SubItems(2)) = 0 Then

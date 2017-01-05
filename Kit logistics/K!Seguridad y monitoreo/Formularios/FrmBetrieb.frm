@@ -71,7 +71,7 @@ Begin VB.Form FrmBetrieb
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   5
+      NumItems        =   6
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "ID"
          Object.Width           =   1587
@@ -94,7 +94,12 @@ Begin VB.Form FrmBetrieb
       BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   4
          Text            =   "Notas"
-         Object.Width           =   5292
+         Object.Width           =   3528
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
+         Text            =   "Usuario"
+         Object.Width           =   1764
       EndProperty
    End
    Begin VB.CommandButton CmdQuitarMonitoreo 
@@ -448,12 +453,16 @@ Private Sub CmdNovedades_Click()
 End Sub
 
 Private Sub CmdQuitarMonitoreo_Click()
-  For II = 1 To LstMonitoreos.ListItems.Count
-    If LstMonitoreos.ListItems(II).Checked = True Then
-      rstUniversal.Open "Delete from MonitoreoControlPost where Id=" & LstMonitoreos.ListItems(II).Text, CnnPrincipal, adOpenDynamic, adLockOptimistic
-    End If
-  Next
-  CmdVerMonitoreoControlPost_Click
+  If CpPermisoEspecial(18, CodUsuarioActivo, CnnPrincipal) = True Then
+    For II = 1 To LstMonitoreos.ListItems.Count
+      If LstMonitoreos.ListItems(II).Checked = True Then
+        rstUniversal.Open "Delete from MonitoreoControlPost where Id=" & LstMonitoreos.ListItems(II).Text, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      End If
+    Next
+    CmdVerMonitoreoControlPost_Click
+  Else
+    MsgBox "No tiene permisos para esta opcion", vbInformation
+  End If
 End Sub
 
 Private Sub CmdVerAcompañamientos_Click()
@@ -473,13 +482,14 @@ End Sub
 Private Sub CmdVerMonitoreoControlPost_Click()
   LstMonitoreos.ListItems.Clear
   If (LstDespachos.ListItems.Count > 0) Then
-    rstUniversal.Open "SELECT MonitoreoControlPost.*, ControlPost.NmControlPost FROM MonitoreoControlPost INNER JOIN ControlPost ON MonitoreoControlPost.IDControlPost = ControlPost.IdControlPost Where IdMonitoreo=" & LstDespachos.ListItems(LstDespachos.SelectedItem.Index), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+    rstUniversal.Open "SELECT monitoreocontrolpost.*, ControlPost.NmControlPost FROM monitoreocontrolpost INNER JOIN ControlPost ON monitoreocontrolpost.IDControlPost = ControlPost.IdControlPost Where IdMonitoreo=" & LstDespachos.ListItems(LstDespachos.SelectedItem.Index), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
       Do While rstUniversal.EOF = False
         Set Item = LstMonitoreos.ListItems.Add(, , rstUniversal.Fields("ID"))
         Item.SubItems(1) = rstUniversal.Fields("IdControlPost")
         Item.SubItems(2) = Format(rstUniversal.Fields("FhHrReporte"), "dd/mm/yy HH:mm AM/PM")
         Item.SubItems(3) = rstUniversal.Fields("NmControlPost") & ""
         Item.SubItems(4) = rstUniversal.Fields("Notas") & ""
+        Item.SubItems(5) = rstUniversal.Fields("usuario") & ""
         rstUniversal.MoveNext
       Loop
     rstUniversal.Close

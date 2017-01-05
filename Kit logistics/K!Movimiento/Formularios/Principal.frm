@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "Comdlg32.ocx"
+Object = "{F9043C88-F6F2-101A-A3C9-08002B2F49FB}#1.2#0"; "comdlg32.ocx"
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Object = "{8072DC64-8993-404F-8876-E5392C16A5C4}#1.0#0"; "PyConsultasKL.ocx"
 Begin VB.MDIForm Principal 
@@ -276,6 +276,12 @@ Begin VB.MDIForm Principal
       End
       Begin VB.Menu MnuResumenDespacho 
          Caption         =   "Resumen de despacho"
+      End
+      Begin VB.Menu MnuSep1212 
+         Caption         =   "-"
+      End
+      Begin VB.Menu MnuAsignarCostoReexpedicion 
+         Caption         =   "Asignar costo reexpedicion"
       End
    End
    Begin VB.Menu MnuAplicar 
@@ -689,6 +695,19 @@ Private Sub MnuAsesoresComerciales_Click()
   FrmAsesores.Show 1
 End Sub
 
+Private Sub MnuAsignarCostoReexpedicion_Click()
+    If Principal.ToolConsultas1.AbrirDevDatos("Digite el despacho", "Digite el numero de despacho para asignar costos reexpedidion", 3, 0) = True Then
+      FufuLo = Principal.ToolConsultas1.DatLo
+      AbrirRecorset rstUniversal, "Select OrdDespacho from despachos where Estado != 'A' and OrdDespacho=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      If rstUniversal.RecordCount > 0 Then
+        FrmCostoReexpedicion.Show 1
+      Else
+        MsgBox "No se pueden corregir despachos: anulados", vbCritical
+      End If
+      CerrarRecorset rstUniversal
+    End If
+End Sub
+
 Private Sub MnuBuscarViajes_Click()
   FrmBuscarDespachosViaje.Show 1
 End Sub
@@ -871,7 +890,7 @@ Private Sub MnuCorregirGuia_Click()
   If CpPermisoEspecial(10, CodUsuarioActivo, CnnPrincipal) = True Then
     If Principal.ToolConsultas1.AbrirDevDatos("Digite la guia", "Digite la guia para corregir", 3, 0) = True Then
       FufuLo = Principal.ToolConsultas1.DatLo
-      AbrirRecorset rstUniversal, "Select Guia, GuiFac from guias where Anulada=0 and Facturada=0 AND ExportadaCartera = 0 AND Guia=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+      AbrirRecorset rstUniversal, "Select Guia, GuiFac from guias where Anulada=0 and IdFactura=0 AND ExportadaCartera = 0 AND Guia=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
       If rstUniversal.RecordCount > 0 Then
         If Val(rstUniversal.Fields("GuiFac")) = 1 Then
           If CpPermisoEspecial(14, CodUsuarioActivo, CnnPrincipal) = True Then
@@ -1231,7 +1250,9 @@ Private Sub MnuSalir_Click()
 End Sub
 
 Private Sub MnuTerceros_Click()
-  FrmTerceros.Show 1
+  If CpPermiso(7, CodUsuarioActivo, 1, CnnPrincipal) = True Then
+    FrmTerceros.Show 1
+  End If
 End Sub
 
 Private Sub MnuTodasLasNovedades_Click()

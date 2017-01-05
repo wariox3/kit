@@ -1,9 +1,8 @@
 VERSION 5.00
 Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
-Object = "{C932BA88-4374-101B-A56C-00AA003668DC}#1.1#0"; "MSMASK32.OCX"
 Begin VB.Form FrmRemisiones 
    Caption         =   "Guias..."
-   ClientHeight    =   11085
+   ClientHeight    =   9540
    ClientLeft      =   60
    ClientTop       =   345
    ClientWidth     =   16680
@@ -11,26 +10,14 @@ Begin VB.Form FrmRemisiones
    KeyPreview      =   -1  'True
    LinkTopic       =   "Form1"
    MDIChild        =   -1  'True
-   ScaleHeight     =   11085
+   ScaleHeight     =   9540
    ScaleWidth      =   16680
    WindowState     =   2  'Maximized
-   Begin MSMask.MaskEdBox MaskEdBox1 
-      Height          =   255
-      Left            =   12600
-      TabIndex        =   112
-      Top             =   4800
-      Width           =   1815
-      _ExtentX        =   3201
-      _ExtentY        =   450
-      _Version        =   393216
-      Format          =   "#.##0. ;[Rojo](#.##0.);- ;"
-      PromptChar      =   "_"
-   End
    Begin VB.CommandButton CmdBuscarPorDocumento 
       Caption         =   "Buscar por documento"
       Height          =   255
       Left            =   12600
-      TabIndex        =   111
+      TabIndex        =   109
       Top             =   8760
       Width           =   1935
    End
@@ -38,33 +25,9 @@ Begin VB.Form FrmRemisiones
       Caption         =   "Generar recibo"
       Height          =   255
       Left            =   10440
-      TabIndex        =   109
+      TabIndex        =   107
       Top             =   8400
       Width           =   1935
-   End
-   Begin VB.Frame FraGuiaTipo 
-      Height          =   480
-      Left            =   9600
-      TabIndex        =   103
-      Top             =   1210
-      Width           =   4935
-      Begin VB.Label LblGuiaTipo 
-         Alignment       =   2  'Center
-         BeginProperty Font 
-            Name            =   "MS Sans Serif"
-            Size            =   13.5
-            Charset         =   0
-            Weight          =   700
-            Underline       =   0   'False
-            Italic          =   0   'False
-            Strikethrough   =   0   'False
-         EndProperty
-         Height          =   285
-         Left            =   120
-         TabIndex        =   104
-         Top             =   120
-         Width           =   4665
-      End
    End
    Begin VB.Frame Frame2 
       Caption         =   "Despachos"
@@ -126,7 +89,7 @@ Begin VB.Form FrmRemisiones
          Caption         =   "Guia factura"
          Height          =   255
          Left            =   1080
-         TabIndex        =   106
+         TabIndex        =   104
          Top             =   240
          Width           =   1215
       End
@@ -143,7 +106,7 @@ Begin VB.Form FrmRemisiones
       Height          =   480
       Left            =   12240
       TabIndex        =   86
-      Top             =   3120
+      Top             =   2760
       Width           =   2295
       Begin VB.Label LblNmUsuario 
          Alignment       =   2  'Center
@@ -158,7 +121,7 @@ Begin VB.Form FrmRemisiones
          EndProperty
          Height          =   285
          Left            =   120
-         TabIndex        =   105
+         TabIndex        =   103
          Top             =   160
          Width           =   2025
       End
@@ -169,7 +132,7 @@ Begin VB.Form FrmRemisiones
       Height          =   255
       Left            =   11400
       TabIndex        =   77
-      Top             =   1800
+      Top             =   1320
       Width           =   3015
    End
    Begin VB.Frame Frame3 
@@ -239,11 +202,30 @@ Begin VB.Form FrmRemisiones
    End
    Begin VB.Frame FraLiquidacion 
       Enabled         =   0   'False
-      Height          =   3135
+      Height          =   3495
       Left            =   9600
       TabIndex        =   62
-      Top             =   3120
+      Top             =   2760
       Width           =   2535
+      Begin VB.TextBox Campo 
+         Alignment       =   1  'Right Justify
+         BeginProperty DataFormat 
+            Type            =   1
+            Format          =   "#,##0.00"
+            HaveTrueFalseNull=   0
+            FirstDayOfWeek  =   0
+            FirstWeekOfYear =   0
+            LCID            =   9226
+            SubFormatType   =   1
+         EndProperty
+         Height          =   285
+         Index           =   36
+         Left            =   1080
+         TabIndex        =   111
+         Tag             =   "1"
+         Top             =   3120
+         Width           =   1335
+      End
       Begin VB.TextBox Campo 
          Alignment       =   1  'Right Justify
          BeginProperty DataFormat 
@@ -398,6 +380,16 @@ Begin VB.Form FrmRemisiones
       End
       Begin VB.Label LblTitulos 
          AutoSize        =   -1  'True
+         Caption         =   "C.Reexp:"
+         Height          =   195
+         Index           =   15
+         Left            =   240
+         TabIndex        =   112
+         Top             =   3120
+         Width           =   660
+      End
+      Begin VB.Label LblTitulos 
+         AutoSize        =   -1  'True
          Caption         =   "Recaudo:"
          Height          =   195
          Index           =   28
@@ -483,7 +475,7 @@ Begin VB.Form FrmRemisiones
       Height          =   1215
       Left            =   9600
       TabIndex        =   51
-      Top             =   1800
+      Top             =   1440
       Width           =   4935
       Begin VB.TextBox TxtCOCar 
          Height          =   285
@@ -546,14 +538,14 @@ Begin VB.Form FrmRemisiones
       Height          =   975
       Left            =   12240
       TabIndex        =   48
-      Top             =   3720
+      Top             =   3360
       Width           =   2295
       Begin VB.TextBox Campo 
          Alignment       =   1  'Right Justify
          Height          =   285
          Index           =   35
          Left            =   1080
-         TabIndex        =   107
+         TabIndex        =   105
          Tag             =   "1"
          Top             =   600
          Width           =   1095
@@ -590,13 +582,30 @@ Begin VB.Form FrmRemisiones
          Top             =   240
          Width           =   1095
       End
+      Begin VB.Label LblGuiaTipo 
+         Alignment       =   2  'Center
+         BeginProperty Font 
+            Name            =   "MS Sans Serif"
+            Size            =   13.5
+            Charset         =   0
+            Weight          =   700
+            Underline       =   0   'False
+            Italic          =   0   'False
+            Strikethrough   =   0   'False
+         EndProperty
+         Height          =   285
+         Left            =   0
+         TabIndex        =   110
+         Top             =   600
+         Width           =   225
+      End
       Begin VB.Label LblTitulos 
          AutoSize        =   -1  'True
          Caption         =   "Abonos:"
          Height          =   195
          Index           =   14
          Left            =   360
-         TabIndex        =   108
+         TabIndex        =   106
          Top             =   600
          Width           =   585
       End
@@ -994,7 +1003,7 @@ Begin VB.Form FrmRemisiones
          Caption         =   "Cobro:"
          Height          =   195
          Left            =   360
-         TabIndex        =   110
+         TabIndex        =   108
          Top             =   4200
          Width           =   465
       End
@@ -1890,13 +1899,13 @@ Private Sub Form_Load()
   iniciarVariablesLiquidacion
 End Sub
 Private Sub Formatos(rstForma As ADODB.Recordset)
-  For II = 0 To 35
+  For II = 0 To 36
     Set rstForma.Fields(II).DataFormat = Campo(II).DataFormat
   Next
 End Sub
 
 Private Sub Asignar(rstAsignar As ADODB.Recordset)
-  For II = 0 To 35
+  For II = 0 To 36
     Campo(II).Text = rstAsignar.Fields(II) & ""
   Next
   CboTpServicio.ListIndex = Val(rstAsignar!TpServicio)
@@ -1943,7 +1952,7 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
   TxtCOCar.Text = DevResBus("SELECT IdPO, NmPuntoOperaciones From CentrosOperaciones where IdPO=" & Campo(1), "NmPuntoOperaciones", CnnPrincipal)
 End Sub
 Private Sub limpiar()
-For II = 0 To 35
+For II = 0 To 36
   Campo(II).Text = ""
 Next
 LblConsulta(0).Caption = ""
@@ -2008,7 +2017,7 @@ Sub AccionTool(Indice As Byte)
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             AbrirRecorset rstUniversal, "Update Guias set GuiFac=" & ChkGuiFac.value & ", CR=" & Campo(1) & ", COIng=" & Val(Campo(23)) & ", Remitente='" & Campo(2) & "', Cliente='" & Campo(25) & "', Cuenta='" & Campo(24) & "', " & _
-            "IdCliente='" & Campo(3) & "', DocCliente='" & Campo(4) & "', EmpaqueRef='" & Campo(28) & "', RelCliente='" & Campo(29) & "', IdCiuOrigen=" & Campo(30) & ", NmDestinatario='" & Campo(5) & "', DirDestinatario='" & Campo(6) & "', TelDestinatario='" & Campo(7) & "', IdCiuDestino=" & Campo(8) & ", IdRuta=" & Campo(9) & ", VrDeclarado=" & Campo(12) & ", VrFlete=" & Val(Campo(13)) & ", VrManejo=" & Val(Campo(14)) & ", Unidades=" & Campo(15) & ", KilosReales=" & Campo(16) & ", KilosFacturados=" & Campo(17) & ", KilosVolumen=" & Campo(18) & ", Observaciones='" & Campo(22) & "', Recaudo=" & Val(Campo(26)) & ", TpServicio=" & CboTpServicio.ListIndex & " where Guia=" & Val(Campo(0)), CnnPrincipal, adOpenDynamic, adLockOptimistic
+            "IdCliente='" & Campo(3) & "', DocCliente='" & Campo(4) & "', EmpaqueRef='" & Campo(28) & "', RelCliente='" & Campo(29) & "', IdCiuOrigen=" & Campo(30) & ", NmDestinatario='" & Campo(5) & "', DirDestinatario='" & Campo(6) & "', TelDestinatario='" & Campo(7) & "', IdCiuDestino=" & Campo(8) & ", IdRuta=" & Campo(9) & ", VrDeclarado=" & Campo(12) & ", VrFlete=" & Val(Campo(13)) & ", VrManejo=" & Val(Campo(14)) & ", Unidades=" & Campo(15) & ", KilosReales=" & Campo(16) & ", KilosFacturados=" & Campo(17) & ", KilosVolumen=" & Campo(18) & ", Observaciones='" & Campo(22) & "', Recaudo=" & Val(Campo(26)) & ", CostoReexpedicion=" & Val(Campo(36)) & ", TpServicio=" & CboTpServicio.ListIndex & " where Guia=" & Val(Campo(0)), CnnPrincipal, adOpenDynamic, adLockOptimistic
             InsertarLog 6, Val(Campo(0).Text)
             VaciarGrilla
             Editando = False
@@ -2052,10 +2061,10 @@ Sub AccionTool(Indice As Byte)
               AbrirRecorset rstUniversal, "INSERT INTO Guias " & _
               "(Guia, CR, Remitente, IdCliente, DocCliente, NmDestinatario, DirDestinatario, TelDestinatario, IdCiuDestino, IdRuta, " & _
               "FhEntradaBodega, VrDeclarado, VrFlete, VrManejo, Unidades, KilosReales, KilosFacturados, KilosVolumen, " & _
-              "Estado, IdFactura, IdDespacho, Observaciones, COIng, Cuenta, Cliente, Recaudo, orden, EmpaqueRef, RelCliente, IdCiuOrigen, TpServicio, CPorte, Entregada, Descargada, Despachada, Anulada, GuiFac, Facturada, IdUsuario, IdEmpresa, GuiaTipo, TipoCobro) " & _
+              "Estado, IdFactura, IdDespacho, Observaciones, COIng, Cuenta, Cliente, Recaudo, orden, EmpaqueRef, RelCliente, IdCiuOrigen, TpServicio, CPorte, Entregada, Descargada, Despachada, Anulada, GuiFac, Facturada, IdUsuario, IdEmpresa, GuiaTipo, TipoCobro, CostoReexpedicion) " & _
               "VALUES(" & Campo(0) & "," & Campo(1) & ",'" & Campo(2) & "', '" & Campo(3) & "','" & Campo(4) & "','" & Campo(5) & "','" & Campo(6) & "','" & Campo(7) & "', " & Val(Campo(8)) & ", " & Val(Campo(9)) & ", " & _
               "'" & Campo(10).Text & "', " & Val(Campo(12)) & ", " & Val(Campo(13)) & ", " & Val(Campo(14)) & ", " & Val(Campo(15)) & ", " & Val(Campo(16)) & ", " & Val(Campo(17)) & ", " & Val(Campo(18)) & ", " & _
-              "'D', 0, null, '" & Campo(22) & "', " & Val(Campo(23)) & ", '" & Campo(24) & "', '" & Campo(25) & "', " & Val(Campo(26)) & ", " & Val(Campo(27)) & ", '" & Campo(28).Text & "','" & Campo(29).Text & "'," & Campo(30).Text & ", " & CboTpServicio.ListIndex & ", " & ChKCPorte.value & ", 0, 0, 0, 0, " & DevTpGuiaFactura(Val(CboTipo.ListIndex) + 1) & ", 0, " & CodUsuarioActivo & ", " & CodEmpresaActiva & ", " & Val(CboTipo.ListIndex) + 1 & ", " & DevTipoCobro(Val(CboTipo.ListIndex) + 1) & ")", CnnPrincipal, adOpenDynamic, adLockBatchOptimistic
+              "'D', 0, null, '" & Campo(22) & "', " & Val(Campo(23)) & ", '" & Campo(24) & "', '" & Campo(25) & "', " & Val(Campo(26)) & ", " & Val(Campo(27)) & ", '" & Campo(28).Text & "','" & Campo(29).Text & "'," & Campo(30).Text & ", " & CboTpServicio.ListIndex & ", " & ChKCPorte.value & ", 0, 0, 0, 0, " & DevTpGuiaFactura(Val(CboTipo.ListIndex) + 1) & ", 0, " & CodUsuarioActivo & ", " & CodEmpresaActiva & ", " & Val(CboTipo.ListIndex) + 1 & ", " & DevTipoCobro(Val(CboTipo.ListIndex) + 1) & ", " & Val(Campo(36).Text) & ")", CnnPrincipal, adOpenDynamic, adLockBatchOptimistic
               InsertarLog 1, Val(Campo(0).Text)
               GuiaConsecutivo = FufuLo + 1
               VaciarGrilla
@@ -2206,7 +2215,7 @@ Private Sub ToolRemisiones_ButtonClick(ByVal Button As MSComctlLib.Button)
 End Sub
 Private Function Validacion() As Boolean
   Validacion = True
-  For II = 0 To 35
+  For II = 0 To 36
     If Campo(II).Tag = "1" And Campo(II).Text = "" Then Campo(II).Text = 0
   Next
   If Campo(24).Text <> "" Then

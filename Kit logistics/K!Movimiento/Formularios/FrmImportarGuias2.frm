@@ -380,6 +380,8 @@ Private Sub CmdCrearGuias_Click()
   Dim unidades As Double
   Dim kilosFacturar As Integer
   Dim kilosReales As Integer
+  Dim observaciones As String
+  Dim orden As Integer
   II = 1
   While II <= LstGuias.ListItems.Count
     If LstGuias.ListItems(II).Checked = True Then
@@ -389,6 +391,13 @@ Private Sub CmdCrearGuias_Click()
         strSql = "select IdCiudad  from ciudades where IdCiudad = " & LstGuias.ListItems(II).SubItems(6)
         AbrirRecorset rstCiudad, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
         If rstCiudad.RecordCount > 0 Then
+          AbrirRecorset rstUniversal, "Select* from Rutas_Ciudades where IdCiudad=" & rstCiudad.Fields("IdCiudad"), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+          If rstUniversal.EOF = False Then
+            orden = rstUniversal.Fields("Orden")
+          Else
+            orden = 0
+          End If
+          CerrarRecorset rstUniversal
           flete = LstGuias.ListItems(II).SubItems(22)
           manejo = LstGuias.ListItems(II).SubItems(23)
           declarado = LstGuias.ListItems(II).SubItems(17)
@@ -396,13 +405,14 @@ Private Sub CmdCrearGuias_Click()
           kilosReales = Val(LstGuias.ListItems(II).SubItems(12))
           kilosReales = Round(kilosReales)
           unidades = LstGuias.ListItems(II).SubItems(11)
+          observaciones = Mid(LstGuias.ListItems(II).SubItems(18), 1, 200)
           strSql = "INSERT INTO Guias " & _
           "(Guia, CR, Remitente, IdCliente, DocCliente, NmDestinatario, DirDestinatario, TelDestinatario, IdCiuDestino, IdRuta, " & _
           "FhEntradaBodega, VrDeclarado, VrFlete, VrManejo, Unidades, KilosReales, KilosFacturados, KilosVolumen, " & _
           "Estado, IdFactura, IdDespacho, Observaciones, COIng, Cuenta, Cliente, Recaudo, orden, EmpaqueRef, RelCliente, IdCiuOrigen, TpServicio, CPorte, Entregada, Descargada, Despachada, Anulada, GuiFac, Facturada, IdUsuario, IdEmpresa, GuiaTipo, TipoCobro) " & _
-          "VALUES(" & LstGuias.ListItems(II) & ",1,'TEXTILES LAFAYETTE S.A.S', '434','','" & LstGuias.ListItems(II).SubItems(3) & "','" & LstGuias.ListItems(II).SubItems(4) & "','" & LstGuias.ListItems(II).SubItems(5) & "', " & Val(LstGuias.ListItems(II).SubItems(6)) & ", 1, " & _
+          "VALUES(" & LstGuias.ListItems(II) & ",6,'TEXTILES LAFAYETTE S.A.S', '434','','" & LstGuias.ListItems(II).SubItems(3) & "','" & LstGuias.ListItems(II).SubItems(4) & "','" & LstGuias.ListItems(II).SubItems(5) & "', " & Val(LstGuias.ListItems(II).SubItems(6)) & ", 1, " & _
           "'" & TxtFecha.Text & "', " & declarado & ", " & flete & ", " & manejo & ", " & unidades & ", " & kilosReales & ", " & kilosFacturar & ", " & kilosReales & ", " & _
-          "'I', 0, null, '', 1, '" & TxtIdTercero.Text & "', 'TEXTILES LAFAYETTE S.A.S', 0, 1, '','',20611, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3)"
+          "'I', 0, null, '" & observaciones & "', 6, '" & TxtIdTercero.Text & "', 'TEXTILES LAFAYETTE S.A.S', 0, " & orden & ", '','',20516, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3)"
           AbrirRecorset rstUniversal, strSql, CnnPrincipal, adOpenDynamic, adLockBatchOptimistic
         End If
         CerrarRecorset rstCiudad
@@ -500,7 +510,7 @@ Private Function DevFlete(ciudadDestino As String, unidades As Integer, peso As 
   rstListaPreciosDetalle.CursorLocation = adUseClient
   Dim douVrKilo As Double
   
-  AbrirRecorset rstListaPreciosDetalle, "SELECT VrKilo, Minimos FROM listaspreciosciudades WHERE IdListaPrecios = 1 AND IdCiudadOrigen = 20611 AND IdCiudad = " & Val(ciudadDestino) & " AND IdProducto = 1 AND VrKilo > 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstListaPreciosDetalle, "SELECT VrKilo, Minimos FROM listaspreciosciudades WHERE IdListaPrecios = 1 AND IdCiudadOrigen = 20516 AND IdCiudad = " & Val(ciudadDestino) & " AND IdProducto = 1 AND VrKilo > 0", CnnPrincipal, adOpenDynamic, adLockOptimistic
   If rstListaPreciosDetalle.RecordCount > 0 Then
      douVrKilo = rstListaPreciosDetalle!VrKilo
      Dim douFlete As Double

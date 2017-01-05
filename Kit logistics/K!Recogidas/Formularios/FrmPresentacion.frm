@@ -57,17 +57,12 @@ On Error GoTo SinConexion
   Set CnnPrincipal = New ADODB.Connection
   Set rstUniversal = New ADODB.Recordset
   Set rstUniversalAux = New ADODB.Recordset
-
       
   CnnPrincipal.CursorLocation = adUseClient
   rstUniversal.CursorLocation = adUseClient
   rstUniversalAux.CursorLocation = adUseClient
-
-      
+  
   RutaLocal = GetSetting("Kit Logistics", "Configuracion", "RutaLocal")
-      
-  If CpExisteFichero(GetSetting("Kit Logistics", "Recogidas", "InfRecogidas")) = True Then
-    ArchivoInf = GetSetting("Kit Logistics", "Recogidas", "InfRecogidas")
     
     Coperaciones = Val(GetSetting("Kit Logistics", "Configuracion", "Coperaciones"))
     CnnPrincipal.Open "DRIVER=" & GetSetting("Kit Logistics", "Configuracion", "CnnDriver") & "; SERVER=" & GetSetting("Kit Logistics", "Configuracion", "CnnServidor") & "; PORT=" & GetSetting("Kit Logistics", "Configuracion", "CnnPuerto") & "; DATABASE=" & GetSetting("Kit Logistics", "Configuracion", "CnnBaseDatos") & "; PWD=" & GetSetting("Kit Logistics", "Configuracion", "CnnContraseña") & "; UID=" & GetSetting("Kit Logistics", "Configuracion", "CnnUsuario") & ";OPTION=3"
@@ -77,10 +72,7 @@ On Error GoTo SinConexion
     LblIdProducto = GetSetting("Kit Logistics", "InfoSoftware", "Serial")
     
     CodUsuarioActivo = IngresoSistema(CnnPrincipal, 4)
-      If CodUsuarioActivo <> 0 Then Principal.Show
-  Else
-    MsgBox "No existe el archivo de informacion, verifique el administrador", vbCritical, "No se puede iniciar el sistema"
-  End If
+    If CodUsuarioActivo <> 0 Then Principal.Show
   Unload Me
 SinConexion:
   If Err.Number <> 0 Then

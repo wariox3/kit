@@ -11,4 +11,4 @@ FrmAgregarMonitoreo = 44, 44, 577, 563, C, 22, 22, 555, 541, C
 FrmAgregarEscolta = 44, 44, 583, 364, C, 22, 22, 561, 342, C
 FrmHistoricoMonitoreo = 0, 0, 463, 446, C, 220, 220, 683, 666, C
 FrmPuestosControl = 0, 0, 0, 0, C, 44, 44, 966, 608, C
-ModElToolPermisos = 0, 0, 0, 0, C
+ModElToolPermisos = 176, 176, 899, 622, C

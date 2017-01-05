@@ -84,6 +84,11 @@ On Error GoTo SinConexion
     rstUniversal.Open "Select configuracion.* from configuracion", CnnPrincipal, adOpenDynamic, adLockOptimistic
     If rstUniversal.EOF = False Then
       GuiaManConsecutivo = rstUniversal.Fields("GuiaConsecutivo")
+      If rstUniversal.Fields("fecha_vence_licencia") <= Date Then
+        MsgBox "La licencia se encuentra vencida desde el " & rstUniversal.Fields("fecha_vence_licencia") & " por favor consulte al proveedor del software en su ciudad", vbCritical
+        Unload Me
+        Exit Sub
+      End If
     End If
     rstUniversal.Close
     

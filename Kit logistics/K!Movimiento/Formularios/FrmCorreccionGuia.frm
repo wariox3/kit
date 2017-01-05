@@ -3,75 +3,82 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmCorreccionGuia 
    BorderStyle     =   4  'Fixed ToolWindow
    Caption         =   "Correccion de guias..."
-   ClientHeight    =   6630
+   ClientHeight    =   6960
    ClientLeft      =   45
    ClientTop       =   285
-   ClientWidth     =   7920
+   ClientWidth     =   7875
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6630
-   ScaleWidth      =   7920
+   ScaleHeight     =   6960
+   ScaleWidth      =   7875
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.TextBox TxtRemitente 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   2
+      Top             =   1200
+      Width           =   6615
+   End
    Begin VB.TextBox TxtKilosRealesAnt 
       Height          =   285
       Left            =   2520
-      TabIndex        =   46
-      Top             =   2640
+      TabIndex        =   47
+      Top             =   3000
       Width           =   1335
    End
    Begin VB.TextBox TxtKilosVolumenAnt 
       Height          =   285
       Left            =   2520
-      TabIndex        =   45
-      Top             =   3000
+      TabIndex        =   46
+      Top             =   3360
       Width           =   1335
    End
    Begin VB.TextBox TxtKilosFacturadosAnt 
       Height          =   285
       Left            =   2520
-      TabIndex        =   44
-      Top             =   3360
+      TabIndex        =   45
+      Top             =   3720
       Width           =   1335
    End
    Begin VB.TextBox TxtUnidadesAnt 
       Height          =   285
       Left            =   2520
-      TabIndex        =   43
-      Top             =   2280
+      TabIndex        =   44
+      Top             =   2640
       Width           =   1335
    End
    Begin VB.TextBox TxtFleteAnt 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   6360
-      TabIndex        =   42
-      Top             =   2640
+      TabIndex        =   43
+      Top             =   3000
       Width           =   1335
    End
    Begin VB.TextBox TxtManejoAnt 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   6360
-      TabIndex        =   41
-      Top             =   3000
+      TabIndex        =   42
+      Top             =   3360
       Width           =   1335
    End
    Begin VB.TextBox TxtDeclaradoAnt 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   6360
-      TabIndex        =   40
-      Top             =   2280
+      TabIndex        =   41
+      Top             =   2640
       Width           =   1335
    End
    Begin VB.TextBox TxtRecaudoAnt 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   6360
-      TabIndex        =   39
-      Top             =   3360
+      TabIndex        =   40
+      Top             =   3720
       Width           =   1335
    End
    Begin VB.TextBox TxtIdNegociacion 
@@ -85,23 +92,23 @@ Begin VB.Form FrmCorreccionGuia
       Enabled         =   0   'False
       Height          =   285
       Left            =   2400
-      TabIndex        =   37
+      TabIndex        =   38
       Top             =   840
       Width           =   5295
    End
    Begin VB.TextBox TxtIdCiudadOrigen 
       Height          =   285
       Left            =   1080
-      TabIndex        =   2
-      Top             =   1200
+      TabIndex        =   3
+      Top             =   1560
       Width           =   1215
    End
    Begin VB.TextBox TxtNmOrigen 
       Enabled         =   0   'False
       Height          =   285
       Left            =   2400
-      TabIndex        =   35
-      Top             =   1200
+      TabIndex        =   36
+      Top             =   1560
       Width           =   5295
    End
    Begin VB.ComboBox CboTpServicio 
@@ -110,45 +117,45 @@ Begin VB.Form FrmCorreccionGuia
       Left            =   1080
       List            =   "FrmCorreccionGuia.frx":0019
       Style           =   2  'Dropdown List
-      TabIndex        =   5
-      Top             =   1920
+      TabIndex        =   6
+      Top             =   2280
       Width           =   2775
    End
    Begin VB.TextBox TxtRecaudo 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   4920
-      TabIndex        =   13
-      Top             =   3360
+      TabIndex        =   14
+      Top             =   3720
       Width           =   1335
    End
    Begin VB.TextBox TxtNmDestino 
       Enabled         =   0   'False
       Height          =   285
       Left            =   2400
-      TabIndex        =   30
-      Top             =   1560
+      TabIndex        =   31
+      Top             =   1920
       Width           =   5295
    End
    Begin VB.TextBox TxtDocCliente 
       Height          =   285
       Left            =   4920
-      TabIndex        =   4
-      Top             =   1920
+      TabIndex        =   5
+      Top             =   2280
       Width           =   2775
    End
    Begin VB.TextBox TxtIdCiudadDestino 
       Height          =   285
       Left            =   1080
-      TabIndex        =   3
-      Top             =   1560
+      TabIndex        =   4
+      Top             =   1920
       Width           =   1215
    End
    Begin VB.TextBox TxtNmTercero 
       Enabled         =   0   'False
       Height          =   285
       Left            =   2400
-      TabIndex        =   28
+      TabIndex        =   29
       Top             =   480
       Width           =   5295
    End
@@ -164,68 +171,68 @@ Begin VB.Form FrmCorreccionGuia
       Left            =   1080
       MaxLength       =   150
       MultiLine       =   -1  'True
-      TabIndex        =   14
-      Top             =   5280
+      TabIndex        =   15
+      Top             =   5640
       Width           =   6615
    End
    Begin VB.TextBox TxtUnidades 
-      Height          =   285
-      Left            =   1080
-      TabIndex        =   6
-      Top             =   2280
-      Width           =   1335
-   End
-   Begin VB.TextBox TxtKilosFacturados 
-      Height          =   285
-      Left            =   1080
-      TabIndex        =   9
-      Top             =   3360
-      Width           =   1335
-   End
-   Begin VB.TextBox TxtKilosVolumen 
-      Height          =   285
-      Left            =   1080
-      TabIndex        =   8
-      Top             =   3000
-      Width           =   1335
-   End
-   Begin VB.TextBox TxtKilosReales 
       Height          =   285
       Left            =   1080
       TabIndex        =   7
       Top             =   2640
       Width           =   1335
    End
+   Begin VB.TextBox TxtKilosFacturados 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   10
+      Top             =   3720
+      Width           =   1335
+   End
+   Begin VB.TextBox TxtKilosVolumen 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   9
+      Top             =   3360
+      Width           =   1335
+   End
+   Begin VB.TextBox TxtKilosReales 
+      Height          =   285
+      Left            =   1080
+      TabIndex        =   8
+      Top             =   3000
+      Width           =   1335
+   End
    Begin VB.CommandButton CmdCancelar 
       Caption         =   "Cancelar"
       Height          =   375
       Left            =   1080
-      TabIndex        =   22
-      Top             =   6120
+      TabIndex        =   23
+      Top             =   6480
       Width           =   1455
    End
    Begin VB.TextBox TxtDeclarado 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   4920
-      TabIndex        =   10
-      Top             =   2280
+      TabIndex        =   11
+      Top             =   2640
       Width           =   1335
    End
    Begin VB.TextBox TxtManejo 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   4920
-      TabIndex        =   12
-      Top             =   3000
+      TabIndex        =   13
+      Top             =   3360
       Width           =   1335
    End
    Begin VB.TextBox TxtFlete 
       Alignment       =   1  'Right Justify
       Height          =   285
       Left            =   4920
-      TabIndex        =   11
-      Top             =   2640
+      TabIndex        =   12
+      Top             =   3000
       Width           =   1335
    End
    Begin VB.TextBox TxtGuia 
@@ -241,7 +248,7 @@ Begin VB.Form FrmCorreccionGuia
       EndProperty
       Height          =   285
       Left            =   1080
-      TabIndex        =   17
+      TabIndex        =   18
       Top             =   120
       Width           =   1215
    End
@@ -249,15 +256,15 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Aceptar"
       Height          =   375
       Left            =   6240
-      TabIndex        =   15
-      Top             =   6120
+      TabIndex        =   16
+      Top             =   6480
       Width           =   1455
    End
    Begin MSComctlLib.ListView LstGuiasTipos 
       Height          =   1455
       Left            =   1080
-      TabIndex        =   34
-      Top             =   3720
+      TabIndex        =   35
+      Top             =   4080
       Width           =   6615
       _ExtentX        =   11668
       _ExtentY        =   2566
@@ -290,12 +297,21 @@ Begin VB.Form FrmCorreccionGuia
          Object.Width           =   5292
       EndProperty
    End
+   Begin VB.Label Label16 
+      AutoSize        =   -1  'True
+      Caption         =   "Remitente:"
+      Height          =   195
+      Left            =   120
+      TabIndex        =   48
+      Top             =   1200
+      Width           =   765
+   End
    Begin VB.Label Label15 
       AutoSize        =   -1  'True
       Caption         =   "Negociacion:"
       Height          =   195
       Left            =   120
-      TabIndex        =   38
+      TabIndex        =   39
       Top             =   840
       Width           =   945
    End
@@ -304,8 +320,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Origen:"
       Height          =   195
       Left            =   480
-      TabIndex        =   36
-      Top             =   1200
+      TabIndex        =   37
+      Top             =   1560
       Width           =   510
    End
    Begin VB.Label Label13 
@@ -313,8 +329,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Recaudo:"
       Height          =   195
       Left            =   4080
-      TabIndex        =   33
-      Top             =   3360
+      TabIndex        =   34
+      Top             =   3720
       Width           =   705
    End
    Begin VB.Label Label12 
@@ -322,8 +338,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Documento:"
       Height          =   195
       Left            =   3960
-      TabIndex        =   32
-      Top             =   1920
+      TabIndex        =   33
+      Top             =   2280
       Width           =   870
    End
    Begin VB.Label Label11 
@@ -331,8 +347,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Destino:"
       Height          =   195
       Left            =   360
-      TabIndex        =   31
-      Top             =   1560
+      TabIndex        =   32
+      Top             =   1920
       Width           =   585
    End
    Begin VB.Label Label10 
@@ -340,7 +356,7 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Tercero:"
       Height          =   195
       Left            =   360
-      TabIndex        =   29
+      TabIndex        =   30
       Top             =   480
       Width           =   600
    End
@@ -350,8 +366,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Comentarios:"
       Height          =   195
       Left            =   120
-      TabIndex        =   27
-      Top             =   5280
+      TabIndex        =   28
+      Top             =   5640
       Width           =   915
    End
    Begin VB.Label Label8 
@@ -359,8 +375,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Unidades:"
       Height          =   195
       Left            =   240
-      TabIndex        =   26
-      Top             =   2280
+      TabIndex        =   27
+      Top             =   2640
       Width           =   720
    End
    Begin VB.Label Label7 
@@ -368,8 +384,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "K Fac:"
       Height          =   195
       Left            =   600
-      TabIndex        =   25
-      Top             =   3360
+      TabIndex        =   26
+      Top             =   3720
       Width           =   465
    End
    Begin VB.Label Label6 
@@ -377,8 +393,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "K Vol:"
       Height          =   195
       Left            =   540
-      TabIndex        =   24
-      Top             =   3000
+      TabIndex        =   25
+      Top             =   3360
       Width           =   420
    End
    Begin VB.Label Label5 
@@ -386,8 +402,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "K Reales:"
       Height          =   195
       Left            =   240
-      TabIndex        =   23
-      Top             =   2640
+      TabIndex        =   24
+      Top             =   3000
       Width           =   690
    End
    Begin VB.Label Label4 
@@ -395,8 +411,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Manejo:"
       Height          =   195
       Left            =   4320
-      TabIndex        =   21
-      Top             =   3000
+      TabIndex        =   22
+      Top             =   3360
       Width           =   570
    End
    Begin VB.Label Label3 
@@ -404,8 +420,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Flete:"
       Height          =   195
       Left            =   4440
-      TabIndex        =   20
-      Top             =   2640
+      TabIndex        =   21
+      Top             =   3000
       Width           =   390
    End
    Begin VB.Label Label2 
@@ -413,8 +429,8 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Declarado:"
       Height          =   195
       Left            =   4080
-      TabIndex        =   19
-      Top             =   2280
+      TabIndex        =   20
+      Top             =   2640
       Width           =   780
    End
    Begin VB.Label LblTitulos 
@@ -423,8 +439,8 @@ Begin VB.Form FrmCorreccionGuia
       Height          =   195
       Index           =   9
       Left            =   105
-      TabIndex        =   18
-      Top             =   1920
+      TabIndex        =   19
+      Top             =   2280
       Width           =   855
    End
    Begin VB.Label Label1 
@@ -432,7 +448,7 @@ Begin VB.Form FrmCorreccionGuia
       Caption         =   "Guia:"
       Height          =   195
       Left            =   585
-      TabIndex        =   16
+      TabIndex        =   17
       Top             =   120
       Width           =   375
    End
@@ -473,11 +489,11 @@ Dim intGuiaFactura As Integer
   End If
   CerrarRecorset rstUniversal
   
-  AbrirRecorset rstCorreccion, "Update Guias set GuiFac = " & intGuiaFactura & ", VrDeclarado=" & Val(TxtDeclarado) & ", VrFlete=" & Val(TxtFlete.Text) & ", VrManejo=" & Val(TxtManejo.Text) & ", TpServicio=" & CboTpServicio.ListIndex & ", KilosReales = " & Val(TxtKilosReales.Text) & ", KilosVolumen = " & Val(TxtKilosVolumen.Text) & ", KilosFacturados = " & Val(TxtKilosFacturados.Text) & ", Unidades = " & Val(TxtUnidades.Text) & ", GuiaTipo=" & LstGuiasTipos.SelectedItem & ", TipoCobro = " & intTipoCobro & ", Cliente='" & TxtNmTercero.Text & "', Cuenta='" & TxtCuenta.Text & "', IdCiuDestino=" & Val(TxtIdCiudadDestino.Text) & ", IdCiuOrigen=" & Val(TxtIdCiudadOrigen.Text) & ", DocCliente='" & TxtDocCliente.Text & "', Recaudo=" & Val(TxtRecaudo.Text) & "  where Guia=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
+  AbrirRecorset rstCorreccion, "Update Guias set GuiFac = " & intGuiaFactura & ", VrDeclarado=" & Val(TxtDeclarado) & ", VrFlete=" & Val(TxtFlete.Text) & ", VrManejo=" & Val(TxtManejo.Text) & ", TpServicio=" & CboTpServicio.ListIndex & ", KilosReales = " & Val(TxtKilosReales.Text) & ", KilosVolumen = " & Val(TxtKilosVolumen.Text) & ", KilosFacturados = " & Val(TxtKilosFacturados.Text) & ", Unidades = " & Val(TxtUnidades.Text) & ", GuiaTipo=" & LstGuiasTipos.SelectedItem & ", TipoCobro = " & intTipoCobro & ", Cliente='" & TxtNmTercero.Text & "', Cuenta='" & TxtCuenta.Text & "', IdCiuDestino=" & Val(TxtIdCiudadDestino.Text) & ", IdCiuOrigen=" & Val(TxtIdCiudadOrigen.Text) & ", DocCliente='" & TxtDocCliente.Text & "', Remitente='" & TxtRemitente.Text & "', Recaudo=" & Val(TxtRecaudo.Text) & "  where Guia=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
   InsertarLog 8, Val(TxtGuia.Text)
   CerrarRecorset rstCorreccion
   AbrirRecorset rstCorreccion, "Insert into Correcciones (GuiaCorregida, FechaCorreccion, CuentaC, IdUsuarioCorreccion, IdTpServicio, VrDeclaradoC, VrFleteC, VrManejoC, GuiaFacC, KilosRealesC, KilosVolumenC, KilosFacturadosC, UnidadesC, GuiaTipoC, Comentarios, IdCiuDestinoC, DocClienteC, RecaudoC)" & _
-  " values (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "','" & TxtCuenta.Text & "'," & CodUsuarioActivo & ", " & Val(rstGuia!TpServicio) & ", " & rstGuia.Fields("VrDeclarado") & ", " & rstGuia.Fields("VrFlete") & ", " & rstGuia.Fields("VrManejo") & "," & rstGuia!GuiFac & "," & rstGuia!KilosReales & "," & rstGuia!KilosVolumen & "," & rstGuia!KilosFacturados & "," & rstGuia!Unidades & ", " & rstGuia!GuiaTipo & ", '" & TxtComentarios.Text & "'," & Val(TxtIdCiudadDestino.Text) & ", '" & TxtDocCliente.Text & "', " & Val(TxtRecaudo.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  " values (" & FufuLo & ",'" & Format(Date, "yyyy/mm/dd") & " " & Format(Time, "h:m:s") & "','" & TxtCuenta.Text & "'," & CodUsuarioActivo & ", " & Val(rstGuia!TpServicio) & ", " & rstGuia.Fields("VrDeclarado") & ", " & rstGuia.Fields("VrFlete") & ", " & rstGuia.Fields("VrManejo") & "," & rstGuia!GuiFac & "," & rstGuia!kilosReales & "," & rstGuia!KilosVolumen & "," & rstGuia!KilosFacturados & "," & rstGuia!unidades & ", " & rstGuia!GuiaTipo & ", '" & TxtComentarios.Text & "'," & Val(TxtIdCiudadDestino.Text) & ", '" & TxtDocCliente.Text & "', " & Val(TxtRecaudo.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
   MsgBox "La guia a sido corregida satisfactoriamente", vbInformation
   Unload Me
 End Sub
@@ -509,6 +525,7 @@ Private Sub Form_Load()
     If Val(TxtIdCiudadOrigen.Text) <> 0 Then TxtNmOrigen.Text = DevResBus("SELECT IdCiudad, NmCiudad From Ciudades where IdCiudad=" & Val(TxtIdCiudadOrigen.Text), "NmCiudad", CnnPrincipal)
     
     TxtDocCliente.Text = rstGuia.Fields("DocCliente") & ""
+    TxtRemitente.Text = rstGuia.Fields("Remitente") & ""
     TxtRecaudoAnt.Text = rstGuia.Fields("Recaudo")
     Dim rstGuiasTipos As New ADODB.Recordset
     rstGuiasTipos.CursorLocation = adUseClient

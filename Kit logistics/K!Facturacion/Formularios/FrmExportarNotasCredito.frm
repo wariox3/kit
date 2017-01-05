@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
 Begin VB.Form FrmExportarNotasCredito 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Exportar notas credito"
@@ -158,7 +158,7 @@ Dim rstNotasCredito As New ADODB.Recordset
 Private Sub CmdActivar_Click()
   If Val(TxtDesde.Text) <> 0 Then
     If Val(TxtHasta.Text) <> 0 Then
-      FufuSt = "UPDATE notas_credito SET Exportada = 0 WHERE numero >= " & Val(TxtDesde.Text) & " AND numeroNotaCredito <= " & Val(TxtHasta.Text)
+      FufuSt = "UPDATE notas_credito SET Exportada = 0 WHERE numeroNotaCredito >= " & Val(TxtDesde.Text) & " AND numeroNotaCredito <= " & Val(TxtHasta.Text)
       AbrirRecorset rstUniversal, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
       MsgBox "Se han habilidato con exito las notas credito", vbInformation
       VerRecibos
@@ -168,7 +168,11 @@ End Sub
 
 Private Sub CmdExportarSiigoCotrascal_Click()
   Dim rstNotaCreditoDetalle As New ADODB.Recordset
+  Dim rstCuentaCobrar As New ADODB.Recordset
+  
   rstNotaCreditoDetalle.CursorLocation = adUseClient
+  rstCuentaCobrar.CursorLocation = adUseClient
+  
   Dim RutaSalida As String
   Dim Fila        As Long
   Dim Columna     As Long
@@ -197,7 +201,7 @@ Private Sub CmdExportarSiigoCotrascal_Click()
     'Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
     While II <= LstNotasCredito.ListItems.Count
       If LstNotasCredito.ListItems(II).Checked = True Then
-        rstNotasCredito.Open "SELECT notas_credito.*, terceros.RazonSocial, nota_credito_tipo.Cuenta as cuentaConcepto, nota_credito_tipo.Nombre as nombreConcepto " & _
+        rstNotasCredito.Open "SELECT notas_credito.*, terceros.RazonSocial, nota_credito_tipo.Cuenta as cuentaConcepto, nota_credito_tipo.Nombre as nombreConcepto, nota_credito_tipo.anulacion as anulacion " & _
                             "FROM notas_credito " & _
                             "LEFT JOIN terceros ON notas_credito.IdTercero = terceros.IdTercero " & _
                             "LEFT JOIN nota_credito_tipo ON notas_credito.IdNotaCreditoTipo = nota_credito_tipo.IdNotaCreditoTipo " & _
@@ -209,36 +213,89 @@ Private Sub CmdExportarSiigoCotrascal_Click()
           strNit = rstNotasCredito!IdTercero
           strCentroCostos = "0001"
           strVendedor = "0001"
-          strSql = "Select notas_credito_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.FhVence from notas_credito_det left join cuentas_cobrar ON notas_credito_det.IdCxC = cuentas_cobrar.IdCxC where IdNotaCredito = " & rstNotasCredito!IdNotaCredito
-          AbrirRecorset rstNotaCreditoDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
-          Do While rstNotaCreditoDetalle.EOF = False
-            'Cuenta cliente
-            strCuenta = "1305050300"
-            strDetalle = "CANC FACT " & rstNotaCreditoDetalle!NroDocumento
-            strTipo = "C"
-            douValor = rstNotaCreditoDetalle.Fields("valor")
+          If Val(rstNotasCredito.Fields("anulacion")) = 0 Then
+            strSql = "Select notas_credito_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.FhVence from notas_credito_det left join cuentas_cobrar ON notas_credito_det.IdCxC = cuentas_cobrar.IdCxC where IdNotaCredito = " & rstNotasCredito!IdNotaCredito
+            AbrirRecorset rstNotaCreditoDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+            Do While rstNotaCreditoDetalle.EOF = False
+              'Cuenta cliente
+              strCuenta = "1305050300"
+              strDetalle = "CANC FACT " & rstNotaCreditoDetalle!NroDocumento
+              strTipo = "C"
+              douValor = rstNotaCreditoDetalle.Fields("valor")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstNotaCreditoDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotaCreditoDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+              rstNotaCreditoDetalle.MoveNext
+            Loop
+            'Cruce
+            strCuenta = rstNotasCredito.Fields("cuentaConcepto")
+            strDetalle = rstNotasCredito.Fields("nombreConcepto")
+            strTipo = "D"
+            douValor = rstNotasCredito.Fields("Total")
             douValor = Round(douValor)
             strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
-            strDocumentoCruce = "F003" & Rellenar(rstNotaCreditoDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotaCreditoDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+            strDocumentoCruce = "R001" & Rellenar(rstNotasCredito!numeroNotaCredito, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotasCredito!Fecha, "yyyymmdd") & "0001" & "00"
             Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
-            intSecuencia = intSecuencia + 1
-            
-            rstNotaCreditoDetalle.MoveNext
-          Loop
-          'Cruce
-          strCuenta = rstNotasCredito.Fields("cuentaConcepto")
-          strDetalle = rstNotasCredito.Fields("nombreConcepto")
-          strTipo = "D"
-          douValor = rstNotasCredito.Fields("Total")
-          douValor = Round(douValor)
-          strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
-          strDocumentoCruce = "R001" & Rellenar(rstNotasCredito!numeroNotaCredito, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotasCredito!Fecha, "yyyymmdd") & "0001" & "00"
-          Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
-          CerrarRecorset rstNotaCreditoDetalle
+            CerrarRecorset rstNotaCreditoDetalle
+          End If
+          
+          If Val(rstNotasCredito.Fields("anulacion")) = 1 Then
+            strSql = "Select notas_credito_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.FhVence from notas_credito_det left join cuentas_cobrar ON notas_credito_det.IdCxC = cuentas_cobrar.IdCxC where IdNotaCredito = " & rstNotasCredito!IdNotaCredito
+            AbrirRecorset rstNotaCreditoDetalle, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+            Do While rstNotaCreditoDetalle.EOF = False
+              strSql = "Select cuentas_cobrar.* from cuentas_cobrar Where IdCxC = " & rstNotaCreditoDetalle.Fields("IdCxC")
+              AbrirRecorset rstCuentaCobrar, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
+              
+              strCuenta = "4145050100"
+              strDetalle = "ANULACION FLETE " & rstNotaCreditoDetalle!NroDocumento
+              strTipo = "D"
+              douValor = rstCuentaCobrar.Fields("VrFlete")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstNotaCreditoDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotaCreditoDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+              
+              strCuenta = "4145950100"
+              strDetalle = "ANULACION MANEJO " & rstNotaCreditoDetalle!NroDocumento
+              strTipo = "D"
+              douValor = rstCuentaCobrar.Fields("VrManejo")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstNotaCreditoDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotaCreditoDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+              
+              'Cuenta cliente
+              strCuenta = "1305050300"
+              strDetalle = "CANC FACT " & rstNotaCreditoDetalle!NroDocumento
+              strTipo = "C"
+              douValor = rstNotaCreditoDetalle.Fields("valor")
+              douValor = Round(douValor)
+              strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+              strDocumentoCruce = "F003" & Rellenar(rstNotaCreditoDetalle!NroDocumento, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotaCreditoDetalle!FhVence, "yyyymmdd") & "0001" & "00"
+              Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+              intSecuencia = intSecuencia + 1
+              rstNotaCreditoDetalle.MoveNext
+            Loop
+            'Cruce
+            'strCuenta = rstNotasCredito.Fields("cuentaConcepto")
+            'strDetalle = rstNotasCredito.Fields("nombreConcepto")
+            'strTipo = "D"
+            'douValor = rstNotasCredito.Fields("Total")
+            'douValor = Round(douValor)
+            'strValor = Limpiar(Format(douValor, "##0.00;(##0.00)") & "")
+            'strDocumentoCruce = "R001" & Rellenar(rstNotasCredito!numeroNotaCredito, 11, "0", 1) & Rellenar(intSecuencia & "", 3, "0", 1) & Format(rstNotasCredito!Fecha, "yyyymmdd") & "0001" & "00"
+            'Print #1, "C" & strComprobante & strNumero & Rellenar(intSecuencia & "", 5, "0", 1) & Rellenar(strNit, 13, "0", 1) & "000" & strCuenta & "0000000000000" & Format(rstNotasCredito!Fecha, "yyyymmdd") & strCentroCostos & "000" & Rellenar(strDetalle, 50, " ", 0) & strTipo & Rellenar(strValor, 15, "0", 1) & "000000000000000" & strVendedor & "0001" & "001" & "0001" & "000" & "000000000000000" & strDocumentoCruce
+            CerrarRecorset rstNotaCreditoDetalle
+          End If
+          
         End If
      
         rstNotasCredito.Close
-        'rstNotasCredito.Open "UPDATE notas_credito SET Exportada=1 where IdNotaCredito=" & LstNotasCredito.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        rstNotasCredito.Open "UPDATE notas_credito SET Exportada=1 where IdNotaCredito=" & LstNotasCredito.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
         LstNotasCredito.ListItems.Remove (II)
       Else
        II = II + 1

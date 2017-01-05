@@ -61,6 +61,16 @@ Private Sub Form_Load()
     LblPropietario = GetSetting("Kit Logistics", "InfoSoftware", "Propietario", "1")
     LblIdProducto = GetSetting("Kit Logistics", "InfoSoftware", "Serial", "1")
     
+    rstUniversal.Open "Select configuracion.* from configuracion", CnnPrincipal, adOpenDynamic, adLockOptimistic
+    If rstUniversal.EOF = False Then
+      If rstUniversal.Fields("fecha_vence_licencia") <= Date Then
+        MsgBox "La licencia se encuentra vencida desde el " & rstUniversal.Fields("fecha_vence_licencia") & " por favor consulte al proveedor del software en su ciudad", vbCritical
+        Unload Me
+        Exit Sub
+      End If
+    End If
+    rstUniversal.Close
+    
   CodUsuarioActivo = IngresoSistema(CnnPrincipal, 3)
   If CodUsuarioActivo <> 0 Then Principal.Show
   Unload Me
