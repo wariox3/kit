@@ -1,19 +1,27 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmExportarNotasCredito 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Exportar notas credito"
-   ClientHeight    =   6945
+   ClientHeight    =   7095
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   13035
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6945
+   ScaleHeight     =   7095
    ScaleWidth      =   13035
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdExportarContai 
+      Caption         =   "Exportar Contai"
+      Height          =   375
+      Left            =   7920
+      TabIndex        =   11
+      Top             =   6600
+      Width           =   1815
+   End
    Begin VB.CommandButton CmdSalir 
       Cancel          =   -1  'True
       Caption         =   "Salir"
@@ -161,9 +169,74 @@ Private Sub CmdActivar_Click()
       FufuSt = "UPDATE notas_credito SET Exportada = 0 WHERE numeroNotaCredito >= " & Val(TxtDesde.Text) & " AND numeroNotaCredito <= " & Val(TxtHasta.Text)
       AbrirRecorset rstUniversal, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
       MsgBox "Se han habilidato con exito las notas credito", vbInformation
-      VerRecibos
+      VerNotasCredito
     End If
   End If
+End Sub
+
+Private Sub CmdExportarContai_Click()
+  Dim rstNotaCreditoDetalle As New ADODB.Recordset
+  rstNotaCreditoDetalle.CursorLocation = adUseClient
+  Dim RutaSalida As String
+  Dim Fila        As Long
+  Dim Columna     As Long
+  
+On Error GoTo Error_Handler
+    RutaSalida = TxtRuta.Text & "ncexp" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt"
+    Dim J As Integer
+    Dim strCuenta As String
+    Dim strDetalle As String
+    Dim intTipo As Integer
+    Dim douValor As Double
+    Dim douBase As Double
+    Dim strNumero As String
+    Dim strNumeroReferencia As String
+    Dim intNroRegistros As Integer
+    Fila = 0
+    II = 1
+    Open RutaSalida For Append As #1
+    IniProg LstNotasCredito.ListItems.Count
+    Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
+    While II <= LstNotasCredito.ListItems.Count
+      If LstNotasCredito.ListItems(II).Checked = True Then
+        rstNotasCredito.Open "SELECT notas_credito.*, terceros.RazonSocial, nota_credito_tipo.Cuenta as CuentaConcepto, nota_credito_tipo.Nombre as CuentaConceptoNombre " & _
+                            "FROM notas_credito " & _
+                            "LEFT JOIN terceros ON notas_credito.IdTercero = terceros.IdTercero " & _
+                            "LEFT JOIN nota_credito_tipo ON notas_credito.IdNotaCreditoTipo = nota_credito_tipo.IdNotaCreditoTipo " & _
+                            "WHERE Exportada=0 AND IdNotaCredito = " & LstNotasCredito.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        'Debito
+        strCuenta = rstNotasCredito.Fields("CuentaConcepto")
+        strNumero = Rellenar(rstNotasCredito.Fields("numeroNotaCredito"), 9, "0", 1)
+        strDetalle = rstNotasCredito.Fields("CuentaConceptoNombre") & ""
+        intTipo = 1
+        douValor = rstNotasCredito.Fields("Total")
+        Print #1, strCuenta & Chr(9) & "00043" & Chr(9) & Format(rstNotasCredito.Fields("Fecha"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstNotasCredito.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+        
+        'Credito
+        strCuenta = "13050501"
+        strNumero = Rellenar(rstNotasCredito.Fields("numeroNotaCredito"), 9, "0", 1)
+        strDetalle = "NOTA CREDITO"
+        intTipo = 2
+        douValor = rstNotasCredito.Fields("Total")
+        Print #1, strCuenta & Chr(9) & "00043" & Chr(9) & Format(rstNotasCredito.Fields("Fecha"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstNotasCredito.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+        
+        rstNotasCredito.Close
+        rstNotasCredito.Open "UPDATE notas_credito SET Exportado=1 where IdNotaCredito=" & LstNotasCredito.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        LstNotasCredito.ListItems.Remove (II)
+      Else
+       II = II + 1
+      End If
+      Prog (II)
+    Wend
+    FinProg
+    Close #1
+  
+  Exit Sub
+Error_Handler:
+
+        
+    If Err.Number <> 0 Then MsgBox Err.Description, vbCritical
+
 End Sub
 
 Private Sub CmdExportarSiigoCotrascal_Click()
@@ -322,10 +395,10 @@ End Sub
 Private Sub Form_Load()
   rstNotasCredito.CursorLocation = adUseClient
   TxtRuta.Text = GetSetting("Kit Logistics", "Facturacion", "RutaExportarArchivoFacturas")
-  VerRecibos
+  VerNotasCredito
 End Sub
 
-Private Sub VerRecibos()
+Private Sub VerNotasCredito()
   Dim strSql As String
   LstNotasCredito.ListItems.Clear
   strSql = "SELECT notas_credito.*, terceros.RazonSocial, nota_credito_tipo.Nombre as Tipo " & _
@@ -343,7 +416,7 @@ Private Sub VerRecibos()
       Item.SubItems(2) = Format(rstNotasCredito!Fecha, "dd/mm/yy")
       Item.SubItems(3) = rstNotasCredito!RazonSocial & ""
       Item.SubItems(4) = rstNotasCredito!Tipo & ""
-      Item.SubItems(5) = rstNotasCredito!Total & ""
+      Item.SubItems(5) = rstNotasCredito!total & ""
       rstNotasCredito.MoveNext
     Loop
   End If

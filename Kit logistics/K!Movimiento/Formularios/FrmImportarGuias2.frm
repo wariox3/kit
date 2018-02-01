@@ -3,7 +3,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmImportarGuias2 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Importar guias"
-   ClientHeight    =   6570
+   ClientHeight    =   7650
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   12420
@@ -11,14 +11,14 @@ Begin VB.Form FrmImportarGuias2
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6570
+   ScaleHeight     =   7650
    ScaleWidth      =   12420
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtFecha 
       Height          =   285
       Left            =   5760
-      TabIndex        =   22
+      TabIndex        =   18
       Top             =   120
       Width           =   2535
    End
@@ -26,14 +26,14 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Seleccionar todo"
       Height          =   375
       Left            =   120
-      TabIndex        =   20
-      Top             =   5400
+      TabIndex        =   16
+      Top             =   7080
       Width           =   1575
    End
    Begin VB.TextBox TxtManejoMinimoUnidad 
       Height          =   285
       Left            =   7560
-      TabIndex        =   18
+      TabIndex        =   14
       Text            =   "0"
       Top             =   480
       Width           =   735
@@ -41,15 +41,14 @@ Begin VB.Form FrmImportarGuias2
    Begin VB.TextBox TxtMininoPorDespacho 
       Height          =   285
       Left            =   5760
-      TabIndex        =   16
-      Text            =   "2000"
+      TabIndex        =   12
       Top             =   480
       Width           =   735
    End
    Begin VB.TextBox TxtPorManejo 
       Height          =   285
       Left            =   3480
-      TabIndex        =   14
+      TabIndex        =   10
       Text            =   "0.5"
       Top             =   480
       Width           =   855
@@ -57,7 +56,7 @@ Begin VB.Form FrmImportarGuias2
    Begin VB.TextBox TxtDcto 
       Height          =   285
       Left            =   3480
-      TabIndex        =   12
+      TabIndex        =   8
       Text            =   "35"
       Top             =   120
       Width           =   855
@@ -65,26 +64,10 @@ Begin VB.Form FrmImportarGuias2
    Begin VB.TextBox TxtMinimos 
       Height          =   285
       Left            =   1080
-      TabIndex        =   11
+      TabIndex        =   7
       Text            =   "30"
       Top             =   480
       Width           =   1455
-   End
-   Begin VB.TextBox TxtRuta 
-      Height          =   285
-      Left            =   600
-      TabIndex        =   8
-      Text            =   "C:\importar\r1171100.txt"
-      Top             =   6120
-      Width           =   5655
-   End
-   Begin VB.CommandButton CmdRuta 
-      Caption         =   "..."
-      Height          =   255
-      Left            =   6360
-      TabIndex        =   7
-      Top             =   6120
-      Width           =   615
    End
    Begin VB.TextBox TxtIdTercero 
       Height          =   285
@@ -97,17 +80,17 @@ Begin VB.Form FrmImportarGuias2
    Begin VB.CommandButton CmdCrearGuias 
       Caption         =   "Crear guias"
       Height          =   375
-      Left            =   3480
+      Left            =   1800
       TabIndex        =   3
-      Top             =   5400
+      Top             =   7080
       Width           =   1575
    End
-   Begin VB.CommandButton CmdImportar 
-      Caption         =   "Importar"
+   Begin VB.CommandButton CmdCargar 
+      Caption         =   "Cargar"
       Height          =   375
-      Left            =   1800
+      Left            =   8760
       TabIndex        =   1
-      Top             =   5400
+      Top             =   7080
       Width           =   1575
    End
    Begin VB.CommandButton CmdSalir 
@@ -115,17 +98,17 @@ Begin VB.Form FrmImportarGuias2
       Height          =   375
       Left            =   10440
       TabIndex        =   0
-      Top             =   5400
+      Top             =   7080
       Width           =   1935
    End
    Begin MSComctlLib.ListView LstGuias 
-      Height          =   4335
+      Height          =   6015
       Left            =   120
       TabIndex        =   2
       Top             =   960
-      Width           =   10215
-      _ExtentX        =   18018
-      _ExtentY        =   7646
+      Width           =   12135
+      _ExtentX        =   21405
+      _ExtentY        =   10610
       View            =   3
       LabelEdit       =   1
       LabelWrap       =   -1  'True
@@ -137,15 +120,15 @@ Begin VB.Form FrmImportarGuias2
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   25
+      NumItems        =   18
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         Text            =   "Guia"
-         Object.Width           =   2540
+         Text            =   "ID"
+         Object.Width           =   1058
       EndProperty
       BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   1
-         Text            =   "Fecha"
-         Object.Width           =   2540
+         Text            =   "Guia"
+         Object.Width           =   2646
       EndProperty
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   2
@@ -189,107 +172,43 @@ Begin VB.Form FrmImportarGuias2
       EndProperty
       BeginProperty ColumnHeader(11) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   10
-         Text            =   "?"
+         Text            =   "Und"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(12) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   11
-         Text            =   "Und"
+         Text            =   "Peso"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(13) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   12
-         Text            =   "Peso"
+         Text            =   "Declarado"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(14) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   13
-         Text            =   "?"
+         Text            =   "Observacion"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(15) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   14
-         Text            =   "?"
+         Text            =   "Fact"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(16) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   15
-         Text            =   "?"
+         Text            =   "Flete"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(17) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   16
-         Text            =   "?"
+         Text            =   "Manejo"
          Object.Width           =   2540
       EndProperty
       BeginProperty ColumnHeader(18) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   17
-         Text            =   "Declarado"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(19) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   18
-         Text            =   "Observacion"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(20) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   19
-         Text            =   "Fact"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(21) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   20
-         Text            =   "?"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(22) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   21
-         Text            =   "?"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(23) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   22
-         Text            =   "Flete"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(24) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   23
-         Text            =   "Manejo"
-         Object.Width           =   2540
-      EndProperty
-      BeginProperty ColumnHeader(25) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   24
          Text            =   "K.Fact"
          Object.Width           =   2540
-      EndProperty
-   End
-   Begin MSComctlLib.ListView LstCiudad 
-      Height          =   4335
-      Left            =   10440
-      TabIndex        =   6
-      Top             =   960
-      Width           =   1935
-      _ExtentX        =   3413
-      _ExtentY        =   7646
-      View            =   3
-      LabelEdit       =   1
-      LabelWrap       =   -1  'True
-      HideSelection   =   0   'False
-      FullRowSelect   =   -1  'True
-      _Version        =   393217
-      ForeColor       =   -2147483640
-      BackColor       =   -2147483643
-      BorderStyle     =   1
-      Appearance      =   1
-      NumItems        =   2
-      BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         Text            =   "Cli"
-         Object.Width           =   1587
-      EndProperty
-      BeginProperty ColumnHeader(2) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
-         SubItemIndex    =   1
-         Text            =   "Kit"
-         Object.Width           =   1587
       EndProperty
    End
    Begin VB.Label Label8 
@@ -297,7 +216,7 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Fecha:"
       Height          =   195
       Left            =   5160
-      TabIndex        =   21
+      TabIndex        =   17
       Top             =   120
       Width           =   495
    End
@@ -306,7 +225,7 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Min unidad:"
       Height          =   195
       Left            =   6600
-      TabIndex        =   19
+      TabIndex        =   15
       Top             =   480
       Width           =   825
    End
@@ -315,7 +234,7 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Min despacho:"
       Height          =   195
       Left            =   4560
-      TabIndex        =   17
+      TabIndex        =   13
       Top             =   480
       Width           =   1050
    End
@@ -323,7 +242,7 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "% Mjo:"
       Height          =   255
       Left            =   3000
-      TabIndex        =   15
+      TabIndex        =   11
       Top             =   480
       Width           =   495
    End
@@ -332,7 +251,7 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Dcto:"
       Height          =   195
       Left            =   3000
-      TabIndex        =   13
+      TabIndex        =   9
       Top             =   120
       Width           =   390
    End
@@ -341,18 +260,9 @@ Begin VB.Form FrmImportarGuias2
       Caption         =   "Minimos:"
       Height          =   195
       Left            =   240
-      TabIndex        =   10
+      TabIndex        =   6
       Top             =   480
       Width           =   615
-   End
-   Begin VB.Label Label2 
-      AutoSize        =   -1  'True
-      Caption         =   "Ruta:"
-      Height          =   195
-      Left            =   120
-      TabIndex        =   9
-      Top             =   6120
-      Width           =   390
    End
    Begin VB.Label Label1 
       AutoSize        =   -1  'True
@@ -374,6 +284,7 @@ Private Sub CmdCrearGuias_Click()
   Dim rstCiudad As New ADODB.Recordset
   rstCiudad.CursorLocation = adUseClient
   Dim strSql As String
+  Dim Guia As Double
   Dim flete As Double
   Dim declarado As Double
   Dim manejo As Double
@@ -381,12 +292,15 @@ Private Sub CmdCrearGuias_Click()
   Dim kilosFacturar As Integer
   Dim kilosReales As Integer
   Dim observaciones As String
+  Dim DocumentoCliente As String
+  
   Dim orden As Integer
   II = 1
   While II <= LstGuias.ListItems.Count
     If LstGuias.ListItems(II).Checked = True Then
       'MsgBox LstGuias.ListItems(II).SubItems(1)
-      strSql = "select Guia from guias where Guia = " & LstGuias.ListItems(II)
+      Guia = Val(LstGuias.ListItems(II).SubItems(1))
+      strSql = "select Guia from guias where Guia = " & Guia
       If ExRecorset(strSql) = False Then
         strSql = "select IdCiudad  from ciudades where IdCiudad = " & LstGuias.ListItems(II).SubItems(6)
         AbrirRecorset rstCiudad, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
@@ -398,22 +312,25 @@ Private Sub CmdCrearGuias_Click()
             orden = 0
           End If
           CerrarRecorset rstUniversal
-          flete = LstGuias.ListItems(II).SubItems(22)
-          manejo = LstGuias.ListItems(II).SubItems(23)
-          declarado = LstGuias.ListItems(II).SubItems(17)
-          kilosFacturar = Val(LstGuias.ListItems(II).SubItems(24))
-          kilosReales = Val(LstGuias.ListItems(II).SubItems(12))
+          flete = LstGuias.ListItems(II).SubItems(15)
+          manejo = LstGuias.ListItems(II).SubItems(16)
+          declarado = Val(LstGuias.ListItems(II).SubItems(12))
+          kilosFacturar = Val(LstGuias.ListItems(II).SubItems(17))
+          kilosReales = Val(LstGuias.ListItems(II).SubItems(11))
           kilosReales = Round(kilosReales)
-          unidades = LstGuias.ListItems(II).SubItems(11)
-          observaciones = Mid(LstGuias.ListItems(II).SubItems(18), 1, 200)
+          unidades = LstGuias.ListItems(II).SubItems(10)
+          observaciones = Mid(LstGuias.ListItems(II).SubItems(13), 1, 200)
+          DocumentoCliente = LstGuias.ListItems(II).SubItems(2)
+          
           strSql = "INSERT INTO Guias " & _
           "(Guia, CR, Remitente, IdCliente, DocCliente, NmDestinatario, DirDestinatario, TelDestinatario, IdCiuDestino, IdRuta, " & _
           "FhEntradaBodega, VrDeclarado, VrFlete, VrManejo, Unidades, KilosReales, KilosFacturados, KilosVolumen, " & _
           "Estado, IdFactura, IdDespacho, Observaciones, COIng, Cuenta, Cliente, Recaudo, orden, EmpaqueRef, RelCliente, IdCiuOrigen, TpServicio, CPorte, Entregada, Descargada, Despachada, Anulada, GuiFac, Facturada, IdUsuario, IdEmpresa, GuiaTipo, TipoCobro) " & _
-          "VALUES(" & LstGuias.ListItems(II) & ",6,'TEXTILES LAFAYETTE S.A.S', '434','','" & LstGuias.ListItems(II).SubItems(3) & "','" & LstGuias.ListItems(II).SubItems(4) & "','" & LstGuias.ListItems(II).SubItems(5) & "', " & Val(LstGuias.ListItems(II).SubItems(6)) & ", 1, " & _
+          "VALUES(" & Guia & ",6,'TEXTILES LAFAYETTE S.A.S', '434','" & DocumentoCliente & "','" & LstGuias.ListItems(II).SubItems(3) & "','" & LstGuias.ListItems(II).SubItems(4) & "','" & LstGuias.ListItems(II).SubItems(5) & "', " & Val(LstGuias.ListItems(II).SubItems(6)) & ", 1, " & _
           "'" & TxtFecha.Text & "', " & declarado & ", " & flete & ", " & manejo & ", " & unidades & ", " & kilosReales & ", " & kilosFacturar & ", " & kilosReales & ", " & _
           "'I', 0, null, '" & observaciones & "', 6, '" & TxtIdTercero.Text & "', 'TEXTILES LAFAYETTE S.A.S', 0, " & orden & ", '','',20516, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 3)"
           AbrirRecorset rstUniversal, strSql, CnnPrincipal, adOpenDynamic, adLockBatchOptimistic
+          AbrirRecorset rstUniversal, "DELETE FROM guias_importar WHERE Id = " & LstGuias.ListItems(II), CnnPrincipal, adOpenDynamic, adLockBatchOptimistic
         End If
         CerrarRecorset rstCiudad
         LstGuias.ListItems.Remove (II)
@@ -424,81 +341,6 @@ Private Sub CmdCrearGuias_Click()
      II = II + 1
     End If
   Wend
-End Sub
-
-Private Sub CmdImportar_Click()
-  Dim ruta As String
-  Dim linea As String
-  Dim Guia() As String
-  Dim ciudad() As String
-  Dim codigoCiudad As String
-  Dim flete As Double
-  Dim manejo As Double
-  Dim kilosFacturar As Integer
-  'Homologar ciudades
-  ruta = "C:\importar\ciudades860001965.txt"
-  Open ruta For Input As #1
-  While Not EOF(1)
-    Input #1, linea
-    ciudad = Split(linea, ";")
-    Set Item = LstCiudad.ListItems.Add(, , ciudad(0))
-    Item.SubItems(1) = ciudad(1)
-  Wend
-  Close #1
-  
-  If TxtRuta.Text <> "" Then
-    ruta = TxtRuta.Text
-    Open ruta For Input As #1
-    'Titulos
-    Input #1, linea
-    While Not EOF(1)
-      'Line Input #1, linea
-      Input #1, linea
-      Guia = Split(linea, vbTab)
-      codigoCiudad = Guia(6)
-      Set Item = LstCiudad.FindItem(codigoCiudad)
-      If Item Is Nothing Then
-        codigoCiudad = "Invalido(" & codigoCiudad & ")"
-      Else
-        codigoCiudad = Item.SubItems(1)
-      End If
-      flete = DevFlete(codigoCiudad, Val(Guia(11)), Val(Guia(12)), 0)
-      manejo = DevManejo(Val(Guia(17)), Val(Guia(11)))
-      kilosFacturar = DevKilosFacturar(Val(Guia(11)), Val(Guia(12)))
-      Set Item = LstGuias.ListItems.Add(, , Guia(0))
-        Item.SubItems(1) = Guia(1)
-        Item.SubItems(2) = Guia(2)
-        Item.SubItems(3) = Guia(3)
-        Item.SubItems(4) = Guia(4)
-        Item.SubItems(5) = Guia(5)
-        Item.SubItems(6) = codigoCiudad
-        Item.SubItems(7) = Guia(7)
-        Item.SubItems(8) = Guia(8)
-        Item.SubItems(9) = Guia(9)
-        Item.SubItems(10) = Guia(10)
-        Item.SubItems(11) = Guia(11)
-        Item.SubItems(12) = Guia(12)
-        Item.SubItems(13) = Guia(13)
-        Item.SubItems(14) = Guia(14)
-        Item.SubItems(15) = Guia(15)
-        Item.SubItems(16) = Guia(16)
-        Item.SubItems(17) = Guia(17)
-        Item.SubItems(18) = Guia(18)
-        Item.SubItems(19) = Guia(19)
-        Item.SubItems(22) = flete
-        Item.SubItems(23) = manejo
-        Item.SubItems(24) = kilosFacturar
-        
-    Wend
-    Close #1
-  End If
-End Sub
-
-Private Sub CmdRuta_Click()
-  Principal.CDExa.ShowOpen
-  If Principal.CDExa.FileName <> "" Then
-   TxtRuta.Text = Principal.CDExa.FileName
-  End If
 End Sub
 
 Private Sub CmdSalir_Click()
@@ -565,4 +407,49 @@ End Sub
 
 Private Sub Form_Load()
   TxtFecha.Text = Format(Date, "yyyy/mm/dd") & " " & Format(Time, "HH:mm:ss")
+  'AbrirRecorset rstUniversal, "SELECT configuracion.consecutivo_importar_guia FROM configuracion", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+  '  TxtConsecutivo.Text = rstUniversal.Fields("consecutivo_importar_guia")
+  'CerrarRecorset rstUniversal
+  AbrirRecorset rstUniversal, "SELECT MinDesManejo FROM negociaciones WHERE Id= 434", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+    TxtMininoPorDespacho.Text = rstUniversal.Fields("MinDesManejo")
+  CerrarRecorset rstUniversal
+  
+  cargar
+End Sub
+
+Sub cargar()
+  Dim flete As Double
+  Dim manejo As Double
+  Dim kilosFacturar As Integer
+    
+  AbrirRecorset rstUniversal, "SELECT guias_importar.* FROM guias_importar", CnnPrincipal, adOpenForwardOnly, adLockReadOnly
+  Do While rstUniversal.EOF = False
+      flete = DevFlete(rstUniversal!codigoCiudad, rstUniversal!unidades, rstUniversal!peso, 0)
+      manejo = DevManejo(rstUniversal!declarado, rstUniversal!unidades)
+      kilosFacturar = DevKilosFacturar(rstUniversal!unidades, rstUniversal!peso)
+      Set Item = LstGuias.ListItems.Add(, , rstUniversal!Id)
+        Item.SubItems(1) = rstUniversal!Guia & ""
+        Item.SubItems(2) = rstUniversal!DocumentoCliente & ""
+        'Destinatario
+        Item.SubItems(3) = rstUniversal!NmDestinatario & ""
+        'Direccion
+        Item.SubItems(4) = rstUniversal!DirDestinatario & ""
+        Item.SubItems(5) = rstUniversal!TelDestinatario & ""
+        Item.SubItems(6) = rstUniversal!codigoCiudad
+        Item.SubItems(7) = ""
+        Item.SubItems(8) = ""
+        Item.SubItems(9) = ""
+        'Unidades
+        Item.SubItems(10) = rstUniversal!unidades
+        Item.SubItems(11) = rstUniversal!peso
+        Item.SubItems(12) = rstUniversal!declarado
+        Item.SubItems(13) = ""
+        Item.SubItems(14) = ""
+        'Flete
+        Item.SubItems(15) = flete
+        Item.SubItems(16) = manejo
+        Item.SubItems(17) = kilosFacturar
+    rstUniversal.MoveNext
+  Loop
+  CerrarRecorset rstUniversal
 End Sub

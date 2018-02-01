@@ -54,8 +54,8 @@ Begin VB.Form FrmTerceros
       TabCaption(1)   =   "Comercial"
       TabPicture(1)   =   "FrmTerceros.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FraNegociaciones"
-      Tab(1).Control(1)=   "FraDatosComerciales"
+      Tab(1).Control(0)=   "FraDatosComerciales"
+      Tab(1).Control(1)=   "FraNegociaciones"
       Tab(1).ControlCount=   2
       Begin VB.Frame FraNegociaciones 
          Enabled         =   0   'False
@@ -142,6 +142,14 @@ Begin VB.Form FrmTerceros
          TabIndex        =   33
          Top             =   360
          Width           =   8535
+         Begin VB.CheckBox ChkRetencionFuente 
+            Caption         =   "Retencion fuente"
+            Height          =   255
+            Left            =   6600
+            TabIndex        =   55
+            Top             =   240
+            Width           =   1815
+         End
          Begin VB.TextBox TxtCampo 
             Height          =   285
             Index           =   16
@@ -655,6 +663,7 @@ Private Sub CmdCambiarNit_Click()
         AbrirRecorset rstUniversal, "Update Guias set Cuenta='" & NuevoNit & "' where Cuenta='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
         AbrirRecorset rstUniversal, "Update cuentas_cobrar set IdTercero='" & NuevoNit & "' where IdTercero='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
         AbrirRecorset rstUniversal, "Update facturas_venta set IdTercero='" & NuevoNit & "' where IdTercero='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+        AbrirRecorset rstUniversal, "Update relentregadoc set IdTercero='" & NuevoNit & "' where IdTercero='" & ViejoNit & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
         
         MsgBox "La informacion del nit " & ViejoNit & " se paso exitosamente al nit " & NuevoNit, vbInformation
       Else
@@ -748,6 +757,7 @@ Private Sub Asignar(rstAsignar As ADODB.Recordset)
   ChkContado.value = DevCheck(rstAsignar!ManejaCobroContado)
   ChkDestino.value = DevCheck(rstAsignar!ManejaCobroDestino)
   ChkCorriente.value = DevCheck(rstAsignar!ManejaCobroCorriente)
+  ChkRetencionFuente.value = DevCheck(rstAsignar!RetencionFuente)
   VerNegociaciones
 End Sub
 
@@ -802,7 +812,8 @@ Sub AccionTool(Indice As Byte)
         If MsgBox("¿Desea aceptar la modificacion?", vbYesNo + vbQuestion, "Modificar registro") = vbYes Then
           If Validacion = True Then
             Bloquear
-            AbrirRecorset rstUniversal, "Update terceros set TpDoc='" & TxtCampo(1).Text & "', RazonSocial='" & TxtCampo(2).Text & "', Nombre='" & TxtCampo(3).Text & "', Apellido1='" & TxtCampo(4).Text & "', Apellido2='" & TxtCampo(5).Text & "', Direccion='" & TxtCampo(6).Text & "', Telefono='" & TxtCampo(7).Text & "', IdCiudad=" & Val(TxtCampo(8).Text) & ", IdCliente=" & Val(TxtCampo(9).Text) & ", Email='" & TxtCampo(10).Text & "', Celular='" & TxtCampo(11).Text & "', Plazo = " & Val(TxtCampo(12).Text) & ", DigitoVerificacion= " & Val(TxtCampo(13).Text) & ", IdAsesor= " & Val(TxtCampo(14).Text) & ", IdCentroCostos= " & Val(TxtCampo(15).Text) & ", IdFormaPago = " & CboFormaPago.ListIndex + 1 & ", CondicionComercial = '" & TxtCampo(16).Text & "', ManejaCobroContado =" & ChkContado.value & ", ManejaCobroDestino=" & ChkDestino.value & ", ManejaCobroCorriente=" & ChkCorriente.value & " where IdTercero='" & TxtCampo(0).Text & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
+            AbrirRecorset rstUniversal, "Update terceros set TpDoc='" & TxtCampo(1).Text & "', RazonSocial='" & TxtCampo(2).Text & "', Nombre='" & TxtCampo(3).Text & "', Apellido1='" & TxtCampo(4).Text & "', Apellido2='" & TxtCampo(5).Text & "', Direccion='" & TxtCampo(6).Text & "', Telefono='" & TxtCampo(7).Text & "', IdCiudad=" & Val(TxtCampo(8).Text) & ", IdCliente=" & Val(TxtCampo(9).Text) & ", Email='" & TxtCampo(10).Text & "', Celular='" & TxtCampo(11).Text & "', Plazo = " & Val(TxtCampo(12).Text) & ", DigitoVerificacion= " & Val(TxtCampo(13).Text) & ", IdAsesor= " & Val(TxtCampo(14).Text) & ", IdCentroCostos= " & Val(TxtCampo(15).Text) & ", IdFormaPago = " & CboFormaPago.ListIndex + 1 & ", CondicionComercial = '" & TxtCampo(16).Text & "', ManejaCobroContado =" & ChkContado.value & ", ManejaCobroDestino=" & _
+            ChkDestino.value & ", ManejaCobroCorriente=" & ChkCorriente.value & ", RetencionFuente=" & ChkRetencionFuente.value & " where IdTercero='" & TxtCampo(0).Text & "'", CnnPrincipal, adOpenDynamic, adLockOptimistic
             AccionTool 17
           End If
         Else
@@ -811,7 +822,8 @@ Sub AccionTool(Indice As Byte)
         End If
       Else
         If Validacion = True Then
-          AbrirRecorset rstUniversal, "INSERT INTO Terceros (IdTercero, TpDoc, RazonSocial, Nombre, Apellido1, Apellido2, Direccion, Telefono, IdCiudad, IdCliente, Email, Celular, Plazo, DigitoVerificacion, IdAsesor, IdCentroCostos, IdFormaPago, CondicionComercial, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente) VALUES ('" & TxtCampo(0).Text & "', '" & TxtCampo(1).Text & "', '" & TxtCampo(2).Text & "', '" & TxtCampo(3).Text & "', '" & TxtCampo(4).Text & "', '" & TxtCampo(5).Text & "', '" & TxtCampo(6).Text & "', '" & TxtCampo(7).Text & "', " & Val(TxtCampo(8).Text) & ", " & Val(TxtCampo(9).Text) & ", '" & TxtCampo(10).Text & "', '" & TxtCampo(11).Text & "', " & Val(TxtCampo(12).Text) & ", " & Val(TxtCampo(13).Text) & ", " & Val(TxtCampo(14).Text) & ", " & Val(TxtCampo(15).Text) & ", " & CboFormaPago.ListIndex + 1 & ", '" & TxtCampo(16).Text & "', " & ChkContado.value & ", " & ChkDestino.value & ", " & ChkCorriente.value & " )", CnnPrincipal, adOpenDynamic, adLockOptimistic
+          AbrirRecorset rstUniversal, "INSERT INTO Terceros (IdTercero, TpDoc, RazonSocial, Nombre, Apellido1, Apellido2, Direccion, Telefono, IdCiudad, IdCliente, Email, Celular, Plazo, DigitoVerificacion, IdAsesor, IdCentroCostos, IdFormaPago, CondicionComercial, ManejaCobroContado, ManejaCobroDestino, ManejaCobroCorriente, RetencionFuente) VALUES ('" & TxtCampo(0).Text & "', '" & TxtCampo(1).Text & "', '" & TxtCampo(2).Text & "', '" & TxtCampo(3).Text & "', '" & TxtCampo(4).Text & "', '" & TxtCampo(5).Text & "', '" & TxtCampo(6).Text & "', '" & TxtCampo(7).Text & "', " & Val(TxtCampo(8).Text) & ", " & Val(TxtCampo(9).Text) & ", '" & TxtCampo(10).Text & "', '" & TxtCampo(11).Text & "', " & Val(TxtCampo(12).Text) & ", " & Val(TxtCampo(13).Text) & ", " & Val(TxtCampo(14).Text) & ", " & Val(TxtCampo(15).Text) & ", " & CboFormaPago.ListIndex + 1 & ", '" & TxtCampo(16).Text & "', " & _
+          ChkContado.value & ", " & ChkDestino.value & ", " & ChkCorriente.value & ", " & ChkRetencionFuente.value & " )", CnnPrincipal, adOpenDynamic, adLockOptimistic
           AccionTool 17
           Bloquear
         End If

@@ -35,3 +35,4 @@ FrmVerCuentaCobrar = 220, 220, 1195, 694, C, 0, 0, 115, 239, C
 FrmRecibosSinImprimir = 110, 110, 851, 556, C, 22, 22, 763, 468, C
 FrmExportarNotasCredito = 66, 66, 807, 512, C, 22, 22, 763, 468, C
 FrmInformeNotaCredito = 0, 0, 784, 385, C, 110, 110, 894, 495, C
+FrmAgregarCuentaCobrarMasivo = 22, 22, 730, 468, C, 198, 198, 906, 644, C

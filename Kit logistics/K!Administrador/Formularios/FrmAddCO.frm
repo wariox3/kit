@@ -109,7 +109,7 @@ Private Sub CmdAceptar_Click()
         Case 2
           AbrirRecorset rstUniversal, "Insert into centrosoperaciones (NmPuntoOperaciones, IdCiudad, Tipo) values ('" & TxtNombreCO.Text & "', " & Val(CboCiudades.Tag) & ", " & Val(TxtCO.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
         Case 3
-          AbrirRecorset rstUniversal, "Update centroscperaciones Set NmPuntoOperaciones='" & TxtNombreCO.Text & "', IdCiudad=" & Val(CboCiudades.Tag) & " where IdPO=" & Val(TxtCO.Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
+          AbrirRecorset rstUniversal, "Update centrosoperaciones Set NmPuntoOperaciones='" & TxtNombreCO.Text & "', IdCiudad=" & Val(CboCiudades.Tag) & " where IdPO=" & Val(TxtCO.Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
       End Select
         MsgBox "Centro de Operaciones creado con exito", vbInformation
         Unload Me

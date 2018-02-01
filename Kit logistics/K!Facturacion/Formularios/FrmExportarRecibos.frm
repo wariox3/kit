@@ -3,7 +3,7 @@ Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmExportarRecibos 
    BorderStyle     =   1  'Fixed Single
    Caption         =   "Exportar recibos caja"
-   ClientHeight    =   6900
+   ClientHeight    =   7035
    ClientLeft      =   45
    ClientTop       =   330
    ClientWidth     =   11340
@@ -11,9 +11,17 @@ Begin VB.Form FrmExportarRecibos
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
-   ScaleHeight     =   6900
+   ScaleHeight     =   7035
    ScaleWidth      =   11340
    StartUpPosition =   2  'CenterScreen
+   Begin VB.CommandButton CmdExportarContai 
+      Caption         =   "Exportar Contai"
+      Height          =   375
+      Left            =   7920
+      TabIndex        =   11
+      Top             =   6600
+      Width           =   1815
+   End
    Begin VB.CommandButton CmdSeleccionarTodo 
       Caption         =   "Seleccionar todo"
       Height          =   375
@@ -65,7 +73,7 @@ Begin VB.Form FrmExportarRecibos
       Height          =   375
       Left            =   9840
       TabIndex        =   0
-      Top             =   6120
+      Top             =   6600
       Width           =   1335
    End
    Begin MSComctlLib.ListView LstRecibos 
@@ -87,7 +95,7 @@ Begin VB.Form FrmExportarRecibos
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   5
+      NumItems        =   6
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "ID"
          Object.Width           =   1940
@@ -111,6 +119,12 @@ Begin VB.Form FrmExportarRecibos
          Alignment       =   1
          SubItemIndex    =   4
          Text            =   "Total"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         Alignment       =   1
+         SubItemIndex    =   5
+         Text            =   "Rte Fte"
          Object.Width           =   2540
       EndProperty
    End
@@ -159,6 +173,116 @@ Private Sub CmdActivar_Click()
       VerRecibos
     End If
   End If
+End Sub
+
+Private Sub CmdExportarContai_Click()
+  Dim rstReciboDetalle As New ADODB.Recordset
+  rstReciboDetalle.CursorLocation = adUseClient
+  Dim RutaSalida As String
+  Dim Fila        As Long
+  Dim Columna     As Long
+  
+On Error GoTo Error_Handler
+    RutaSalida = TxtRuta.Text & "recexp" & Format(Date, "dd.mm.yy") & "." & Format(Time, "hh.mm.ss") & ".txt"
+    Dim J As Integer
+    Dim strCuenta As String
+    Dim strDetalle As String
+    Dim intTipo As Integer
+    Dim douValor As Double
+    Dim douBase As Double
+    Dim strNumero As String
+    Dim strNumeroReferencia As String
+    Dim intNroRegistros As Integer
+    Fila = 0
+    II = 1
+    Open RutaSalida For Append As #1
+    IniProg LstRecibos.ListItems.Count
+    Print #1, "Cuenta  Comprobante Fecha(mm/dd/yyyy) Documento Documento Ref.  Nit Detalle Tipo  Valor Base  Centro de Costo Trans. Ext  Plazo"
+    While II <= LstRecibos.ListItems.Count
+      If LstRecibos.ListItems(II).Checked = True Then
+        rstRecibosExp.Open "SELECT recibos_caja.*, terceros.RazonSocial, bancos.cuenta_contable " & _
+                            "FROM recibos_caja " & _
+                            "LEFT JOIN terceros ON recibos_caja.IdTercero = terceros.IdTercero " & _
+                            "LEFT JOIN bancos ON recibos_caja.codigo_banco_fk = bancos.codigo_banco_pk " & _
+                            "WHERE Exportado=0 AND IdRecibo = " & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+                            
+        rstReciboDetalle.Open "SELECT recibos_caja_det.*, cuentas_cobrar.NroDocumento, cuentas_cobrar.NroDocumentoOriginal, cuentas_cobrar.TipoFactura, facturas_tipos.Prefijo " & _
+                            "FROM recibos_caja_det " & _
+                            "LEFT JOIN cuentas_cobrar ON recibos_caja_det.codigo_cuenta_cobrar_fk = cuentas_cobrar.IdCxC " & _
+                            "LEFT JOIN facturas_tipos ON cuentas_cobrar.TipoFactura = facturas_tipos.IdTipoFactura " & _
+                            "WHERE IdRecibo = " & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        While rstReciboDetalle.EOF = False
+          strCuenta = "13050501"
+          strNumero = Rellenar(rstRecibosExp.Fields("numero"), 9, "0", 1)
+          If Val(rstReciboDetalle.Fields("TipoFactura")) = 4 Then
+            strNumeroReferencia = Rellenar(rstReciboDetalle.Fields("NroDocumentoOriginal"), 9, "0", 1)
+          Else
+            strNumeroReferencia = Rellenar(rstReciboDetalle.Fields("Prefijo") & rstReciboDetalle.Fields("NroDocumento"), 9, "0", 1)
+          End If
+          strDetalle = "PAGO FACTURA"
+          intTipo = 2
+          douValor = rstReciboDetalle.Fields("valor") + rstReciboDetalle.Fields("retencion_fuente") + rstReciboDetalle.Fields("retencion_ica") + rstReciboDetalle.Fields("descuento")
+          Print #1, strCuenta & Chr(9) & "00027" & Chr(9) & Format(rstRecibosExp.Fields("FechaPago"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumeroReferencia & Chr(9) & rstRecibosExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+          
+          'Retencion en la fuente
+          If Val(rstReciboDetalle.Fields("retencion_fuente")) > 0 Then
+            strCuenta = "13551501"
+            strNumero = Rellenar(rstRecibosExp.Fields("numero"), 9, "0", 1)
+            strDetalle = "RETENCION FUENTE"
+            intTipo = 1
+            douValor = rstReciboDetalle.Fields("retencion_fuente")
+            douBase = rstReciboDetalle.Fields("valor")
+            Print #1, strCuenta & Chr(9) & "00027" & Chr(9) & Format(rstRecibosExp.Fields("FechaPago"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstRecibosExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+          End If
+          
+          'Retencion Ica
+          If Val(rstReciboDetalle.Fields("retencion_ica")) > 0 Then
+            strCuenta = "13551801"
+            strNumero = Rellenar(rstRecibosExp.Fields("numero"), 9, "0", 1)
+            strDetalle = "RETENCION ICA"
+            intTipo = 1
+            douValor = rstReciboDetalle.Fields("retencion_ica")
+            Print #1, strCuenta & Chr(9) & "00027" & Chr(9) & Format(rstRecibosExp.Fields("FechaPago"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstRecibosExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+          End If
+          
+          'Descuento
+          If Val(rstReciboDetalle.Fields("descuento")) > 0 Then
+            strCuenta = "53053501"
+            strNumero = Rellenar(rstRecibosExp.Fields("numero"), 9, "0", 1)
+            strDetalle = "DESCUENTO"
+            intTipo = 1
+            douValor = rstReciboDetalle.Fields("descuento")
+            Print #1, strCuenta & Chr(9) & "00027" & Chr(9) & Format(rstRecibosExp.Fields("FechaPago"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstRecibosExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+          End If
+          rstReciboDetalle.MoveNext
+        Wend
+        rstReciboDetalle.Close
+        
+        'Banco
+        strCuenta = rstRecibosExp.Fields("cuenta_contable")
+        strNumero = Rellenar(rstRecibosExp.Fields("numero"), 9, "0", 1)
+        strDetalle = "BANCO"
+        intTipo = 1
+        douValor = rstRecibosExp.Fields("Total")
+        Print #1, strCuenta & Chr(9) & "00027" & Chr(9) & Format(rstRecibosExp.Fields("FechaPago"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & rstRecibosExp.Fields("IdTercero") & Chr(9) & strDetalle & Chr(9) & intTipo & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "404" & Chr(9) & "" & Chr(9) & "0"
+        
+        rstRecibosExp.Close
+        rstRecibosExp.Open "UPDATE recibos_caja SET Exportado=1 where IdRecibo=" & LstRecibos.ListItems(II), CnnPrincipal, adOpenDynamic, adLockOptimistic
+        LstRecibos.ListItems.Remove (II)
+      Else
+       II = II + 1
+      End If
+      Prog (II)
+    Wend
+    FinProg
+    Close #1
+  
+  Exit Sub
+Error_Handler:
+
+        
+    If Err.Number <> 0 Then MsgBox Err.Description, vbCritical
+
 End Sub
 
 Private Sub CmdExportarSiigoCotrascal_Click()
@@ -365,7 +489,8 @@ Private Sub VerRecibos()
       Item.SubItems(1) = rstRecibosExp.Fields("numero")
       Item.SubItems(2) = Format(rstRecibosExp!FechaPago, "dd/mm/yy")
       Item.SubItems(3) = rstRecibosExp!RazonSocial & ""
-      Item.SubItems(4) = rstRecibosExp!Total & ""
+      Item.SubItems(4) = rstRecibosExp!total & ""
+      Item.SubItems(5) = rstRecibosExp.Fields("retencion_fuente") & ""
       rstRecibosExp.MoveNext
     Loop
   End If

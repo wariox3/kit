@@ -1,5 +1,5 @@
 VERSION 5.00
-Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "mscomctl.ocx"
+Object = "{831FDD16-0C5C-11D2-A9FC-0000F8754DA1}#2.0#0"; "MSCOMCTL.OCX"
 Begin VB.Form FrmExportarFacturas 
    BorderStyle     =   3  'Fixed Dialog
    Caption         =   "Exportar Facturas"
@@ -448,14 +448,14 @@ Private Sub CmdExportarAltius_Click()
                   "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
                   
         'Cree debito 13551525
-        Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "13552001" & Chr(34) & "," & Replace((rstFactura!Total * 0.6 / 100), ",", ".") & "," & Chr(34) & "D" & Chr(34) & _
-                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+        Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "13552001" & Chr(34) & "," & Replace((rstFactura!total * 0.6 / 100), ",", ".") & "," & Chr(34) & "D" & Chr(34) & _
+                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                     "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                     "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
                     
         'Cree credito 23690510
-        Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "23657501" & Chr(34) & "," & Replace((rstFactura!Total * 0.6 / 100), ",", ".") & "," & Chr(34) & "C" & Chr(34) & _
-                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!Total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
+        Print #1, Chr(34) & Format(Date, "dd") & Chr(34) & "," & Chr(34) & rstFactura!Prefijo & Chr(34) & "," & Chr(34) & rstFactura!Numero & Chr(34) & "," & Chr(34) & "23657501" & Chr(34) & "," & Replace((rstFactura!total * 0.6 / 100), ",", ".") & "," & Chr(34) & "C" & Chr(34) & _
+                    "," & Chr(34) & rstFactura!IdTercero & Chr(34) & "," & rstFactura!total & "," & "0.6" & "," & Chr(34) & Chr(34) & "," & Chr(34) & "Factura venta " & Chr(34) & _
                     "," & Chr(34) & " " & Chr(34) & "," & "0" & "," & "0" & "," & Chr(34) & rstFactura!Prefijo & "-" & rstFactura!Numero & Chr(34) & "," & Format(rstFactura!Fecha, "dd/mm/yyyy") & _
                     "," & Format(rstFactura!FhVence, "dd/mm/yyyy") & "," & Chr(34) & "C" & Chr(34)
 
@@ -722,7 +722,7 @@ Private Sub VerFacturas()
       Item.SubItems(5) = Format(rstFacturasExp!VrFlete, "0;(0)")
       Item.SubItems(6) = Format(rstFacturasExp!VrManejo, "0;(0)")
       Item.SubItems(7) = Format(rstFacturasExp!VrOtros, "0;(0)")
-      Item.SubItems(8) = Format(rstFacturasExp!Total, "0;(0)")
+      Item.SubItems(8) = Format(rstFacturasExp!total, "0;(0)")
       Item.SubItems(9) = rstFacturasExp!IdPo
       Item.SubItems(10) = rstFacturasExp!IdAsesor & ""
       rstFacturasExp.MoveNext
@@ -754,3 +754,4 @@ Private Sub Form_Load()
   TxtRuta.Text = GetSetting("Kit Logistics", "Facturacion", "RutaExportarArchivoFacturas")
   VerFacturas
 End Sub
+

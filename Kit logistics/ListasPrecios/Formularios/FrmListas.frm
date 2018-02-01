@@ -270,6 +270,14 @@ Begin VB.Form FrmListas
       TabIndex        =   13
       Top             =   6000
       Width           =   12285
+      Begin VB.CommandButton CmdExportarBufalo 
+         Caption         =   "Exportar bufalo"
+         Height          =   255
+         Left            =   4680
+         TabIndex        =   33
+         Top             =   1440
+         Width           =   1815
+      End
       Begin VB.TextBox TxtIdCiudadDestino 
          BackColor       =   &H00FFFFFF&
          Height          =   285
@@ -291,7 +299,7 @@ Begin VB.Form FrmListas
       Begin VB.CommandButton CmdImprimirReporte 
          Caption         =   "Imprimir reporte"
          Height          =   255
-         Left            =   5400
+         Left            =   6600
          TabIndex        =   30
          Top             =   1440
          Width           =   1815
@@ -687,6 +695,67 @@ Private Sub CmdEditarRama_Click()
   Else
     MsgBox "No se puede editar una lista en rama si la lista no tiene registros", vbCritical
   End If
+End Sub
+
+Private Sub CmdExportarBufalo_Click()
+  Dim RutaSalida As String
+  Dim o_Excel     As Object
+  Dim o_Libro     As Object
+  Dim o_Hoja      As Object
+  Dim Fila        As Long
+  Dim Columna     As Long
+  Dim rstListaPrecioDetalle As New ADODB.Recordset
+  rstListaPrecioDetalle.CursorLocation = adUseClient
+  
+On Error GoTo Error_Handler
+
+  Principal.CDExa.DialogTitle = "Guardar como"
+  Principal.CDExa.Filter = "Archivo Excel|*.xls"
+  Principal.CDExa.ShowSave
+  If Principal.CDExa.FileName <> "" Then
+    RutaSalida = Principal.CDExa.FileName
+    Set o_Excel = CreateObject("Excel.Application")
+    Set o_Libro = o_Excel.Workbooks.Add
+    Set o_Hoja = o_Libro.Worksheets.Add
+    o_Hoja.Cells(1, 1).Value = "empresa"
+    o_Hoja.Cells(1, 2).Value = "origen"
+    o_Hoja.Cells(1, 3).Value = "destino"
+    o_Hoja.Cells(1, 4).Value = "producto"
+    o_Hoja.Cells(1, 5).Value = "kilo"
+    o_Hoja.Cells(1, 6).Value = "unidad"
+    
+    FufuSt = "Select listasprecios.codigo_empresa_bufalo, IdCiudadOrigen, IdCiudad, IdProducto, VrKilo, VrUnidad from listaspreciosciudades " & _
+    "left join listasprecios ON listaspreciosciudades.IdListaPrecios = listasprecios.IdListaPrecios " & _
+    " where listaspreciosciudades.IdListaPrecios=" & Val(LblIdLista.Caption)
+    AbrirRecorset rstListaPrecioDetalle, FufuSt, CnnPrincipal, adOpenDynamic, adLockOptimistic
+    
+    II = 2
+    If rstListaPrecioDetalle.RecordCount > 0 Then
+      Do While rstListaPrecioDetalle.EOF = False
+        o_Hoja.Cells(II, 1).Value = rstListaPrecioDetalle.Fields("codigo_empresa_bufalo")
+        o_Hoja.Cells(II, 2).Value = rstListaPrecioDetalle.Fields("IdCiudadOrigen") & ""
+        o_Hoja.Cells(II, 3).Value = rstListaPrecioDetalle.Fields("IdCiudad") & ""
+        o_Hoja.Cells(II, 4).Value = rstListaPrecioDetalle.Fields("IdProducto") & ""
+        o_Hoja.Cells(II, 5).Value = rstListaPrecioDetalle.Fields("VrKilo") & ""
+        o_Hoja.Cells(II, 6).Value = rstListaPrecioDetalle.Fields("VrUnidad") & ""
+        II = II + 1
+        rstListaPrecioDetalle.MoveNext
+      Loop
+    End If
+    o_Libro.Close True, RutaSalida
+    o_Excel.Quit
+    
+  End If
+  Exit Sub
+Error_Handler:
+    If Not o_Libro Is Nothing Then: o_Libro.Close False
+    If Not o_Excel Is Nothing Then: o_Excel.Quit
+    
+    If Not o_Excel Is Nothing Then Set o_Excel = Nothing
+    If Not o_Libro Is Nothing Then Set o_Libro = Nothing
+    If Not o_Hoja Is Nothing Then Set o_Hoja = Nothing
+        
+    If Err.Number <> 1004 Then MsgBox Err.Description, vbCritical
 End Sub
 
 Private Sub CmdImprimirReporte_Click()

@@ -6,12 +6,12 @@ Begin VB.Form FrmExportarManifiestosContabilidad
    ClientHeight    =   5895
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   8820
+   ClientWidth     =   12825
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   5895
-   ScaleWidth      =   8820
+   ScaleWidth      =   12825
    StartUpPosition =   2  'CenterScreen
    Begin VB.TextBox TxtRuta 
       Height          =   285
@@ -24,7 +24,7 @@ Begin VB.Form FrmExportarManifiestosContabilidad
    Begin VB.CommandButton CmdExportar 
       Caption         =   "Exportar"
       Height          =   255
-      Left            =   6600
+      Left            =   10560
       TabIndex        =   1
       Top             =   5520
       Width           =   2055
@@ -34,8 +34,8 @@ Begin VB.Form FrmExportarManifiestosContabilidad
       Left            =   120
       TabIndex        =   0
       Top             =   600
-      Width           =   8535
-      _ExtentX        =   15055
+      Width           =   12495
+      _ExtentX        =   22040
       _ExtentY        =   8493
       View            =   3
       LabelEdit       =   1
@@ -48,7 +48,7 @@ Begin VB.Form FrmExportarManifiestosContabilidad
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   4
+      NumItems        =   8
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "Orden"
          Object.Width           =   1940
@@ -65,7 +65,27 @@ Begin VB.Form FrmExportarManifiestosContabilidad
       EndProperty
       BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   3
-         Text            =   "Valor"
+         Text            =   "Placa"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(5) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   4
+         Text            =   "P"
+         Object.Width           =   529
+      EndProperty
+      BeginProperty ColumnHeader(6) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   5
+         Text            =   "Flete"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(7) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   6
+         Text            =   "TotalCE"
+         Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(8) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   7
+         Text            =   "TotalRec"
          Object.Width           =   2540
       EndProperty
    End
@@ -88,7 +108,7 @@ Option Explicit
 Dim rstDespachosExp As New ADODB.Recordset
 Private Sub VerDespachos()
   LstDespachos.ListItems.Clear
-  rstDespachosExp.Open "Select Despachos.* from Despachos where ExportadoContabilidad=0 and (Estado='I' or Estado='G' or Estado='V') and IdManifiesto<>0 order by IdManifiesto", CnnPrincipal, adOpenDynamic, adLockOptimistic
+  rstDespachosExp.Open "Select despachos.*, vehiculos.VehiculoPropio from despachos LEFT JOIN  vehiculos ON despachos.IdVehiculo = vehiculos.IdPlaca where ExportadoContabilidad=0 and (Estado='I' or Estado='G' or Estado='V') and IdManifiesto<>0 order by IdManifiesto", CnnPrincipal, adOpenDynamic, adLockOptimistic
   IniProg 1, rstDespachosExp.RecordCount
   If rstDespachosExp.RecordCount > 0 Then
     Do While rstDespachosExp.EOF = False
@@ -96,7 +116,16 @@ Private Sub VerDespachos()
       Set Item = LstDespachos.ListItems.Add(, , rstDespachosExp!OrdDespacho)
       Item.SubItems(1) = rstDespachosExp!IdManifiesto
       Item.SubItems(2) = Format(rstDespachosExp!FhExpedicion, "dd/mm/yy")
-      Item.SubItems(3) = rstDespachosExp!VrFlete
+      Item.SubItems(3) = rstDespachosExp!IdVehiculo
+      If Val(rstDespachosExp!VehiculoPropio) = 1 Then
+        Item.SubItems(4) = "S"
+      Else
+        Item.SubItems(4) = "N"
+      End If
+      
+      Item.SubItems(6) = rstDespachosExp!VrFlete
+      Item.SubItems(7) = rstDespachosExp!TotalCE
+      Item.SubItems(7) = rstDespachosExp!TRecaudo
       rstDespachosExp.MoveNext
     Loop
   End If
@@ -131,34 +160,53 @@ Private Sub CmdExportar_Click()
         strNit = rstDespachosExp.Fields("IdPropietario")
         
         'Flete
-        douValor = rstDespachosExp.Fields("VrFlete")
-        douBase = rstDespachosExp.Fields("VrFlete")
-        Print #1, "41450520" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Flete" & Chr(9) & "1" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
-        'Retencion en la fuente
-        douValor = rstDespachosExp.Fields("VrDctoRteFte")
-        Print #1, "13551501" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Rte Fuente" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
-        'ica
-        douValor = rstDespachosExp.Fields("VrDctoIndCom")
-        Print #1, "13551802" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "ica" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
-        'Acompañamiento
-        douValor = rstDespachosExp.Fields("VrDctoSeguridad")
-        Print #1, "42505015" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Acompañamiento" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
-        'Cargue
-        douValor = rstDespachosExp.Fields("VrDctoCargue")
-        Print #1, "42505020" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Cargue" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
-        'Estampilla
-        douValor = rstDespachosExp.Fields("VrDctoEstampilla")
-        Print #1, "42505025" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Estampilla" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
-        'Papeleria
-        douValor = rstDespachosExp.Fields("VrDctoPapeleria")
-        Print #1, "42505010" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Papeleria" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
-        'Anticipo
-        douValor = rstDespachosExp.Fields("VrAnticipo")
-        strCuenta = "13309502"
+
         If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
-          strCuenta = "13301001"
+          douValor = rstDespachosExp.Fields("VrFlete")
+          douBase = rstDespachosExp.Fields("VrFlete")
+        Else
+          douValor = 0
         End If
-        Print #1, strCuenta & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Anticipo" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
+        Print #1, "41450520" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Flete" & Chr(9) & "1" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Retencion en la fuente
+          douValor = rstDespachosExp.Fields("VrDctoRteFte")
+          Print #1, "13551501" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Rte Fuente" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'ica
+          douValor = rstDespachosExp.Fields("VrDctoIndCom")
+          Print #1, "13551802" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "ica" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & Format(douBase, "##0.00;(##0.00)") & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Acompañamiento
+          douValor = rstDespachosExp.Fields("VrDctoSeguridad")
+          Print #1, "42505015" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Acompañamiento" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Cargue
+          douValor = rstDespachosExp.Fields("VrDctoCargue")
+          Print #1, "42505020" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Cargue" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Estampilla
+          douValor = rstDespachosExp.Fields("VrDctoEstampilla")
+          Print #1, "42505025" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Estampilla" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Papeleria
+          douValor = rstDespachosExp.Fields("VrDctoPapeleria")
+          Print #1, "42505010" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Papeleria" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "111" & Chr(9) & "" & Chr(9) & "0"
+        End If
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          'Anticipo
+          douValor = rstDespachosExp.Fields("VrAnticipo")
+          strCuenta = "13309502"
+          If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+            strCuenta = "13301001"
+          End If
+          Print #1, strCuenta & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumero & Chr(9) & strNit & Chr(9) & "Anticipo" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
+        End If
         
         strSql = "Select*from sql_im_contraentregas where IdDespacho = " & LstDespachos.ListItems(II)
         AbrirRecorset rstUniversal, strSql, CnnPrincipal, adOpenDynamic, adLockOptimistic
@@ -166,7 +214,7 @@ Private Sub CmdExportar_Click()
         Do While rstUniversal.EOF = False
           If Val(rstUniversal.Fields("TipoCobro")) = 2 Then
             'Destino
-            douValor = (rstUniversal.Fields("VrFlete") + rstUniversal.Fields("VrManejo")) - rstUniversal.Fields("Abonos")
+            douValor = (rstUniversal.Fields("VrFlete") + rstUniversal.Fields("VrManejo")) - Val(rstUniversal.Fields("Abonos") & "")
             strNumeroDoc = Rellenar("A" & rstUniversal.Fields("Guia"), 9, "0", 1)
             Print #1, "13050502" & Chr(9) & "00025" & Chr(9) & Format(rstDespachosExp.Fields("FhExpedicion"), "mm/dd/yyyy") & Chr(9) & strNumero & Chr(9) & strNumeroDoc & Chr(9) & rstUniversal.Fields("Cuenta") & Chr(9) & "Destino" & Chr(9) & "2" & Chr(9) & Format(douValor, "##0.00;(##0.00)") & Chr(9) & "0" & Chr(9) & "" & Chr(9) & "" & Chr(9) & "0"
           End If
@@ -187,8 +235,14 @@ Private Sub CmdExportar_Click()
         'total c x p
         Dim strTipoCuenta As String
         strTipoCuenta = 2
-        douValor = rstDespachosExp.Fields("SaldoDesp")
-        douValor = douValor - (rstDespachosExp.Fields("TRecaudo") + rstDespachosExp.Fields("TotalCE"))
+        If Val(rstDespachosExp.Fields("VehiculoPropio")) = 0 Then
+          douValor = rstDespachosExp.Fields("SaldoDesp")
+          douValor = douValor - (rstDespachosExp.Fields("TRecaudo") + rstDespachosExp.Fields("TotalCE"))
+        Else
+          douValor = rstDespachosExp.Fields("TRecaudo") + rstDespachosExp.Fields("TotalCE")
+          strTipoCuenta = 1
+        End If
+
         If douValor < 0 Then
           douValor = douValor * -1
           strTipoCuenta = 1

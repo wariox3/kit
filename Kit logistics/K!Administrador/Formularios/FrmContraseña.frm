@@ -89,7 +89,11 @@ Private Sub CmdCancelar_Click()
 End Sub
 
 Private Sub CmdConfigurar_Click()
-  FrmConectarBD.Show 1
+  Dim Clave As String
+  Clave = InputBox("Digite la clave:", "Clave admin")
+  If Clave = "850903..." Then
+    FrmConectarBD.Show 1
+  End If
 End Sub
 
 Private Sub CmdIngresar_Click()

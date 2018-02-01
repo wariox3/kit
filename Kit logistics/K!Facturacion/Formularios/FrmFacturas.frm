@@ -106,16 +106,16 @@ Begin VB.Form FrmFacturas
       TabCaption(1)   =   "&Planillas"
       TabPicture(1)   =   "FrmFacturas.frx":001C
       Tab(1).ControlEnabled=   0   'False
-      Tab(1).Control(0)=   "FraPlanillas"
+      Tab(1).Control(0)=   "CmdManPlanillas"
       Tab(1).Control(1)=   "CmdVerPlanillas"
-      Tab(1).Control(2)=   "CmdManPlanillas"
+      Tab(1).Control(2)=   "FraPlanillas"
       Tab(1).ControlCount=   3
       TabCaption(2)   =   "&Otros Conceptos"
       TabPicture(2)   =   "FrmFacturas.frx":0038
       Tab(2).ControlEnabled=   0   'False
-      Tab(2).Control(0)=   "FraConceptos"
+      Tab(2).Control(0)=   "CmdMantenimientoConceptos"
       Tab(2).Control(1)=   "CmdVerConceptos"
-      Tab(2).Control(2)=   "CmdMantenimientoConceptos"
+      Tab(2).Control(2)=   "FraConceptos"
       Tab(2).ControlCount=   3
       Begin VB.CommandButton CmdLiberarGuias 
          Caption         =   "Liberar guias"
@@ -1625,7 +1625,7 @@ Sub AccionTool(Indice As Byte)
                 If ExRecorset("Select IdReciboDet from recibos_caja_det where codigo_cuenta_cobrar_fk=" & IdCuentaCobrar) = True Then
                   boolError = True
                 End If
-                If ExRecorset("Select IdNotaCreditoDet from notas_credito_det where IdCxC=" & IdCuentaCobrar) = True Then
+                If ExRecorset("Select IdNotaCreditoDet from notas_credito_det where IdCxC=" & IdCuentaCobrar & " and Valor > 0") = True Then
                   boolError = True
                 End If
             End If

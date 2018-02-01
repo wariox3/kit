@@ -319,7 +319,7 @@ End Sub
 
 Private Sub Form_Load()
   Me.Tag = FufuLo
-  Dim IdCliente As Double
+  Dim IdCliente As String
   AbrirRecorset rstUniversal, "Select Guia, IdDespacho, Cuenta, IdFactura, IdRelEntrega from Guias where Guia=" & FufuLo, CnnPrincipal, adOpenDynamic, adLockOptimistic
   If rstUniversal.EOF = False Then
     TxtGuia.Text = FufuLo

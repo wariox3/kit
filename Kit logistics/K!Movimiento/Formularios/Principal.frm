@@ -321,6 +321,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuImportarGuias2 
          Caption         =   "Importar guias 2"
       End
+      Begin VB.Menu MnuImportarBufalo 
+         Caption         =   "Importar guias bufalo"
+      End
       Begin VB.Menu MnuExportarDespachos 
          Caption         =   "Exportar despachos"
       End
@@ -999,7 +1002,9 @@ Private Sub MnuExportarDespachosContabilidad_Click()
 End Sub
 
 Private Sub MnuExportarGuiasFactura_Click()
-  FrmExportarGuiasFactura.Show 1
+  If CpPermisoEspecial(19, CodUsuarioActivo, CnnPrincipal) = True Then
+    FrmExportarGuiasFactura.Show 1
+  End If
 End Sub
 
 Private Sub MnuFletesCobradosVsFletesPagados_Click()
@@ -1053,6 +1058,10 @@ Private Sub MnuImpGuiaFormatoRango_Click()
   If FufuLo = 1 Then
     Mostrar_Reporte CnnPrincipal, 15, "Select*from sql_im_impguia where Guia>=" & GuiaDesde & " and Guia <= " & GuiaHasta, "", 2
   End If
+End Sub
+
+Private Sub MnuImportarBufalo_Click()
+  FrmImportarBufalo.Show 1
 End Sub
 
 Private Sub MnuImportarGuias_Click()

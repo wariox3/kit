@@ -91,7 +91,7 @@ Begin VB.Form FrmListasPrecios
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   3
+      NumItems        =   4
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "ID"
          Object.Width           =   882
@@ -105,6 +105,11 @@ Begin VB.Form FrmListasPrecios
          SubItemIndex    =   2
          Text            =   "Vence"
          Object.Width           =   2540
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Text            =   "E_B"
+         Object.Width           =   882
       EndProperty
    End
 End
@@ -122,6 +127,7 @@ Private Sub LLenarListasPrecios()
       Set Item = LstListasPrecios.ListItems.Add(, , rstUniversal.Fields("IdListaPrecios"))
         Item.SubItems(1) = rstUniversal.Fields("NmListaPrecios") & ""
         Item.SubItems(2) = rstUniversal.Fields("FhVencimiento") & ""
+        Item.SubItems(3) = rstUniversal.Fields("codigo_empresa_bufalo") & ""
       rstUniversal.MoveNext
     Loop
   CerrarRecorset rstUniversal

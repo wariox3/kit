@@ -173,7 +173,7 @@ Begin VB.MDIForm Principal
       End
    End
    Begin VB.Menu MnuMantenimiento 
-      Caption         =   "Mantenimiento"
+      Caption         =   "Facturacion"
       Begin VB.Menu MnuArchivoFacturas 
          Caption         =   "Facturas"
          Shortcut        =   ^F
@@ -181,9 +181,9 @@ Begin VB.MDIForm Principal
       Begin VB.Menu MnuPendientesPorFacturar 
          Caption         =   "Pendientes por facturar"
       End
-      Begin VB.Menu MnuSep10 
-         Caption         =   "-"
-      End
+   End
+   Begin VB.Menu MenuCartera 
+      Caption         =   "Cartera"
       Begin VB.Menu MnuCuentasCobrar 
          Caption         =   "Cuentas por cobrar"
       End

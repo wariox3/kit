@@ -128,6 +128,14 @@ Begin VB.Form FrmReciboCaja
       TabIndex        =   24
       Top             =   5880
       Width           =   6375
+      Begin VB.CommandButton CmdAgregarMasivo 
+         Caption         =   "Agregar masivo"
+         Height          =   255
+         Left            =   3120
+         TabIndex        =   56
+         Top             =   1800
+         Width           =   1695
+      End
       Begin VB.TextBox TxtNroDocumento 
          Height          =   285
          Left            =   1440
@@ -675,7 +683,7 @@ Private Sub CmdAgregar_Click()
       If rstCuentaCobrar.RecordCount > 0 Then
         floTotal = Val(TxtValor.Text) + Val(TxtDescuento.Text) + Val(TxtRteIca.Text) + Val(TxtRteFte.Text) + Val(TxtAjustePeso.Text)
         'MsgBox floTotal
-        If floTotal <= rstCuentaCobrar!Saldo Then
+        If floTotal <= rstCuentaCobrar!saldo Then
           AbrirRecorset rstUniversal, "INSERT INTO recibos_caja_det (IdRecibo, codigo_cuenta_cobrar_fk, valor, descuento, ajuste_peso, retencion_ica, retencion_fuente) VALUES (" & Val(TxtCampos(0).Text) & ", " & Val(TxtCuentaCobrar.Text) & ", " & Val(TxtValor.Text) & ", " & Val(TxtDescuento.Text) & ", " & Val(TxtAjustePeso.Text) & ", " & Val(TxtRteIca.Text) & ", " & Val(TxtRteFte.Text) & ")", CnnPrincipal, adOpenDynamic, adLockOptimistic
           AbrirRecorset rstUniversal, "UPDATE recibos_caja SET Total = Total + " & Val(TxtValor.Text) & ", descuento = descuento + " & Val(TxtDescuento.Text) & ", ajuste_peso = ajuste_peso + " & Val(TxtAjustePeso.Text) & ", retencion_ica = retencion_ica + " & Val(TxtRteIca.Text) & ", retencion_fuente = retencion_fuente + " & Val(TxtRteFte.Text) & " WHERE IdRecibo = " & Val(TxtCampos(0).Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
           AbrirRecorset rstUniversal, "UPDATE cuentas_cobrar SET Saldo = Saldo - " & floTotal & " WHERE IdCxC = " & rstCuentaCobrar!IdCxC, CnnPrincipal, adOpenDynamic, adLockOptimistic
@@ -705,6 +713,14 @@ Private Sub CmdAgregar_Click()
   End If
 End Sub
 
+Private Sub CmdAgregarMasivo_Click()
+  FufuSt = Val(TxtCampos(2).Text)
+  FufuLo = Val(TxtCampos(0).Text)
+  FrmAgregarCuentaCobrarMasivo.Show 1
+  VerDetalle
+  AccionTool 17
+End Sub
+
 Private Sub CmdRetirar_Click()
   Dim rstReciboDet As New ADODB.Recordset
   rstReciboDet.CursorLocation = adUseClient
@@ -721,19 +737,20 @@ Private Sub CmdRetirar_Click()
       CerrarRecorset rstReciboDet
       LstReciboDet.ListItems.Remove (II)
       AbrirRecorset rstUniversal, strSqlRecibos & " WHERE IdRecibo = " & Val(TxtCampos(0)), CnnPrincipal, adOpenForwardOnly, adLockReadOnly
-      If rstUniversal.EOF = False Then
-        Asignar rstUniversal
-      End If
     Else
      II = II + 1
     End If
-    
   Wend
+  If rstUniversal.EOF = False Then
+    Asignar rstUniversal
+  End If
 End Sub
 
 Private Sub CmdVerDetalles_Click()
   VerDetalle
 End Sub
+
+
 
 Private Sub DPFechaPago_KeyPress(KeyAscii As Integer)
   If KeyAscii = 13 Then SendKeys vbTab
@@ -1076,7 +1093,7 @@ End Sub
 Private Sub TxtCuentaCobrar_Validate(Cancel As Boolean)
   AbrirRecorset rstUniversal, "SELECT cuentas_cobrar.* FROM cuentas_cobrar WHERE IdCxC = " & Val(TxtCuentaCobrar.Text), CnnPrincipal, adOpenDynamic, adLockOptimistic
   If rstUniversal.RecordCount > 0 Then
-    TxtValor.Text = rstUniversal!Saldo
+    TxtValor.Text = rstUniversal!saldo
     TxtNroDocumento.Text = rstUniversal!NroDocumento
   End If
   CerrarRecorset rstUniversal

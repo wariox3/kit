@@ -6,12 +6,12 @@ Begin VB.Form FrmLogGuias
    ClientHeight    =   4020
    ClientLeft      =   45
    ClientTop       =   330
-   ClientWidth     =   7080
+   ClientWidth     =   8985
    LinkTopic       =   "Form1"
    MaxButton       =   0   'False
    MinButton       =   0   'False
    ScaleHeight     =   4020
-   ScaleWidth      =   7080
+   ScaleWidth      =   8985
    ShowInTaskbar   =   0   'False
    StartUpPosition =   2  'CenterScreen
    Begin MSComctlLib.ListView LstLog 
@@ -19,8 +19,8 @@ Begin VB.Form FrmLogGuias
       Left            =   120
       TabIndex        =   0
       Top             =   120
-      Width           =   6855
-      _ExtentX        =   12091
+      Width           =   8655
+      _ExtentX        =   15266
       _ExtentY        =   6588
       View            =   3
       LabelEdit       =   1
@@ -32,7 +32,7 @@ Begin VB.Form FrmLogGuias
       BackColor       =   -2147483643
       BorderStyle     =   1
       Appearance      =   1
-      NumItems        =   3
+      NumItems        =   4
       BeginProperty ColumnHeader(1) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          Text            =   "Fecha"
          Object.Width           =   3528
@@ -45,6 +45,11 @@ Begin VB.Form FrmLogGuias
       BeginProperty ColumnHeader(3) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
          SubItemIndex    =   2
          Text            =   "Usuario"
+         Object.Width           =   3528
+      EndProperty
+      BeginProperty ColumnHeader(4) {BDD1F052-858B-11D1-B16A-00C0F0283628} 
+         SubItemIndex    =   3
+         Text            =   "APP"
          Object.Width           =   3528
       EndProperty
    End
@@ -71,6 +76,7 @@ Sub VerLogs()
     Set Item = LstLog.ListItems.Add(, , Format(rstUniversal!Fecha, "dd/mmm/yy hh:mm:ss"))
     Item.SubItems(1) = rstUniversal!NmAccion & ""
     Item.SubItems(2) = rstUniversal!NmUsuario & ""
+    Item.SubItems(3) = rstUniversal!app_usuario & ""
     rstUniversal.MoveNext
   Loop
   rstUniversal.Close
